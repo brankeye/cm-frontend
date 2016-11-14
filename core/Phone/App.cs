@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using cm.frontend.core.Phone.Views.Pages;
+using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone
 {
@@ -6,23 +7,8 @@ namespace cm.frontend.core.Phone
     {
         public App()
         {
-            // The root page of your application
-            var content = new ContentPage
-            {
-                Title = "mobile",
-                Content = new StackLayout
-                {
-                    VerticalOptions = LayoutOptions.Center,
-                    Children = {
-                        new Label {
-                            HorizontalTextAlignment = TextAlignment.Center,
-                            Text = "Welcome to Xamarin Forms!"
-                        }
-                    }
-                }
-            };
-
-            MainPage = new NavigationPage(content);
+            var mainPage = new Views.Pages.Dashboard();
+            MainPage = new NavigationPage(mainPage);
         }
 
         protected override void OnStart()

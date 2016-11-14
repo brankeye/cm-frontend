@@ -2,5 +2,20 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="cm.frontend.core.Phone.Views.Pages.Login">
-  <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" />
+  <ContentPage.Content>
+    <StackLayout>
+      <Label Text="Welcome!" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+      <Entry Placeholder="Username"></Entry>
+      <Entry Placeholder="Password" IsPassword="True"></Entry>
+      <StackLayout Orientation="Horizontal">
+        <Label Text="Remember me?"></Label>
+        <Switch></Switch>
+      </StackLayout>
+      <StackLayout Orientation="Horizontal">
+        <Label Text="New user?"></Label>
+        <Switch></Switch>
+      </StackLayout>
+      <Button Text="Login" HorizontalOptions="Center"></Button>
+    </StackLayout>
+  </ContentPage.Content>
 </ContentPage>

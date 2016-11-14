@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
+namespace cm.frontend.core.Phone.ViewModels.Pages
 {
-    public class Student
+    public class Manage
     {
     }
 }
