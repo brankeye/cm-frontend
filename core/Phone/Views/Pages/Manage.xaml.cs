@@ -18,5 +18,17 @@ namespace cm.frontend.core.Phone.Views.Pages
             InitializeComponent();
             BindingContext = new ViewModels.Pages.Manage();
         }
+
+        private void JoinSchool_OnTapped(object sender, EventArgs e)
+        {
+            JoinLabel.Animate("JoinLabelSize", value => JoinLabel.FontSize = value, JoinLabel.FontSize, 20, 2, 250, Easing.Linear);
+            CreateLabel.Animate("CreateLabelSize", value => CreateLabel.FontSize = value, CreateLabel.FontSize, 14, 2, 250, Easing.Linear);
+        }
+
+        private void CreateSchool_OnTapped(object sender, EventArgs e)
+        {
+            JoinLabel.Animate("JoinLabelSize", value => JoinLabel.FontSize = value, JoinLabel.FontSize, 14, 2, 250, Easing.Linear);
+            CreateLabel.Animate("CreateLabelSize", value => CreateLabel.FontSize = value, CreateLabel.FontSize, 20, 2, 250, Easing.Linear);
+        }
     }
 }

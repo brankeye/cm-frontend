@@ -5,11 +5,19 @@
   <ContentPage.Content>
     <StackLayout>
       <Label Text="Manage" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
-      <StackLayout Orientation="Horizontal">
-        <Label Text="Join" HorizontalOptions="StartAndExpand"></Label>
-        <Label Text="Create" HorizontalOptions="EndAndExpand"></Label>
-      </StackLayout>
       <Entry Placeholder="School name"></Entry>
+      <StackLayout Orientation="Horizontal">
+        <Label x:Name="JoinLabel" Text="Join" HorizontalOptions="StartAndExpand">
+          <Label.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding JoinCommand}" Tapped="JoinSchool_OnTapped"></TapGestureRecognizer>
+          </Label.GestureRecognizers>
+        </Label>
+        <Label x:Name="CreateLabel" Text="Create" HorizontalOptions="EndAndExpand">
+          <Label.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding CreateCommand}" Tapped="CreateSchool_OnTapped"></TapGestureRecognizer>
+          </Label.GestureRecognizers>
+        </Label>
+      </StackLayout>
       <Button Text="Ok"></Button>
     </StackLayout>
   </ContentPage.Content>
