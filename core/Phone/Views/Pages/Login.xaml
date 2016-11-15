@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="cm.frontend.core.Phone.Views.Pages.Login">
+             x:Class="cm.frontend.core.Phone.Views.Pages.Login"
+             Navigation="{Binding Navigation, Mode=OneWayToSource}">
   <ContentPage.Content>
     <StackLayout>
       <Label Text="Welcome!" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
@@ -13,9 +14,9 @@
       </StackLayout>
       <StackLayout Orientation="Horizontal">
         <Label Text="New user?"></Label>
-        <Switch></Switch>
+        <Switch x:Name="NewUserSwitch" IsToggled="{Binding NewUserIsToggled}" Toggled="NewUserSwitch_OnToggled"></Switch>
       </StackLayout>
-      <Button Text="Login" HorizontalOptions="Center"></Button>
+      <Button x:Name="ActionButton" Text="Login" Command="{Binding ActionButtonCommand}" HorizontalOptions="Center"></Button>
     </StackLayout>
   </ContentPage.Content>
 </ContentPage>

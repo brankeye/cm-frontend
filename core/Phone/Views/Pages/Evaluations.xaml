@@ -1,6 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:cm.frontend.core.Phone.Views.Controls;assembly=cm.frontend.core.Phone"
              x:Class="cm.frontend.core.Phone.Views.Pages.Evaluations">
-  <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" />
+  <ContentPage.Content>
+    <controls:PrettyListView ItemsSource="{Binding Evaluations}" HasUnevenRows="True" IsPullToRefreshEnabled="False" QuickSelect="True">
+      <controls:PrettyListView.ItemTemplate>
+        <DataTemplate>
+          <TextCell Text="{Binding Evaluation.Name}"></TextCell>
+        </DataTemplate>
+      </controls:PrettyListView.ItemTemplate>
+      <controls:PrettyListView.Header>
+        <Label Text="Evaluations"></Label>
+      </controls:PrettyListView.Header>
+    </controls:PrettyListView>
+  </ContentPage.Content>
 </ContentPage>

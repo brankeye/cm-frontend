@@ -2,16 +2,16 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:cm.frontend.core.Phone.Views.Controls;assembly=cm.frontend.core.Phone"
-             x:Class="cm.frontend.core.Phone.Views.Pages.Classes">
+             x:Class="cm.frontend.core.Phone.Views.Pages.Students">
   <ContentPage.Content>
-    <controls:PrettyListView ItemsSource="{Binding Classes}" HasUnevenRows="True" IsPullToRefreshEnabled="False" QuickSelect="True">
+    <controls:PrettyListView ItemsSource="{Binding Students}" HasUnevenRows="True" IsPullToRefreshEnabled="False" QuickSelect="True">
       <controls:PrettyListView.ItemTemplate>
         <DataTemplate>
-          <TextCell Text="{Binding Class.Name}"></TextCell>
+          <TextCell Text="{Binding Student.Name}"></TextCell>
         </DataTemplate>
       </controls:PrettyListView.ItemTemplate>
       <controls:PrettyListView.Header>
-        <Label Text="Classes"></Label>
+        <Label Text="Students"></Label>
       </controls:PrettyListView.Header>
     </controls:PrettyListView>
   </ContentPage.Content>

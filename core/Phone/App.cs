@@ -7,7 +7,7 @@ namespace cm.frontend.core.Phone
     {
         public App()
         {
-            var mainPage = new Views.Pages.Dashboard();
+            var mainPage = new Views.Pages.Login();
             MainPage = new NavigationPage(mainPage);
         }
 

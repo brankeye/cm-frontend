@@ -43,7 +43,6 @@
     <Compile Include="Services\Caches\Base\DataRegion.cs" />
     <Compile Include="Services\Caches\Pages.cs" />
     <Compile Include="Services\Navigation\Base\Core.cs" />
-    <Compile Include="Services\Navigation\Navigator.cs" />
     <Compile Include="Services\Realms\Base\AsyncRealm.cs" />
     <Compile Include="Utilities\DynamicCollection.cs" />
   </ItemGroup>
