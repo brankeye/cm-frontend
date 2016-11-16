@@ -4,10 +4,10 @@
              xmlns:controls="clr-namespace:cm.frontend.core.Phone.Views.Controls;assembly=cm.frontend.core.Phone"
              x:Class="cm.frontend.core.Phone.Views.Pages.Evaluations">
   <ContentPage.Content>
-    <controls:PrettyListView ItemsSource="{Binding Evaluations}" HasUnevenRows="True" IsPullToRefreshEnabled="False" QuickSelect="True">
+    <controls:PrettyListView ItemsSource="{Binding EvaluationsList}" HasUnevenRows="False" IsPullToRefreshEnabled="False" QuickSelect="True">
       <controls:PrettyListView.ItemTemplate>
         <DataTemplate>
-          <TextCell Text="{Binding Evaluation.Name}"></TextCell>
+          <TextCell Text="{Binding EvaluationModel.Name}" Detail="{Binding EvaluationModel.Date}"></TextCell>
         </DataTemplate>
       </controls:PrettyListView.ItemTemplate>
       <controls:PrettyListView.Header>

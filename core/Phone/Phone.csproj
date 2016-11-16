@@ -40,6 +40,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Navigator.cs" />
     <Compile Include="ViewModels\Controls\PrettyListViewItems\Base\Core.cs" />
+    <Compile Include="ViewModels\Controls\PrettyListViewItems\Evaluation.cs" />
+    <Compile Include="ViewModels\Controls\PrettyListViewItems\Student.cs" />
     <Compile Include="ViewModels\Controls\PrettyListViewItems\Class.cs" />
     <Compile Include="ViewModels\Pages\Classes.cs" />
     <Compile Include="ViewModels\Pages\Dashboard.cs" />

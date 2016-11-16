@@ -12,5 +12,11 @@ namespace cm.frontend.core.Phone.Views.Pages
             InitializeComponent();
             BindingContext = new ViewModels.Pages.Students();
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            ViewModel.OnAppearing();
+        }
     }
 }

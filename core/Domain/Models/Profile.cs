@@ -16,6 +16,9 @@ namespace cm.frontend.core.Domain.Models
 
         public string LastName { get; set; }
 
+        [Ignored]
+        public string FullName => FirstName + " " + LastName;
+
         public string Email { get; set; }
 
         public string PhoneNumber { get; set; }

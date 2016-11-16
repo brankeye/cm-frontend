@@ -46,6 +46,7 @@
     <Compile Include="Models\Evaluation.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Models\School.cs" />
+    <Compile Include="Models\Students.cs" />
     <Compile Include="Models\Time.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="Services\Realms\CanceledClasses.cs" />
     <Compile Include="Services\Realms\AttendingClasses.cs" />
     <Compile Include="Services\Realms\Classes.cs" />
+    <Compile Include="Services\Realms\Students.cs" />
     <Compile Include="Services\Realms\Schools.cs" />
     <Compile Include="Services\Realms\Profiles.cs" />
     <Compile Include="Services\Realms\Times.cs" />

@@ -1,4 +1,5 @@
-﻿using cm.frontend.core.Domain.Interfaces;
+﻿using System;
+using cm.frontend.core.Domain.Interfaces;
 using Realms;
 
 namespace cm.frontend.core.Domain.Models
@@ -13,5 +14,7 @@ namespace cm.frontend.core.Domain.Models
         public int LocalId { get; set; }
 
         public string Name { get; set; }
+
+        public DateTimeOffset Date { get; set; }
     }
 }
