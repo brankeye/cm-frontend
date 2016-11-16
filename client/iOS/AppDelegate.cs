@@ -1,4 +1,4 @@
-﻿using cm.frontend.core.Shared;
+﻿using FormsToolkit.iOS;
 using Foundation;
 using UIKit;
 
@@ -20,6 +20,7 @@ namespace cm.frontend.client.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             Xamarin.Forms.Forms.Init();
+            Toolkit.Init();
 
             /*
             Xamarin.Forms.Application app;

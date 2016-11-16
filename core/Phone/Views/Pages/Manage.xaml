@@ -1,24 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="cm.frontend.core.Phone.Views.Pages.Manage">
+             x:Class="cm.frontend.core.Phone.Views.Pages.Manage"
+             Navigation="{Binding Navigation, Mode=OneWayToSource}">
   <ContentPage.Content>
     <StackLayout>
-      <Label Text="Manage" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+      <Label Text="Manage" VerticalTextAlignment="Center"></Label>
       <Entry Placeholder="School name"></Entry>
       <StackLayout Orientation="Horizontal">
-        <Label x:Name="JoinLabel" Text="Join" HorizontalOptions="StartAndExpand">
-          <Label.GestureRecognizers>
-            <TapGestureRecognizer Command="{Binding JoinCommand}" Tapped="JoinSchool_OnTapped"></TapGestureRecognizer>
-          </Label.GestureRecognizers>
-        </Label>
-        <Label x:Name="CreateLabel" Text="Create" HorizontalOptions="EndAndExpand">
-          <Label.GestureRecognizers>
-            <TapGestureRecognizer Command="{Binding CreateCommand}" Tapped="CreateSchool_OnTapped"></TapGestureRecognizer>
-          </Label.GestureRecognizers>
-        </Label>
+        <Button Text="Join" Command="{Binding JoinCommand}"></Button>
+        <Button Text="Create" Command="{Binding CreateCommand}"></Button>
       </StackLayout>
-      <Button Text="Ok"></Button>
     </StackLayout>
   </ContentPage.Content>
 </ContentPage>

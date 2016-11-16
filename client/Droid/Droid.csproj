@@ -49,6 +49,14 @@
       <HintPath>..\..\packages\DotNetCross.Memory.Unsafe.0.2.2\lib\dotnet\DotNetCross.Memory.Unsafe.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="FormsToolkit, Version=1.1.18.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FormsToolkit.1.1.18\lib\MonoAndroid10\FormsToolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FormsToolkit.Android, Version=1.1.18.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FormsToolkit.1.1.18\lib\MonoAndroid10\FormsToolkit.Android.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="FormsViewGroup, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xamarin.Forms.2.3.2.127\lib\MonoAndroid10\FormsViewGroup.dll</HintPath>
       <Private>True</Private>

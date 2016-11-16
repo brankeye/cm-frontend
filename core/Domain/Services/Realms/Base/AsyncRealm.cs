@@ -10,7 +10,7 @@ using Realms;
 namespace cm.frontend.core.Domain.Services.Realms.Base
 {
     public class AsyncRealm<T>
-        where T : RealmObject, IEntity, new()
+        where T : RealmObject, ILocalEntity, new()
     {
         public Realm RealmInstance => _realmInstance = Realm.GetInstance();
         private Realm _realmInstance;

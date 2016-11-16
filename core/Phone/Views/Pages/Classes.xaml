@@ -4,10 +4,10 @@
              xmlns:controls="clr-namespace:cm.frontend.core.Phone.Views.Controls;assembly=cm.frontend.core.Phone"
              x:Class="cm.frontend.core.Phone.Views.Pages.Classes">
   <ContentPage.Content>
-    <controls:PrettyListView ItemsSource="{Binding Classes}" HasUnevenRows="True" IsPullToRefreshEnabled="False" QuickSelect="True">
+    <controls:PrettyListView ItemsSource="{Binding ClassesList}" HasUnevenRows="False" IsPullToRefreshEnabled="False" QuickSelect="True">
       <controls:PrettyListView.ItemTemplate>
         <DataTemplate>
-          <TextCell Text="{Binding Class.Name}"></TextCell>
+          <TextCell Text="{Binding ClassModel.Name}" Detail="{Binding ClassModel.Day}"></TextCell>
         </DataTemplate>
       </controls:PrettyListView.ItemTemplate>
       <controls:PrettyListView.Header>

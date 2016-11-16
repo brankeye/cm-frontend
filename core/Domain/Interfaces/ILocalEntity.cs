@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace cm.frontend.core.Phone.ViewModels.Pages.Details
+namespace cm.frontend.core.Domain.Interfaces
 {
-    public class Student
+    public interface ILocalEntity
     {
+        int LocalId { get; set; }
     }
 }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using cm.frontend.core.Domain.Services.Caches.Base;
+﻿using cm.frontend.core.Domain.Services.Caches.Base;
 using Xamarin.Forms;
 
 namespace cm.frontend.core.Domain.Services.Caches

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone.Views.Pages
 {
@@ -17,6 +11,12 @@ namespace cm.frontend.core.Phone.Views.Pages
         {
             InitializeComponent();
             BindingContext = new ViewModels.Pages.Classes();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            ViewModel.OnAppearing();
         }
     }
 }

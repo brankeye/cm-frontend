@@ -1,7 +1,5 @@
 ﻿using System.Threading.Tasks;
 using cm.frontend.core.Domain.Services.Navigation.Base;
-using cm.frontend.core.Phone.Views.Pages;
-using cm.frontend.core.Phone.Views.Pages.Editors;
 using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone.Services
@@ -32,6 +30,60 @@ namespace cm.frontend.core.Phone.Services
 
             var pageCache = Domain.Services.Caches.Pages.GetInstance();
             var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Manage>(nameof(Views.Pages.Manage));
+            await PushAsync(navigation, cachedPage);
+        }
+
+        public async Task PushClassesPageAsync(INavigation navigation)
+        {
+            if (IsNavigating) return;
+
+            var pageCache = Domain.Services.Caches.Pages.GetInstance();
+            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Classes>(nameof(Views.Pages.Classes));
+            await PushAsync(navigation, cachedPage);
+        }
+
+        public async Task PushStudentsPageAsync(INavigation navigation)
+        {
+            if (IsNavigating) return;
+
+            var pageCache = Domain.Services.Caches.Pages.GetInstance();
+            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Students>(nameof(Views.Pages.Students));
+            await PushAsync(navigation, cachedPage);
+        }
+
+        public async Task PushEvaluationsPageAsync(INavigation navigation)
+        {
+            if (IsNavigating) return;
+
+            var pageCache = Domain.Services.Caches.Pages.GetInstance();
+            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Evaluations>(nameof(Views.Pages.Evaluations));
+            await PushAsync(navigation, cachedPage);
+        }
+
+        public async Task PushProfilePageAsync(INavigation navigation)
+        {
+            if (IsNavigating) return;
+
+            var pageCache = Domain.Services.Caches.Pages.GetInstance();
+            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Details.Profile>(nameof(Views.Pages.Details.Profile));
+            await PushAsync(navigation, cachedPage);
+        }
+
+        public async Task PushSchoolPageAsync(INavigation navigation)
+        {
+            if (IsNavigating) return;
+
+            var pageCache = Domain.Services.Caches.Pages.GetInstance();
+            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Details.School>(nameof(Views.Pages.Details.School));
+            await PushAsync(navigation, cachedPage);
+        }
+
+        public async Task PushLoginPageAsync(INavigation navigation)
+        {
+            if (IsNavigating) return;
+
+            var pageCache = Domain.Services.Caches.Pages.GetInstance();
+            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Login>(nameof(Views.Pages.Login));
             await PushAsync(navigation, cachedPage);
         }
     }

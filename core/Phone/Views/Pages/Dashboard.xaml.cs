@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone.Views.Pages
 {
@@ -24,31 +18,48 @@ namespace cm.frontend.core.Phone.Views.Pages
         {
             var classesButton = new Button()
             {
-                Text = "Classes"
+                Text = "Classes",
+                CommandParameter = "Classes"
             };
+            classesButton.SetBinding(Button.CommandProperty, new Binding("LaunchCommand"));
+
             var studentsButton = new Button()
             {
-                Text = "Students"
+                Text = "Students",
+                CommandParameter = "Students"
             };
+            studentsButton.SetBinding(Button.CommandProperty, new Binding("LaunchCommand"));
+
             var profileButton = new Button()
             {
-                Text = "Profile"
+                Text = "Profile",
+                CommandParameter = "Profile"
             };
+            profileButton.SetBinding(Button.CommandProperty, new Binding("LaunchCommand"));
+
             var schoolButton = new Button()
             {
-                Text = "School"
+                Text = "School",
+                CommandParameter = "School"
             };
+            schoolButton.SetBinding(Button.CommandProperty, new Binding("LaunchCommand"));
+
             var signoutButton = new Button()
             {
-                Text = "Signout"
+                Text = "Signout",
+                CommandParameter = "Signout"
             };
+            signoutButton.SetBinding(Button.CommandProperty, new Binding("LaunchCommand"));
 
             if (isStudent)
             {
                 var evaluationsButton = new Button()
                 {
-                    Text = "Evaluations"
+                    Text = "Evaluations",
+                    CommandParameter = "Evaluations"
                 };
+                evaluationsButton.SetBinding(Button.CommandProperty, new Binding("LaunchCommand"));
+
                 DashboardGrid.Children.Add(classesButton, 0, 0);
                 DashboardGrid.Children.Add(evaluationsButton, 1, 0);
                 DashboardGrid.Children.Add(studentsButton, 0, 1);

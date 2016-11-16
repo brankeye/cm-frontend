@@ -1,9 +1,7 @@
 ﻿using Android.App;
 using Android.Content.PM;
-using Android.Widget;
 using Android.OS;
-using cm.frontend.core.Phone;
-using Xamarin.Forms;
+using FormsToolkit.Droid;
 
 namespace cm.frontend.client.Droid
 {
@@ -18,6 +16,7 @@ namespace cm.frontend.client.Droid
             // SetContentView (Resource.Layout.Main);
 
             Xamarin.Forms.Forms.Init(this, bundle);
+            Toolkit.Init();
 
             /*
             Xamarin.Forms.Application app;
