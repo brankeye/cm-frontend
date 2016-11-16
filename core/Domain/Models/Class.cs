@@ -17,17 +17,27 @@ namespace cm.frontend.core.Domain.Models
 
         public string Day
         {
-            get { return DateTime.DayOfWeek.ToString(); }
+            get { return DayInternal; }
             set
             {
-                var dayOfWeek = DayOfWeek.Friday;
-                var now = DateTimeOffset.Now;
-                Enum.TryParse(value, out dayOfWeek);
-                DateTime = new DateTimeOffset(now.Year, now.Month, (int) dayOfWeek, 0, 0, 0, TimeSpan.Zero); 
+                if (value.Equals("Monday") ||
+                    value.Equals("Tuesday") ||
+                    value.Equals("Wednesday") ||
+                    value.Equals("Thursday") ||
+                    value.Equals("Friday") ||
+                    value.Equals("Saturday") ||
+                    value.Equals("Sunday"))
+                {
+                    DayInternal = value;
+                }
+                else
+                {
+                    throw new Exception("Invalid day.");
+                }
             }
         }
 
-        private DateTimeOffset DateTime { get; set; }
+        private string DayInternal { get; set; }
 
         public Time StartTime { get; set; }
 

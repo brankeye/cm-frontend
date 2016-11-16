@@ -13,13 +13,6 @@ namespace cm.frontend.core.Domain.Models
 
         public Time(int hour, int minutes, int seconds)
         {
-            if (hour < 0 || hour > 23 ||
-                minutes < 0 || minutes > 59 ||
-                seconds < 0 || seconds > 59)
-            {
-                throw new Exception("Values for Time object are out of bounds.");
-            }
-
             Hour = hour;
             Minutes = minutes;
             Seconds = seconds;
@@ -32,12 +25,49 @@ namespace cm.frontend.core.Domain.Models
         [Indexed]
         public int LocalId { get; set; }
 
-        public int Hour { get; set; }
+        public int Hour
+        {
+            get { return HourInternal; }
+            set
+            {
+                if (value < 0 || value > 23)
+                {
+                    throw new Exception("Invalid hour.");
+                }
+                HourInternal = value;
+            }
+        }
 
-        public int Minutes { get; set; }
+        private int HourInternal { get; set; }
 
-        public int Seconds { get; set; }
+        public int Minutes
+        {
+            get { return MinutesInternal; }
+            set
+            {
+                if (value < 0 || value > 59)
+                {
+                    throw new Exception("Invalid minutes.");
+                }
+                MinutesInternal = value;
+            }
+        }
 
-        
+        private int MinutesInternal { get; set; }
+
+        public int Seconds
+        {
+            get { return SecondsInternal; }
+            set
+            {
+                if (value < 0 || value > 59)
+                {
+                    throw new Exception("Invalid seconds.");
+                }
+                SecondsInternal = value;
+            }
+        }
+
+        private int SecondsInternal { get; set; }
     }
 }
