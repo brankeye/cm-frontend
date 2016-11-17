@@ -2,9 +2,10 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:cm.frontend.core.Phone.Views.Controls;assembly=cm.frontend.core.Phone"
-             x:Class="cm.frontend.core.Phone.Views.Pages.Classes">
+             x:Class="cm.frontend.core.Phone.Views.Pages.Classes"
+             Navigation="{Binding Navigation, Mode=OneWayToSource}">
   <ContentPage.Content>
-    <controls:PrettyListView ItemsSource="{Binding ClassesList}" HasUnevenRows="False" IsPullToRefreshEnabled="False" QuickSelect="True">
+    <controls:PrettyListView ItemsSource="{Binding ClassesList}" ItemSelected="ClassesListView_OnItemSelected" HasUnevenRows="False" IsPullToRefreshEnabled="False" QuickSelect="True">
       <controls:PrettyListView.ItemTemplate>
         <DataTemplate>
           <TextCell Text="{Binding ClassModel.Name}" Detail="{Binding ClassModel.Day}"></TextCell>
@@ -15,4 +16,7 @@
       </controls:PrettyListView.Header>
     </controls:PrettyListView>
   </ContentPage.Content>
+  <ContentPage.ToolbarItems>
+    <ToolbarItem Text="Add" Command="{Binding AddClassCommand}" Order="Primary"></ToolbarItem>
+  </ContentPage.ToolbarItems>
 </ContentPage>

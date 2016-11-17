@@ -11,6 +11,11 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
 
             switch (pageName)
             {
+                case "Calendar":
+                {
+                    await navigator.PushCalendarPageAsync(Navigation);
+                    break;
+                }
                 case "Classes":
                 {
                     await navigator.PushClassesPageAsync(Navigation);

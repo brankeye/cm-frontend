@@ -10,18 +10,18 @@ namespace cm.frontend.core.Phone.Views.Pages
         public Dashboard()
         {
             InitializeComponent();
-            InitializeView(true);
+            InitializeView(false);
             BindingContext = new ViewModels.Pages.Dashboard();
         }
 
         public void InitializeView(bool isStudent)
         {
-            var classesButton = new Button()
+            var calendarButton = new Button()
             {
-                Text = "Classes",
-                CommandParameter = "Classes"
+                Text = "Calendar",
+                CommandParameter = "Calendar"
             };
-            classesButton.SetBinding(Button.CommandProperty, new Binding("LaunchCommand"));
+            calendarButton.SetBinding(Button.CommandProperty, new Binding("LaunchCommand"));
 
             var studentsButton = new Button()
             {
@@ -60,7 +60,7 @@ namespace cm.frontend.core.Phone.Views.Pages
                 };
                 evaluationsButton.SetBinding(Button.CommandProperty, new Binding("LaunchCommand"));
 
-                DashboardGrid.Children.Add(classesButton, 0, 0);
+                DashboardGrid.Children.Add(calendarButton, 0, 0);
                 DashboardGrid.Children.Add(evaluationsButton, 1, 0);
                 DashboardGrid.Children.Add(studentsButton, 0, 1);
                 DashboardGrid.Children.Add(schoolButton, 1, 1);
@@ -69,11 +69,19 @@ namespace cm.frontend.core.Phone.Views.Pages
             }
             else
             {
-                DashboardGrid.Children.Add(classesButton, 0, 0);
-                DashboardGrid.Children.Add(studentsButton, 1, 0);
-                DashboardGrid.Children.Add(schoolButton, 0, 1);
-                DashboardGrid.Children.Add(profileButton, 1, 1);
-                DashboardGrid.Children.Add(signoutButton, 0, 2);
+                var classesButton = new Button()
+                {
+                    Text = "Classes",
+                    CommandParameter = "Classes"
+                };
+                classesButton.SetBinding(Button.CommandProperty, new Binding("LaunchCommand"));
+
+                DashboardGrid.Children.Add(calendarButton, 0, 0);
+                DashboardGrid.Children.Add(classesButton, 1, 0);
+                DashboardGrid.Children.Add(studentsButton, 0, 1);
+                DashboardGrid.Children.Add(schoolButton, 1, 1);
+                DashboardGrid.Children.Add(profileButton, 0, 2);
+                DashboardGrid.Children.Add(signoutButton, 1, 2);
             }
         }
     }

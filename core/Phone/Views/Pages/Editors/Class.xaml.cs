@@ -12,5 +12,10 @@ namespace cm.frontend.core.Phone.Views.Pages.Editors
             InitializeComponent();
             BindingContext = new ViewModels.Pages.Editors.Class();
         }
+
+        public void Initialize(int classLocalId)
+        {
+            ViewModel.Initialize(classLocalId);
+        }
     }
 }

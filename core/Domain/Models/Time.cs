@@ -69,5 +69,14 @@ namespace cm.frontend.core.Domain.Models
         }
 
         private int SecondsInternal { get; set; }
+
+        public string Display => ToString();
+
+        public override string ToString()
+        {
+            var ts = new TimeSpan(Hour, Minutes, Seconds);
+            var result = ts.ToString("hh:mm tt");
+            return result;
+        }
     }
 }

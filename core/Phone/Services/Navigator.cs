@@ -42,6 +42,34 @@ namespace cm.frontend.core.Phone.Services
             await PushAsync(navigation, cachedPage);
         }
 
+        public async Task PushClassEditorPageAsync(INavigation navigation)
+        {
+            if (IsNavigating) return;
+
+            var pageCache = Domain.Services.Caches.Pages.GetInstance();
+            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Editors.Class>(nameof(Views.Pages.Editors.Class));
+            await PushAsync(navigation, cachedPage);
+        }
+
+        public async Task PushClassEditorPageAsync(INavigation navigation, int classLocalId)
+        {
+            if (IsNavigating) return;
+
+            var pageCache = Domain.Services.Caches.Pages.GetInstance();
+            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Editors.Class>(nameof(Views.Pages.Editors.Class));
+            cachedPage.Initialize(classLocalId);
+            await PushAsync(navigation, cachedPage);
+        }
+
+        public async Task PushCalendarPageAsync(INavigation navigation)
+        {
+            if (IsNavigating) return;
+
+            var pageCache = Domain.Services.Caches.Pages.GetInstance();
+            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Calendar>(nameof(Views.Pages.Calendar));
+            await PushAsync(navigation, cachedPage);
+        }
+
         public async Task PushStudentsPageAsync(INavigation navigation)
         {
             if (IsNavigating) return;
@@ -86,6 +114,26 @@ namespace cm.frontend.core.Phone.Services
             var pageCache = Domain.Services.Caches.Pages.GetInstance();
             var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Login>(nameof(Views.Pages.Login));
             await PushAsync(navigation, cachedPage);
+        }
+
+        public new async Task PopAsync(INavigation navigation)
+        {
+            await base.PopAsync(navigation);
+        }
+
+        public new async Task PopModalAsync(INavigation navigation)
+        {
+            await base.PopModalAsync(navigation);
+        }
+
+        public new async Task PopToRootAsync(INavigation navigation)
+        {
+            await base.PopToRootAsync(navigation);
+        }
+
+        public new void RemovePage(INavigation navigation, Page page)
+        {
+            base.RemovePage(navigation, page);
         }
     }
 }
