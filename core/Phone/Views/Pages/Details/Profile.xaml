@@ -2,14 +2,16 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="cm.frontend.core.Phone.Views.Pages.Details.Profile">
-  <StackLayout>
-    <Label Text="First name" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-    <Label Text="{Binding ProfileModel.FirstName}" VerticalTextAlignment="Center"></Label>
-    <Label Text="Last name" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-    <Label Text="{Binding ProfileModel.LastName}" VerticalTextAlignment="Center"></Label>
-    <Label Text="Email" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-    <Label Text="{Binding ProfileModel.Email}" VerticalTextAlignment="Center"></Label>
-    <Label Text="Phone number" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-    <Label Text="{Binding ProfileModel.PhoneNumber}" VerticalTextAlignment="Center"></Label>
-  </StackLayout>
+  <ContentPage.Content>
+    <StackLayout>
+      <Label Text="First name" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
+      <Label Text="{Binding ProfileModel.FirstName}" VerticalTextAlignment="Center"></Label>
+      <Label Text="Last name" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
+      <Label Text="{Binding ProfileModel.LastName}" VerticalTextAlignment="Center"></Label>
+      <Label Text="Email" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
+      <Label Text="{Binding ProfileModel.Email}" VerticalTextAlignment="Center"></Label>
+      <Label Text="Phone number" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
+      <Label Text="{Binding ProfileModel.PhoneNumber}" VerticalTextAlignment="Center"></Label>
+    </StackLayout>
+  </ContentPage.Content>
 </ContentPage>
