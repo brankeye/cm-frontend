@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using cm.frontend.core.Domain.Interfaces;
+﻿using cm.frontend.core.Domain.Interfaces;
 using Realms;
 
 namespace cm.frontend.core.Domain.Models

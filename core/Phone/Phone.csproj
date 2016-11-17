@@ -57,6 +57,9 @@
     <Compile Include="ViewModels\Pages\Login.cs" />
     <Compile Include="ViewModels\Pages\Manage.cs" />
     <Compile Include="ViewModels\Pages\Students.cs" />
+    <Compile Include="Views\Controls\BindablePicker.xaml.cs">
+      <DependentUpon>BindablePicker.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controls\PrettyListView.xaml.cs">
       <DependentUpon>PrettyListView.xaml</DependentUpon>
     </Compile>
@@ -235,6 +238,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\Pages\Students.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Controls\BindablePicker.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

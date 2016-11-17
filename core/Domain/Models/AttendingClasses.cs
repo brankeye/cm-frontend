@@ -1,4 +1,5 @@
-﻿using cm.frontend.core.Domain.Interfaces;
+﻿using System;
+using cm.frontend.core.Domain.Interfaces;
 using Realms;
 
 namespace cm.frontend.core.Domain.Models
@@ -19,6 +20,8 @@ namespace cm.frontend.core.Domain.Models
         public int ProfileId { get; set; }
 
         public Profile Profile { get; set; }
+
+        public DateTimeOffset Date { get; set; }
 
         public bool IsAttending { get; set; }
     }

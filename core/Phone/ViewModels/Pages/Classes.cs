@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Linq;
 using cm.frontend.core.Domain.Extensions.NotifyPropertyChanged;
-using cm.frontend.core.Domain.Models;
 using cm.frontend.core.Domain.Utilities;
 
 namespace cm.frontend.core.Phone.ViewModels.Pages

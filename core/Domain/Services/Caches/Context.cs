@@ -1,5 +1,4 @@
 ﻿using cm.frontend.core.Domain.Services.Caches.Base;
-using Xamarin.Forms;
 
 namespace cm.frontend.core.Domain.Services.Caches
 {

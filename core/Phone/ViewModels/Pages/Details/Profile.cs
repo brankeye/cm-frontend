@@ -1,8 +1,5 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using cm.frontend.core.Domain.Extensions.NotifyPropertyChanged;
-using cm.frontend.core.Domain.Utilities;
 
 namespace cm.frontend.core.Phone.ViewModels.Pages.Details
 {
