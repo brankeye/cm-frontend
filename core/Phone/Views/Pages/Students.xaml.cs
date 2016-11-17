@@ -18,5 +18,11 @@ namespace cm.frontend.core.Phone.Views.Pages
             base.OnAppearing();
             ViewModel.OnAppearing();
         }
+
+        private void StudentsListView_OnItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            var student = (ViewModels.Controls.PrettyListViewItems.Student) e.SelectedItem;
+            ViewModel.StudentSelected(student.StudentModel.LocalId);
+        }
     }
 }

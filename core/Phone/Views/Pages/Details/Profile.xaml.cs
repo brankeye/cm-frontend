@@ -13,6 +13,11 @@ namespace cm.frontend.core.Phone.Views.Pages.Details
             BindingContext = new ViewModels.Pages.Details.Profile();
         }
 
+        public void Initialize(int profileLocalId)
+        {
+            ViewModel.Initialize(profileLocalId);
+        }
+
         protected override void OnAppearing()
         {
             base.OnAppearing();

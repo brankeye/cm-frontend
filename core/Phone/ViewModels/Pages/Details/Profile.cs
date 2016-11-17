@@ -10,16 +10,18 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
     {
         private Domain.Services.Realms.Profiles ProfilesRealm { get; set; }
 
-        private void Initialize()
+        public void Initialize(int profileLocalId)
         {
-            ProfilesRealm = new Domain.Services.Realms.Profiles();
-            ProfileModel = ProfilesRealm.Get(1);
+            ProfileId = profileLocalId;
         }
 
         public void OnAppearing()
         {
-            Initialize();
+            ProfilesRealm = new Domain.Services.Realms.Profiles();
+            ProfileModel = ProfilesRealm.Get(ProfileId);
         }
+
+        private int ProfileId { get; set; }
 
         public Domain.Models.Profile ProfileModel
         {

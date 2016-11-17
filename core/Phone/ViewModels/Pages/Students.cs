@@ -3,12 +3,18 @@ using System.ComponentModel;
 using System.Linq;
 using cm.frontend.core.Domain.Extensions.NotifyPropertyChanged;
 using cm.frontend.core.Domain.Utilities;
+using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone.ViewModels.Pages
 {
     public class Students : INotifyPropertyChanged
     {
         private Domain.Services.Realms.Students StudentsRealm { get; set; }
+
+        public Students()
+        {
+            Initialize();
+        }
 
         private void Initialize()
         {
@@ -29,8 +35,16 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
 
         public void OnAppearing()
         {
-            Initialize();
+            //Initialize();
         }
+
+        public async void StudentSelected(int studentLocalId)
+        {
+            var navigator = new Services.Navigator();
+            await navigator.PushProfilePageAsync(Navigation, studentLocalId);
+        }
+
+        public INavigation Navigation { get; set; }
 
         public DynamicCollection<ViewModels.Controls.PrettyListViewItems.Student> StudentsList
         {

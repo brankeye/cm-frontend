@@ -60,12 +60,13 @@ namespace cm.frontend.core.Phone.Services
             await PushAsync(navigation, cachedPage);
         }
 
-        public async Task PushProfilePageAsync(INavigation navigation)
+        public async Task PushProfilePageAsync(INavigation navigation, int profileLocalId)
         {
             if (IsNavigating) return;
 
             var pageCache = Domain.Services.Caches.Pages.GetInstance();
             var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Details.Profile>(nameof(Views.Pages.Details.Profile));
+            cachedPage.Initialize(profileLocalId);
             await PushAsync(navigation, cachedPage);
         }
 

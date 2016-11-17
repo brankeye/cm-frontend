@@ -28,7 +28,10 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
                 }
                 case "Profile":
                 {
-                    await navigator.PushProfilePageAsync(Navigation);
+                    // TODO: Get current user profile LocalId
+                    var contextCache = Domain.Services.Caches.Context.GetInstance();
+                    var currentContext = contextCache.Get("Context");
+                    await navigator.PushProfilePageAsync(Navigation, currentContext.CurrentUser.Profile.LocalId);
                     break;
                 }
                 case "School":

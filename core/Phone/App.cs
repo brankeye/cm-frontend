@@ -57,14 +57,20 @@ namespace cm.frontend.core.Phone
                 var profile1 = realm.CreateObject();
                 profile1.FirstName = "Brandon";
                 profile1.LastName = "Keyes";
+                profile1.Email = "brankeye@gmail.com";
+                profile1.PhoneNumber = "6137095799";
 
                 var profile2 = realm.CreateObject();
                 profile2.FirstName = "Cameron";
                 profile2.LastName = "Keyes";
+                profile2.Email = "camisson@gmail.com";
+                profile2.PhoneNumber = "6133676789";
 
                 var profile3 = realm.CreateObject();
                 profile3.FirstName = "Kyle";
                 profile3.LastName = "Keyes";
+                profile3.Email = "kylekeye@gmail.com";
+                profile3.PhoneNumber = "6134063322";
             });
 
             var schoolsRealm = new Domain.Services.Realms.Schools();
@@ -72,6 +78,10 @@ namespace cm.frontend.core.Phone
             {
                 var school1 = realm.CreateObject();
                 school1.Name = "STVTO";
+                school1.Email = "stvto@gmail.com";
+                school1.Address = "546 Place St.";
+                school1.PhoneNumber = "6134563456";
+                school1.Website = "stvto.com";
 
                 var p1 = profilesRealm.Get(x => x.FirstName == "Brandon");
                 school1.Teacher = p1;
@@ -111,6 +121,17 @@ namespace cm.frontend.core.Phone
                 eval3.Name = "Evaluation 3";
                 eval3.Date = DateTimeOffset.Now;
             });
+
+            var usersRealm = new Domain.Services.Realms.Users();
+            await usersRealm.WriteAsync(realm =>
+            {
+                var user = realm.CreateObject();
+                user.Profile = profilesRealm.Get(1);
+            });
+
+            var contextCache = Domain.Services.Caches.Context.GetInstance();
+            var context = new Domain.Models.Local.Context { CurrentUser = usersRealm.Get(1) };
+            contextCache.Add("Context", context);
         }
 
         protected override void OnStart()
