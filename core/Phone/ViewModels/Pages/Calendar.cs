@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using cm.frontend.core.Domain.Extensions.NotifyPropertyChanged;
@@ -12,14 +13,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
 
         private void Initialize()
         {
-            ClassesRealm = new Domain.Services.Realms.Classes();
-            var classes = ClassesRealm.GetAll().ToList();
-            var classesContainer = new List<ViewModels.Controls.PrettyListViewItems.Class>();
-            foreach (var classModel in classes)
-            {
-                classesContainer.Add(new ViewModels.Controls.PrettyListViewItems.Class(classModel));
-            }
-            ClassesList.AddRange(classesContainer);
+            
         }
 
         public void OnAppearing()
@@ -27,12 +21,56 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
             Initialize();
         }
 
-        public DynamicCollection<ViewModels.Controls.PrettyListViewItems.Class> ClassesList
+        public void LoadClassDates()
         {
-            get { return _classes ?? (_classes = new DynamicCollection<ViewModels.Controls.PrettyListViewItems.Class>()); }
+            // get classes
+            ClassesRealm = new Domain.Services.Realms.Classes();
+            var classes = ClassesRealm.GetAll().ToList();
+            var classesContainer = new List<ViewModels.Controls.PrettyListViewItems.ClassDate>();
+
+            var currentDate = SelectedDate;
+            for (var i = 0; i < 7; i++)
+            {
+                // increase current date by one day
+                currentDate = currentDate.AddDays(1);
+
+                // loop through all classes
+                foreach (var classModel in classes)
+                {
+                    // if class falls on the current date, add it to the list with the current date
+                    if (classModel.Day == currentDate.DayOfWeek.ToString())
+                    {
+                        classesContainer.Add(new ViewModels.Controls.PrettyListViewItems.ClassDate(classModel, currentDate));
+                    }
+                }
+            }
+
+            ClassesList.Clear();
+            ClassesList.AddRange(classesContainer);
+        }
+
+        public void ClassSelected(int classLocalId, DateTimeOffset date)
+        {
+            // TODO: push page to view attendance on this class and date, or to cancel the class on this date
+        }
+
+        public DateTimeOffset SelectedDate
+        {
+            get { return _selectedDate; }
+            set
+            {
+                _selectedDate = value;
+                LoadClassDates();
+            }
+        }
+        private DateTimeOffset _selectedDate;
+
+        public DynamicCollection<ViewModels.Controls.PrettyListViewItems.ClassDate> ClassesList
+        {
+            get { return _classes ?? (_classes = new DynamicCollection<ViewModels.Controls.PrettyListViewItems.ClassDate>()); }
             set { this.SetProperty(ref _classes, value, PropertyChanged); }
         }
-        private DynamicCollection<ViewModels.Controls.PrettyListViewItems.Class> _classes;
+        private DynamicCollection<ViewModels.Controls.PrettyListViewItems.ClassDate> _classes;
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

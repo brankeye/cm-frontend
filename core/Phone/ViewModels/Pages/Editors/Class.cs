@@ -22,7 +22,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
                 "Saturday",
                 "Sunday"
             };
-            IsNewClass = false;
+            IsNewClass = true;
         }
 
         public void Initialize(int classLocalId)
@@ -33,7 +33,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
             DaysIndex = Days.IndexOf(existingClass.Day);
             StartTime = new TimeSpan(existingClass.StartTime.Hour, existingClass.StartTime.Minutes, 0);
             EndTime = new TimeSpan(existingClass.EndTime.Hour, existingClass.EndTime.Minutes, 0);
-            IsNewClass = true;
+            IsNewClass = false;
             ClassLocalId = classLocalId;
         }
 
