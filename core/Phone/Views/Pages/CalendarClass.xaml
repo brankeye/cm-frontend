@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:cm.frontend.core.Phone.Views.Controls;assembly=cm.frontend.core.Phone"
+             x:Class="cm.frontend.core.Phone.Views.Pages.CalendarClass">
+  <ContentPage.Content>
+    <controls:PrettyListView ItemsSource="{Binding AttendingList}" Header="{Binding .}" HasUnevenRows="False" IsPullToRefreshEnabled="False" QuickSelect="True">
+      <controls:PrettyListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <StackLayout Orientation="Horizontal">
+              <Label Text="{Binding AttendingModel.Profile.FullName}"></Label>
+              <Label Text="{Binding AttendingModel.Profile.Email}"></Label>
+            </StackLayout>
+          </ViewCell>
+        </DataTemplate>
+      </controls:PrettyListView.ItemTemplate>
+      <controls:PrettyListView.HeaderTemplate>
+        <DataTemplate>
+          <StackLayout>
+            <Label Text="{Binding ClassModel.Name}" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
+            <StackLayout Orientation="Horizontal">
+              <Label Text="Date: " VerticalTextAlignment="Center"></Label>
+              <Label Text="{Binding Date, StringFormat='{0:dddd, MMMM d, yyyy}'}" VerticalTextAlignment="Center"></Label>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+              <Label Text="Time: " VerticalTextAlignment="Center"></Label>
+              <Label Text="{Binding ClassModel.StartTime.Display}" VerticalTextAlignment="Center"></Label>
+              <Label Text=" to " VerticalTextAlignment="Center"></Label>
+              <Label Text="{Binding ClassModel.EndTime.Display}" VerticalTextAlignment="Center"></Label>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+              <Label Text="Attending?" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
+              <controls:BindablePicker ItemsSource="{Binding AttendingOptions}" SelectedIndex="{Binding AttendingIndex, Mode=TwoWay}"></controls:BindablePicker>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+              <Label Text="Canceled?" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
+              <controls:BindablePicker ItemsSource="{Binding CanceledOptions}" SelectedIndex="{Binding CanceledIndex, Mode=TwoWay}"></controls:BindablePicker>
+            </StackLayout>
+          </StackLayout>
+        </DataTemplate>
+      </controls:PrettyListView.HeaderTemplate>
+    </controls:PrettyListView>
+  </ContentPage.Content>
+</ContentPage>

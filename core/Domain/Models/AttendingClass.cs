@@ -4,7 +4,7 @@ using Realms;
 
 namespace cm.frontend.core.Domain.Models
 {
-    public class AttendingClasses : RealmObject, IEntity
+    public class AttendingClass : RealmObject, IEntity
     {
         [Indexed]
         public int Id { get; set; }

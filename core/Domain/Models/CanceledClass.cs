@@ -4,7 +4,7 @@ using Realms;
 
 namespace cm.frontend.core.Domain.Models
 {
-    public class CanceledClasses : RealmObject, IEntity
+    public class CanceledClass : RealmObject, IEntity
     {
         [Indexed]
         public int Id { get; set; }

@@ -122,6 +122,15 @@ namespace cm.frontend.core.Phone
                 eval3.Date = DateTimeOffset.Now;
             });
 
+            var attendingRealm = new Domain.Services.Realms.AttendingClasses();
+            await attendingRealm.WriteAsync(realm =>
+            {
+                var attending1 = realm.CreateObject();
+                attending1.Date = DateTimeOffset.Now.AddDays(1).Date;
+                attending1.Class = classesRealm.Get(x => x.Name == "Afternoon Class");
+                attending1.Profile = profilesRealm.Get(x => x.FirstName == "Kyle");
+            });
+
             var usersRealm = new Domain.Services.Realms.Users();
             await usersRealm.WriteAsync(realm =>
             {

@@ -74,8 +74,8 @@ namespace cm.frontend.core.Domain.Models
 
         public override string ToString()
         {
-            var ts = new TimeSpan(Hour, Minutes, Seconds);
-            var result = ts.ToString("hh:mm tt");
+            var dt = new DateTime(1999, 1, 1, Hour, Minutes, Seconds);
+            var result = dt.ToString("hh':'mm' 'tt");
             return result;
         }
     }

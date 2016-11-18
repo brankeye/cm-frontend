@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:cm.frontend.core.Phone.Views.Controls;assembly=cm.frontend.core.Phone"
              xmlns:converters="clr-namespace:cm.frontend.core.Domain.Utilities.Converters;assembly=cm.frontend.core.Domain"
-             x:Class="cm.frontend.core.Phone.Views.Pages.Calendar">
+             x:Class="cm.frontend.core.Phone.Views.Pages.Calendar"
+             Navigation="{Binding Navigation, Mode=OneWayToSource}">
   <ContentPage.Content>
     <StackLayout>
       <controls:PrettyListView ItemsSource="{Binding ClassesList}" Header="{Binding .}" ItemSelected="ClassesListView_OnItemSelected" HasUnevenRows="False" IsPullToRefreshEnabled="False" QuickSelect="True">

@@ -40,8 +40,8 @@
     <Compile Include="Interfaces\IEntity.cs" />
     <Compile Include="Interfaces\ILocalEntity.cs" />
     <Compile Include="Models\Account.cs" />
-    <Compile Include="Models\AttendingClasses.cs" />
-    <Compile Include="Models\CanceledClasses.cs" />
+    <Compile Include="Models\AttendingClass.cs" />
+    <Compile Include="Models\CanceledClass.cs" />
     <Compile Include="Models\Class.cs" />
     <Compile Include="Models\Evaluation.cs" />
     <Compile Include="Models\Local\Context.cs" />

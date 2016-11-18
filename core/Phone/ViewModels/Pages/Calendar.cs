@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using cm.frontend.core.Domain.Extensions.NotifyPropertyChanged;
 using cm.frontend.core.Domain.Utilities;
+using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone.ViewModels.Pages
 {
@@ -49,9 +50,10 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
             ClassesList.AddRange(classesContainer);
         }
 
-        public void ClassSelected(int classLocalId, DateTimeOffset date)
+        public async void ClassSelected(int classLocalId, DateTimeOffset date)
         {
-            // TODO: push page to view attendance on this class and date, or to cancel the class on this date
+            var navigator = new Services.Navigator();
+            await navigator.PushCalendarClassPageAsync(Navigation, classLocalId, date);
         }
 
         public DateTimeOffset SelectedDate
@@ -64,6 +66,8 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
             }
         }
         private DateTimeOffset _selectedDate;
+
+        public INavigation Navigation { get; set; }
 
         public DynamicCollection<ViewModels.Controls.PrettyListViewItems.ClassDate> ClassesList
         {
