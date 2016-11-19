@@ -15,32 +15,10 @@ namespace cm.frontend.core.Domain.Models
 
         public string Name { get; set; }
 
-        public string Day
-        {
-            get { return DayInternal; }
-            set
-            {
-                if (value.Equals("Monday") ||
-                    value.Equals("Tuesday") ||
-                    value.Equals("Wednesday") ||
-                    value.Equals("Thursday") ||
-                    value.Equals("Friday") ||
-                    value.Equals("Saturday") ||
-                    value.Equals("Sunday"))
-                {
-                    DayInternal = value;
-                }
-                else
-                {
-                    throw new Exception("Invalid day.");
-                }
-            }
-        }
+        public string Day { get; set; }
 
-        private string DayInternal { get; set; }
+        public DateTimeOffset StartTime { get; set; }
 
-        public Time StartTime { get; set; }
-
-        public Time EndTime { get; set; }
+        public DateTimeOffset EndTime { get; set; }
     }
 }

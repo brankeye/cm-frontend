@@ -25,9 +25,9 @@
             </StackLayout>
             <StackLayout Orientation="Horizontal">
               <Label Text="Time: " VerticalTextAlignment="Center"></Label>
-              <Label Text="{Binding ClassModel.StartTime.Display}" VerticalTextAlignment="Center"></Label>
+              <Label Text="{Binding ClassModel.StartTime, StringFormat='{0:h:m tt}'}" VerticalTextAlignment="Center"></Label>
               <Label Text=" to " VerticalTextAlignment="Center"></Label>
-              <Label Text="{Binding ClassModel.EndTime.Display}" VerticalTextAlignment="Center"></Label>
+              <Label Text="{Binding ClassModel.EndTime, StringFormat='{0:h:m tt}'}" VerticalTextAlignment="Center"></Label>
             </StackLayout>
             <StackLayout Orientation="Horizontal">
               <Label Text="Attending?" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>

@@ -1,6 +1,6 @@
 ﻿namespace cm.frontend.core.Domain.Services.Realms
 {
-    public class Times : Base.AsyncRealm<Models.Time>
+    public class Dates : Base.AsyncRealm<Models.Date>
     {
     }
 }

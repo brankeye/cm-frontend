@@ -31,8 +31,8 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
             var existingClass = classesRealm.Get(classLocalId);
             ClassName = existingClass.Name;
             DaysIndex = Days.IndexOf(existingClass.Day);
-            StartTime = new TimeSpan(existingClass.StartTime.Hour, existingClass.StartTime.Minutes, 0);
-            EndTime = new TimeSpan(existingClass.EndTime.Hour, existingClass.EndTime.Minutes, 0);
+            StartTime = new TimeSpan(existingClass.StartTime.Hour, existingClass.StartTime.Minute, 0);
+            EndTime = new TimeSpan(existingClass.EndTime.Hour, existingClass.EndTime.Minute, 0);
             IsNewClass = false;
             ClassLocalId = classLocalId;
         }
@@ -48,8 +48,8 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
                     var newClass = realm.CreateObject();
                     newClass.Name = ClassName;
                     newClass.Day = Days[DaysIndex];
-                    newClass.StartTime = new Time(StartTime.Hours, StartTime.Minutes, 0);
-                    newClass.EndTime = new Time(EndTime.Hours, EndTime.Minutes, 0);
+                    newClass.StartTime = new DateTimeOffset(1, 1, 1, StartTime.Hours, StartTime.Minutes, StartTime.Seconds, TimeSpan.Zero);
+                    newClass.EndTime = new DateTimeOffset(1, 1, 1, EndTime.Hours, EndTime.Minutes, EndTime.Seconds, TimeSpan.Zero);
                 });
             }
             else
@@ -59,8 +59,8 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
                     var existingClass = realm.Get(ClassLocalId);
                     existingClass.Name = ClassName;
                     existingClass.Day = Days[DaysIndex];
-                    existingClass.StartTime = new Time(StartTime.Hours, StartTime.Minutes, 0);
-                    existingClass.EndTime = new Time(EndTime.Hours, EndTime.Minutes, 0);
+                    existingClass.StartTime = new DateTimeOffset(1, 1, 1, StartTime.Hours, StartTime.Minutes, StartTime.Seconds, TimeSpan.Zero);
+                    existingClass.EndTime = new DateTimeOffset(1, 1, 1, EndTime.Hours, EndTime.Minutes, EndTime.Seconds, TimeSpan.Zero);
                 });
             }
             
