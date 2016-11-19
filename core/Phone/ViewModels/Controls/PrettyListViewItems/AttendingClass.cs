@@ -8,7 +8,16 @@ namespace cm.frontend.core.Phone.ViewModels.Controls.PrettyListViewItems
         public AttendingClass(Domain.Models.AttendingClass model)
         {
             AttendingModel = model;
+            
+            Attendance = AttendingModel.IsAttending ? "Yes" : "No";
         }
+
+        public string Attendance
+        {
+            get { return _attending; }
+            set { this.SetProperty(ref _attending, value, PropertyChanged); }
+        }
+        private string _attending;
 
         public Domain.Models.AttendingClass AttendingModel
         {

@@ -112,7 +112,7 @@ namespace cm.frontend.core.Phone
             await attendingRealm.WriteAsync(realm =>
             {
                 var attending1 = realm.CreateObject();
-                attending1.Date = DateTimeOffset.Now.AddDays(1).Date;
+                attending1.Date = DateTimeOffset.Now.Date;
                 attending1.Class = classesRealm.Get(x => x.Name == "Afternoon Class");
                 attending1.Profile = profilesRealm.Get(x => x.FirstName == "Kyle");
             });
@@ -121,7 +121,7 @@ namespace cm.frontend.core.Phone
             await usersRealm.WriteAsync(realm =>
             {
                 var user = realm.CreateObject();
-                user.Profile = profilesRealm.Get(1);
+                user.Profile = profilesRealm.Get(x => x.FirstName == "Brandon");
             });
 
             var contextCache = Domain.Services.Caches.Context.GetInstance();

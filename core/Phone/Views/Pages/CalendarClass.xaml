@@ -9,8 +9,8 @@
         <DataTemplate>
           <ViewCell>
             <StackLayout Orientation="Horizontal">
+              <Label Text="{Binding Attendance}"></Label>
               <Label Text="{Binding AttendingModel.Profile.FullName}"></Label>
-              <Label Text="{Binding AttendingModel.Profile.Email}"></Label>
             </StackLayout>
           </ViewCell>
         </DataTemplate>
@@ -35,7 +35,7 @@
             </StackLayout>
             <StackLayout Orientation="Horizontal">
               <Label Text="Canceled?" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-              <controls:BindablePicker ItemsSource="{Binding CanceledOptions}" SelectedIndex="{Binding CanceledIndex, Mode=TwoWay}"></controls:BindablePicker>
+              <Switch></Switch>
             </StackLayout>
           </StackLayout>
         </DataTemplate>
