@@ -109,6 +109,19 @@ namespace cm.frontend.core.Domain.Services.Realms.Base
             return true;
         }
 
+        public virtual bool Manage(T item, bool update)
+        {
+            if (item.IsManaged) return false;
+
+            if (item.LocalId <= 0)
+            {
+                item.LocalId = GetAutoId();
+            }
+            RealmInstance.Manage(item, update);
+
+            return true;
+        }
+
         public virtual bool ManageAll(List<T> list)
         {
             var result = true;

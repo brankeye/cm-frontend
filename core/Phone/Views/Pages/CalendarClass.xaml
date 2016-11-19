@@ -35,7 +35,7 @@
             </StackLayout>
             <StackLayout Orientation="Horizontal">
               <Label Text="Canceled?" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-              <Switch></Switch>
+              <Switch IsToggled="{Binding IsCanceled, Mode=TwoWay}"></Switch>
             </StackLayout>
           </StackLayout>
         </DataTemplate>

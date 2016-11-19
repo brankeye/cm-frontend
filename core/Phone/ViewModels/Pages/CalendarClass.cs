@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading.Tasks;
 using cm.frontend.core.Domain.Extensions.NotifyPropertyChanged;
 using cm.frontend.core.Domain.Services.Realms;
 using cm.frontend.core.Domain.Utilities;
@@ -48,14 +49,18 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
             var currentContext = contextCache.Get("Context");
             var currentProfile = currentContext.CurrentUser.Profile;
 
-            var attendedClass = AttendingRealm.GetRealmResults()
+            AttendanceModel = AttendingRealm.GetRealmResults()
                                               .Where(x => x.Date == Date)
                                               .FirstOrDefault(x => x.Profile == currentProfile);
 
-            if (attendedClass != null)
+            if (AttendanceModel != null)
             {
-                AttendingIndex = AttendingOptions.IndexOf(attendedClass.IsAttending ? "Yes" : "No");
+                AttendingIndex = AttendingOptions.IndexOf(AttendanceModel.IsAttending ? "Yes" : "No");
             }
+
+            var canceledRealm = new Domain.Services.Realms.CanceledClasses();
+            CanceledModel = canceledRealm.GetRealmResults().Where(x => x.Class == ClassModel).FirstOrDefault(x => x.Date == Date);
+            if (CanceledModel != null) IsCanceled = true;
         }
 
         private void GetAttendants()
@@ -73,6 +78,39 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
             AttendingList.AddRange(attList);
         }
 
+        public async void HandleCanceledClass()
+        {
+            var canceledRealm = new Domain.Services.Realms.CanceledClasses();
+            CanceledModel = canceledRealm.GetRealmResults().Where(x => x.Class == ClassModel).FirstOrDefault(x => x.Date == Date);
+
+            if (IsCanceled)
+            {
+                if (CanceledModel == null)
+                {
+                    await canceledRealm.WriteAsync(realm =>
+                    {
+                        var record = new Domain.Models.CanceledClass
+                        {
+                            Date = Date.Date
+                        };
+                        realm.Manage(record);
+                        record.Class = ClassModel;
+                    });
+                }
+            }
+            else
+            {
+                if (CanceledModel != null)
+                {
+                    var canceledClassLocalId = CanceledModel.LocalId;
+                    await canceledRealm.WriteAsync(realm =>
+                    {
+                        realm.Remove(canceledClassLocalId);
+                    });
+                }
+            }
+        }
+
         public async void HandleAttendance()
         {
             var attendanceSelection = AttendingOptions[AttendingIndex];
@@ -83,11 +121,8 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
             // the user has decided to change their attendance, so we first have to check if
             // a record of their attendance exists for this particular class
             AttendingRealm = new AttendingClasses();
-            var attendedClass = AttendingRealm.GetRealmResults()
-                                              .Where(x => x.Date == Date)
-                                              .FirstOrDefault(x => x.Profile == currentProfile);
 
-            if (attendedClass == null)
+            if (AttendanceModel == null)
             {
                 // the user has no previous attendance record for this class
                 // so add one, unless they selected "undecided"
@@ -105,7 +140,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
             }
             else
             {
-                var attendanceRecordLocalId = attendedClass.LocalId;
+                var attendanceRecordLocalId = AttendanceModel.LocalId;
                 // the user has an attendance record so all we need to do is alter that one
                 if (attendanceSelection == "Undecided")
                 {
@@ -116,7 +151,6 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
                 }
                 else
                 {
-                    
                     await AttendingRealm.WriteAsync(realm =>
                     {
                         var attendanceRecord = realm.Get(attendanceRecordLocalId);
@@ -136,12 +170,37 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
         }
         private Domain.Models.Class _classModel;
 
+        public Domain.Models.AttendingClass AttendanceModel
+        {
+            get { return _attendanceModel; }
+            set { this.SetProperty(ref _attendanceModel, value, PropertyChanged); }
+        }
+        private Domain.Models.AttendingClass _attendanceModel;
+
+        public Domain.Models.CanceledClass CanceledModel
+        {
+            get { return _canceledModel; }
+            set { this.SetProperty(ref _canceledModel, value, PropertyChanged); }
+        }
+        private Domain.Models.CanceledClass _canceledModel;
+
         public DateTimeOffset Date
         {
             get { return _date; }
             set { this.SetProperty(ref _date, value, PropertyChanged); }
         }
         private DateTimeOffset _date;
+
+        public bool IsCanceled
+        {
+            get { return _isCanceled; }
+            set
+            {
+                this.SetProperty(ref _isCanceled, value, PropertyChanged);
+                HandleCanceledClass();
+            }
+        }
+        private bool _isCanceled;
 
         public List<string> AttendingOptions
         {
