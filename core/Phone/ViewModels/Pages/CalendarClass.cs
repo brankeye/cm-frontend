@@ -120,7 +120,14 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
 
             // the user has decided to change their attendance, so we first have to check if
             // a record of their attendance exists for this particular class
-            AttendingRealm = new AttendingClasses();
+            if (AttendingRealm == null)
+            {
+                return;
+            }
+
+            AttendanceModel = AttendingRealm.GetRealmResults()
+                                              .Where(x => x.Date == Date)
+                                              .FirstOrDefault(x => x.Profile == currentProfile);
 
             if (AttendanceModel == null)
             {
@@ -132,7 +139,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
                     {
                         var attending = realm.CreateObject();
                         attending.Class = ClassModel;
-                        attending.Date = Date;
+                        attending.Date = Date.Date;
                         attending.Profile = currentProfile;
                         attending.IsAttending = attendanceSelection == "Yes";
                     });
