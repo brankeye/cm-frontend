@@ -10,7 +10,7 @@ namespace cm.frontend.core.Phone.Views.Pages
         public Dashboard()
         {
             InitializeComponent();
-            InitializeView(false);
+            InitializeView(true);
             BindingContext = new ViewModels.Pages.Dashboard();
         }
 

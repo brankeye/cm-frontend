@@ -16,5 +16,7 @@ namespace cm.frontend.core.Domain.Models
         public string Name { get; set; }
 
         public DateTimeOffset Date { get; set; }
+
+        public DateTimeOffset Time { get; set; }
     }
 }

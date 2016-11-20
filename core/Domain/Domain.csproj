@@ -40,6 +40,7 @@
     <Compile Include="Extensions\NotifyPropertyChanged\Core.cs" />
     <Compile Include="Interfaces\IEntity.cs" />
     <Compile Include="Interfaces\ILocalEntity.cs" />
+    <Compile Include="Models\EvaluationSection.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AttendingClass.cs" />
     <Compile Include="Models\CanceledClass.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="Services\Caches\Context.cs" />
     <Compile Include="Services\Caches\Pages.cs" />
     <Compile Include="Services\Navigation\Base\Core.cs" />
+    <Compile Include="Services\Realms\EvaluationSections.cs" />
     <Compile Include="Services\Realms\Evaluations.cs" />
     <Compile Include="Services\Realms\CanceledClasses.cs" />
     <Compile Include="Services\Realms\AttendingClasses.cs" />

@@ -99,6 +99,26 @@ namespace cm.frontend.core.Phone.Services
             await PushAsync(navigation, cachedPage);
         }
 
+        public async Task PushEvaluationPageAsync(INavigation navigation, int evalLocalId)
+        {
+            if (IsNavigating) return;
+
+            var pageCache = Domain.Services.Caches.Pages.GetInstance();
+            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Details.Evaluation>(nameof(Views.Pages.Details.Evaluation));
+            cachedPage.Initialize(evalLocalId);
+            await PushAsync(navigation, cachedPage);
+        }
+
+        public async Task PushEvaluationSectionEditorPageAsync(INavigation navigation, int sectionLocalId)
+        {
+            if (IsNavigating) return;
+
+            var pageCache = Domain.Services.Caches.Pages.GetInstance();
+            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Editors.EvaluationSection>(nameof(Views.Pages.Editors.EvaluationSection));
+            cachedPage.Initialize(sectionLocalId);
+            await PushAsync(navigation, cachedPage);
+        }
+
         public async Task PushProfilePageAsync(INavigation navigation, int profileLocalId)
         {
             if (IsNavigating) return;

@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using cm.frontend.core.Domain.Extensions.NotifyPropertyChanged;
 using cm.frontend.core.Domain.Utilities;
+using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone.ViewModels.Pages
 {
@@ -26,6 +28,14 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
         {
             Initialize();
         }
+
+        public async void LaunchEvaluation(int evalLocalId)
+        {
+            var navigator = new Services.Navigator();
+            await navigator.PushEvaluationPageAsync(Navigation, evalLocalId);
+        }
+
+        public INavigation Navigation { get; set; }
 
         public DynamicCollection<ViewModels.Controls.PrettyListViewItems.Evaluation> EvaluationsList
         {

@@ -95,17 +95,47 @@ namespace cm.frontend.core.Phone
             var evaluationsRealm = new Domain.Services.Realms.Evaluations();
             await evaluationsRealm.WriteAsync(realm =>
             {
+                var theTime = DateTimeOffset.Now.TimeOfDay;
+                var time = new DateTimeOffset(1, 1, 1, theTime.Hours, theTime.Minutes, theTime.Seconds, TimeSpan.Zero);
+
                 var eval1 = realm.CreateObject();
-                eval1.Name = "Evaluation 1";
-                eval1.Date = DateTimeOffset.Now;
+                eval1.Name = "Siu Lim Tao";
+                eval1.Date = DateTimeOffset.Now.Date;
+                eval1.Time = time;
 
                 var eval2 = realm.CreateObject();
-                eval2.Name = "Evaluation 2";
-                eval2.Date = DateTimeOffset.Now;
+                eval2.Name = "Chum Kiu";
+                eval2.Date = DateTimeOffset.Now.Date;
+                eval2.Time = time;
 
                 var eval3 = realm.CreateObject();
-                eval3.Name = "Evaluation 3";
-                eval3.Date = DateTimeOffset.Now;
+                eval3.Name = "Biu Jee";
+                eval3.Date = DateTimeOffset.Now.Date;
+                eval3.Time = time;
+            });
+
+            var sectionsRealm = new Domain.Services.Realms.EvaluationSections();
+            await sectionsRealm.WriteAsync(realm =>
+            {
+                var eval = evaluationsRealm.Get(x => x.Name == "Siu Lim Tao");
+
+                var section1 = realm.CreateObject();
+                section1.Name = "1st Part";
+                section1.Body = "Needs work.";
+                section1.Score = 0;
+                section1.Evaluation = eval;
+
+                var section2 = realm.CreateObject();
+                section2.Name = "2nd Part";
+                section2.Body = "Needs more work.";
+                section2.Score = 0;
+                section2.Evaluation = eval;
+
+                var section3 = realm.CreateObject();
+                section3.Name = "3rd Part";
+                section3.Body = "Needs work still.";
+                section3.Score = 0;
+                section3.Evaluation = eval;
             });
 
             var attendingRealm = new Domain.Services.Realms.AttendingClasses();

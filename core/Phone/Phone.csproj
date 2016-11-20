@@ -41,6 +41,7 @@
     <Compile Include="Services\Navigator.cs" />
     <Compile Include="ViewModels\Controls\PrettyListViewItems\Base\Core.cs" />
     <Compile Include="ViewModels\Controls\PrettyListViewItems\AttendingClass.cs" />
+    <Compile Include="ViewModels\Controls\PrettyListViewItems\EvaluationSection.cs" />
     <Compile Include="ViewModels\Controls\PrettyListViewItems\ClassDate.cs" />
     <Compile Include="ViewModels\Controls\PrettyListViewItems\Evaluation.cs" />
     <Compile Include="ViewModels\Controls\PrettyListViewItems\Student.cs" />
@@ -54,6 +55,7 @@
     <Compile Include="ViewModels\Pages\Details\School.cs" />
     <Compile Include="ViewModels\Pages\Details\Profile.cs" />
     <Compile Include="ViewModels\Pages\Editors\Class.cs" />
+    <Compile Include="ViewModels\Pages\Editors\EvaluationSection.cs" />
     <Compile Include="ViewModels\Pages\Editors\Evaluation.cs" />
     <Compile Include="ViewModels\Pages\Editors\School.cs" />
     <Compile Include="ViewModels\Pages\Editors\Profile.cs" />
@@ -96,6 +98,9 @@
     </Compile>
     <Compile Include="Views\Pages\Editors\Evaluation.xaml.cs">
       <DependentUpon>Evaluation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Editors\EvaluationSection.xaml.cs">
+      <DependentUpon>EvaluationSection.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\Editors\Profile.xaml.cs">
       <DependentUpon>Profile.xaml</DependentUpon>
@@ -266,6 +271,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\Pages\CalendarClass.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Pages\Editors\EvaluationSection.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

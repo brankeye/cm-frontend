@@ -9,9 +9,9 @@
       <Label Text="Day" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
       <Label Text="{Binding ClassModel.Day}" VerticalTextAlignment="Center"></Label>
       <Label Text="Start time" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-      <Label Text="{Binding ClassModel.StartTime, StringFormat='{0:h:m tt}'}" VerticalTextAlignment="Center"></Label>
+      <Label Text="{Binding ClassModel.StartTime, StringFormat='{0:h:mm tt}'}" VerticalTextAlignment="Center"></Label>
       <Label Text="End time" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-      <Label Text="{Binding ClassModel.EndTime, StringFormat='{0:h:m tt}'}" VerticalTextAlignment="Center"></Label>
+      <Label Text="{Binding ClassModel.EndTime, StringFormat='{0:h:mm tt}'}" VerticalTextAlignment="Center"></Label>
     </StackLayout>
   </ContentPage.Content>
 </ContentPage>
