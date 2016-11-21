@@ -4,7 +4,8 @@
              xmlns:controls="clr-namespace:cm.frontend.core.Phone.Views.Controls;assembly=cm.frontend.core.Phone"
              xmlns:converters="clr-namespace:cm.frontend.core.Domain.Utilities.Converters;assembly=cm.frontend.core.Domain"
              x:Class="cm.frontend.core.Phone.Views.Pages.Details.StudentEvaluations"
-             Navigation="{Binding Navigation, Mode=OneWayToSource}">
+             Navigation="{Binding Navigation, Mode=OneWayToSource}"
+             x:Name="ThisPage">
   <ContentPage.Content>
     <controls:PrettyListView x:Name="EvaluationsListView" ItemsSource="{Binding EvaluationsList}" Header="{Binding .}" ItemSelected="Evaluations_OnItemSelected" HasUnevenRows="False" IsPullToRefreshEnabled="False" QuickSelect="True">
       <controls:PrettyListView.ItemTemplate>
@@ -14,7 +15,7 @@
       </controls:PrettyListView.ItemTemplate>
       <controls:PrettyListView.HeaderTemplate>
         <DataTemplate>
-          <StackLayout IsVisible="{Binding IsProfileVisible, Mode=TwoWay}">
+          <StackLayout>
             <Label Text="First name" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
             <Label Text="{Binding ProfileModel.FirstName}" VerticalTextAlignment="Center"></Label>
             <Label Text="Last name" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>

@@ -1,17 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:modules.details="clr-namespace:cm.frontend.core.Phone.Views.Modules.Details;assembly=cm.frontend.core.Phone"
              x:Class="cm.frontend.core.Phone.Views.Pages.Details.Profile">
   <ContentPage.Content>
-    <StackLayout>
-      <Label Text="First name" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-      <Label Text="{Binding ProfileModel.FirstName}" VerticalTextAlignment="Center"></Label>
-      <Label Text="Last name" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-      <Label Text="{Binding ProfileModel.LastName}" VerticalTextAlignment="Center"></Label>
-      <Label Text="Email" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-      <Label Text="{Binding ProfileModel.Email}" VerticalTextAlignment="Center"></Label>
-      <Label Text="Phone number" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-      <Label Text="{Binding ProfileModel.PhoneNumber}" VerticalTextAlignment="Center"></Label>
-    </StackLayout>
+    <modules.details:Profile></modules.details:Profile>
   </ContentPage.Content>
 </ContentPage>
