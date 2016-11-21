@@ -13,6 +13,7 @@ namespace cm.frontend.core.Phone.Views.Modules.Details
         public Profile()
         {
             InitializeComponent();
+            var bc = BindingContext;
         }
     }
 }

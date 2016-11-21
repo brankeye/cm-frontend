@@ -3,30 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:cm.frontend.core.Phone.Views.Controls;assembly=cm.frontend.core.Phone"
              xmlns:converters="clr-namespace:cm.frontend.core.Domain.Utilities.Converters;assembly=cm.frontend.core.Domain"
+             xmlns:modules.details="clr-namespace:cm.frontend.core.Phone.Views.Modules.Details;assembly=cm.frontend.core.Phone"
              x:Class="cm.frontend.core.Phone.Views.Pages.Details.StudentEvaluations"
              Navigation="{Binding Navigation, Mode=OneWayToSource}"
              x:Name="ThisPage">
   <ContentPage.Content>
-    <controls:PrettyListView x:Name="EvaluationsListView" ItemsSource="{Binding EvaluationsList}" Header="{Binding .}" ItemSelected="Evaluations_OnItemSelected" HasUnevenRows="False" IsPullToRefreshEnabled="False" QuickSelect="True">
+    <controls:PrettyListView x:Name="EvaluationsListView" ItemsSource="{Binding EvaluationsList}" ItemSelected="Evaluations_OnItemSelected" HasUnevenRows="False" IsPullToRefreshEnabled="False" QuickSelect="True">
       <controls:PrettyListView.ItemTemplate>
         <DataTemplate>
           <TextCell Text="{Binding EvaluationModel.Name}" Detail="{Binding DateTime, Converter={x:StaticResource ToDateTime}}"></TextCell>
         </DataTemplate>
       </controls:PrettyListView.ItemTemplate>
-      <controls:PrettyListView.HeaderTemplate>
-        <DataTemplate>
-          <StackLayout>
-            <Label Text="First name" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-            <Label Text="{Binding ProfileModel.FirstName}" VerticalTextAlignment="Center"></Label>
-            <Label Text="Last name" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-            <Label Text="{Binding ProfileModel.LastName}" VerticalTextAlignment="Center"></Label>
-            <Label Text="Email" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-            <Label Text="{Binding ProfileModel.Email}" VerticalTextAlignment="Center"></Label>
-            <Label Text="Phone number" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-            <Label Text="{Binding ProfileModel.PhoneNumber}" VerticalTextAlignment="Center"></Label>
-          </StackLayout>
-        </DataTemplate>
-      </controls:PrettyListView.HeaderTemplate>
+      <controls:PrettyListView.Header>
+        <modules.details:Profile></modules.details:Profile>
+      </controls:PrettyListView.Header>
     </controls:PrettyListView>
   </ContentPage.Content>
   <ContentPage.Resources>

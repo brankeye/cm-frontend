@@ -17,6 +17,8 @@ namespace cm.frontend.core.Phone.Views.Pages.Details
         {
             InitializeComponent();
             BindingContext = new ViewModels.Pages.Details.StudentEvaluations();
+            var header = (View) EvaluationsListView.Header;
+            header.BindingContext = BindingContext;
         }
 
         public void Initialize(int profileLocalId)
