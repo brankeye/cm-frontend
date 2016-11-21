@@ -47,10 +47,10 @@
     <Compile Include="Models\Class.cs" />
     <Compile Include="Models\Evaluation.cs" />
     <Compile Include="Models\Local\Context.cs" />
+    <Compile Include="Models\Permissions.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Models\School.cs" />
-    <Compile Include="Models\Students.cs" />
-    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\Student.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Caches\Base\DataCache.cs" />
     <Compile Include="Services\Caches\Base\DataRegion.cs" />
@@ -62,10 +62,10 @@
     <Compile Include="Services\Realms\CanceledClasses.cs" />
     <Compile Include="Services\Realms\AttendingClasses.cs" />
     <Compile Include="Services\Realms\Classes.cs" />
+    <Compile Include="Services\Realms\Permissions.cs" />
     <Compile Include="Services\Realms\Students.cs" />
     <Compile Include="Services\Realms\Schools.cs" />
     <Compile Include="Services\Realms\Profiles.cs" />
-    <Compile Include="Services\Realms\Users.cs" />
     <Compile Include="Services\Realms\Accounts.cs" />
     <Compile Include="Services\Realms\Base\AsyncRealm.cs" />
     <Compile Include="Utilities\Converters\ToDateTime.cs" />

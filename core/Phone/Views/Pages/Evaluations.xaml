@@ -6,7 +6,7 @@
              x:Class="cm.frontend.core.Phone.Views.Pages.Evaluations"
              Navigation="{Binding Navigation, Mode=OneWayToSource}">
   <ContentPage.Content>
-    <controls:PrettyListView ItemsSource="{Binding EvaluationsList}" ItemSelected="Evaluations_OnItemSelected" HasUnevenRows="False" IsPullToRefreshEnabled="False" QuickSelect="True">
+    <controls:PrettyListView x:Name="EvaluationsListView" ItemsSource="{Binding EvaluationsList}" ItemSelected="Evaluations_OnItemSelected" HasUnevenRows="False" IsPullToRefreshEnabled="False" QuickSelect="True">
       <controls:PrettyListView.ItemTemplate>
         <DataTemplate>
           <TextCell Text="{Binding EvaluationModel.Name}" Detail="{Binding DateTime, Converter={x:StaticResource ToDateTime}}"></TextCell>

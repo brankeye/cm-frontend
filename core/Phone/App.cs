@@ -15,28 +15,6 @@ namespace cm.frontend.core.Phone
 
         private async void SeedData()
         {
-            var classesRealm = new Domain.Services.Realms.Classes();
-            await classesRealm.WriteAsync(realm =>
-            {
-                var class1 = realm.CreateObject();
-                class1.Name = "Evening Class";
-                class1.Day = "Monday";
-                class1.StartTime = new DateTimeOffset(1, 1, 1, 19, 30, 0, TimeSpan.Zero);
-                class1.EndTime = new DateTimeOffset(1, 1, 1, 21, 30, 0, TimeSpan.Zero);
-
-                var class2 = realm.CreateObject();
-                class2.Name = "Evening Class";
-                class2.Day = "Wednesday";
-                class2.StartTime = new DateTimeOffset(1, 1, 1, 19, 30, 0, TimeSpan.Zero);
-                class2.EndTime = new DateTimeOffset(1, 1, 1, 21, 30, 0, TimeSpan.Zero);
-
-                var class3 = realm.CreateObject();
-                class3.Name = "Afternoon Class";
-                class3.Day = "Saturday";
-                class3.StartTime = new DateTimeOffset(1, 1, 1, 11, 30, 0, TimeSpan.Zero);
-                class3.EndTime = new DateTimeOffset(1, 1, 1, 13, 30, 0, TimeSpan.Zero);
-            });
-
             var profilesRealm = new Domain.Services.Realms.Profiles();
             await profilesRealm.WriteAsync(realm =>
             {
@@ -73,6 +51,31 @@ namespace cm.frontend.core.Phone
                 school1.Teacher = p1;
             });
 
+            var classesRealm = new Domain.Services.Realms.Classes();
+            await classesRealm.WriteAsync(realm =>
+            {
+                var class1 = realm.CreateObject();
+                class1.Name = "Evening Class";
+                class1.Day = "Monday";
+                class1.StartTime = new DateTimeOffset(1, 1, 1, 19, 30, 0, TimeSpan.Zero);
+                class1.EndTime = new DateTimeOffset(1, 1, 1, 21, 30, 0, TimeSpan.Zero);
+                class1.School = schoolsRealm.Get(x => x.Name == "STVTO");
+
+                var class2 = realm.CreateObject();
+                class2.Name = "Evening Class";
+                class2.Day = "Wednesday";
+                class2.StartTime = new DateTimeOffset(1, 1, 1, 19, 30, 0, TimeSpan.Zero);
+                class2.EndTime = new DateTimeOffset(1, 1, 1, 21, 30, 0, TimeSpan.Zero);
+                class2.School = schoolsRealm.Get(x => x.Name == "STVTO");
+
+                var class3 = realm.CreateObject();
+                class3.Name = "Afternoon Class";
+                class3.Day = "Saturday";
+                class3.StartTime = new DateTimeOffset(1, 1, 1, 11, 30, 0, TimeSpan.Zero);
+                class3.EndTime = new DateTimeOffset(1, 1, 1, 13, 30, 0, TimeSpan.Zero);
+                class3.School = schoolsRealm.Get(x => x.Name == "STVTO");
+            });
+
             var studentsRealm = new Domain.Services.Realms.Students();
             await studentsRealm.WriteAsync(realm =>
             {
@@ -81,15 +84,25 @@ namespace cm.frontend.core.Phone
                 var p1 = profilesRealm.Get(x => x.FirstName == "Cameron");
                 var s1 = schoolsRealm.Get(x => x.Name == "STVTO");
 
-                students1.Student = p1;
+                students1.Profile = p1;
                 students1.School = s1;
 
                 var students2 = realm.CreateObject();
 
                 var p2 = profilesRealm.Get(x => x.FirstName == "Kyle");
 
-                students2.Student = p2;
+                students2.Profile = p2;
                 students2.School = s1;
+            });
+
+            var permissionsRealm = new Domain.Services.Realms.Permissions();
+            await permissionsRealm.WriteAsync(realm =>
+            {
+                var perm1 = realm.CreateObject();
+                perm1.Student = studentsRealm.Get(1);
+
+                var perm2 = realm.CreateObject();
+                perm2.Student = studentsRealm.Get(2);
             });
 
             var evaluationsRealm = new Domain.Services.Realms.Evaluations();
@@ -98,20 +111,26 @@ namespace cm.frontend.core.Phone
                 var theTime = DateTimeOffset.Now.TimeOfDay;
                 var time = new DateTimeOffset(1, 1, 1, theTime.Hours, theTime.Minutes, theTime.Seconds, TimeSpan.Zero);
 
+                var profile = profilesRealm.Get(x => x.FirstName == "Cameron");
+                var school = schoolsRealm.Get(x => x.Name == "STVTO");
+
                 var eval1 = realm.CreateObject();
                 eval1.Name = "Siu Lim Tao";
                 eval1.Date = DateTimeOffset.Now.Date;
                 eval1.Time = time;
+                eval1.Student = studentsRealm.Get(x => x.Profile == profile && x.School == school);
 
                 var eval2 = realm.CreateObject();
                 eval2.Name = "Chum Kiu";
                 eval2.Date = DateTimeOffset.Now.Date;
                 eval2.Time = time;
+                eval2.Student = studentsRealm.Get(x => x.Profile == profile && x.School == school);
 
                 var eval3 = realm.CreateObject();
                 eval3.Name = "Biu Jee";
                 eval3.Date = DateTimeOffset.Now.Date;
                 eval3.Time = time;
+                eval3.Student = studentsRealm.Get(x => x.Profile == profile && x.School == school);
             });
 
             var sectionsRealm = new Domain.Services.Realms.EvaluationSections();
@@ -147,15 +166,27 @@ namespace cm.frontend.core.Phone
                 attending1.Profile = profilesRealm.Get(x => x.FirstName == "Kyle");
             });
 
-            var usersRealm = new Domain.Services.Realms.Users();
-            await usersRealm.WriteAsync(realm =>
+            var accountsRealm = new Domain.Services.Realms.Accounts();
+            await accountsRealm.WriteAsync(realm =>
             {
                 var user = realm.CreateObject();
-                user.Profile = profilesRealm.Get(x => x.FirstName == "Brandon");
+                var profile = profilesRealm.Get(x => x.FirstName == "Brandon");
+                user.Profile = profile;
             });
 
             var contextCache = Domain.Services.Caches.Context.GetInstance();
-            var context = new Domain.Models.Local.Context { CurrentUser = usersRealm.Get(1) };
+            var context = new Domain.Models.Local.Context
+            {
+                CurrentAccount = accountsRealm.Get(1)
+            };
+
+
+            var teacherProfile = schoolsRealm.Get(x => x.Name == "STVTO").Teacher;
+            if (context.CurrentAccount.Profile.LocalId == teacherProfile.LocalId)
+            {
+                context.IsTeacher = true;
+            }
+
             contextCache.Add("Context", context);
         }
 

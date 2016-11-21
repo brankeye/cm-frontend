@@ -22,7 +22,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
             {
                 if (studentsModel.School.LocalId == 1)
                 {
-                    studentsContainer.Add(new ViewModels.Controls.PrettyListViewItems.Student(studentsModel.Student));
+                    studentsContainer.Add(new ViewModels.Controls.PrettyListViewItems.Student(studentsModel.Profile));
                 }
             }
             StudentsList.Clear();
@@ -37,7 +37,18 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
         public async void StudentSelected(int studentLocalId)
         {
             var navigator = new Services.Navigator();
-            await navigator.PushProfilePageAsync(Navigation, studentLocalId);
+
+            var contextCache = Domain.Services.Caches.Context.GetInstance();
+            var currentContext = contextCache.Get("Context");
+
+            if (currentContext.IsTeacher)
+            {
+                await navigator.PushStudentEvaluationsPageAsync(Navigation, studentLocalId);
+            }
+            else
+            {
+                await navigator.PushProfilePageAsync(Navigation, studentLocalId);
+            }
         }
 
         private void AddStudent()

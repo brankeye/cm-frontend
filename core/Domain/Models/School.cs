@@ -14,10 +14,6 @@ namespace cm.frontend.core.Domain.Models
 
         public string Name { get; set; }
 
-        public int TeacherId { get; set; }
-
-        public Profile Teacher { get; set; }
-
         public string Address { get; set; }
 
         public string Email { get; set; }
@@ -25,5 +21,9 @@ namespace cm.frontend.core.Domain.Models
         public string Website { get; set; }
 
         public string PhoneNumber { get; set; }
+
+        public int TeacherId { get; set; }
+
+        public Profile Teacher { get; set; }
     }
 }

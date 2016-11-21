@@ -15,5 +15,9 @@ namespace cm.frontend.core.Domain.Models
         public string Username { get; set; }
 
         public string Password { get; set; }
+
+        public int ProfileId { get; set; }
+
+        public Profile Profile { get; set; }
     }
 }

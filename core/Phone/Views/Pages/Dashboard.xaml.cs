@@ -10,12 +10,15 @@ namespace cm.frontend.core.Phone.Views.Pages
         public Dashboard()
         {
             InitializeComponent();
-            InitializeView(true);
+            InitializeView();
             BindingContext = new ViewModels.Pages.Dashboard();
         }
 
-        public void InitializeView(bool isStudent)
+        public void InitializeView()
         {
+            var contextCache = Domain.Services.Caches.Context.GetInstance();
+            var currentContext = contextCache.Get("Context");
+
             var calendarButton = new Button()
             {
                 Text = "Calendar",
@@ -51,7 +54,7 @@ namespace cm.frontend.core.Phone.Views.Pages
             };
             signoutButton.SetBinding(Button.CommandProperty, new Binding("LaunchCommand"));
 
-            if (isStudent)
+            if (!currentContext.IsTeacher)
             {
                 var evaluationsButton = new Button()
                 {

@@ -47,7 +47,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
 
             var contextCache = Domain.Services.Caches.Context.GetInstance();
             var currentContext = contextCache.Get("Context");
-            var currentProfile = currentContext.CurrentUser.Profile;
+            var currentProfile = currentContext.CurrentAccount.Profile;
 
             AttendanceModel = AttendingRealm.GetRealmResults()
                                               .Where(x => x.Date == Date)
@@ -116,7 +116,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
             var attendanceSelection = AttendingOptions[AttendingIndex];
             var contextCache = Domain.Services.Caches.Context.GetInstance();
             var currentContext = contextCache.Get("Context");
-            var currentProfile = currentContext.CurrentUser.Profile;
+            var currentProfile = currentContext.CurrentAccount.Profile;
 
             // the user has decided to change their attendance, so we first have to check if
             // a record of their attendance exists for this particular class

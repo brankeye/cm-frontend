@@ -13,6 +13,10 @@ namespace cm.frontend.core.Domain.Models
         [Indexed]
         public int LocalId { get; set; }
 
+        public bool IsAttending { get; set; }
+
+        public DateTimeOffset Date { get; set; }
+
         public int ClassId { get; set; }
 
         public Class Class { get; set; }
@@ -20,9 +24,5 @@ namespace cm.frontend.core.Domain.Models
         public int ProfileId { get; set; }
 
         public Profile Profile { get; set; }
-
-        public DateTimeOffset Date { get; set; }
-
-        public bool IsAttending { get; set; }
     }
 }

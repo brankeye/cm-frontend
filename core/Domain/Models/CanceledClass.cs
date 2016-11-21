@@ -13,10 +13,10 @@ namespace cm.frontend.core.Domain.Models
         [Indexed]
         public int LocalId { get; set; }
 
+        public DateTimeOffset Date { get; set; }
+
         public int ClassId { get; set; }
 
         public Class Class { get; set; }
-
-        public DateTimeOffset Date { get; set; }
     }
 }

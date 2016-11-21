@@ -3,7 +3,7 @@ using Realms;
 
 namespace cm.frontend.core.Domain.Models
 {
-    public class Students : RealmObject, IEntity
+    public class Student : RealmObject, IEntity
     {
         [Indexed]
         public int Id { get; set; }
@@ -14,7 +14,7 @@ namespace cm.frontend.core.Domain.Models
 
         public int StudentId { get; set; }
 
-        public Profile Student { get; set; }
+        public Profile Profile { get; set; }
 
         public int SchoolId { get; set; }
 

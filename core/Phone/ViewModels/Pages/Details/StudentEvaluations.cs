@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using cm.frontend.core.Domain.Extensions.NotifyPropertyChanged;
 using cm.frontend.core.Domain.Utilities;
 using Xamarin.Forms;
 
-namespace cm.frontend.core.Phone.ViewModels.Pages
+namespace cm.frontend.core.Phone.ViewModels.Pages.Details
 {
-    public class Evaluations : INotifyPropertyChanged
+    public class StudentEvaluations : INotifyPropertyChanged
     {
         private Domain.Services.Realms.Evaluations EvaluationsRealm { get; set; }
 
@@ -21,9 +20,9 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
         {
             EvaluationsRealm = new Domain.Services.Realms.Evaluations();
             var profilesRealm = new Domain.Services.Realms.Profiles();
-            var profileModel = profilesRealm.Get(ProfileLocalId);
+            ProfileModel = profilesRealm.Get(ProfileLocalId);
             var studentsRealm = new Domain.Services.Realms.Students();
-            var student = studentsRealm.Get(x => x.Profile == profileModel);
+            var student = studentsRealm.Get(x => x.Profile == ProfileModel);
             var evals = EvaluationsRealm.GetAll(x => x.Student == student).ToList();
             var evalsContainer = new List<ViewModels.Controls.PrettyListViewItems.Evaluation>();
             foreach (var evalModel in evals)
@@ -47,7 +46,12 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
 
         private int ProfileLocalId { get; set; }
 
-        public INavigation Navigation { get; set; }
+        public Domain.Models.Profile ProfileModel
+        {
+            get { return _profile; }
+            set { this.SetProperty(ref _profile, value, PropertyChanged); }
+        }
+        private Domain.Models.Profile _profile;
 
         public DynamicCollection<ViewModels.Controls.PrettyListViewItems.Evaluation> EvaluationsList
         {
@@ -55,6 +59,8 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
             set { this.SetProperty(ref _evals, value, PropertyChanged); }
         }
         private DynamicCollection<ViewModels.Controls.PrettyListViewItems.Evaluation> _evals;
+
+        public INavigation Navigation { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

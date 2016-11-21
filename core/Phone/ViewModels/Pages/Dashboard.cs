@@ -9,6 +9,9 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
         {
             var navigator = new Services.Navigator();
 
+            var contextCache = Domain.Services.Caches.Context.GetInstance();
+            var currentContext = contextCache.Get("Context");
+
             switch (pageName)
             {
                 case "Calendar":
@@ -28,15 +31,12 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
                 }
                 case "Evaluations":
                 {
-                    await navigator.PushEvaluationsPageAsync(Navigation);
+                    await navigator.PushEvaluationsPageAsync(Navigation, currentContext.CurrentAccount.Profile.LocalId);
                     break;
                 }
                 case "Profile":
                 {
-                    // TODO: Get current user profile LocalId
-                    var contextCache = Domain.Services.Caches.Context.GetInstance();
-                    var currentContext = contextCache.Get("Context");
-                    await navigator.PushProfilePageAsync(Navigation, currentContext.CurrentUser.Profile.LocalId);
+                    await navigator.PushProfilePageAsync(Navigation, currentContext.CurrentAccount.Profile.LocalId);
                     break;
                 }
                 case "School":

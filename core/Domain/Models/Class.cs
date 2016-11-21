@@ -20,5 +20,9 @@ namespace cm.frontend.core.Domain.Models
         public DateTimeOffset StartTime { get; set; }
 
         public DateTimeOffset EndTime { get; set; }
+
+        public int SchoolId { get; set; }
+
+        public School School { get; set; }
     }
 }
