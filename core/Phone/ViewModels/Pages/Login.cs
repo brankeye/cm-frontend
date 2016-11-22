@@ -7,16 +7,15 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
     {
         private async void LoginOrRegister()
         {
-            var navigator = new Services.Navigator();
             if (NewUserIsToggled)
             {
                 // navigate register ui path
-                await navigator.PushProfileEditorPageAsync(Navigation);
+                await Navigator.PushProfileEditorPageAsync(Navigation);
             }
             else // is register
             {
                 // navigate login ui path
-                await navigator.PushDashboardPageAsync(Navigation);
+                await Navigator.PushDashboardPageAsync(Navigation);
             }
         }
 

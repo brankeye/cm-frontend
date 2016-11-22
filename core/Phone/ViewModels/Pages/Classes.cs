@@ -32,14 +32,12 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
 
         public async void ClassSelected(int classLocalId)
         {
-            var navigator = new Services.Navigator();
-            await navigator.PushClassEditorPageAsync(Navigation, classLocalId);
+            await Navigator.PushClassEditorPageAsync(Navigation, classLocalId);
         }
 
         private async void NewClass()
         {
-            var navigator = new Services.Navigator();
-            await navigator.PushClassEditorPageAsync(Navigation);
+            await Navigator.PushClassEditorPageAsync(Navigation);
         }
 
         public DynamicCollection<ViewModels.Controls.PrettyListViewItems.Class> ClassesList

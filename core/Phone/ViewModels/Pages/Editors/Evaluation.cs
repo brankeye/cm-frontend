@@ -43,8 +43,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
 
         private async Task LeavePage()
         {
-            var navigator = new Services.Navigator();
-            await navigator.PopAsync(Navigation);
+            await Navigator.PopAsync(Navigation);
         }
 
         private bool IsEditingExistingEvaluation { get; set; }

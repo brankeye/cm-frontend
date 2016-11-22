@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using cm.frontend.core.Domain.Extensions.NotifyPropertyChanged;
 using Xamarin.Forms;
@@ -29,14 +30,17 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
                 item.Score = Score;
             });
 
-            var navigator = new Services.Navigator();
-            await navigator.PopAsync(Navigation);
+            await LeavePage();
         }
 
         private async void Cancel()
         {
-            var navigator = new Services.Navigator();
-            await navigator.PopAsync(Navigation);
+            await LeavePage();
+        }
+
+        private async Task LeavePage()
+        {
+            await Navigator.PopAsync(Navigation);
         }
 
         private int SectionLocalId { get; set; }

@@ -40,14 +40,12 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
 
         public async void EditSection(int sectionLocalId)
         {
-            var navigator = new Services.Navigator();
-            await navigator.PushEvaluationSectionEditorPageAsync(Navigation, sectionLocalId);
+            await Navigator.PushEvaluationSectionEditorPageAsync(Navigation, sectionLocalId);
         }
 
         private async void EditEvaluation()
         {
-            var navigator = new Services.Navigator();
-            await navigator.PushEvaluationEditorPageAsync(Navigation, EvaluationLocalId);
+            await Navigator.PushEvaluationEditorPageAsync(Navigation, EvaluationLocalId);
         }
 
         private int EvaluationLocalId { get; set; }

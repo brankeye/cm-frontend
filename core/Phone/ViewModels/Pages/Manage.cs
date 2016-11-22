@@ -7,16 +7,14 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
     {
         private async void Join()
         {
-            var navigator = new Services.Navigator();
             // navigate to dashboard page for students
-            await navigator.PushDashboardPageAsync(Navigation);
+            await Navigator.PushDashboardPageAsync(Navigation);
         }
 
         private async void Create()
         {
-            var navigator = new Services.Navigator();
             // navigate to dashboard page for teachers
-            await navigator.PushDashboardPageAsync(Navigation);
+            await Navigator.PushDashboardPageAsync(Navigation);
         }
 
         public ICommand JoinCommand => _joinCommand ?? (_joinCommand = new Command(Join));

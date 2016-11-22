@@ -7,8 +7,6 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
     {
         private async void Launch(string pageName)
         {
-            var navigator = new Services.Navigator();
-
             var contextCache = Domain.Services.Caches.Context.GetInstance();
             var currentContext = contextCache.Get("Context");
 
@@ -16,38 +14,38 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
             {
                 case "Calendar":
                 {
-                    await navigator.PushCalendarPageAsync(Navigation);
+                    await Navigator.PushCalendarPageAsync(Navigation);
                     break;
                 }
                 case "Classes":
                 {
-                    await navigator.PushClassesPageAsync(Navigation);
+                    await Navigator.PushClassesPageAsync(Navigation);
                     break;
                 }
                 case "Students":
                 {
-                    await navigator.PushStudentsPageAsync(Navigation);
+                    await Navigator.PushStudentsPageAsync(Navigation);
                     break;
                 }
                 case "Evaluations":
                 {
-                    await navigator.PushEvaluationsPageAsync(Navigation, currentContext.CurrentAccount.Profile.LocalId);
+                    await Navigator.PushEvaluationsPageAsync(Navigation, currentContext.CurrentAccount.Profile.LocalId);
                     break;
                 }
                 case "Profile":
                 {
-                    await navigator.PushProfilePageAsync(Navigation, currentContext.CurrentAccount.Profile.LocalId);
+                    await Navigator.PushProfilePageAsync(Navigation, currentContext.CurrentAccount.Profile.LocalId);
                     break;
                 }
                 case "School":
                 {
-                    await navigator.PushSchoolPageAsync(Navigation);
+                    await Navigator.PushSchoolPageAsync(Navigation);
                     break;
                 }
                 case "Signout":
                 {
                     // TODO: Handle user signout
-                    await navigator.PushLoginPageAsync(Navigation);
+                    await Navigator.PushLoginPageAsync(Navigation);
                     break;
                 }
                 default:

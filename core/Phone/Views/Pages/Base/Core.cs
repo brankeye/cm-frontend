@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using System;
+using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone.Views.Pages.Base
 {

@@ -39,8 +39,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
 
         public async void LaunchEvaluation(int evalLocalId)
         {
-            var navigator = new Services.Navigator();
-            await navigator.PushEvaluationPageAsync(Navigation, evalLocalId);
+            await Navigator.PushEvaluationPageAsync(Navigation, evalLocalId);
         }
 
         private int ProfileLocalId { get; set; }

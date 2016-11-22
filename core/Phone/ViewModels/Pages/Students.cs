@@ -36,25 +36,22 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
 
         public async void StudentSelected(int studentLocalId)
         {
-            var navigator = new Services.Navigator();
-
             var contextCache = Domain.Services.Caches.Context.GetInstance();
             var currentContext = contextCache.Get("Context");
 
             if (currentContext.IsTeacher)
             {
-                await navigator.PushStudentEvaluationsPageAsync(Navigation, studentLocalId);
+                await Navigator.PushStudentEvaluationsPageAsync(Navigation, studentLocalId);
             }
             else
             {
-                await navigator.PushProfilePageAsync(Navigation, studentLocalId);
+                await Navigator.PushProfilePageAsync(Navigation, studentLocalId);
             }
         }
 
         private void AddStudent()
         {
-            var navigator = new Services.Navigator();
-            //await navigator.PushProfilePageAsync(Navigation, studentLocalId);
+            //await Navigator.PushProfilePageAsync(Navigation, studentLocalId);
         }
 
         public DynamicCollection<ViewModels.Controls.PrettyListViewItems.Student> StudentsList

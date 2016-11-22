@@ -63,15 +63,12 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
                 });
             }
             
-
-            var navigator = new Services.Navigator();
-            await navigator.PopAsync(Navigation);
+            await Navigator.PopAsync(Navigation);
         }
 
         private async void Cancel()
         {
-            var navigator = new Services.Navigator();
-            await navigator.PopAsync(Navigation);
+            await Navigator.PopAsync(Navigation);
         }
 
         private bool IsNewClass { get; set; }

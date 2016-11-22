@@ -51,8 +51,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
 
         public async void ClassSelected(int classLocalId, DateTimeOffset date)
         {
-            var navigator = new Services.Navigator();
-            await navigator.PushCalendarClassPageAsync(Navigation, classLocalId, date);
+            await Navigator.PushCalendarClassPageAsync(Navigation, classLocalId, date);
         }
 
         public DateTimeOffset SelectedDate

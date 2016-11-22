@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
+using cm.frontend.core.Phone.Services;
 using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone.ViewModels.Base
@@ -16,5 +18,7 @@ namespace cm.frontend.core.Phone.ViewModels.Base
         }
 
         public INavigation Navigation { get; set; }
+
+        protected Services.Navigator Navigator => new Navigator();
     }
 }
