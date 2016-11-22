@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Threading.Tasks;
 using cm.frontend.core.Domain.Extensions.NotifyPropertyChanged;
-using cm.frontend.core.Domain.Services.Realms;
 using cm.frontend.core.Domain.Utilities;
 
 namespace cm.frontend.core.Phone.ViewModels.Pages
 {
-    public class CalendarClass : INotifyPropertyChanged
+    public class CalendarClass : ViewModels.Base.Core, INotifyPropertyChanged
     {
         private Domain.Services.Realms.Classes ClassesRealm { get; set; }
 
@@ -38,7 +36,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
             Date = date.Date;
         }
 
-        public void OnAppearing()
+        public override void OnAppearing()
         {
             ClassesRealm = new Domain.Services.Realms.Classes();
             ClassModel = ClassesRealm.Get(ClassLocalId);

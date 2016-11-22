@@ -1,8 +1,6 @@
-﻿using System.ComponentModel;
-
-namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
+﻿namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
 {
-    public class Evaluation
+    public class Evaluation : ViewModels.Base.Core
     {
     }
 }

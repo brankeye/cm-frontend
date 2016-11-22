@@ -3,11 +3,10 @@ using System.ComponentModel;
 using System.Linq;
 using cm.frontend.core.Domain.Extensions.NotifyPropertyChanged;
 using cm.frontend.core.Domain.Utilities;
-using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone.ViewModels.Pages.Details
 {
-    public class StudentEvaluations : INotifyPropertyChanged
+    public class StudentEvaluations : ViewModels.Base.Core, INotifyPropertyChanged
     {
         private Domain.Services.Realms.Evaluations EvaluationsRealm { get; set; }
 
@@ -33,7 +32,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
             EvaluationsList.AddRange(evalsContainer);
         }
 
-        public void OnAppearing()
+        public override void OnAppearing()
         {
             GetEvaluations();
         }
@@ -59,8 +58,6 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
             set { this.SetProperty(ref _evals, value, PropertyChanged); }
         }
         private DynamicCollection<ViewModels.Controls.PrettyListViewItems.Evaluation> _evals;
-
-        public INavigation Navigation { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

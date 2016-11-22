@@ -3,7 +3,7 @@ using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone.ViewModels.Pages
 {
-    public class Login
+    public class Login : ViewModels.Base.Core
     {
         private async void LoginOrRegister()
         {
@@ -21,8 +21,6 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
         }
 
         public bool NewUserIsToggled { get; set; }
-
-        public INavigation Navigation { get; set; }
 
         public ICommand ActionButtonCommand => _actionButtonCommand ?? (_actionButtonCommand = new Command(LoginOrRegister));
         private ICommand _actionButtonCommand;

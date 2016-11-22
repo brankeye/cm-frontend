@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using cm.frontend.core.Domain.Extensions.NotifyPropertyChanged;
 using cm.frontend.core.Domain.Utilities;
-using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone.ViewModels.Pages
 {
-    public class Evaluations : INotifyPropertyChanged
+    public class Evaluations : ViewModels.Base.Core, INotifyPropertyChanged
     {
         private Domain.Services.Realms.Evaluations EvaluationsRealm { get; set; }
 
@@ -34,7 +32,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
             EvaluationsList.AddRange(evalsContainer);
         }
 
-        public void OnAppearing()
+        public override void OnAppearing()
         {
             GetEvaluations();
         }
@@ -46,8 +44,6 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
         }
 
         private int ProfileLocalId { get; set; }
-
-        public INavigation Navigation { get; set; }
 
         public DynamicCollection<ViewModels.Controls.PrettyListViewItems.Evaluation> EvaluationsList
         {

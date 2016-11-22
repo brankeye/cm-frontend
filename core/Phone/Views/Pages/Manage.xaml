@@ -1,8 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="cm.frontend.core.Phone.Views.Pages.Manage"
-             Navigation="{Binding Navigation, Mode=OneWayToSource}">
+<base:Core xmlns="http://xamarin.com/schemas/2014/forms"
+           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+           x:Class="cm.frontend.core.Phone.Views.Pages.Manage"
+           xmlns:base="clr-namespace:cm.frontend.core.Phone.Views.Pages.Base;assembly=cm.frontend.core.Phone"
+           xmlns:pages="clr-namespace:cm.frontend.core.Phone.ViewModels.Pages;assembly=cm.frontend.core.Phone"
+           x:TypeArguments="pages:Manage">
   <ContentPage.Content>
     <StackLayout>
       <Label Text="Manage" VerticalTextAlignment="Center"></Label>
@@ -13,4 +15,4 @@
       </StackLayout>
     </StackLayout>
   </ContentPage.Content>
-</ContentPage>
+</base:Core>

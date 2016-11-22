@@ -4,11 +4,10 @@ using System.ComponentModel;
 using System.Linq;
 using cm.frontend.core.Domain.Extensions.NotifyPropertyChanged;
 using cm.frontend.core.Domain.Utilities;
-using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone.ViewModels.Pages
 {
-    public class Calendar : INotifyPropertyChanged
+    public class Calendar : ViewModels.Base.Core, INotifyPropertyChanged
     {
         private Domain.Services.Realms.Classes ClassesRealm { get; set; }
 
@@ -17,7 +16,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
             
         }
 
-        public void OnAppearing()
+        public override void OnAppearing()
         {
             Initialize();
         }
@@ -66,8 +65,6 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
             }
         }
         private DateTimeOffset _selectedDate;
-
-        public INavigation Navigation { get; set; }
 
         public DynamicCollection<ViewModels.Controls.PrettyListViewItems.ClassDate> ClassesList
         {

@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Input;
 using cm.frontend.core.Domain.Extensions.NotifyPropertyChanged;
-using cm.frontend.core.Domain.Models;
 using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
 {
-    public class Class : INotifyPropertyChanged
+    public class Class : ViewModels.Base.Core, INotifyPropertyChanged
     {
         public Class()
         {
@@ -113,8 +112,6 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
             set { this.SetProperty(ref _endTime, value, PropertyChanged); }
         }
         private TimeSpan _endTime;
-
-        public INavigation Navigation { get; set; }
 
         public ICommand SaveClassCommand => _saveClassCommand ?? (_saveClassCommand = new Command(SaveClass));
         private ICommand _saveClassCommand;

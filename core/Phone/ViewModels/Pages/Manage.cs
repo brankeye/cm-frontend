@@ -3,7 +3,7 @@ using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone.ViewModels.Pages
 {
-    public class Manage
+    public class Manage : ViewModels.Base.Core
     {
         private async void Join()
         {
@@ -18,8 +18,6 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
             // navigate to dashboard page for teachers
             await navigator.PushDashboardPageAsync(Navigation);
         }
-
-        public INavigation Navigation { get; set; }
 
         public ICommand JoinCommand => _joinCommand ?? (_joinCommand = new Command(Join));
         private ICommand _joinCommand;

@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone.ViewModels.Pages
 {
-    public class Classes : INotifyPropertyChanged
+    public class Classes : ViewModels.Base.Core, INotifyPropertyChanged
     {
         private Domain.Services.Realms.Classes ClassesRealm { get; set; }
 
@@ -25,7 +25,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
             ClassesList.AddRange(classesContainer);
         }
 
-        public void OnAppearing()
+        public override void OnAppearing()
         {
             Initialize();
         }
@@ -48,8 +48,6 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
             set { this.SetProperty(ref _classes, value, PropertyChanged); }    
         }
         private DynamicCollection<ViewModels.Controls.PrettyListViewItems.Class> _classes;
-
-        public INavigation Navigation { get; set; }
 
         public ICommand AddClassCommand => _addClassCommand ?? (_addClassCommand = new Command(NewClass));
         private ICommand _addClassCommand;

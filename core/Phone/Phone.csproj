@@ -39,6 +39,7 @@
     <Compile Include="App.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Navigator.cs" />
+    <Compile Include="ViewModels\Base\Core.cs" />
     <Compile Include="ViewModels\Controls\PrettyListViewItems\Base\Core.cs" />
     <Compile Include="ViewModels\Controls\PrettyListViewItems\AttendingClass.cs" />
     <Compile Include="ViewModels\Controls\PrettyListViewItems\EvaluationSection.cs" />
@@ -46,6 +47,7 @@
     <Compile Include="ViewModels\Controls\PrettyListViewItems\Evaluation.cs" />
     <Compile Include="ViewModels\Controls\PrettyListViewItems\Student.cs" />
     <Compile Include="ViewModels\Controls\PrettyListViewItems\Class.cs" />
+    <Compile Include="ViewModels\Modules\Details\Profile.cs" />
     <Compile Include="ViewModels\Pages\CalendarClass.cs" />
     <Compile Include="ViewModels\Pages\Calendar.cs" />
     <Compile Include="ViewModels\Pages\Classes.cs" />
@@ -73,6 +75,7 @@
     <Compile Include="Views\Modules\Details\Profile.xaml.cs">
       <DependentUpon>Profile.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pages\Base\Core.cs" />
     <Compile Include="Views\Pages\Calendar.xaml.cs">
       <DependentUpon>Calendar.xaml</DependentUpon>
     </Compile>
@@ -293,9 +296,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\Modules\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\Modules\Details\Profile.xaml">

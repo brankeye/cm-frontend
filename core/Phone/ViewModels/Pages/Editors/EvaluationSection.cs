@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
 {
-    public class EvaluationSection : INotifyPropertyChanged
+    public class EvaluationSection : ViewModels.Base.Core, INotifyPropertyChanged
     {
         public void Initialize(int sectionLocalId)
         {
@@ -63,8 +63,6 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
             set { this.SetProperty(ref _body, value, PropertyChanged); }
         }
         private string _body;
-
-        public INavigation Navigation { get; set; }
 
         public ICommand CancelCommand => _cancelCommand ?? (_cancelCommand = new Command(Cancel));
         private ICommand _cancelCommand;

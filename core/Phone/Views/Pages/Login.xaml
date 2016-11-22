@@ -1,8 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="cm.frontend.core.Phone.Views.Pages.Login"
-             Navigation="{Binding Navigation, Mode=OneWayToSource}">
+<base:Core xmlns="http://xamarin.com/schemas/2014/forms"
+           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+           x:Class="cm.frontend.core.Phone.Views.Pages.Login"
+           xmlns:base="clr-namespace:cm.frontend.core.Phone.Views.Pages.Base;assembly=cm.frontend.core.Phone"
+           xmlns:pages="clr-namespace:cm.frontend.core.Phone.ViewModels.Pages;assembly=cm.frontend.core.Phone"
+           x:TypeArguments="pages:Login">
   <ContentPage.Content>
     <StackLayout>
       <Label Text="Welcome!" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
@@ -19,4 +21,4 @@
       <Button x:Name="ActionButton" Text="Login" Command="{Binding ActionButtonCommand}" HorizontalOptions="Center"></Button>
     </StackLayout>
   </ContentPage.Content>
-</ContentPage>
+</base:Core>

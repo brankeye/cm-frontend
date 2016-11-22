@@ -3,7 +3,7 @@ using cm.frontend.core.Domain.Extensions.NotifyPropertyChanged;
 
 namespace cm.frontend.core.Phone.ViewModels.Pages.Details
 {
-    public class School : INotifyPropertyChanged
+    public class School : ViewModels.Base.Core, INotifyPropertyChanged
     {
         private Domain.Services.Realms.Schools SchoolsRealm { get; set; }
 
@@ -13,7 +13,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
             SchoolModel = SchoolsRealm.Get(1);
         }
 
-        public void OnAppearing()
+        public override void OnAppearing()
         {
             Initialize();
         }

@@ -1,6 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="cm.frontend.core.Phone.Views.Pages.Editors.Evaluation">
+<base:Core xmlns="http://xamarin.com/schemas/2014/forms"
+           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+           xmlns:base="clr-namespace:cm.frontend.core.Phone.Views.Pages.Base;assembly=cm.frontend.core.Phone"
+           xmlns:pages="clr-namespace:cm.frontend.core.Phone.ViewModels.Pages.Editors;assembly=cm.frontend.core.Phone"
+           x:TypeArguments="pages:Evaluation"
+           x:Class="cm.frontend.core.Phone.Views.Pages.Editors.Evaluation">
   <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" />
-</ContentPage>
+</base:Core>

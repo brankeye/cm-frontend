@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone.ViewModels.Pages
 {
-    public class Students : INotifyPropertyChanged
+    public class Students : ViewModels.Base.Core, INotifyPropertyChanged
     {
         private Domain.Services.Realms.Students StudentsRealm { get; set; }
 
@@ -29,7 +29,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
             StudentsList.AddRange(studentsContainer);
         }
 
-        public void OnAppearing()
+        public override void OnAppearing()
         {
             Initialize();
         }
@@ -57,8 +57,6 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
             //await navigator.PushProfilePageAsync(Navigation, studentLocalId);
         }
 
-        public INavigation Navigation { get; set; }
-
         public DynamicCollection<ViewModels.Controls.PrettyListViewItems.Student> StudentsList
         {
             get { return _students ?? (_students = new DynamicCollection<ViewModels.Controls.PrettyListViewItems.Student>()); }
@@ -66,9 +64,9 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
         }
         private DynamicCollection<ViewModels.Controls.PrettyListViewItems.Student> _students;
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
         public ICommand AddStudentCommand => _addStudentCommand ?? (_addStudentCommand = new Command(AddStudent));
         private ICommand _addStudentCommand;
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

@@ -3,7 +3,7 @@ using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone.ViewModels.Pages
 {
-    public class Dashboard
+    public class Dashboard : ViewModels.Base.Core
     {
         private async void Launch(string pageName)
         {
@@ -54,8 +54,6 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
                     break;
             };
         }
-
-        public INavigation Navigation { get; set; }
 
         public ICommand LaunchCommand => _launchCommand ?? (_launchCommand = new Command<string>(Launch));
         private ICommand _launchCommand;

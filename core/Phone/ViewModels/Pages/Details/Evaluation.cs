@@ -4,11 +4,10 @@ using System.Linq;
 using cm.frontend.core.Domain.Extensions.NotifyPropertyChanged;
 using cm.frontend.core.Domain.Services.Realms;
 using cm.frontend.core.Domain.Utilities;
-using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone.ViewModels.Pages.Details
 {
-    public class Evaluation : INotifyPropertyChanged
+    public class Evaluation : ViewModels.Base.Core, INotifyPropertyChanged
     {
         private Domain.Services.Realms.Evaluations EvaluationsRealm { get; set; }
 
@@ -19,7 +18,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
             EvaluationLocalId = evalLocalId;
         }
 
-        public void OnAppearing()
+        public override void OnAppearing()
         {
             EvaluationsRealm = new Domain.Services.Realms.Evaluations();
             EvaluationModel = EvaluationsRealm.Get(EvaluationLocalId);
@@ -58,8 +57,6 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
             set { this.SetProperty(ref _sections, value, PropertyChanged); }
         }
         private DynamicCollection<ViewModels.Controls.PrettyListViewItems.EvaluationSection> _sections;
-
-        public INavigation Navigation { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

@@ -2,16 +2,12 @@
 
 namespace cm.frontend.core.Phone.Views.Pages
 {
-    public partial class Dashboard : ContentPage
+    public partial class Dashboard
     {
-        public ViewModels.Pages.Dashboard ViewModel => _vm ?? (_vm = BindingContext as ViewModels.Pages.Dashboard);
-        private ViewModels.Pages.Dashboard _vm;
-
         public Dashboard()
         {
             InitializeComponent();
             InitializeView();
-            BindingContext = new ViewModels.Pages.Dashboard();
         }
 
         public void InitializeView()

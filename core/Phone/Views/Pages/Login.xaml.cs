@@ -2,15 +2,11 @@
 
 namespace cm.frontend.core.Phone.Views.Pages
 {
-    public partial class Login : ContentPage
+    public partial class Login
     {
-        public ViewModels.Pages.Login ViewModel => _vm ?? (_vm = BindingContext as ViewModels.Pages.Login);
-        private ViewModels.Pages.Login _vm;
-
         public Login()
         {
             InitializeComponent();
-            BindingContext = new ViewModels.Pages.Login();
         }
 
         private void NewUserSwitch_OnToggled(object sender, ToggledEventArgs e)

@@ -1,5 +1,4 @@
 ﻿using System;
-using cm.frontend.core.Domain.Models;
 using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone

@@ -3,7 +3,7 @@ using cm.frontend.core.Domain.Extensions.NotifyPropertyChanged;
 
 namespace cm.frontend.core.Phone.ViewModels.Pages.Details
 {
-    public class Profile : INotifyPropertyChanged
+    public class Profile : ViewModels.Base.Core, INotifyPropertyChanged
     {
         private Domain.Services.Realms.Profiles ProfilesRealm { get; set; }
 
@@ -12,7 +12,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
             ProfileId = profileLocalId;
         }
 
-        public void OnAppearing()
+        public override void OnAppearing()
         {
             ProfilesRealm = new Domain.Services.Realms.Profiles();
             ProfileModel = ProfilesRealm.Get(ProfileId);
