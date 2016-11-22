@@ -16,7 +16,11 @@
         </DataTemplate>
       </controls:PrettyListView.ItemTemplate>
       <controls:PrettyListView.Header>
-        <detailModules:Profile></detailModules:Profile>
+        <detailModules:Profile>
+          <detailModules:Profile.GestureRecognizers>
+            <TapGestureRecognizer></TapGestureRecognizer>
+          </detailModules:Profile.GestureRecognizers>
+        </detailModules:Profile>
       </controls:PrettyListView.Header>
     </controls:PrettyListView>
   </ContentPage.Content>

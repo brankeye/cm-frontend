@@ -14,7 +14,11 @@
         </DataTemplate>
       </controls:PrettyListView.ItemTemplate>
       <controls:PrettyListView.Header>
-        <Label Text="Students"></Label>
+        <Label Text="Students">
+          <Label.GestureRecognizers>
+            <TapGestureRecognizer></TapGestureRecognizer>
+          </Label.GestureRecognizers>
+        </Label>
       </controls:PrettyListView.Header>
     </controls:PrettyListView>
   </ContentPage.Content>
