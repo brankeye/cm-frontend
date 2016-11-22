@@ -19,7 +19,15 @@ namespace cm.frontend.core.Phone.Views.Pages.Details
                 };
                 editEvaluation.SetBinding(MenuItem.CommandProperty, new Binding("EditCommand"));
 
+                var addSection = new ToolbarItem
+                {
+                    Text = "Add section",
+                    Order = ToolbarItemOrder.Primary
+                };
+                addSection.SetBinding(MenuItem.CommandProperty, new Binding("AddSectionCommand"));
+
                 ToolbarItems.Add(editEvaluation);
+                ToolbarItems.Add(addSection);
             }
         }
 

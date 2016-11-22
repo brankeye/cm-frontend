@@ -10,9 +10,16 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
     {
         private Domain.Services.Realms.Evaluations EvaluationsRealm { get; set; }
 
-        public void Initialize(int evalLocalId)
+        public void Initialize(int studentLocalId)
+        {
+            StudentLocalId = studentLocalId;
+            IsEditingExistingEvaluation = false;
+        }
+
+        public void Initialize(int studentLocalId, int evalLocalId)
         {
             EvaluationLocalId = evalLocalId;
+            StudentLocalId = studentLocalId;
             IsEditingExistingEvaluation = true;
         }
 
@@ -28,10 +35,12 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
 
         private async void Save()
         {
+            var studentsRealm = new Domain.Services.Realms.Students();
             await EvaluationsRealm.WriteAsync(realm =>
             {
                 var eval = IsEditingExistingEvaluation ? realm.Get(EvaluationLocalId) : realm.CreateObject();
                 eval.Name = Name;
+                eval.Student = studentsRealm.Get(StudentLocalId);
             });
             await LeavePage();
         }
@@ -47,6 +56,8 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
         }
 
         private bool IsEditingExistingEvaluation { get; set; }
+
+        private int StudentLocalId { get; set; }
 
         private int EvaluationLocalId { get; set; }
 

@@ -7,9 +7,14 @@
             InitializeComponent();
         }
 
-        public void Initialize(int evalLocalId)
+        public void Initialize(int studentLocalId)
         {
-            ViewModel.Initialize(evalLocalId);
+            ViewModel.Initialize(studentLocalId);
+        }
+
+        public void Initialize(int evalLocalId, int studentLocalId)
+        {
+            ViewModel.Initialize(studentLocalId, evalLocalId);
         }
     }
 }

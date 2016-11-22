@@ -40,7 +40,12 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
 
         public async void EditSection(int sectionLocalId)
         {
-            await Navigator.PushEvaluationSectionEditorPageAsync(Navigation, sectionLocalId);
+            await Navigator.PushEvaluationSectionEditorPageAsync(Navigation, sectionLocalId, EvaluationLocalId);
+        }
+
+        private async void AddSection()
+        {
+            await Navigator.PushEvaluationSectionEditorPageAsync(Navigation, 0, EvaluationLocalId, true);
         }
 
         private async void EditEvaluation()
@@ -66,6 +71,9 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
 
         public ICommand EditCommand => _editCommand ?? (_editCommand = new Command(EditEvaluation));
         private ICommand _editCommand;
+
+        public ICommand AddSectionCommand => _addSectionCommand ?? (_addSectionCommand = new Command(AddSection));
+        private ICommand _addSectionCommand;
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

@@ -9,6 +9,20 @@ namespace cm.frontend.core.Phone.Views.Pages.Details
             InitializeComponent();
             var header = (View) EvaluationsListView.Header;
             header.BindingContext = BindingContext;
+
+            var contextCache = Domain.Services.Caches.Context.GetInstance();
+            var currentContext = contextCache.Get("Context");
+            if (currentContext.IsTeacher)
+            {
+                var editEvaluation = new ToolbarItem
+                {
+                    Text = "Add",
+                    Order = ToolbarItemOrder.Primary
+                };
+                editEvaluation.SetBinding(MenuItem.CommandProperty, new Binding("AddCommand"));
+
+                ToolbarItems.Add(editEvaluation);
+            }
         }
 
         public void Initialize(int profileLocalId)

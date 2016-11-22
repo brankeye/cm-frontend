@@ -8,26 +8,33 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
 {
     public class EvaluationSection : ViewModels.Base.Core, INotifyPropertyChanged
     {
-        public void Initialize(int sectionLocalId)
+        public void Initialize(int sectionLocalId, int evaluationLocalId, bool isNewSection)
         {
+            IsEditingExistingSection = !isNewSection;
             SectionLocalId = sectionLocalId;
-            IsEditingExistingSection = true;
-            var sectionsRealm = new Domain.Services.Realms.EvaluationSections();
-            var item = sectionsRealm.Get(SectionLocalId);
-            Name = item.Name;
-            Body = item.Body;
-            Score = item.Score;
+            EvaluationLocalId = evaluationLocalId;
+
+            if (IsEditingExistingSection)
+            {
+                var sectionsRealm = new Domain.Services.Realms.EvaluationSections();
+                var item = sectionsRealm.Get(SectionLocalId);
+                Name = item.Name;
+                Body = item.Body;
+                Score = item.Score;
+            }
         }
 
         private async void SaveSection()
         {
             var sectionsRealm = new Domain.Services.Realms.EvaluationSections();
+            var evaluationsRealm = new Domain.Services.Realms.Evaluations();
             await sectionsRealm.WriteAsync(realm =>
             {
                 var item = IsEditingExistingSection ? realm.Get(SectionLocalId) : realm.CreateObject();
                 item.Name = Name;
                 item.Body = Body;
                 item.Score = Score;
+                item.Evaluation = evaluationsRealm.Get(EvaluationLocalId);
             });
 
             await LeavePage();
@@ -44,6 +51,8 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
         }
 
         private int SectionLocalId { get; set; }
+
+        private int EvaluationLocalId { get; set; }
 
         private bool IsEditingExistingSection { get; set; }
 

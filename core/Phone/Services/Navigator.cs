@@ -100,13 +100,23 @@ namespace cm.frontend.core.Phone.Services
             await PushAsync(navigation, cachedPage);
         }
 
-        public async Task PushEvaluationEditorPageAsync(INavigation navigation, int evaluationLocalId)
+        public async Task PushEvaluationEditorPageAsync(INavigation navigation, int studentLocalId, int evaluationLocalId)
         {
             if (IsNavigating) return;
 
             var pageCache = Domain.Services.Caches.Pages.GetInstance();
             var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Editors.Evaluation>(nameof(Views.Pages.Editors.Evaluation));
-            cachedPage.Initialize(evaluationLocalId);
+            cachedPage.Initialize(studentLocalId, evaluationLocalId);
+            await PushAsync(navigation, cachedPage);
+        }
+
+        public async Task PushEvaluationEditorPageAsync(INavigation navigation, int studentLocalId)
+        {
+            if (IsNavigating) return;
+
+            var pageCache = Domain.Services.Caches.Pages.GetInstance();
+            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Editors.Evaluation>(nameof(Views.Pages.Editors.Evaluation));
+            cachedPage.Initialize(studentLocalId);
             await PushAsync(navigation, cachedPage);
         }
 
@@ -130,13 +140,13 @@ namespace cm.frontend.core.Phone.Services
             await PushAsync(navigation, cachedPage);
         }
 
-        public async Task PushEvaluationSectionEditorPageAsync(INavigation navigation, int sectionLocalId)
+        public async Task PushEvaluationSectionEditorPageAsync(INavigation navigation, int sectionLocalId, int evaluationLocalId, bool isNewSection = false)
         {
             if (IsNavigating) return;
 
             var pageCache = Domain.Services.Caches.Pages.GetInstance();
             var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Editors.EvaluationSection>(nameof(Views.Pages.Editors.EvaluationSection));
-            cachedPage.Initialize(sectionLocalId);
+            cachedPage.Initialize(sectionLocalId, evaluationLocalId, isNewSection);
             await PushAsync(navigation, cachedPage);
         }
 

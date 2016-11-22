@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows.Input;
 using cm.frontend.core.Domain.Extensions.NotifyPropertyChanged;
 using cm.frontend.core.Domain.Utilities;
+using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone.ViewModels.Pages.Details
 {
@@ -42,6 +44,13 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
             await Navigator.PushEvaluationPageAsync(Navigation, evalLocalId);
         }
 
+        private async void AddEvaluation()
+        {
+            var studentsRealm = new Domain.Services.Realms.Students();
+            var student = studentsRealm.Get(x => x.Profile == ProfileModel);
+            await Navigator.PushEvaluationEditorPageAsync(Navigation, student.LocalId);
+        }
+
         private int ProfileLocalId { get; set; }
 
         public Domain.Models.Profile ProfileModel
@@ -57,6 +66,9 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
             set { this.SetProperty(ref _evals, value, PropertyChanged); }
         }
         private DynamicCollection<ViewModels.Controls.PrettyListViewItems.Evaluation> _evals;
+
+        public ICommand AddCommand => _addCommand ?? (_addCommand = new Command(AddEvaluation));
+        private ICommand _addCommand;
 
         public event PropertyChangedEventHandler PropertyChanged;
     }
