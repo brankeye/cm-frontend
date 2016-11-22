@@ -32,7 +32,6 @@
         </DataTemplate>
       </controls:PrettyListView.HeaderTemplate>
     </controls:PrettyListView>
-    
   </ContentPage.Content>
   <ContentPage.Resources>
     <ResourceDictionary>

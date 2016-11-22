@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows.Input;
 using cm.frontend.core.Domain.Extensions.NotifyPropertyChanged;
 using cm.frontend.core.Domain.Services.Realms;
 using cm.frontend.core.Domain.Utilities;
+using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone.ViewModels.Pages.Details
 {
@@ -42,6 +44,12 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
             await navigator.PushEvaluationSectionEditorPageAsync(Navigation, sectionLocalId);
         }
 
+        private async void EditEvaluation()
+        {
+            var navigator = new Services.Navigator();
+            await navigator.PushEvaluationEditorPageAsync(Navigation, EvaluationLocalId);
+        }
+
         private int EvaluationLocalId { get; set; }
 
         public Domain.Models.Evaluation EvaluationModel
@@ -57,6 +65,9 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
             set { this.SetProperty(ref _sections, value, PropertyChanged); }
         }
         private DynamicCollection<ViewModels.Controls.PrettyListViewItems.EvaluationSection> _sections;
+
+        public ICommand EditCommand => _editCommand ?? (_editCommand = new Command(EditEvaluation));
+        private ICommand _editCommand;
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

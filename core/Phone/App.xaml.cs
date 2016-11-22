@@ -3,10 +3,11 @@ using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone
 {
-    public class App : Application
+    public partial class App : Application
     {
         public App()
         {
+            InitializeComponent();
             SeedData();
             var mainPage = new Views.Pages.Login();
             MainPage = new NavigationPage(mainPage);
@@ -92,16 +93,6 @@ namespace cm.frontend.core.Phone
 
                 students2.Profile = p2;
                 students2.School = s1;
-            });
-
-            var permissionsRealm = new Domain.Services.Realms.Permissions();
-            await permissionsRealm.WriteAsync(realm =>
-            {
-                var perm1 = realm.CreateObject();
-                perm1.Student = studentsRealm.Get(1);
-
-                var perm2 = realm.CreateObject();
-                perm2.Student = studentsRealm.Get(2);
             });
 
             var evaluationsRealm = new Domain.Services.Realms.Evaluations();

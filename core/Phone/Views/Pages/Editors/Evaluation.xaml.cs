@@ -6,5 +6,10 @@
         {
             InitializeComponent();
         }
+
+        public void Initialize(int evalLocalId)
+        {
+            ViewModel.Initialize(evalLocalId);
+        }
     }
 }

@@ -100,6 +100,16 @@ namespace cm.frontend.core.Phone.Services
             await PushAsync(navigation, cachedPage);
         }
 
+        public async Task PushEvaluationEditorPageAsync(INavigation navigation, int evaluationLocalId)
+        {
+            if (IsNavigating) return;
+
+            var pageCache = Domain.Services.Caches.Pages.GetInstance();
+            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Editors.Evaluation>(nameof(Views.Pages.Editors.Evaluation));
+            cachedPage.Initialize(evaluationLocalId);
+            await PushAsync(navigation, cachedPage);
+        }
+
         public async Task PushStudentEvaluationsPageAsync(INavigation navigation, int profileLocalId)
         {
             if (IsNavigating) return;

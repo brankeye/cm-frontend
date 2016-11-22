@@ -11,7 +11,19 @@ namespace cm.frontend.core.Phone.Views.Pages.Base
         public Core()
         {
             BindingContext = new TViewModel();
-            SetBinding(ContentPage.NavigationProperty, new Binding("Navigation"));
+            SetBinding(NavigationProperty, new Binding("Navigation"));
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            ViewModel.OnAppearing();
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnAppearing();
+            ViewModel.OnDisappearing();
         }
     }
 }

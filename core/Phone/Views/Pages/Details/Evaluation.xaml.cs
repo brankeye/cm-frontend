@@ -7,6 +7,20 @@ namespace cm.frontend.core.Phone.Views.Pages.Details
         public Evaluation()
         {
             InitializeComponent();
+
+            var contextCache = Domain.Services.Caches.Context.GetInstance();
+            var currentContext = contextCache.Get("Context");
+            if (currentContext.IsTeacher)
+            {
+                var editEvaluation = new ToolbarItem
+                {
+                    Text = "Edit",
+                    Order = ToolbarItemOrder.Primary
+                };
+                editEvaluation.SetBinding(MenuItem.CommandProperty, new Binding("EditCommand"));
+
+                ToolbarItems.Add(editEvaluation);
+            }
         }
 
         public void Initialize(int evalLocalId)
