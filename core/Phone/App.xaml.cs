@@ -16,8 +16,26 @@ namespace cm.frontend.core.Phone
 
         private async void TestLogin()
         {
-            var tokenService = new Domain.Services.Rest.Security.Token();
-            var token = await tokenService.PostAsync("testaccount@test.com", "Password1!");
+            var username = "test2@gmail.com";
+            var password = "Password2!";
+
+            var credentials = new Domain.Objects.Credentials
+            {
+                Email = username,
+                Password = password,
+                ConfirmPassword = password
+            };
+            
+            var accountService = new Domain.Services.Rest.Security.Account();
+            var registerResult = await accountService.PostRegisterAsync(credentials);
+
+            if (registerResult)
+            {
+                var tokenService = new Domain.Services.Rest.Security.Token();
+                var token = await tokenService.PostAsync(username, password);
+
+                var logoutResult = await accountService.PostLogoutAsync(token.Access_Token);
+            }
         }
 
         private async void SeedData()
