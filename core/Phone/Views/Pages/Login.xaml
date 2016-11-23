@@ -9,7 +9,7 @@
     <StackLayout>
       <Label Text="Welcome!" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
       <Entry Placeholder="Username"></Entry>
-      <Entry Placeholder="Password" IsPassword="True"></Entry>
+      <Entry Placeholder="Password" IsPassword="False"></Entry>
       <StackLayout Orientation="Horizontal">
         <Label Text="Remember me?"></Label>
         <Switch></Switch>

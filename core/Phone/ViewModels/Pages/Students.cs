@@ -39,7 +39,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
             var contextCache = Domain.Services.Caches.Context.GetInstance();
             var currentContext = contextCache.Get("Context");
 
-            if (currentContext.IsTeacher)
+            if (currentContext.CurrentUser.Profile.IsTeacher)
             {
                 await Navigator.PushStudentEvaluationsPageAsync(Navigation, studentLocalId);
             }

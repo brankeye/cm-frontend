@@ -51,6 +51,7 @@
     <Compile Include="Models\Local\Context.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Models\School.cs" />
+    <Compile Include="Objects\Credentials.cs" />
     <Compile Include="Objects\Response.cs" />
     <Compile Include="Objects\Token.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -62,7 +63,7 @@
     <Compile Include="Services\Realms\EvaluationSections.cs" />
     <Compile Include="Services\Realms\Evaluations.cs" />
     <Compile Include="Services\Realms\CanceledClasses.cs" />
-    <Compile Include="Services\Realms\AttendingClasses.cs" />
+    <Compile Include="Services\Realms\AttendanceRecords.cs" />
     <Compile Include="Services\Realms\Classes.cs" />
     <Compile Include="Services\Realms\Members.cs" />
     <Compile Include="Services\Realms\Schools.cs" />
@@ -70,7 +71,17 @@
     <Compile Include="Services\Realms\Users.cs" />
     <Compile Include="Services\Realms\Base\AsyncRealm.cs" />
     <Compile Include="Services\Rest\Base\Core.cs" />
+    <Compile Include="Services\Rest\Security\Account.cs" />
     <Compile Include="Services\Rest\Security\Token.cs" />
+    <Compile Include="Services\Rest\AttendanceRecords.cs" />
+    <Compile Include="Services\Rest\Classes.cs" />
+    <Compile Include="Services\Rest\Evaluations.cs" />
+    <Compile Include="Services\Rest\EvaluationSections.cs" />
+    <Compile Include="Services\Rest\Members.cs" />
+    <Compile Include="Services\Rest\Schools.cs" />
+    <Compile Include="Services\Rest\Profiles.cs" />
+    <Compile Include="Services\Rest\CanceledClasses.cs" />
+    <Compile Include="Services\Rest\Users.cs" />
     <Compile Include="Utilities\Converters\ToDateTime.cs" />
     <Compile Include="Utilities\DynamicCollection.cs" />
   </ItemGroup>

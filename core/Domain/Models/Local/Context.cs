@@ -5,14 +5,16 @@ namespace cm.frontend.core.Domain.Models.Local
 {
     public class Context : INotifyPropertyChanged
     {
-        public Models.User CurrentAccount
+        public Models.User CurrentUser
         {
-            get { return _currentAccount; }
-            set { this.SetProperty(ref _currentAccount, value, PropertyChanged); }
+            get { return _currentUser; }
+            set { this.SetProperty(ref _currentUser, value, PropertyChanged); }
         }
-        private Models.User _currentAccount;
+        private Models.User _currentUser;
 
-        public bool IsTeacher { get; set; }
+        public bool IsAuthenticated { get; set; }
+
+        public string AccessToken { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

@@ -29,12 +29,12 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
                 }
                 case "Evaluations":
                 {
-                    await Navigator.PushEvaluationsPageAsync(Navigation, currentContext.CurrentAccount.Profile.LocalId);
+                    await Navigator.PushEvaluationsPageAsync(Navigation, currentContext.CurrentUser.Profile.LocalId);
                     break;
                 }
                 case "Profile":
                 {
-                    await Navigator.PushProfilePageAsync(Navigation, currentContext.CurrentAccount.Profile.LocalId);
+                    await Navigator.PushProfilePageAsync(Navigation, currentContext.CurrentUser.Profile.LocalId);
                     break;
                 }
                 case "School":

@@ -12,7 +12,7 @@ namespace cm.frontend.core.Phone.Views.Pages.Details
 
             var contextCache = Domain.Services.Caches.Context.GetInstance();
             var currentContext = contextCache.Get("Context");
-            if (currentContext.IsTeacher)
+            if (currentContext.CurrentUser.Profile.IsTeacher)
             {
                 var editEvaluation = new ToolbarItem
                 {

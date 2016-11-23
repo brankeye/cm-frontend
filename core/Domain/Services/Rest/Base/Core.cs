@@ -13,7 +13,7 @@ namespace cm.frontend.core.Domain.Services.Rest.Base
     public class Core<TModel>
         where TModel : class
     {
-        private string BaseUri => "https://ec2-52-39-4-189.us-west-2.compute.amazonaws.com";
+        private string BaseUri => "http://ec2-52-39-4-189.us-west-2.compute.amazonaws.com/api/";
         private readonly string _targetApi;
 
         public Core(string targetApi)
@@ -36,7 +36,6 @@ namespace cm.frontend.core.Domain.Services.Rest.Base
                 if (basicCredentials != null)
                     httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", basicCredentials);
 
-
                 try
                 {
                     var result = await httpClient.GetStringAsync(uri);
@@ -58,12 +57,21 @@ namespace cm.frontend.core.Domain.Services.Rest.Base
             return jsonValues;
         }
 
-        public virtual async Task<HttpResponseMessage> PostAsync(TModel model, string token = null)
+        public virtual async Task<HttpResponseMessage> PostAsync(TModel model, string token = null, string targetSection = "")
         {
             var restUrl = BaseUri + "{0}";
-            var uri = new Uri(string.Format(restUrl, _targetApi));
+            var target = _targetApi;
+            if (string.IsNullOrEmpty(targetSection) == false)
+            {
+                target += "/" + targetSection;
+            }
+            var uri = new Uri(string.Format(restUrl, target));
 
-            var json = JsonConvert.SerializeObject(model);
+            var json = "";
+            if (model != null)
+            {
+                json = JsonConvert.SerializeObject(model);
+            }
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
             HttpResponseMessage response;

@@ -50,7 +50,7 @@ namespace cm.frontend.core.Phone.Views.Pages
             };
             signoutButton.SetBinding(Button.CommandProperty, new Binding("LaunchCommand"));
 
-            if (!currentContext.IsTeacher)
+            if (!currentContext.CurrentUser.Profile.IsTeacher)
             {
                 var evaluationsButton = new Button()
                 {

@@ -9,7 +9,7 @@ namespace cm.frontend.core.Phone
         {
             InitializeComponent();
             //SeedData();
-            TestLogin();
+            //TestLogin();
             var mainPage = new Views.Pages.Login();
             MainPage = new NavigationPage(mainPage);
         }
