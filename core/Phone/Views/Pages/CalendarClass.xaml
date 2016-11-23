@@ -40,6 +40,9 @@
               <Label Text="Canceled?" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
               <Switch IsToggled="{Binding IsCanceled, Mode=TwoWay}"></Switch>
             </StackLayout>
+            <StackLayout.GestureRecognizers>
+              <TapGestureRecognizer></TapGestureRecognizer>
+            </StackLayout.GestureRecognizers>
           </StackLayout>
         </DataTemplate>
       </controls:PrettyListView.HeaderTemplate>

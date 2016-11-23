@@ -28,6 +28,9 @@
             <Label Text="{Binding EvaluationModel.Name}"></Label>
             <Label Text="{Binding EvaluationModel.Date, Converter={x:StaticResource ToDateTime}, StringFormat='{0:dddd, MMMM d, yyyy}'}"></Label>
             <Label Text="{Binding EvaluationModel.Time, Converter={x:StaticResource ToDateTime}, StringFormat='{0:h:mm tt}'}"></Label>
+            <StackLayout.GestureRecognizers>
+              <TapGestureRecognizer></TapGestureRecognizer>
+            </StackLayout.GestureRecognizers>
           </StackLayout>
         </DataTemplate>
       </controls:PrettyListView.HeaderTemplate>

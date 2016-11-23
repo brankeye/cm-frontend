@@ -12,7 +12,7 @@ namespace cm.frontend.core.Domain.Models
         [Indexed]
         public int LocalId { get; set; }
 
-        public int StudentId { get; set; }
+        public int ProfileId { get; set; }
 
         public Profile Profile { get; set; }
 

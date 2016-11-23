@@ -20,6 +20,9 @@
             <StackLayout Orientation="Horizontal">
               <Label Text="Week of"></Label>
               <DatePicker Format="dddd, MMMM d, yyyy" Date="{Binding SelectedDate, Mode=OneWayToSource, Converter={x:StaticResource ToDateTime}}"></DatePicker>
+              <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer></TapGestureRecognizer>
+              </StackLayout.GestureRecognizers>
             </StackLayout>
           </DataTemplate>
         </controls:PrettyListView.HeaderTemplate>
