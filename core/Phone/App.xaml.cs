@@ -8,32 +8,33 @@ namespace cm.frontend.core.Phone
         public App()
         {
             InitializeComponent();
+            Initialize();
             //SeedData();
             //TestLogin();
             var mainPage = new Views.Pages.Login();
             MainPage = new NavigationPage(mainPage);
         }
 
+        private void Initialize()
+        {
+            var contextCache = Domain.Services.Caches.Context.GetInstance();
+            var currentContext = new Domain.Models.Local.Context();
+            contextCache.Replace("Context", currentContext);
+        }
+
         private async void TestLogin()
         {
-            var username = "test2@gmail.com";
-            var password = "Password2!";
-
-            var credentials = new Domain.Objects.Credentials
-            {
-                Email = username,
-                Password = password,
-                ConfirmPassword = password
-            };
+            var username = "test3@gmail.com";
+            var password = "Password3!";
             
             var accountService = new Domain.Services.Rest.Security.Account();
-            var registerResult = await accountService.PostRegisterAsync(credentials);
+            var registerResult = await accountService.PostRegisterAsync(username, password);
 
-            if (registerResult)
+            if (registerResult.IsSuccessStatusCode)
             {
                 var tokenService = new Domain.Services.Rest.Security.Token();
                 var token = await tokenService.PostAsync(username, password);
-
+                
                 var logoutResult = await accountService.PostLogoutAsync(token.Access_Token);
             }
         }

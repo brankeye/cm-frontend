@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,16 +14,23 @@ namespace cm.frontend.core.Domain.Services.Rest.Security
             
         }
 
-        public async Task<bool> PostRegisterAsync(Objects.Credentials credentials)
+        public async Task<HttpResponseMessage> PostRegisterAsync(string username, string password)
         {
+            var credentials = new Domain.Objects.Credentials
+            {
+                Email = username,
+                Password = password,
+                ConfirmPassword = password
+            };
+
             var response = await PostAsync(credentials, targetSection: "Register");
-            return response.IsSuccessStatusCode;
+            return response;
         }
 
-        public async Task<bool> PostLogoutAsync(string token)
+        public async Task<HttpResponseMessage> PostLogoutAsync(string token)
         {
             var response = await PostAsync(null, token, targetSection: "Logout");
-            return response.IsSuccessStatusCode;
+            return response;
         }
     }
 }

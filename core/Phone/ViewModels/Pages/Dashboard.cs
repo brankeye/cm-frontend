@@ -7,9 +7,6 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
     {
         private async void Launch(string pageName)
         {
-            var contextCache = Domain.Services.Caches.Context.GetInstance();
-            var currentContext = contextCache.Get("Context");
-
             switch (pageName)
             {
                 case "Calendar":
@@ -29,11 +26,15 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
                 }
                 case "Evaluations":
                 {
+                    var contextCache = Domain.Services.Caches.Context.GetInstance();
+                    var currentContext = contextCache.Get("Context");
                     await Navigator.PushEvaluationsPageAsync(Navigation, currentContext.CurrentUser.Profile.LocalId);
                     break;
                 }
                 case "Profile":
                 {
+                    var contextCache = Domain.Services.Caches.Context.GetInstance();
+                    var currentContext = contextCache.Get("Context");
                     await Navigator.PushProfilePageAsync(Navigation, currentContext.CurrentUser.Profile.LocalId);
                     break;
                 }
@@ -44,8 +45,20 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
                 }
                 case "Signout":
                 {
-                    // TODO: Handle user signout
-                    await Navigator.PushLoginPageAsync(Navigation);
+                    var contextCache = Domain.Services.Caches.Context.GetInstance();
+                    var currentContext = contextCache.Get("Context");
+                    var accountService = new Domain.Services.Rest.Security.Account();
+                    var logoutResult = await accountService.PostLogoutAsync(currentContext.AccessToken);
+
+                    if (logoutResult.IsSuccessStatusCode)
+                    {
+                        currentContext.AccessToken = "";
+                        currentContext.IsAuthenticated = false;
+                        contextCache.Replace("Context", currentContext);
+                        await Navigator.PopAsync(Navigation);
+                    }
+
+                    
                     break;
                 }
                 default:

@@ -74,7 +74,7 @@ namespace cm.frontend.core.Domain.Services.Rest.Base
             }
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            HttpResponseMessage response;
+            HttpResponseMessage response = null;
             using (var httpClient = new HttpClient())
             {
                 httpClient.DefaultRequestHeaders.Accept.Clear();
@@ -83,11 +83,6 @@ namespace cm.frontend.core.Domain.Services.Rest.Base
                     httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
                 response = await httpClient.PostAsync(uri, content);
-
-                if (!response.IsSuccessStatusCode)
-                {
-                    response = null;
-                }
             }
             return response;
         }
@@ -97,15 +92,10 @@ namespace cm.frontend.core.Domain.Services.Rest.Base
             var restUrl = BaseUri + "{0}/{1}";
             var uri = new Uri(string.Format(restUrl, _targetApi));
 
-            HttpResponseMessage response;
+            HttpResponseMessage response = null;
             using (var httpClient = new HttpClient())
             {
                 response = await httpClient.DeleteAsync(uri);
-
-                if (!response.IsSuccessStatusCode)
-                {
-                    response = null;
-                }
             }
             return response;
         }
