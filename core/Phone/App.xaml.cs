@@ -8,9 +8,16 @@ namespace cm.frontend.core.Phone
         public App()
         {
             InitializeComponent();
-            SeedData();
+            //SeedData();
+            TestLogin();
             var mainPage = new Views.Pages.Login();
             MainPage = new NavigationPage(mainPage);
+        }
+
+        private async void TestLogin()
+        {
+            var tokenService = new Domain.Services.Rest.Security.Token();
+            var token = await tokenService.PostAsync("testaccount@test.com", "Password1!");
         }
 
         private async void SeedData()

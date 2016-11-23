@@ -1,6 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using cm.frontend.core.Phone.Services;
+﻿using cm.frontend.core.Phone.Services;
 using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone.ViewModels.Base
