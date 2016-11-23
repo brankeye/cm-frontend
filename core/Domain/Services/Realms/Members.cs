@@ -1,6 +1,6 @@
 ﻿namespace cm.frontend.core.Domain.Services.Realms
 {
-    public class Students : Base.AsyncRealm<Models.Student>
+    public class Members : Base.AsyncRealm<Models.Member>
     {
     }
 }

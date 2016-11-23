@@ -20,9 +20,9 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
             EvaluationsRealm = new Domain.Services.Realms.Evaluations();
             var profilesRealm = new Domain.Services.Realms.Profiles();
             var profileModel = profilesRealm.Get(ProfileLocalId);
-            var studentsRealm = new Domain.Services.Realms.Students();
-            var student = studentsRealm.Get(x => x.Profile == profileModel);
-            var evals = EvaluationsRealm.GetAll(x => x.Student == student).ToList();
+            var membersRealm = new Domain.Services.Realms.Members();
+            var member = membersRealm.Get(x => x.Profile == profileModel);
+            var evals = EvaluationsRealm.GetAll(x => x.Profile == member.Profile).ToList();
             var evalsContainer = new List<ViewModels.Controls.PrettyListViewItems.Evaluation>();
             foreach (var evalModel in evals)
             {

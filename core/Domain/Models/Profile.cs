@@ -1,4 +1,5 @@
-﻿using cm.frontend.core.Domain.Interfaces;
+﻿using System;
+using cm.frontend.core.Domain.Interfaces;
 using Realms;
 
 namespace cm.frontend.core.Domain.Models
@@ -22,5 +23,11 @@ namespace cm.frontend.core.Domain.Models
         public string Email { get; set; }
 
         public string PhoneNumber { get; set; }
+        
+        public DateTimeOffset StartDate { get; set; }
+
+        public string Level { get; set; }
+
+        public bool IsTeacher { get; set; }
     }
 }

@@ -4,7 +4,7 @@ using Realms;
 
 namespace cm.frontend.core.Domain.Models
 {
-    public class AttendingClass : RealmObject, IEntity
+    public class Member : RealmObject, IEntity
     {
         [Indexed]
         public int Id { get; set; }
@@ -13,16 +13,12 @@ namespace cm.frontend.core.Domain.Models
         [Indexed]
         public int LocalId { get; set; }
 
-        public bool IsAttending { get; set; }
-
-        public DateTimeOffset Date { get; set; }
-
-        public int ClassId { get; set; }
-
-        public Class Class { get; set; }
-
         public int ProfileId { get; set; }
 
         public Profile Profile { get; set; }
+
+        public int SchoolId { get; set; }
+        
+        public School School { get; set; }
     }
 }

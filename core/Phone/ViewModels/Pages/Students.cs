@@ -10,12 +10,12 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
 {
     public class Students : ViewModels.Base.Core, INotifyPropertyChanged
     {
-        private Domain.Services.Realms.Students StudentsRealm { get; set; }
+        private Domain.Services.Realms.Members MembersRealm { get; set; }
 
         private void Initialize()
         {
-            StudentsRealm = new Domain.Services.Realms.Students();
-            var students = StudentsRealm.GetAll().ToList();
+            MembersRealm = new Domain.Services.Realms.Members();
+            var students = MembersRealm.GetAll().ToList();
             var studentsContainer = new List<ViewModels.Controls.PrettyListViewItems.Student>();
 
             foreach (var studentsModel in students)

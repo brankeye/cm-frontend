@@ -4,7 +4,7 @@ using Realms;
 
 namespace cm.frontend.core.Domain.Models
 {
-    public class Evaluation : RealmObject, IEntity
+    public class AttendanceRecord : RealmObject, IEntity
     {
         [Indexed]
         public int Id { get; set; }
@@ -13,11 +13,13 @@ namespace cm.frontend.core.Domain.Models
         [Indexed]
         public int LocalId { get; set; }
 
-        public string Name { get; set; }
+        public bool IsAttending { get; set; }
 
         public DateTimeOffset Date { get; set; }
 
-        public DateTimeOffset Time { get; set; }
+        public int ClassId { get; set; }
+
+        public Class Class { get; set; }
 
         public int ProfileId { get; set; }
 

@@ -22,9 +22,9 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
             EvaluationsRealm = new Domain.Services.Realms.Evaluations();
             var profilesRealm = new Domain.Services.Realms.Profiles();
             ProfileModel = profilesRealm.Get(ProfileLocalId);
-            var studentsRealm = new Domain.Services.Realms.Students();
-            var student = studentsRealm.Get(x => x.Profile == ProfileModel);
-            var evals = EvaluationsRealm.GetAll(x => x.Student == student).ToList();
+            var membersRealm = new Domain.Services.Realms.Members();
+            var member = membersRealm.Get(x => x.Profile == ProfileModel);
+            var evals = EvaluationsRealm.GetAll(x => x.Profile == member.Profile).ToList();
             var evalsContainer = new List<ViewModels.Controls.PrettyListViewItems.Evaluation>();
             foreach (var evalModel in evals)
             {
@@ -46,7 +46,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
 
         private async void AddEvaluation()
         {
-            var studentsRealm = new Domain.Services.Realms.Students();
+            var studentsRealm = new Domain.Services.Realms.Members();
             var student = studentsRealm.Get(x => x.Profile == ProfileModel);
             await Navigator.PushEvaluationEditorPageAsync(Navigation, student.LocalId);
         }

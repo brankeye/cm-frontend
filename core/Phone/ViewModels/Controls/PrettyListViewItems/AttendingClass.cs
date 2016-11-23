@@ -5,7 +5,7 @@ namespace cm.frontend.core.Phone.ViewModels.Controls.PrettyListViewItems
 {
     public class AttendingClass : Base.Core
     {
-        public AttendingClass(Domain.Models.AttendingClass model)
+        public AttendingClass(Domain.Models.AttendanceRecord model)
         {
             AttendingModel = model;
             
@@ -19,12 +19,12 @@ namespace cm.frontend.core.Phone.ViewModels.Controls.PrettyListViewItems
         }
         private string _attending;
 
-        public Domain.Models.AttendingClass AttendingModel
+        public Domain.Models.AttendanceRecord AttendingModel
         {
             get { return _model; }
             set { this.SetProperty(ref _model, value, PropertyChanged); }
         }
-        private Domain.Models.AttendingClass _model;
+        private Domain.Models.AttendanceRecord _model;
 
         public new event PropertyChangedEventHandler PropertyChanged;
     }

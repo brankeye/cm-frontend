@@ -11,7 +11,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
     {
         private Domain.Services.Realms.Classes ClassesRealm { get; set; }
 
-        private Domain.Services.Realms.AttendingClasses AttendingRealm { get; set; }
+        private Domain.Services.Realms.AttendanceRecords AttendanceRealm { get; set; }
 
         public CalendarClass()
         {
@@ -40,14 +40,14 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
         {
             ClassesRealm = new Domain.Services.Realms.Classes();
             ClassModel = ClassesRealm.Get(ClassLocalId);
-            AttendingRealm = new Domain.Services.Realms.AttendingClasses();
+            AttendanceRealm = new Domain.Services.Realms.AttendanceRecords();
             GetAttendants();
 
             var contextCache = Domain.Services.Caches.Context.GetInstance();
             var currentContext = contextCache.Get("Context");
             var currentProfile = currentContext.CurrentAccount.Profile;
 
-            AttendanceModel = AttendingRealm.GetRealmResults()
+            AttendanceModel = AttendanceRealm.GetRealmResults()
                                               .Where(x => x.Date == Date)
                                               .FirstOrDefault(x => x.Profile == currentProfile);
 
@@ -63,7 +63,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
 
         private void GetAttendants()
         {
-            var attendants = AttendingRealm.GetAll(x => x.Date == Date).ToList();
+            var attendants = AttendanceRealm.GetAll(x => x.Date == Date).ToList();
 
             var attList = new List<ViewModels.Controls.PrettyListViewItems.AttendingClass>();
             foreach (var attendant in attendants)
@@ -118,12 +118,12 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
 
             // the user has decided to change their attendance, so we first have to check if
             // a record of their attendance exists for this particular class
-            if (AttendingRealm == null)
+            if (AttendanceRealm == null)
             {
                 return;
             }
 
-            AttendanceModel = AttendingRealm.GetRealmResults()
+            AttendanceModel = AttendanceRealm.GetRealmResults()
                                               .Where(x => x.Date == Date)
                                               .FirstOrDefault(x => x.Profile == currentProfile);
 
@@ -133,7 +133,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
                 // so add one, unless they selected "undecided"
                 if (attendanceSelection != "Undecided")
                 {
-                    await AttendingRealm.WriteAsync(realm =>
+                    await AttendanceRealm.WriteAsync(realm =>
                     {
                         var attending = realm.CreateObject();
                         attending.Class = ClassModel;
@@ -149,14 +149,14 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
                 // the user has an attendance record so all we need to do is alter that one
                 if (attendanceSelection == "Undecided")
                 {
-                    await AttendingRealm.WriteAsync(realm =>
+                    await AttendanceRealm.WriteAsync(realm =>
                     {
                         realm.Remove(attendanceRecordLocalId);
                     });
                 }
                 else
                 {
-                    await AttendingRealm.WriteAsync(realm =>
+                    await AttendanceRealm.WriteAsync(realm =>
                     {
                         var attendanceRecord = realm.Get(attendanceRecordLocalId);
                         attendanceRecord.IsAttending = attendanceSelection == "Yes";
@@ -175,12 +175,12 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
         }
         private Domain.Models.Class _classModel;
 
-        public Domain.Models.AttendingClass AttendanceModel
+        public Domain.Models.AttendanceRecord AttendanceModel
         {
             get { return _attendanceModel; }
             set { this.SetProperty(ref _attendanceModel, value, PropertyChanged); }
         }
-        private Domain.Models.AttendingClass _attendanceModel;
+        private Domain.Models.AttendanceRecord _attendanceModel;
 
         public Domain.Models.CanceledClass CanceledModel
         {

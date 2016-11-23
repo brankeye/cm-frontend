@@ -22,6 +22,7 @@ namespace cm.frontend.core.Phone
 
         private async void SeedData()
         {
+            /*
             var profilesRealm = new Domain.Services.Realms.Profiles();
             await profilesRealm.WriteAsync(realm =>
             {
@@ -83,25 +84,6 @@ namespace cm.frontend.core.Phone
                 class3.School = schoolsRealm.Get(x => x.Name == "STVTO");
             });
 
-            var studentsRealm = new Domain.Services.Realms.Students();
-            await studentsRealm.WriteAsync(realm =>
-            {
-                var students1 = realm.CreateObject();
-
-                var p1 = profilesRealm.Get(x => x.FirstName == "Cameron");
-                var s1 = schoolsRealm.Get(x => x.Name == "STVTO");
-
-                students1.Profile = p1;
-                students1.School = s1;
-
-                var students2 = realm.CreateObject();
-
-                var p2 = profilesRealm.Get(x => x.FirstName == "Kyle");
-
-                students2.Profile = p2;
-                students2.School = s1;
-            });
-
             var evaluationsRealm = new Domain.Services.Realms.Evaluations();
             await evaluationsRealm.WriteAsync(realm =>
             {
@@ -154,7 +136,7 @@ namespace cm.frontend.core.Phone
                 section3.Evaluation = eval;
             });
 
-            var attendingRealm = new Domain.Services.Realms.AttendingClasses();
+            var attendingRealm = new Domain.Services.Realms.AttendanceRecords();
             await attendingRealm.WriteAsync(realm =>
             {
                 var attending1 = realm.CreateObject();
@@ -163,7 +145,7 @@ namespace cm.frontend.core.Phone
                 attending1.Profile = profilesRealm.Get(x => x.FirstName == "Kyle");
             });
 
-            var accountsRealm = new Domain.Services.Realms.Accounts();
+            var accountsRealm = new Domain.Services.Realms.Users();
             await accountsRealm.WriteAsync(realm =>
             {
                 var user = realm.CreateObject();
@@ -185,6 +167,7 @@ namespace cm.frontend.core.Phone
             }
 
             contextCache.Add("Context", context);
+            */
         }
 
         protected override void OnStart()

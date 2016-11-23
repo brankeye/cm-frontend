@@ -3,7 +3,7 @@ using Realms;
 
 namespace cm.frontend.core.Domain.Models
 {
-    public class Account : RealmObject, IEntity
+    public class User : RealmObject, IEntity
     {
         [Indexed]
         public int Id { get; set; }
@@ -13,8 +13,6 @@ namespace cm.frontend.core.Domain.Models
         public int LocalId { get; set; }
 
         public string Username { get; set; }
-
-        public string Password { get; set; }
 
         public int ProfileId { get; set; }
 
