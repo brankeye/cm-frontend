@@ -51,6 +51,11 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
             await Navigator.PushEvaluationEditorPageAsync(Navigation, student.LocalId);
         }
 
+        public bool IsTeacher()
+        {
+            return GetCurrentUser().Profile.IsTeacher;
+        }
+
         private int ProfileLocalId { get; set; }
 
         public Domain.Models.Profile ProfileModel

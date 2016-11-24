@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using cm.frontend.core.Domain.Objects;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace cm.frontend.core.Domain.Services.Rest.Base
 {
@@ -98,6 +99,22 @@ namespace cm.frontend.core.Domain.Services.Rest.Base
                 response = await httpClient.DeleteAsync(uri);
             }
             return response;
+        }
+
+        public virtual async Task<Domain.Objects.Response> ParseHttpResponse(HttpResponseMessage httpResponse)
+        {
+            var resultString = await httpResponse.Content.ReadAsStringAsync();
+            var responseObject = JsonConvert.DeserializeObject<Response>(resultString);
+            return responseObject;
+        }
+
+        public virtual async Task<TModel> ParseResponseItem(HttpResponseMessage httpResponse)
+        {
+            var resultString = await httpResponse.Content.ReadAsStringAsync();
+            var responseObject = JsonConvert.DeserializeObject<Response>(resultString);
+            var itemString = responseObject.Item.ToString();
+            var item = JsonConvert.DeserializeObject<TModel>(itemString);
+            return item;
         }
     }
 }

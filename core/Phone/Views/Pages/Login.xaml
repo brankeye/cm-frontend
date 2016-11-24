@@ -16,9 +16,9 @@
       </StackLayout>
       <StackLayout Orientation="Horizontal">
         <Label Text="New user?"></Label>
-        <Switch x:Name="NewUserSwitch" IsToggled="{Binding NewUserIsToggled}" Toggled="NewUserSwitch_OnToggled"></Switch>
+        <Switch x:Name="NewUserSwitch" IsToggled="{Binding IsNewUser}" Toggled="NewUserSwitch_OnToggled"></Switch>
       </StackLayout>
-      <Button x:Name="ActionButton" Text="Login" Command="{Binding ActionButtonCommand}" HorizontalOptions="Center"></Button>
+      <Button x:Name="LoginRegisterButton" Text="Login" Command="{Binding ActionButtonCommand}" HorizontalOptions="Center"></Button>
     </StackLayout>
   </ContentPage.Content>
 </base:Core>

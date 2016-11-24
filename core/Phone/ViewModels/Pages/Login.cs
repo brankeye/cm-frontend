@@ -1,4 +1,6 @@
-﻿using System.Windows.Input;
+﻿using System.Threading.Tasks;
+using System.Windows.Input;
+using cm.frontend.core.Domain.Models;
 using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone.ViewModels.Pages
@@ -7,50 +9,56 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
     {
         private async void LoginOrRegister()
         {
-            var contextCache = Domain.Services.Caches.Context.GetInstance();
-            var currentContext = contextCache.Get("Context");
-
-            if (NewUserIsToggled)
+            if (IsNewUser)
             {
-                var accountService = new Domain.Services.Rest.Security.Account();
-                var registerResult = await accountService.PostRegisterAsync(Email, Password);
-
-                if (registerResult.IsSuccessStatusCode)
-                {
-                    var tokenService = new Domain.Services.Rest.Security.Token();
-                    var token = await tokenService.PostAsync(Email, Password);
-
-                    if (token != null)
-                    {
-                        // save the token
-                        currentContext.AccessToken = token.Access_Token;
-                        currentContext.IsAuthenticated = true;
-                        contextCache.Replace("Context", currentContext);
-
-                        // navigate register ui path
-                        await Navigator.PushProfileEditorPageAsync(Navigation);
-                    }
-                }
+                await HandleRegister();
             }
             else // is registered
             {
-                var tokenService = new Domain.Services.Rest.Security.Token();
-                var token = await tokenService.PostAsync(Email, Password);
+                await HandleLogin();
+            }
+        }
 
+        private async Task HandleRegister()
+        {
+            if (await RegisterAccount())
+            {
+                var token = await RequestToken();
                 if (token != null)
                 {
-                    // save token and continue
-                    // save the token
-                    currentContext.AccessToken = token.Access_Token;
-                    currentContext.IsAuthenticated = true;
-                    contextCache.Replace("Context", currentContext);
-
-                    await Navigator.PushDashboardPageAsync(Navigation);
+                    // navigate register ui path
+                    SaveContext(Email, token, true);
+                    await Navigator.PushProfileEditorPageAsync(Navigation);
                 }
             }
         }
 
-        public bool NewUserIsToggled { get; set; }
+        private async Task HandleLogin()
+        {
+            var token = await RequestToken();
+            if (token != null)
+            {
+                // save token and continue
+                SaveContext(Email, token, true);
+                await Navigator.PushDashboardPageAsync(Navigation);
+            }
+        }
+
+        private async Task<bool> RegisterAccount()
+        {
+            var accountService = new Domain.Services.Rest.Security.Account();
+            var registerResult = await accountService.PostRegisterAsync(Email, Password);
+            return registerResult.IsSuccessStatusCode;
+        }
+
+        private async Task<Domain.Objects.Token> RequestToken()
+        {
+            var tokenService = new Domain.Services.Rest.Security.Token();
+            var token = await tokenService.PostAsync(Email, Password);
+            return token;
+        }
+
+        public bool IsNewUser { get; set; }
 
         public string Email { get; set; }
 

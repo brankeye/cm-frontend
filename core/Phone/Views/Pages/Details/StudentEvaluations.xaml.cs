@@ -9,10 +9,8 @@ namespace cm.frontend.core.Phone.Views.Pages.Details
             InitializeComponent();
             var header = (View) EvaluationsListView.Header;
             header.BindingContext = BindingContext;
-
-            var contextCache = Domain.Services.Caches.Context.GetInstance();
-            var currentContext = contextCache.Get("Context");
-            if (currentContext.CurrentUser.Profile.IsTeacher)
+            
+            if (ViewModel.IsTeacher())
             {
                 var editEvaluation = new ToolbarItem
                 {

@@ -36,6 +36,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Attributes\IgnorePropertyMapping.cs" />
     <Compile Include="Enums\Day.cs" />
     <Compile Include="Enums\ResultCode.cs" />
     <Compile Include="Extensions\NotifyPropertyChanged\Core.cs" />
@@ -48,7 +49,7 @@
     <Compile Include="Models\CanceledClass.cs" />
     <Compile Include="Models\Class.cs" />
     <Compile Include="Models\Evaluation.cs" />
-    <Compile Include="Models\Local\Context.cs" />
+    <Compile Include="Objects\Context.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Models\School.cs" />
     <Compile Include="Objects\Credentials.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="Services\Rest\Users.cs" />
     <Compile Include="Utilities\Converters\ToDateTime.cs" />
     <Compile Include="Utilities\DynamicCollection.cs" />
+    <Compile Include="Utilities\PropertyMapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="DotNetCross.Memory.Unsafe, Version=0.2.2.0, Culture=neutral, processorArchitecture=MSIL">
@@ -134,7 +136,9 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Models\Local\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
   </ItemGroup>

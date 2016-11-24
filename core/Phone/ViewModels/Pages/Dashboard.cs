@@ -26,16 +26,12 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
                 }
                 case "Evaluations":
                 {
-                    var contextCache = Domain.Services.Caches.Context.GetInstance();
-                    var currentContext = contextCache.Get("Context");
-                    await Navigator.PushEvaluationsPageAsync(Navigation, currentContext.CurrentUser.Profile.LocalId);
+                    await Navigator.PushEvaluationsPageAsync(Navigation, GetCurrentUser().Profile.LocalId);
                     break;
                 }
                 case "Profile":
                 {
-                    var contextCache = Domain.Services.Caches.Context.GetInstance();
-                    var currentContext = contextCache.Get("Context");
-                    await Navigator.PushProfilePageAsync(Navigation, currentContext.CurrentUser.Profile.LocalId);
+                    await Navigator.PushProfilePageAsync(Navigation, GetCurrentUser().Profile.LocalId);
                     break;
                 }
                 case "School":
@@ -45,25 +41,22 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
                 }
                 case "Signout":
                 {
-                    var contextCache = Domain.Services.Caches.Context.GetInstance();
-                    var currentContext = contextCache.Get("Context");
                     var accountService = new Domain.Services.Rest.Security.Account();
-                    var logoutResult = await accountService.PostLogoutAsync(currentContext.AccessToken);
+                    var logoutResult = await accountService.PostLogoutAsync(GetContext().AccessToken.Access_Token);
 
                     if (logoutResult.IsSuccessStatusCode)
                     {
-                        currentContext.AccessToken = "";
-                        currentContext.IsAuthenticated = false;
-                        contextCache.Replace("Context", currentContext);
+                        SaveContext(null, null, false);
                         await Navigator.PopAsync(Navigation);
                     }
-
-                    
                     break;
                 }
-                default:
-                    break;
             };
+        }
+
+        public bool IsTeacher()
+        {
+            return GetCurrentUser().Profile.IsTeacher;
         }
 
         public ICommand LaunchCommand => _launchCommand ?? (_launchCommand = new Command<string>(Launch));

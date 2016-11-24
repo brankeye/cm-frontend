@@ -36,10 +36,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
 
         public async void StudentSelected(int studentLocalId)
         {
-            var contextCache = Domain.Services.Caches.Context.GetInstance();
-            var currentContext = contextCache.Get("Context");
-
-            if (currentContext.CurrentUser.Profile.IsTeacher)
+            if (GetCurrentUser().Profile.IsTeacher)
             {
                 await Navigator.PushStudentEvaluationsPageAsync(Navigation, studentLocalId);
             }

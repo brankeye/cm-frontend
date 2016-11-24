@@ -3,16 +3,30 @@
            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
            xmlns:base="clr-namespace:cm.frontend.core.Phone.Views.Pages.Base;assembly=cm.frontend.core.Phone"
            xmlns:pages="clr-namespace:cm.frontend.core.Phone.ViewModels.Pages.Editors;assembly=cm.frontend.core.Phone"
+           xmlns:converters="clr-namespace:cm.frontend.core.Domain.Utilities.Converters;assembly=cm.frontend.core.Domain"
            x:TypeArguments="pages:Profile"
            x:Class="cm.frontend.core.Phone.Views.Pages.Editors.Profile">
   <ContentPage.Content>
     <StackLayout>
       <Label Text="Edit profile" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
-      <Entry Placeholder="First name"></Entry>
-      <Entry Placeholder="Last name"></Entry>
-      <Entry Placeholder="Email"></Entry>
-      <Entry Placeholder="Phone number"></Entry>
-      <Button Text="Ok" Command="{Binding ActionButtonCommand}" HorizontalOptions="Center"></Button>
+      <Entry Text="{Binding ProfileModel.FirstName, Mode=OneWayToSource}" Placeholder="First name"></Entry>
+      <Entry Text="{Binding ProfileModel.LastName, Mode=OneWayToSource}" Placeholder="Last name"></Entry>
+      <Entry Text="{Binding ProfileModel.Email, Mode=OneWayToSource}" Placeholder="Email"></Entry>
+      <Entry Text="{Binding ProfileModel.PhoneNumber, Mode=OneWayToSource}" Placeholder="Phone number"></Entry>
+      <Entry Text="{Binding ProfileModel.Level, Mode=OneWayToSource}" Placeholder="Sash"></Entry>
+      <StackLayout Orientation="Horizontal">
+        <Label Text="Start date"></Label>
+        <DatePicker Date="{Binding ProfileModel.StartDate, Mode=OneWayToSource, Converter={x:StaticResource ToDateTime}}"></DatePicker>
+      </StackLayout>
+      <StackLayout Orientation="Horizontal">
+        <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="Center"></Button>
+        <Button Text="Ok" Command="{Binding SaveCommand}" HorizontalOptions="Center"></Button>
+      </StackLayout>
     </StackLayout>
   </ContentPage.Content>
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <converters:ToDateTime x:Key="ToDateTime"></converters:ToDateTime>
+    </ResourceDictionary>
+  </ContentPage.Resources>
 </base:Core>

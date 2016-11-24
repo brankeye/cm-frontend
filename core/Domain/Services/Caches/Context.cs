@@ -2,7 +2,7 @@
 
 namespace cm.frontend.core.Domain.Services.Caches
 {
-    public class Context : DataCache<Domain.Models.Local.Context>
+    public class Context : DataCache<Objects.Context>
     {
         private static Context _instance;
 
