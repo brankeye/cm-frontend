@@ -7,22 +7,24 @@
            x:TypeArguments="pages:Profile"
            x:Class="cm.frontend.core.Phone.Views.Pages.Editors.Profile">
   <ContentPage.Content>
-    <StackLayout>
-      <Label Text="Edit profile" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
-      <Entry Text="{Binding ProfileModel.FirstName, Mode=OneWayToSource}" Placeholder="First name"></Entry>
-      <Entry Text="{Binding ProfileModel.LastName, Mode=OneWayToSource}" Placeholder="Last name"></Entry>
-      <Entry Text="{Binding ProfileModel.Email, Mode=OneWayToSource}" Placeholder="Email"></Entry>
-      <Entry Text="{Binding ProfileModel.PhoneNumber, Mode=OneWayToSource}" Placeholder="Phone number"></Entry>
-      <Entry Text="{Binding ProfileModel.Level, Mode=OneWayToSource}" Placeholder="Sash"></Entry>
-      <StackLayout Orientation="Horizontal">
-        <Label Text="Start date"></Label>
-        <DatePicker Date="{Binding ProfileModel.StartDate, Mode=OneWayToSource, Converter={x:StaticResource ToDateTime}}"></DatePicker>
+    <ScrollView>
+      <StackLayout>
+        <Label Text="Edit profile" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+        <Entry Text="{Binding ProfileModel.FirstName, Mode=TwoWay}" Placeholder="First name"></Entry>
+        <Entry Text="{Binding ProfileModel.LastName, Mode=TwoWay}" Placeholder="Last name"></Entry>
+        <Entry Text="{Binding ProfileModel.Email, Mode=TwoWay}" Placeholder="Email"></Entry>
+        <Entry Text="{Binding ProfileModel.PhoneNumber, Mode=TwoWay}" Placeholder="Phone number"></Entry>
+        <Entry Text="{Binding ProfileModel.Level, Mode=TwoWay}" Placeholder="Sash"></Entry>
+        <StackLayout Orientation="Horizontal">
+          <Label Text="Start date"></Label>
+          <DatePicker Date="{Binding ProfileModel.StartDate, Mode=TwoWay, Converter={x:StaticResource ToDateTime}}"></DatePicker>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+          <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="Center"></Button>
+          <Button Text="Ok" Command="{Binding SaveCommand}" HorizontalOptions="Center"></Button>
+        </StackLayout>
       </StackLayout>
-      <StackLayout Orientation="Horizontal">
-        <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="Center"></Button>
-        <Button Text="Ok" Command="{Binding SaveCommand}" HorizontalOptions="Center"></Button>
-      </StackLayout>
-    </StackLayout>
+    </ScrollView>
   </ContentPage.Content>
   <ContentPage.Resources>
     <ResourceDictionary>

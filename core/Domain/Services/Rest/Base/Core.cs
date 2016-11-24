@@ -14,15 +14,50 @@ namespace cm.frontend.core.Domain.Services.Rest.Base
     public class Core<TModel>
         where TModel : class
     {
-        private string BaseUri => "http://ec2-52-39-4-189.us-west-2.compute.amazonaws.com/api/";
-        private readonly string _targetApi;
+        protected string BaseUri => "http://ec2-52-39-4-189.us-west-2.compute.amazonaws.com/api/";
+        protected readonly string _targetApi;
 
         public Core(string targetApi)
         {
             _targetApi = targetApi;
         }
 
-        public virtual async Task<List<TModel>> GetAsync(string token = null, string basicCredentials = null)
+        public virtual async Task<TModel> GetAsync(int id, string token = null)
+        {
+            var restUrl = BaseUri + "{0}";
+            var target = _targetApi + "/" + id;
+            var uri = new Uri(string.Format(restUrl, target));
+
+            TModel model;
+            using (var httpClient = new HttpClient())
+            {
+                httpClient.DefaultRequestHeaders.Accept.Clear();
+                httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                if (token != null)
+                    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                try
+                {
+                    var result = await httpClient.GetStringAsync(uri);
+                    var response = JsonConvert.DeserializeObject<Response>(result);
+                    var item = response.Item.ToString();
+                    model = JsonConvert.DeserializeObject<TModel>(item);
+                }
+                catch (WebException ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
+                    model = null;
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
+                    model = null;
+                }
+            }
+            return model;
+        }
+
+        public virtual async Task<List<TModel>> GetAsync(string token = null)
         {
             var restUrl = BaseUri + "{0}";
             var uri = new Uri(string.Format(restUrl, _targetApi));
@@ -34,8 +69,6 @@ namespace cm.frontend.core.Domain.Services.Rest.Base
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 if (token != null)
                     httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                if (basicCredentials != null)
-                    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", basicCredentials);
 
                 try
                 {
@@ -91,7 +124,8 @@ namespace cm.frontend.core.Domain.Services.Rest.Base
         public virtual async Task<HttpResponseMessage> DeleteAsync(int id)
         {
             var restUrl = BaseUri + "{0}/{1}";
-            var uri = new Uri(string.Format(restUrl, _targetApi));
+            var target = _targetApi + "/" + id;
+            var uri = new Uri(string.Format(restUrl, target));
 
             HttpResponseMessage response = null;
             using (var httpClient = new HttpClient())

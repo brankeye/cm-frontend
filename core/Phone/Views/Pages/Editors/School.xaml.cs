@@ -6,5 +6,10 @@
         {
             InitializeComponent();
         }
+
+        public void Initialize(string schoolName)
+        {
+            ViewModel.SchoolModel.Name = schoolName;
+        }
     }
 }

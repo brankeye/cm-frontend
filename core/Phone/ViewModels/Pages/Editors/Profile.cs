@@ -1,6 +1,7 @@
 ﻿using cm.frontend.core.Domain.Extensions.NotifyPropertyChanged;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -8,20 +9,47 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
 {
     public class Profile : ViewModels.Base.Core, INotifyPropertyChanged
     {
-        public Profile()
-        {
-            ProfileModel = new Domain.Models.Profile();
-        }
-
         private async void SaveProfile()
         {
             var currentContext = GetContext();
 
-            // save profile
-            var profilesRestService = new Domain.Services.Rest.Profiles();
-            var httpResponse = await profilesRestService.PostAsync(ProfileModel, currentContext.AccessToken.Access_Token);
-            var profile = await profilesRestService.ParseResponseItem(httpResponse);
+            // post profile
+            var postedProfile = await PostProfile(currentContext.AccessToken.Access_Token);
+            
+            // post user
+            var user = new Domain.Models.User
+            {
+                Username = currentContext.Username,
+                ProfileId = postedProfile.Id,
+            };
+            var postedUser = await PostUser(currentContext.AccessToken.Access_Token, user);
 
+            // save profile
+            var savedProfile = await SaveProfile(postedProfile);
+            var savedUser = await SaveUser(postedUser, savedProfile);
+
+            // navigate to manage page to either join or create a club
+            await Navigator.PushManagePageAsync(Navigation);
+        }
+
+        private async Task<Domain.Models.Profile> PostProfile(string accessToken)
+        {
+            var profilesRestService = new Domain.Services.Rest.Profiles();
+            var httpResponse = await profilesRestService.PostAsync(ProfileModel, accessToken);
+            var profile = await profilesRestService.ParseResponseItem(httpResponse);
+            return profile;
+        }
+
+        private async Task<Domain.Models.User> PostUser(string accessToken, Domain.Models.User userModel)
+        {
+            var usersRestService = new Domain.Services.Rest.Users();
+            var httpResponse = await usersRestService.PostAsync(userModel, accessToken);
+            var user = await usersRestService.ParseResponseItem(httpResponse);
+            return user;
+        }
+
+        private async Task<Domain.Models.Profile> SaveProfile(Domain.Models.Profile profile)
+        {
             var profilesRealm = new Domain.Services.Realms.Profiles();
             var profileLocalId = 0;
             await profilesRealm.WriteAsync(realm =>
@@ -29,35 +57,25 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
                 realm.Manage(profile);
                 profileLocalId = profile.LocalId;
             });
-            var list = profilesRealm.GetAll().ToList();
+            var savedProfile = profilesRealm.Get(profileLocalId);
+            return savedProfile;
+        }
 
-            // save user
+        private async Task<Domain.Models.User> SaveUser(Domain.Models.User userModel, Domain.Models.Profile profileModel)
+        {
             var usersRealm = new Domain.Services.Realms.Users();
+            var profilesRealm = new Domain.Services.Realms.Profiles();
             var userLocalId = 0;
+            var profileLocalId = profileModel.LocalId;
             await usersRealm.WriteAsync(realm =>
             {
-                var userModel = realm.CreateObject();
+                realm.Manage(userModel);
+                userModel.Profile = profilesRealm.Get(profileLocalId);
+                userModel.ProfileId = userModel.Profile.Id;
                 userLocalId = userModel.LocalId;
-                var prof = profilesRealm.Get(profileLocalId);
-                userModel.Profile = prof;
-                userModel.ProfileId = prof.Id;
-                userModel.Username = GetContext().Username;
             });
-
-            var user = usersRealm.Get(userLocalId);
-            var usersRestService = new Domain.Services.Rest.Users();
-            httpResponse = await usersRestService.PostAsync(user, currentContext.AccessToken.Access_Token);
-            var userItem = await profilesRestService.ParseResponseItem(httpResponse);
-            var userId = userItem.Id;
-
-            await usersRealm.WriteAsync(realm =>
-            {
-                var userModel = realm.Get(userLocalId);
-                userModel.Id = userId;
-            });
-
-            // navigate to manage page to either join or create a club
-            await Navigator.PushManagePageAsync(Navigation);
+            var savedUser = usersRealm.Get(userLocalId);
+            return savedUser;
         }
 
         private async void Cancel()
@@ -67,7 +85,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
 
         public Domain.Models.Profile ProfileModel
         {
-            get { return _profileModel; }
+            get { return _profileModel ?? (_profileModel = new Domain.Models.Profile()); }
             set { this.SetProperty(ref _profileModel, value, PropertyChanged); }
         }
         private Domain.Models.Profile _profileModel;

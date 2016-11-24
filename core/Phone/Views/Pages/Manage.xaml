@@ -7,11 +7,10 @@
            x:TypeArguments="pages:Manage">
   <ContentPage.Content>
     <StackLayout>
-      <Label Text="Manage" VerticalTextAlignment="Center"></Label>
-      <Entry Placeholder="School name"></Entry>
+      <Entry Text="{Binding SchoolName, Mode=OneWayToSource}" Placeholder="School name"></Entry>
       <StackLayout Orientation="Horizontal">
         <Button Text="Join" Command="{Binding JoinCommand}"></Button>
-        <Button Text="Create" Command="{Binding CreateCommand}"></Button>
+        <Button Text="Manage" Command="{Binding CreateCommand}"></Button>
       </StackLayout>
     </StackLayout>
   </ContentPage.Content>

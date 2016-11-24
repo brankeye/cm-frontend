@@ -5,5 +5,20 @@
            xmlns:pages="clr-namespace:cm.frontend.core.Phone.ViewModels.Pages.Editors;assembly=cm.frontend.core.Phone"
            x:TypeArguments="pages:School" 
            x:Class="cm.frontend.core.Phone.Views.Pages.Editors.School">
-  <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" />
+  <ContentPage.Content>
+    <ScrollView>
+      <StackLayout>
+        <Label Text="Edit school" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+        <Entry Text="{Binding SchoolModel.Name, Mode=TwoWay}" Placeholder="Name"></Entry>
+        <Entry Text="{Binding SchoolModel.Address, Mode=TwoWay}" Placeholder="Address"></Entry>
+        <Entry Text="{Binding SchoolModel.Email, Mode=TwoWay}" Placeholder="Email"></Entry>
+        <Entry Text="{Binding SchoolModel.Website, Mode=TwoWay}" Placeholder="Website"></Entry>
+        <Entry Text="{Binding SchoolModel.PhoneNumber, Mode=TwoWay}" Placeholder="Phone number"></Entry>
+        <StackLayout Orientation="Horizontal">
+          <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="Center"></Button>
+          <Button Text="Ok" Command="{Binding SaveCommand}" HorizontalOptions="Center"></Button>
+        </StackLayout>
+      </StackLayout>
+    </ScrollView>
+  </ContentPage.Content>
 </base:Core>
