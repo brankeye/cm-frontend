@@ -1,15 +1,18 @@
-﻿using cm.frontend.core.Domain.Interfaces;
+﻿using cm.frontend.core.Domain.Attributes;
+using cm.frontend.core.Domain.Interfaces;
 using Realms;
 
 namespace cm.frontend.core.Domain.Models
 {
-    public class EvaluationSection : RealmObject, IEntity
+    public class EvaluationSection : RealmObject, ISyncableEntity
     {
         [Indexed]
+        [IgnorePropertyMapping]
         public int Id { get; set; }
 
         [PrimaryKey]
         [Indexed]
+        [IgnorePropertyMapping]
         public int LocalId { get; set; }
 
         public string Name { get; set; }
@@ -20,6 +23,10 @@ namespace cm.frontend.core.Domain.Models
 
         public int EvaluationId { get; set; }
 
+        [IgnorePropertyMapping]
         public Evaluation Evaluation { get; set; }
+
+        [IgnorePropertyMapping]
+        public bool Synced { get; set; }
     }
 }

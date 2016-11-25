@@ -5,12 +5,20 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
 {
     public class School : ViewModels.Base.Core, INotifyPropertyChanged
     {
-        private Domain.Services.Realms.Schools SchoolsRealm { get; set; }
+        private Domain.Services.Realms.Members MembersRealm { get; set; }
 
-        private void Initialize()
+        private async void Initialize()
         {
-            SchoolsRealm = new Domain.Services.Realms.Schools();
-            SchoolModel = SchoolsRealm.Get(1);
+            MembersRealm = new Domain.Services.Realms.Members();
+            var currentProfile = GetCurrentUser().Profile;
+            SchoolModel = MembersRealm.Get(x => x.Profile == currentProfile).School;
+            var membersRestService = new Domain.Services.Rest.Members();
+            var members = await membersRestService.GetAsync(GetContext().AccessToken.Access_Token);
+            await MembersRealm.WriteAsync(realm =>
+            {
+                realm.ManageAll(members);
+            });
+            Teacher = MembersRealm.Get(x => x.IsTeacher).Profile;
         }
 
         public override void OnAppearing()
@@ -24,6 +32,13 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
             set { this.SetProperty(ref _school, value, PropertyChanged); }
         }
         private Domain.Models.School _school;
+
+        public Domain.Models.Profile Teacher
+        {
+            get { return _teacher; }
+            set { this.SetProperty(ref _teacher, value, PropertyChanged); }
+        }
+        private Domain.Models.Profile _teacher;
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

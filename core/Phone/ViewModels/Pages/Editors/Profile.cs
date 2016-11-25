@@ -1,6 +1,5 @@
 ﻿using cm.frontend.core.Domain.Extensions.NotifyPropertyChanged;
 using System.ComponentModel;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;

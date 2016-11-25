@@ -42,6 +42,8 @@
     <Compile Include="Extensions\NotifyPropertyChanged\Core.cs" />
     <Compile Include="Interfaces\IEntity.cs" />
     <Compile Include="Interfaces\ILocalEntity.cs" />
+    <Compile Include="Interfaces\ISyncableEntity.cs" />
+    <Compile Include="Interfaces\ISyncJob.cs" />
     <Compile Include="Models\EvaluationSection.cs" />
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\User.cs" />
@@ -83,6 +85,17 @@
     <Compile Include="Services\Rest\Profiles.cs" />
     <Compile Include="Services\Rest\CanceledClasses.cs" />
     <Compile Include="Services\Rest\Users.cs" />
+    <Compile Include="Services\Sync\Jobs\Base\Core.cs" />
+    <Compile Include="Services\Sync\Jobs\AttendanceRecords.cs" />
+    <Compile Include="Services\Sync\Jobs\CanceledClasses.cs" />
+    <Compile Include="Services\Sync\Jobs\Classes.cs" />
+    <Compile Include="Services\Sync\Jobs\EvaluationSections.cs" />
+    <Compile Include="Services\Sync\Jobs\Members.cs" />
+    <Compile Include="Services\Sync\Jobs\Evaluations.cs" />
+    <Compile Include="Services\Sync\Jobs\Users.cs" />
+    <Compile Include="Services\Sync\Jobs\Schools.cs" />
+    <Compile Include="Services\Sync\Jobs\Profiles.cs" />
+    <Compile Include="Services\Sync\Synchronizer.cs" />
     <Compile Include="Utilities\Converters\ToDateTime.cs" />
     <Compile Include="Utilities\DynamicCollection.cs" />
     <Compile Include="Utilities\PropertyMapper.cs" />

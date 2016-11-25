@@ -7,9 +7,10 @@
             InitializeComponent();
         }
 
-        public void Initialize(string schoolName)
+        public void Initialize(string schoolName, bool isManaging)
         {
             ViewModel.SchoolModel.Name = schoolName;
+            ViewModel.IsManaging = isManaging;
         }
     }
 }

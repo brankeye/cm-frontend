@@ -10,7 +10,7 @@
       <Label Text="School name" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
       <Label Text="{Binding SchoolModel.Name}" VerticalTextAlignment="Center"></Label>
       <Label Text="Teacher name" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-      <Label Text="{Binding SchoolModel.Teacher.FullName}" VerticalTextAlignment="Center"></Label>
+      <Label Text="{Binding Teacher.FullName}" VerticalTextAlignment="Center"></Label>
       <Label Text="Address" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
       <Label Text="{Binding SchoolModel.Address}" VerticalTextAlignment="Center"></Label>
       <Label Text="Email" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>

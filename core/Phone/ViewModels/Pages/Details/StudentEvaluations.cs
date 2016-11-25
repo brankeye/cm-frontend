@@ -53,7 +53,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
 
         public bool IsTeacher()
         {
-            return GetCurrentUser().Profile.IsTeacher;
+            return UserIsTeacher();
         }
 
         private int ProfileLocalId { get; set; }

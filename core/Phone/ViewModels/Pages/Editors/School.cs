@@ -20,7 +20,8 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
             var member = new Domain.Models.Member
             {
                 ProfileId = profile.Id,
-                SchoolId = postedSchool.Id
+                SchoolId = postedSchool.Id,
+                IsTeacher = IsManaging
             };
             var postedMember = await PostMember(currentContext.AccessToken.Access_Token, member);
             
@@ -89,6 +90,8 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
         {
             await Navigator.PopAsync(Navigation);
         }
+
+        public bool IsManaging { get; set; }
 
         public Domain.Models.School SchoolModel
         {

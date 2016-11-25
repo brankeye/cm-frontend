@@ -56,7 +56,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
 
         public bool IsTeacher()
         {
-            return GetCurrentUser().Profile.IsTeacher;
+            return UserIsTeacher();
         }
 
         public ICommand LaunchCommand => _launchCommand ?? (_launchCommand = new Command<string>(Launch));

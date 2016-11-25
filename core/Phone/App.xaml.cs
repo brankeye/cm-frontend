@@ -1,6 +1,4 @@
-﻿using System;
-using cm.frontend.core.Domain.Models;
-using cm.frontend.core.Domain.Objects;
+﻿using cm.frontend.core.Domain.Objects;
 using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone

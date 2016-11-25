@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using System.Windows.Input;
-using cm.frontend.core.Domain.Models;
 using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone.ViewModels.Pages
@@ -21,7 +20,8 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
 
         private async Task HandleRegister()
         {
-            if (await RegisterAccount())
+            var isRegistered = await RegisterAccount();
+            if (isRegistered)
             {
                 var token = await RequestToken();
                 if (token != null)
@@ -40,6 +40,9 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
             {
                 // save token and continue
                 SaveContext(Email, token, true);
+                var synchronizer = new Domain.Services.Sync.Synchronizer();
+                await synchronizer.SyncAll();
+
                 await Navigator.PushDashboardPageAsync(Navigation);
             }
         }

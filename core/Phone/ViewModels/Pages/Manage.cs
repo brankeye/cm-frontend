@@ -63,20 +63,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
 
         private async void Create()
         {
-            // post profile w/ IsTeacher flag set to true
-            var currentUser = GetCurrentUser();
-            var profileLocalId = currentUser.Profile.LocalId;
-            var profilesRealm = new Domain.Services.Realms.Profiles();
-            await profilesRealm.WriteAsync(realm =>
-            {
-                var profile = realm.Get(profileLocalId);
-                profile.IsTeacher = true;
-            });
-            var profileModel = profilesRealm.Get(profileLocalId);
-            var profilesRestService = new Domain.Services.Rest.Profiles();
-            var postedProfile = await profilesRestService.PostAsync(profileModel, GetContext().AccessToken.Access_Token);
-
-            await Navigator.PushSchoolEditorPageAsync(Navigation, SchoolName);
+            await Navigator.PushSchoolEditorPageAsync(Navigation, SchoolName, true);
         }
 
         public string SchoolName { get; set; }

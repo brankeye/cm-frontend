@@ -12,7 +12,7 @@ namespace cm.frontend.core.Phone.Services
             if (IsNavigating) return;
 
             var pageCache = Domain.Services.Caches.Pages.GetInstance();
-            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Editors.Profile>(nameof(Views.Pages.Editors.Profile));
+            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Editors.Profile>("ProfileEditor");
             await PushAsync(navigation, cachedPage);
         }
 
@@ -21,7 +21,7 @@ namespace cm.frontend.core.Phone.Services
             if (IsNavigating) return;
 
             var pageCache = Domain.Services.Caches.Pages.GetInstance();
-            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Dashboard>(nameof(Views.Pages.Dashboard));
+            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Dashboard>("Dashboard");
             await PushAsync(navigation, cachedPage);
         }
 
@@ -30,17 +30,17 @@ namespace cm.frontend.core.Phone.Services
             if (IsNavigating) return;
 
             var pageCache = Domain.Services.Caches.Pages.GetInstance();
-            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Manage>(nameof(Views.Pages.Manage));
+            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Manage>("Manage");
             await PushAsync(navigation, cachedPage);
         }
 
-        public async Task PushSchoolEditorPageAsync(INavigation navigation, string schoolName)
+        public async Task PushSchoolEditorPageAsync(INavigation navigation, string schoolName, bool isManaging = false)
         {
             if (IsNavigating) return;
 
             var pageCache = Domain.Services.Caches.Pages.GetInstance();
-            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Editors.School>(nameof(Views.Pages.Editors.School));
-            cachedPage.Initialize(schoolName);
+            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Editors.School>("SchoolEditor");
+            cachedPage.Initialize(schoolName, isManaging);
             await PushAsync(navigation, cachedPage);
         }
 
@@ -49,7 +49,7 @@ namespace cm.frontend.core.Phone.Services
             if (IsNavigating) return;
 
             var pageCache = Domain.Services.Caches.Pages.GetInstance();
-            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Classes>(nameof(Views.Pages.Classes));
+            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Classes>("Classes");
             await PushAsync(navigation, cachedPage);
         }
 
@@ -58,7 +58,7 @@ namespace cm.frontend.core.Phone.Services
             if (IsNavigating) return;
 
             var pageCache = Domain.Services.Caches.Pages.GetInstance();
-            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Editors.Class>(nameof(Views.Pages.Editors.Class));
+            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Editors.Class>("ClassEditor");
             await PushAsync(navigation, cachedPage);
         }
 
@@ -67,7 +67,7 @@ namespace cm.frontend.core.Phone.Services
             if (IsNavigating) return;
 
             var pageCache = Domain.Services.Caches.Pages.GetInstance();
-            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Editors.Class>(nameof(Views.Pages.Editors.Class));
+            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Editors.Class>("ClassEditor");
             cachedPage.Initialize(classLocalId);
             await PushAsync(navigation, cachedPage);
         }
@@ -77,7 +77,7 @@ namespace cm.frontend.core.Phone.Services
             if (IsNavigating) return;
 
             var pageCache = Domain.Services.Caches.Pages.GetInstance();
-            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Calendar>(nameof(Views.Pages.Calendar));
+            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Calendar>("Calendar");
             await PushAsync(navigation, cachedPage);
         }
 
@@ -86,7 +86,7 @@ namespace cm.frontend.core.Phone.Services
             if (IsNavigating) return;
 
             var pageCache = Domain.Services.Caches.Pages.GetInstance();
-            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.CalendarClass>(nameof(Views.Pages.CalendarClass));
+            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.CalendarClass>("CalendarClass");
             cachedPage.Initialize(classLocalId, date);
             await PushAsync(navigation, cachedPage);
         }
@@ -96,7 +96,7 @@ namespace cm.frontend.core.Phone.Services
             if (IsNavigating) return;
 
             var pageCache = Domain.Services.Caches.Pages.GetInstance();
-            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Students>(nameof(Views.Pages.Students));
+            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Students>("Students");
             await PushAsync(navigation, cachedPage);
         }
 
@@ -105,7 +105,7 @@ namespace cm.frontend.core.Phone.Services
             if (IsNavigating) return;
 
             var pageCache = Domain.Services.Caches.Pages.GetInstance();
-            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Evaluations>(nameof(Views.Pages.Evaluations));
+            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Evaluations>("Evaluations");
             cachedPage.Initialize(profileLocalId);
             await PushAsync(navigation, cachedPage);
         }
@@ -115,7 +115,7 @@ namespace cm.frontend.core.Phone.Services
             if (IsNavigating) return;
 
             var pageCache = Domain.Services.Caches.Pages.GetInstance();
-            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Editors.Evaluation>(nameof(Views.Pages.Editors.Evaluation));
+            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Editors.Evaluation>("EvaluationEditor");
             cachedPage.Initialize(studentLocalId, evaluationLocalId);
             await PushAsync(navigation, cachedPage);
         }
@@ -125,7 +125,7 @@ namespace cm.frontend.core.Phone.Services
             if (IsNavigating) return;
 
             var pageCache = Domain.Services.Caches.Pages.GetInstance();
-            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Editors.Evaluation>(nameof(Views.Pages.Editors.Evaluation));
+            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Editors.Evaluation>("EvaluationEditor");
             cachedPage.Initialize(studentLocalId);
             await PushAsync(navigation, cachedPage);
         }
@@ -135,7 +135,7 @@ namespace cm.frontend.core.Phone.Services
             if (IsNavigating) return;
 
             var pageCache = Domain.Services.Caches.Pages.GetInstance();
-            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Details.StudentEvaluations>(nameof(Views.Pages.Details.StudentEvaluations));
+            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Details.StudentEvaluations>("StudentEvaluations");
             cachedPage.Initialize(profileLocalId);
             await PushAsync(navigation, cachedPage);
         }
@@ -145,7 +145,7 @@ namespace cm.frontend.core.Phone.Services
             if (IsNavigating) return;
 
             var pageCache = Domain.Services.Caches.Pages.GetInstance();
-            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Details.Evaluation>(nameof(Views.Pages.Details.Evaluation));
+            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Details.Evaluation>("Evaluation");
             cachedPage.Initialize(evalLocalId);
             await PushAsync(navigation, cachedPage);
         }
@@ -155,7 +155,7 @@ namespace cm.frontend.core.Phone.Services
             if (IsNavigating) return;
 
             var pageCache = Domain.Services.Caches.Pages.GetInstance();
-            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Editors.EvaluationSection>(nameof(Views.Pages.Editors.EvaluationSection));
+            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Editors.EvaluationSection>("EvaluationSectionEditor");
             cachedPage.Initialize(sectionLocalId, evaluationLocalId, isNewSection);
             await PushAsync(navigation, cachedPage);
         }
@@ -165,7 +165,7 @@ namespace cm.frontend.core.Phone.Services
             if (IsNavigating) return;
 
             var pageCache = Domain.Services.Caches.Pages.GetInstance();
-            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Details.Profile>(nameof(Views.Pages.Details.Profile));
+            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Details.Profile>("Profile");
             cachedPage.Initialize(profileLocalId);
             await PushAsync(navigation, cachedPage);
         }
@@ -175,7 +175,7 @@ namespace cm.frontend.core.Phone.Services
             if (IsNavigating) return;
 
             var pageCache = Domain.Services.Caches.Pages.GetInstance();
-            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Details.School>(nameof(Views.Pages.Details.School));
+            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Details.School>("School");
             await PushAsync(navigation, cachedPage);
         }
 
@@ -184,7 +184,7 @@ namespace cm.frontend.core.Phone.Services
             if (IsNavigating) return;
 
             var pageCache = Domain.Services.Caches.Pages.GetInstance();
-            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Login>(nameof(Views.Pages.Login));
+            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Login>("Login");
             await PushAsync(navigation, cachedPage);
         }
 

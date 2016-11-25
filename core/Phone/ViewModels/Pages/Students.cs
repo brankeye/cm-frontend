@@ -36,7 +36,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
 
         public async void StudentSelected(int studentLocalId)
         {
-            if (GetCurrentUser().Profile.IsTeacher)
+            if (UserIsTeacher())
             {
                 await Navigator.PushStudentEvaluationsPageAsync(Navigation, studentLocalId);
             }

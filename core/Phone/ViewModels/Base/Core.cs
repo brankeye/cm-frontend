@@ -23,11 +23,21 @@ namespace cm.frontend.core.Phone.ViewModels.Base
             return currentContext;
         }
 
+        public bool UserIsTeacher()
+        {
+            var currentUser = GetCurrentUser();
+            var membersRealm = new Domain.Services.Realms.Members();
+            var profile = currentUser.Profile;
+            var member = membersRealm.Get(x => x.Profile == profile);
+            return member.IsTeacher;
+        }
+
         public Domain.Models.User GetCurrentUser()
         {
             var currentContext = GetContext();
             var usersRealm = new Domain.Services.Realms.Users();
-            var user = usersRealm.Get(x => x.Username == currentContext.Username);
+            var username = currentContext.Username;
+            var user = usersRealm.Get(x => x.Username == username);
             return user;
         }
 

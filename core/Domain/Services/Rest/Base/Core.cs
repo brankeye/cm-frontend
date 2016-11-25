@@ -7,7 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using cm.frontend.core.Domain.Objects;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace cm.frontend.core.Domain.Services.Rest.Base
 {
