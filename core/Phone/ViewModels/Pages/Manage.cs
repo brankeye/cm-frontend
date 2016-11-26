@@ -12,18 +12,23 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
 
             // get school by name
             var schoolsRestService = new Domain.Services.Rest.Schools();
-            var school = await schoolsRestService.GetAsync(SchoolName, currentContext.AccessToken.Access_Token);
+            var postedSchool = await schoolsRestService.GetAsync(SchoolName, currentContext.AccessToken.Access_Token);
 
-            if (school == null) return;
+            if (postedSchool == null) return;
+
+            var savedSchool = await SaveSchool(postedSchool);
 
             // get current profile
             var profile = GetCurrentUser().Profile;
 
             // post member
-            var member = await PostMember(school, profile);
+            var member = await PostMember(savedSchool, profile);
 
             // save member
-            await SaveMember(member, school, profile);
+            await SaveMember(member, savedSchool, profile);
+
+            var synchronizer = new Domain.Services.Sync.Synchronizer();
+            await synchronizer.SyncAll();
 
             // navigate to dashboard page for students
             await Navigator.PushDashboardPageAsync(Navigation);
@@ -42,6 +47,30 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
             return result;
         }
 
+        private async Task<Domain.Models.School> SaveSchool(Domain.Models.School school)
+        {
+            var schoolsRealm = new Domain.Services.Realms.Schools();
+            var schoolRemoteId = school.Id;
+            var schoolLocalId = 0;
+            await schoolsRealm.WriteAsync(realm =>
+            {
+                var localSchool = realm.Get(x => x.Id == schoolRemoteId);
+                if (localSchool == null)
+                {
+                    realm.Manage(school);
+                    school.Synced = true;
+                    schoolLocalId = school.LocalId;
+                }
+                else
+                {
+                    schoolLocalId = localSchool.LocalId;
+                }
+                
+            });
+            var theSchool = schoolsRealm.Get(schoolLocalId);
+            return theSchool;
+        }
+
         private async Task<Domain.Models.Member> SaveMember(Domain.Models.Member memberModel, Domain.Models.School school, Domain.Models.Profile profile)
         {
             var membersRealm = new Domain.Services.Realms.Members();
@@ -56,6 +85,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
                 memberLocalId = memberModel.LocalId;
                 memberModel.Profile = profilesRealm.Get(profileLocalId);
                 memberModel.School = schoolsRealm.Get(schoolLocalId);
+                memberModel.Synced = true;
             });
             var member = membersRealm.Get(memberLocalId);
             return member;

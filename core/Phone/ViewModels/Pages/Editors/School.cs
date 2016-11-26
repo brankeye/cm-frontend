@@ -59,6 +59,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
             {
                 realm.Manage(school);
                 schoolLocalId = school.LocalId;
+                school.Synced = true;
             });
             var savedProfile = schoolsRealm.Get(schoolLocalId);
             return savedProfile;
@@ -81,6 +82,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
                 memberModel.School = schoolsRealm.Get(schoolLocalId);
                 memberModel.SchoolId = memberModel.School.Id;
                 memberLocalId = memberModel.LocalId;
+                memberModel.Synced = true;
             });
             var savedMember = membersRealm.Get(memberLocalId);
             return savedMember;

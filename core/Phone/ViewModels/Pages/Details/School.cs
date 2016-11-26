@@ -7,17 +7,18 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
     {
         private Domain.Services.Realms.Members MembersRealm { get; set; }
 
-        private async void Initialize()
+        private void Initialize()
         {
             MembersRealm = new Domain.Services.Realms.Members();
             var currentProfile = GetCurrentUser().Profile;
             SchoolModel = MembersRealm.Get(x => x.Profile == currentProfile).School;
-            var membersRestService = new Domain.Services.Rest.Members();
-            var members = await membersRestService.GetAsync(GetContext().AccessToken.Access_Token);
-            await MembersRealm.WriteAsync(realm =>
-            {
-                realm.ManageAll(members);
-            });
+            var list = MembersRealm.GetAll();
+            //var membersRestService = new Domain.Services.Rest.Members();
+            //var members = await membersRestService.GetAsync(GetContext().AccessToken.Access_Token);
+            //await MembersRealm.WriteAsync(realm =>
+            //{
+            //    realm.ManageAll(members);
+            //});
             Teacher = MembersRealm.Get(x => x.IsTeacher).Profile;
         }
 

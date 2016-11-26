@@ -47,7 +47,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
                     if (logoutResult.IsSuccessStatusCode)
                     {
                         SaveContext(null, null, false);
-                        await Navigator.PopAsync(Navigation);
+                        await Navigator.PopToRootAsync(Navigation);
                     }
                     break;
                 }

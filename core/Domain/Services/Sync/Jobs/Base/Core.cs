@@ -37,33 +37,36 @@ namespace cm.frontend.core.Domain.Services.Sync.Jobs.Base
             var items = realmResults.Where(x => !x.Synced).ToList();
 
             var restService = new Services.Rest.Base.Core<TModel>(TargetApi);
-            await realmService.WriteAsync(async tempRealm =>
+            
+            for (var i = 0; i < items.Count; i++)
             {
-                for (var i = 0; i < items.Count; i++)
+                if (items[i] == null) continue;
+                await UpdateModel(items[i].LocalId);
+                HttpResponseMessage reply;
+                try
                 {
-                    if (items[i] == null) continue;
-                    await UpdateModel(items[i].LocalId);
-                    HttpResponseMessage reply;
-                    try
-                    {
-                        reply = await restService.PostAsync(items[i], token);
-                    }
-                    catch (Exception ex)
-                    {
-                        System.Diagnostics.Debug.WriteLine(ex.Message);
-                        continue;
-                    }
-
-                    if (reply == null) continue;
-
-                    var requestContent = reply.Content;
-                    var result = await requestContent.ReadAsStringAsync();
-                    var response = JsonConvert.DeserializeObject<Response>(result);
-                    var returned = JObject.Parse(response.Item.ToString());
-                    items[i].Id = returned["Id"].ToObject<int>();
-                    items[i].Synced = true;
+                    reply = await restService.PostAsync(items[i], token);
                 }
-            });
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
+                    continue;
+                }
+
+                if (reply == null) continue;
+
+                var requestContent = reply.Content;
+                var result = await requestContent.ReadAsStringAsync();
+                var response = JsonConvert.DeserializeObject<Response>(result);
+                var returned = JObject.Parse(response.Item.ToString());
+                var itemLocalId = items[i].LocalId;
+                await realmService.WriteAsync(tempRealm =>
+                {
+                    var localItem = tempRealm.Get(itemLocalId);
+                    localItem.Id = returned["Id"].ToObject<int>();
+                    localItem.Synced = true;
+                });
+            }
         }
 
         protected async Task SyncGet(List<TModel> items)

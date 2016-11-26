@@ -55,6 +55,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
             {
                 realm.Manage(profile);
                 profileLocalId = profile.LocalId;
+                profile.Synced = true;
             });
             var savedProfile = profilesRealm.Get(profileLocalId);
             return savedProfile;
@@ -72,6 +73,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
                 userModel.Profile = profilesRealm.Get(profileLocalId);
                 userModel.ProfileId = userModel.Profile.Id;
                 userLocalId = userModel.LocalId;
+                userModel.Synced = true;
             });
             var savedUser = usersRealm.Get(userLocalId);
             return savedUser;
