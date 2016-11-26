@@ -41,6 +41,15 @@ namespace cm.frontend.core.Phone.ViewModels.Base
             return user;
         }
 
+        public Domain.Models.School GetCurrentSchool()
+        {
+            var currentContext = GetContext();
+            var schoolsRealm = new Domain.Services.Realms.Schools();
+            var schoolName = currentContext.SchoolName;
+            var school = schoolsRealm.Get(x => x.Name == schoolName);
+            return school;
+        }
+
         public void SaveContext(Context context)
         {
             var contextCache = Domain.Services.Caches.Context.GetInstance();
@@ -53,6 +62,7 @@ namespace cm.frontend.core.Phone.ViewModels.Base
             currentContext.Username = username;
             currentContext.AccessToken = token;
             currentContext.IsAuthenticated = isAuthenticated;
+
             SaveContext(currentContext);
         }
 

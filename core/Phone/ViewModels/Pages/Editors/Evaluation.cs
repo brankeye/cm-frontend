@@ -42,6 +42,10 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
                 eval.Name = Name;
                 eval.Profile = membersRealm.Get(MemberLocalId).Profile;
             });
+
+            var synchronizer = new Domain.Services.Sync.Synchronizer();
+            await synchronizer.SyncAll();
+
             await LeavePage();
         }
 

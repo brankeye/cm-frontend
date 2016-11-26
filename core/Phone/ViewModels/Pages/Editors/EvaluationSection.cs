@@ -37,6 +37,9 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
                 item.Evaluation = evaluationsRealm.Get(EvaluationLocalId);
             });
 
+            var synchronizer = new Domain.Services.Sync.Synchronizer();
+            await synchronizer.SyncAll();
+
             await LeavePage();
         }
 

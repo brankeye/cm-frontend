@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace cm.frontend.core.Phone.Views.Pages
+namespace cm.frontend.core.Phone.Views.Pages.Details
 {
     public partial class CalendarClass
     {

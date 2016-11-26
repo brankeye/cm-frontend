@@ -15,6 +15,9 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
             // post school
             var postedSchool = await PostSchool(currentContext.AccessToken.Access_Token);
 
+            currentContext.SchoolName = postedSchool.Name;
+            SaveContext(currentContext);
+
             // post member
             var profile = GetCurrentUser().Profile;
             var member = new Domain.Models.Member

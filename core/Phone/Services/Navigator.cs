@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using cm.frontend.core.Domain.Services.Navigation.Base;
+using cm.frontend.core.Phone.Views.Pages.Details;
 using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone.Services
@@ -86,7 +87,7 @@ namespace cm.frontend.core.Phone.Services
             if (IsNavigating) return;
 
             var pageCache = Domain.Services.Caches.Pages.GetInstance();
-            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.CalendarClass>("CalendarClass");
+            var cachedPage = pageCache.GetCachedOrNew<CalendarClass>("CalendarClass");
             cachedPage.Initialize(classLocalId, date);
             await PushAsync(navigation, cachedPage);
         }

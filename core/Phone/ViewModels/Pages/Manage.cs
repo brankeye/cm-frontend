@@ -16,6 +16,9 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
 
             if (postedSchool == null) return;
 
+            currentContext.SchoolName = SchoolName;
+            SaveContext(currentContext);
+
             var savedSchool = await SaveSchool(postedSchool);
 
             // get current profile

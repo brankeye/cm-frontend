@@ -40,29 +40,19 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
         {
             var classesRealm = new Domain.Services.Realms.Classes();
 
-            if (IsNewClass)
+            await classesRealm.WriteAsync(realm =>
             {
-                await classesRealm.WriteAsync(realm =>
-                {
-                    var newClass = realm.CreateObject();
-                    newClass.Name = ClassName;
-                    newClass.Day = Days[DaysIndex];
-                    newClass.StartTime = new DateTimeOffset(1, 1, 1, StartTime.Hours, StartTime.Minutes, StartTime.Seconds, TimeSpan.Zero);
-                    newClass.EndTime = new DateTimeOffset(1, 1, 1, EndTime.Hours, EndTime.Minutes, EndTime.Seconds, TimeSpan.Zero);
-                });
-            }
-            else
-            {
-                await classesRealm.WriteAsync(realm =>
-                {
-                    var existingClass = realm.Get(ClassLocalId);
-                    existingClass.Name = ClassName;
-                    existingClass.Day = Days[DaysIndex];
-                    existingClass.StartTime = new DateTimeOffset(1, 1, 1, StartTime.Hours, StartTime.Minutes, StartTime.Seconds, TimeSpan.Zero);
-                    existingClass.EndTime = new DateTimeOffset(1, 1, 1, EndTime.Hours, EndTime.Minutes, EndTime.Seconds, TimeSpan.Zero);
-                });
-            }
-            
+                var classModel = IsNewClass ? realm.CreateObject() : realm.Get(ClassLocalId);
+                classModel.Name = ClassName;
+                classModel.Day = Days[DaysIndex];
+                classModel.StartTime = new DateTimeOffset(1, 1, 1, StartTime.Hours, StartTime.Minutes, StartTime.Seconds, TimeSpan.Zero);
+                classModel.EndTime = new DateTimeOffset(1, 1, 1, EndTime.Hours, EndTime.Minutes, EndTime.Seconds, TimeSpan.Zero);
+                classModel.School = GetCurrentSchool();
+            });
+
+            var synchronizer = new Domain.Services.Sync.Synchronizer();
+            await synchronizer.SyncAll();
+
             await Navigator.PopAsync(Navigation);
         }
 

@@ -12,13 +12,20 @@ namespace cm.frontend.core.Domain.Services.Realms.Base
     public class AsyncRealm<T>
         where T : RealmObject, ILocalEntity, new()
     {
-        public Realm RealmInstance => _realmInstance = Realm.GetInstance();
+        public Realm RealmInstance => _realmInstance ?? (_realmInstance = Realm.GetInstance());
         private Realm _realmInstance;
+
+        private Realm GetRealmInstance()
+        {
+            _realmInstance.Refresh();
+            return _realmInstance;
+        }
 
         public virtual async Task WriteAsync(Action<AsyncRealm<T>> mutation)
         {
             await RealmInstance.WriteAsync(tempRealm =>
             {
+                tempRealm.Refresh();
                 mutation?.Invoke(new AsyncRealm<T>());
             });
         }

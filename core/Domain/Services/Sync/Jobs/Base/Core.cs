@@ -55,15 +55,15 @@ namespace cm.frontend.core.Domain.Services.Sync.Jobs.Base
 
                 if (reply == null) continue;
 
-                var requestContent = reply.Content;
-                var result = await requestContent.ReadAsStringAsync();
-                var response = JsonConvert.DeserializeObject<Response>(result);
-                var returned = JObject.Parse(response.Item.ToString());
+                //var response = await restService.ParseHttpResponse(reply);
+                var model = await restService.ParseResponseItem(reply);
+                var id = model.Id;
                 var itemLocalId = items[i].LocalId;
+                
                 await realmService.WriteAsync(tempRealm =>
                 {
                     var localItem = tempRealm.Get(itemLocalId);
-                    localItem.Id = returned["Id"].ToObject<int>();
+                    localItem.Id = id;
                     localItem.Synced = true;
                 });
             }

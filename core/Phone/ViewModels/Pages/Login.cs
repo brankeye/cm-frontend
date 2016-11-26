@@ -40,8 +40,16 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
             {
                 // save token and continue
                 SaveContext(Email, token, true);
+
                 var synchronizer = new Domain.Services.Sync.Synchronizer();
                 await synchronizer.SyncAll();
+
+                var membersRealm = new Domain.Services.Realms.Members();
+                var profile = GetCurrentUser().Profile;
+                var member = membersRealm.Get(x => x.Profile == profile);
+                var currentContext = GetContext();
+                currentContext.SchoolName = member.School.Name;
+                SaveContext(currentContext);
 
                 await Navigator.PushDashboardPageAsync(Navigation);
             }

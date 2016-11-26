@@ -15,15 +15,13 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
         private void Initialize()
         {
             MembersRealm = new Domain.Services.Realms.Members();
-            var students = MembersRealm.GetAll().ToList();
+            var currentSchool = GetCurrentSchool();
+            var students = MembersRealm.GetAll(x => x.School == currentSchool).ToList();
             var studentsContainer = new List<ViewModels.Controls.PrettyListViewItems.Student>();
 
             foreach (var studentsModel in students)
             {
-                if (studentsModel.School.LocalId == 1)
-                {
-                    studentsContainer.Add(new ViewModels.Controls.PrettyListViewItems.Student(studentsModel.Profile));
-                }
+                studentsContainer.Add(new ViewModels.Controls.PrettyListViewItems.Student(studentsModel.Profile));
             }
             StudentsList.Clear();
             StudentsList.AddRange(studentsContainer);

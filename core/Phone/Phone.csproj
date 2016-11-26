@@ -50,7 +50,7 @@
     <Compile Include="ViewModels\Controls\PrettyListViewItems\Student.cs" />
     <Compile Include="ViewModels\Controls\PrettyListViewItems\Class.cs" />
     <Compile Include="ViewModels\Modules\Details\Profile.cs" />
-    <Compile Include="ViewModels\Pages\CalendarClass.cs" />
+    <Compile Include="ViewModels\Pages\Details\CalendarClass.cs" />
     <Compile Include="ViewModels\Pages\Calendar.cs" />
     <Compile Include="ViewModels\Pages\Classes.cs" />
     <Compile Include="ViewModels\Pages\Dashboard.cs" />
@@ -81,7 +81,7 @@
     <Compile Include="Views\Pages\Calendar.xaml.cs">
       <DependentUpon>Calendar.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Pages\CalendarClass.xaml.cs">
+    <Compile Include="Views\Pages\Details\CalendarClass.xaml.cs">
       <DependentUpon>CalendarClass.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\Classes.xaml.cs">
@@ -298,7 +298,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\Pages\CalendarClass.xaml">
+    <EmbeddedResource Include="Views\Pages\Details\CalendarClass.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

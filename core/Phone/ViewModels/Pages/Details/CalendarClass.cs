@@ -5,7 +5,7 @@ using System.Linq;
 using cm.frontend.core.Domain.Extensions.NotifyPropertyChanged;
 using cm.frontend.core.Domain.Utilities;
 
-namespace cm.frontend.core.Phone.ViewModels.Pages
+namespace cm.frontend.core.Phone.ViewModels.Pages.Details
 {
     public class CalendarClass : ViewModels.Base.Core, INotifyPropertyChanged
     {

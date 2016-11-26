@@ -25,7 +25,8 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
         {
             // get classes
             ClassesRealm = new Domain.Services.Realms.Classes();
-            var classes = ClassesRealm.GetAll().ToList();
+            var currentSchool = GetCurrentSchool();
+            var classes = ClassesRealm.GetAll(x => x.School == currentSchool).ToList();
             var classesContainer = new List<ViewModels.Controls.PrettyListViewItems.ClassDate>();
 
             var currentDate = SelectedDate;
