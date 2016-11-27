@@ -10,17 +10,16 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
     {
         private Domain.Services.Realms.Evaluations EvaluationsRealm { get; set; }
 
-        public void Initialize(int memberLocalId)
+        public void InitializeExisting(int evalLocalId)
+        {
+            EvaluationLocalId = evalLocalId;
+            IsEditingExistingEvaluation = true;
+        }
+
+        public void InitializeNew(int memberLocalId)
         {
             MemberLocalId = memberLocalId;
             IsEditingExistingEvaluation = false;
-        }
-
-        public void Initialize(int studentLocalId, int evalLocalId)
-        {
-            EvaluationLocalId = evalLocalId;
-            MemberLocalId = studentLocalId;
-            IsEditingExistingEvaluation = true;
         }
 
         public override void OnAppearing()
@@ -40,11 +39,15 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
             {
                 var eval = IsEditingExistingEvaluation ? realm.Get(EvaluationLocalId) : realm.CreateObject();
                 eval.Name = Name;
-                eval.Profile = membersRealm.Get(MemberLocalId).Profile;
+                if (!IsEditingExistingEvaluation)
+                {
+                    eval.Member = membersRealm.Get(MemberLocalId);
+                }
+                eval.Synced = false;
             });
 
             var synchronizer = new Domain.Services.Sync.Synchronizer();
-            await synchronizer.SyncAll();
+            synchronizer.SyncAllAndContinue();
 
             await LeavePage();
         }

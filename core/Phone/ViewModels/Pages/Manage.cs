@@ -31,7 +31,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
             await SaveMember(member, savedSchool, profile);
 
             var synchronizer = new Domain.Services.Sync.Synchronizer();
-            await synchronizer.SyncAll();
+            synchronizer.SyncAllAndContinue();
 
             // navigate to dashboard page for students
             await Navigator.PushDashboardPageAsync(Navigation);

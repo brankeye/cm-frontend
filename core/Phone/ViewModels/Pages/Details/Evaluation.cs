@@ -45,12 +45,12 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
 
         private async void AddSection()
         {
-            await Navigator.PushEvaluationSectionEditorPageAsync(Navigation, 0, EvaluationLocalId, true);
+            await Navigator.PushEvaluationSectionEditorPageAsync(Navigation, 0, EvaluationLocalId, false);
         }
 
         private async void EditEvaluation()
         {
-            await Navigator.PushEvaluationEditorPageAsync(Navigation, EvaluationLocalId);
+            await Navigator.PushExistingEvaluationEditorPageAsync(Navigation, EvaluationLocalId);
         }
 
         public bool IsTeacher()

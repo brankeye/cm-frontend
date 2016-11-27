@@ -15,7 +15,7 @@ namespace cm.frontend.core.Phone.ViewModels.Controls.PrettyListViewItems
         public DateTimeOffset Date
         {
             get { return _date; }
-            set { this.SetProperty(ref _date, value, PropertyChanged); }
+            set { this.SetProperty(ref _date, value.UtcDateTime.Date, PropertyChanged); }
         }
         private DateTimeOffset _date;
 

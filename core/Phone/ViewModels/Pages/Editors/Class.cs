@@ -48,10 +48,11 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
                 classModel.StartTime = new DateTimeOffset(1, 1, 1, StartTime.Hours, StartTime.Minutes, StartTime.Seconds, TimeSpan.Zero);
                 classModel.EndTime = new DateTimeOffset(1, 1, 1, EndTime.Hours, EndTime.Minutes, EndTime.Seconds, TimeSpan.Zero);
                 classModel.School = GetCurrentSchool();
+                classModel.Synced = false;
             });
 
             var synchronizer = new Domain.Services.Sync.Synchronizer();
-            await synchronizer.SyncAll();
+            synchronizer.SyncAllAndContinue();
 
             await Navigator.PopAsync(Navigation);
         }

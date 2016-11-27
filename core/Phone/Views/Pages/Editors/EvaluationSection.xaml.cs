@@ -7,9 +7,9 @@
             InitializeComponent();
         }
 
-        public void Initialize(int sectionLocalId, int evaluationLocalId, bool isNewSection)
+        public void Initialize(int sectionLocalId, int evaluationLocalId, bool isEditingExistingSection)
         {
-            ViewModel.Initialize(sectionLocalId, evaluationLocalId, isNewSection);
+            ViewModel.Initialize(sectionLocalId, evaluationLocalId, isEditingExistingSection);
         }
     }
 }

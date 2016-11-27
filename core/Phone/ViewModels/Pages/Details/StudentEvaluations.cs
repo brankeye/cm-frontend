@@ -24,7 +24,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
             ProfileModel = profilesRealm.Get(ProfileLocalId);
             var membersRealm = new Domain.Services.Realms.Members();
             var member = membersRealm.Get(x => x.Profile == ProfileModel);
-            var evals = EvaluationsRealm.GetAll(x => x.Profile == member.Profile).ToList();
+            var evals = EvaluationsRealm.GetAll(x => x.Member == member).ToList();
             var evalsContainer = new List<ViewModels.Controls.PrettyListViewItems.Evaluation>();
             foreach (var evalModel in evals)
             {
@@ -46,9 +46,9 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
 
         private async void AddEvaluation()
         {
-            var studentsRealm = new Domain.Services.Realms.Members();
-            var student = studentsRealm.Get(x => x.Profile == ProfileModel);
-            await Navigator.PushEvaluationEditorPageAsync(Navigation, student.LocalId);
+            var membersRealm = new Domain.Services.Realms.Members();
+            var member = membersRealm.Get(x => x.Profile == ProfileModel);
+            await Navigator.PushNewEvaluationEditorPageAsync(Navigation, member.LocalId);
         }
 
         public bool IsTeacher()

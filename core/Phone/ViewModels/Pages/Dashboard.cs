@@ -46,6 +46,8 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
 
                     if (logoutResult.IsSuccessStatusCode)
                     {
+                        var synchronizer = new Domain.Services.Sync.Synchronizer();
+                        await synchronizer.SyncAllAndWait();
                         SaveContext(null, null, false);
                         await Navigator.PopToRootAsync(Navigation);
                     }

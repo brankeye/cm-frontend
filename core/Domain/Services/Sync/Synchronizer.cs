@@ -4,7 +4,17 @@ namespace cm.frontend.core.Domain.Services.Sync
 {
     public class Synchronizer
     {
-        public async Task SyncAll()
+        public async void SyncAllAndContinue()
+        {
+            await SyncAll();
+        }
+
+        public async Task SyncAllAndWait()
+        {
+            await SyncAll();
+        }
+
+        private async Task SyncAll()
         {
             // Tier 1
             var profilesSync = new Jobs.Profiles();

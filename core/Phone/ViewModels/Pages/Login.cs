@@ -42,7 +42,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
                 SaveContext(Email, token, true);
 
                 var synchronizer = new Domain.Services.Sync.Synchronizer();
-                await synchronizer.SyncAll();
+                await synchronizer.SyncAllAndWait();
 
                 var membersRealm = new Domain.Services.Realms.Members();
                 var profile = GetCurrentUser().Profile;

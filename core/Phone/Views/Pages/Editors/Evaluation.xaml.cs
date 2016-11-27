@@ -7,14 +7,14 @@
             InitializeComponent();
         }
 
-        public void Initialize(int studentLocalId)
+        public void InitializeExisting(int evaluationLocalId)
         {
-            ViewModel.Initialize(studentLocalId);
+            ViewModel.InitializeExisting(evaluationLocalId);
         }
 
-        public void Initialize(int evalLocalId, int studentLocalId)
+        public void InitializeNew(int memberLocalId)
         {
-            ViewModel.Initialize(studentLocalId, evalLocalId);
+            ViewModel.InitializeNew(memberLocalId);
         }
     }
 }

@@ -16,10 +16,10 @@ namespace cm.frontend.core.Domain.Services.Sync.Jobs
             {
                 var item = tempRealm.Get(localId);
 
-                var profilesRealm = new Services.Realms.Profiles();
-                var profileId = item.ProfileId;
-                var profileItem = profilesRealm.Get(x => x.Id == profileId);
-                item.Profile = profileItem;
+                var membersRealm = new Services.Realms.Members();
+                var memberId = item.MemberId;
+                var memberItem = membersRealm.Get(x => x.Id == memberId);
+                item.Member = memberItem;
             });
         }
 
@@ -30,9 +30,9 @@ namespace cm.frontend.core.Domain.Services.Sync.Jobs
             {
                 var item = tempRealm.Get(localId);
 
-                if (item.Profile != null)
+                if (item.Member != null)
                 {
-                    item.ProfileId = item.Profile.Id;
+                    item.MemberId = item.Member.Id;
                 }
             });
         }

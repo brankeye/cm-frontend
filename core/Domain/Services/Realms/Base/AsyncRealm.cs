@@ -47,7 +47,9 @@ namespace cm.frontend.core.Domain.Services.Realms.Base
             T item;
             try
             {
-                item = RealmInstance.All<T>().First(x => x.LocalId == localId);
+                var realm = RealmInstance;
+                realm.Refresh();
+                item = realm.All<T>().First(x => x.LocalId == localId);
             }
             catch (InvalidOperationException ex)
             {

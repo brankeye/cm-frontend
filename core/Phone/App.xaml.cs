@@ -25,9 +25,11 @@ namespace cm.frontend.core.Phone
             // Handle when your app starts
         }
 
-        protected override void OnSleep()
+        protected override async void OnSleep()
         {
             // Handle when your app sleeps
+            var synchronizer = new Domain.Services.Sync.Synchronizer();
+            await synchronizer.SyncAllAndWait();
         }
 
         protected override void OnResume()

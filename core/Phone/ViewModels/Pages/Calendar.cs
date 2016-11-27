@@ -60,7 +60,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
             get { return _selectedDate; }
             set
             {
-                _selectedDate = value;
+                _selectedDate = value.UtcDateTime.Date;
                 LoadClassDates();
             }
         }

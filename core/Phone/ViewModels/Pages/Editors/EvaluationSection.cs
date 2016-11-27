@@ -8,9 +8,9 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
 {
     public class EvaluationSection : ViewModels.Base.Core, INotifyPropertyChanged
     {
-        public void Initialize(int sectionLocalId, int evaluationLocalId, bool isNewSection)
+        public void Initialize(int sectionLocalId, int evaluationLocalId, bool isEditingExistingSection)
         {
-            IsEditingExistingSection = !isNewSection;
+            IsEditingExistingSection = isEditingExistingSection;
             SectionLocalId = sectionLocalId;
             EvaluationLocalId = evaluationLocalId;
 
@@ -35,10 +35,11 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
                 item.Body = Body;
                 item.Score = Score;
                 item.Evaluation = evaluationsRealm.Get(EvaluationLocalId);
+                item.Synced = false;
             });
 
             var synchronizer = new Domain.Services.Sync.Synchronizer();
-            await synchronizer.SyncAll();
+            synchronizer.SyncAllAndContinue();
 
             await LeavePage();
         }

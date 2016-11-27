@@ -36,7 +36,7 @@
               <Label Text="Attending?" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
               <controls:BindablePicker ItemsSource="{Binding AttendingOptions}" SelectedIndex="{Binding AttendingIndex, Mode=TwoWay}"></controls:BindablePicker>
             </StackLayout>
-            <StackLayout Orientation="Horizontal">
+            <StackLayout Orientation="Horizontal" IsVisible="{Binding IsCanceledViewVisible}">
               <Label Text="Canceled?" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
               <Switch IsToggled="{Binding IsCanceled, Mode=TwoWay}"></Switch>
             </StackLayout>

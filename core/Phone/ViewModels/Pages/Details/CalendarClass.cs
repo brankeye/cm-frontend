@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using cm.frontend.core.Domain.Extensions.NotifyPropertyChanged;
+using cm.frontend.core.Domain.Services.Realms;
 using cm.frontend.core.Domain.Utilities;
 
 namespace cm.frontend.core.Phone.ViewModels.Pages.Details
@@ -17,7 +18,6 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
         {
             AttendingOptions = new List<string>()
             {
-                "Undecided",
                 "Yes",
                 "No"
             };
@@ -28,19 +28,24 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
                 "No"
             };
             CanceledIndex = 1;
+
+            IsCanceledViewVisible = UserIsTeacher();
         }
 
         public void Initialize(int classLocalId, DateTimeOffset date)
         {
             ClassLocalId = classLocalId;
-            Date = date.Date;
+            Date = date.UtcDateTime.Date;
         }
 
         public override void OnAppearing()
         {
             ClassesRealm = new Domain.Services.Realms.Classes();
             ClassModel = ClassesRealm.Get(ClassLocalId);
-            AttendanceRealm = new Domain.Services.Realms.AttendanceRecords();
+            if (AttendanceRealm == null)
+            {
+                AttendanceRealm = new AttendanceRecords();
+            }
             GetAttendants();
             
             var currentProfile = GetCurrentUser().Profile;
@@ -62,7 +67,6 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
         private void GetAttendants()
         {
             var attendants = AttendanceRealm.GetAll(x => x.Date == Date).ToList();
-
             var attList = new List<ViewModels.Controls.PrettyListViewItems.AttendingClass>();
             foreach (var attendant in attendants)
             {
@@ -87,15 +91,18 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
                     {
                         var record = new Domain.Models.CanceledClass
                         {
-                            Date = Date.Date
+                            Date = Date.UtcDateTime.Date
                         };
                         realm.Manage(record);
                         record.Class = ClassModel;
+                        record.Synced = false;
                     });
                 }
             }
             else
             {
+                // TODO: Allow undo cancel class
+                /*
                 if (CanceledModel != null)
                 {
                     var canceledClassLocalId = CanceledModel.LocalId;
@@ -104,7 +111,11 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
                         realm.Remove(canceledClassLocalId);
                     });
                 }
+                */
             }
+
+            var synchronizer = new Domain.Services.Sync.Synchronizer();
+            synchronizer.SyncAllAndContinue();
         }
 
         public async void HandleAttendance()
@@ -116,7 +127,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
             // a record of their attendance exists for this particular class
             if (AttendanceRealm == null)
             {
-                return;
+                AttendanceRealm = new AttendanceRecords();
             }
 
             AttendanceModel = AttendanceRealm.GetRealmResults()
@@ -133,9 +144,10 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
                     {
                         var attending = realm.CreateObject();
                         attending.Class = ClassModel;
-                        attending.Date = Date.Date;
+                        attending.Date = Date.UtcDateTime.Date;
                         attending.Profile = currentProfile;
                         attending.IsAttending = attendanceSelection == "Yes";
+                        attending.Synced = false;
                     });
                 }
             }
@@ -155,10 +167,20 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
                     await AttendanceRealm.WriteAsync(realm =>
                     {
                         var attendanceRecord = realm.Get(attendanceRecordLocalId);
-                        attendanceRecord.IsAttending = attendanceSelection == "Yes";
+                        var isAttending = attendanceRecord.IsAttending;
+                        var newValue = attendanceSelection == "Yes";
+                        if (isAttending != newValue)
+                        {
+                            attendanceRecord.IsAttending = newValue;
+                            attendanceRecord.Synced = false;
+                        }
                     });
                 }
             }
+
+            var synchronizer = new Domain.Services.Sync.Synchronizer();
+            synchronizer.SyncAllAndContinue();
+
             GetAttendants();
         }
 
@@ -188,7 +210,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
         public DateTimeOffset Date
         {
             get { return _date; }
-            set { this.SetProperty(ref _date, value, PropertyChanged); }
+            set { this.SetProperty(ref _date, value.UtcDateTime.Date, PropertyChanged); }
         }
         private DateTimeOffset _date;
 
@@ -202,6 +224,13 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
             }
         }
         private bool _isCanceled;
+
+        public bool IsCanceledViewVisible
+        {
+            get { return _isCanceledViewVisible; }
+            set { this.SetProperty(ref _isCanceledViewVisible, value, PropertyChanged); }
+        }
+        private bool _isCanceledViewVisible;
 
         public List<string> AttendingOptions
         {

@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using cm.frontend.core.Domain.Enums;
 using cm.frontend.core.Domain.Interfaces;
-using cm.frontend.core.Domain.Objects;
 using cm.frontend.core.Domain.Services.Realms.Base;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Realms;
 
 namespace cm.frontend.core.Domain.Services.Sync.Jobs.Base
@@ -55,17 +53,21 @@ namespace cm.frontend.core.Domain.Services.Sync.Jobs.Base
 
                 if (reply == null) continue;
 
-                //var response = await restService.ParseHttpResponse(reply);
-                var model = await restService.ParseResponseItem(reply);
-                var id = model.Id;
-                var itemLocalId = items[i].LocalId;
-                
-                await realmService.WriteAsync(tempRealm =>
+                var response = await restService.ParseHttpResponse(reply);
+                if (response.ResultCode == ResultCode.InsertSuccessful ||
+                    response.ResultCode == ResultCode.UpdateSuccessful)
                 {
-                    var localItem = tempRealm.Get(itemLocalId);
-                    localItem.Id = id;
-                    localItem.Synced = true;
-                });
+                    var model = await restService.ParseResponseItem(reply);
+                    var id = model.Id;
+                    var itemLocalId = items[i].LocalId;
+
+                    await realmService.WriteAsync(tempRealm =>
+                    {
+                        var localItem = tempRealm.Get(itemLocalId);
+                        localItem.Id = id;
+                        localItem.Synced = true;
+                    });
+                }
             }
         }
 
@@ -119,8 +121,11 @@ namespace cm.frontend.core.Domain.Services.Sync.Jobs.Base
             }
         }
 
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
         public virtual async Task RebuildModel(int localId) { }
 
+
         public virtual async Task UpdateModel(int localId) { }
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
     }
 }

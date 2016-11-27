@@ -22,10 +22,10 @@ namespace cm.frontend.core.Domain.Models
 
         public DateTimeOffset Time { get; set; }
 
-        public int ProfileId { get; set; }
+        public int MemberId { get; set; }
 
         [IgnorePropertyMapping]
-        public Profile Profile { get; set; }
+        public Member Member { get; set; }
 
         [IgnorePropertyMapping]
         public bool Synced { get; set; }

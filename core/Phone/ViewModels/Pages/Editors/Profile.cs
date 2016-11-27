@@ -57,6 +57,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
                 profileLocalId = profile.LocalId;
                 profile.Synced = true;
             });
+
             var savedProfile = profilesRealm.Get(profileLocalId);
             return savedProfile;
         }

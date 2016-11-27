@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Globalization;
 using Xamarin.Forms;
 
@@ -15,6 +16,7 @@ namespace cm.frontend.core.Domain.Utilities.Converters
             }
             catch (Exception ex)
             {
+                Debug.WriteLine(ex.Message);
                 return DateTime.MinValue;
             }
         }
@@ -28,6 +30,7 @@ namespace cm.frontend.core.Domain.Utilities.Converters
             }
             catch (Exception ex)
             {
+                Debug.WriteLine(ex.Message);
                 return DateTimeOffset.MinValue;
             }
         }

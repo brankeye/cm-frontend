@@ -19,6 +19,10 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
             var students = MembersRealm.GetAll(x => x.School == currentSchool).ToList();
             var studentsContainer = new List<ViewModels.Controls.PrettyListViewItems.Student>();
 
+            var currentProfile = GetCurrentUser().Profile;
+            var currentMember = MembersRealm.Get(x => x.Profile == currentProfile);
+            students.Remove(currentMember);
+
             foreach (var studentsModel in students)
             {
                 studentsContainer.Add(new ViewModels.Controls.PrettyListViewItems.Student(studentsModel.Profile));

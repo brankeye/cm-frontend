@@ -1,8 +1,6 @@
-﻿using System.ComponentModel;
-
-namespace cm.frontend.core.Domain.Objects
+﻿namespace cm.frontend.core.Domain.Objects
 {
-    public class Context : INotifyPropertyChanged
+    public class Context
     {
         public string Username { get; set; }
 
@@ -11,7 +9,5 @@ namespace cm.frontend.core.Domain.Objects
         public bool IsAuthenticated { get; set; }
 
         public Domain.Objects.Token AccessToken { get; set; }
-
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

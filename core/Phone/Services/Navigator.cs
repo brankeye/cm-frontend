@@ -111,23 +111,23 @@ namespace cm.frontend.core.Phone.Services
             await PushAsync(navigation, cachedPage);
         }
 
-        public async Task PushEvaluationEditorPageAsync(INavigation navigation, int studentLocalId, int evaluationLocalId)
+        public async Task PushExistingEvaluationEditorPageAsync(INavigation navigation, int evaluationLocalId)
         {
             if (IsNavigating) return;
 
             var pageCache = Domain.Services.Caches.Pages.GetInstance();
             var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Editors.Evaluation>("EvaluationEditor");
-            cachedPage.Initialize(studentLocalId, evaluationLocalId);
+            cachedPage.InitializeExisting(evaluationLocalId);
             await PushAsync(navigation, cachedPage);
         }
 
-        public async Task PushEvaluationEditorPageAsync(INavigation navigation, int studentLocalId)
+        public async Task PushNewEvaluationEditorPageAsync(INavigation navigation, int memberLocalId)
         {
             if (IsNavigating) return;
 
             var pageCache = Domain.Services.Caches.Pages.GetInstance();
             var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Editors.Evaluation>("EvaluationEditor");
-            cachedPage.Initialize(studentLocalId);
+            cachedPage.InitializeNew(memberLocalId);
             await PushAsync(navigation, cachedPage);
         }
 
@@ -151,13 +151,13 @@ namespace cm.frontend.core.Phone.Services
             await PushAsync(navigation, cachedPage);
         }
 
-        public async Task PushEvaluationSectionEditorPageAsync(INavigation navigation, int sectionLocalId, int evaluationLocalId, bool isNewSection = false)
+        public async Task PushEvaluationSectionEditorPageAsync(INavigation navigation, int sectionLocalId, int evaluationLocalId, bool isEditingExistingSection = true)
         {
             if (IsNavigating) return;
 
             var pageCache = Domain.Services.Caches.Pages.GetInstance();
             var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Editors.EvaluationSection>("EvaluationSectionEditor");
-            cachedPage.Initialize(sectionLocalId, evaluationLocalId, isNewSection);
+            cachedPage.Initialize(sectionLocalId, evaluationLocalId, isEditingExistingSection);
             await PushAsync(navigation, cachedPage);
         }
 
