@@ -76,13 +76,17 @@ namespace cm.frontend.core.Domain.Services.Realms.Base
 
         public virtual IEnumerable<T> GetAll()
         {
-            var list = RealmInstance.All<T>().AsEnumerable();
+            var realm = RealmInstance;
+            realm.Refresh();
+            var list = realm.All<T>().AsEnumerable();
             return list ?? new List<T>();
         }
 
         public virtual IEnumerable<T> GetAll(Expression<Func<T, bool>> predicate)
         {
-            var list = RealmInstance.All<T>().Where(predicate).AsEnumerable();
+            var realm = RealmInstance;
+            realm.Refresh();
+            var list = realm.All<T>().Where(predicate).AsEnumerable();
             return list ?? new List<T>();
         }
 
