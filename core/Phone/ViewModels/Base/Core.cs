@@ -50,6 +50,15 @@ namespace cm.frontend.core.Phone.ViewModels.Base
             return school;
         }
 
+        public Domain.Models.Member GetCurrentMember()
+        {
+            var currentUser = GetCurrentUser();
+            var membersRealm = new Domain.Services.Realms.Members();
+            var profile = currentUser.Profile;
+            var member = membersRealm.Get(x => x.Profile == profile);
+            return member;
+        }
+
         public void SaveContext(Context context)
         {
             var contextCache = Domain.Services.Caches.Context.GetInstance();

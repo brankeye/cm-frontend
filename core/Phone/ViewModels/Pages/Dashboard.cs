@@ -1,4 +1,6 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
+using Realms;
 using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone.ViewModels.Pages
@@ -49,7 +51,13 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
                         var synchronizer = new Domain.Services.Sync.Synchronizer();
                         await synchronizer.SyncAllAndWait();
                         SaveContext(null, null, false);
-                        await Navigator.PopToRootAsync(Navigation);
+
+                        var config = Realm.GetInstance().Config;
+                        Realm.DeleteRealm(config);
+
+                        Application.Current.Properties["Context"] = null;
+
+                        App.LaunchLoginPage?.Invoke(this, EventArgs.Empty);
                     }
                     break;
                 }

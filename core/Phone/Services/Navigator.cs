@@ -8,6 +8,15 @@ namespace cm.frontend.core.Phone.Services
 {
     public class Navigator : Core
     {
+        public async Task PushMasterDetailPageAsync(INavigation navigation)
+        {
+            if (IsNavigating) return;
+
+            var pageCache = Domain.Services.Caches.Pages.GetInstance();
+            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.MasterDetail>("MasterDetail");
+            await PushAsync(navigation, cachedPage);
+        }
+
         public async Task PushProfileEditorPageAsync(INavigation navigation)
         {
             if (IsNavigating) return;

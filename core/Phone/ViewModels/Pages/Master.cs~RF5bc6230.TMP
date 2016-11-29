@@ -1,0 +1,48 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using cm.frontend.core.Domain.Extensions.NotifyPropertyChanged;
+using cm.frontend.core.Domain.Utilities;
+using cm.frontend.core.Phone.ViewModels.Controls.PrettyListViewItems;
+
+namespace cm.frontend.core.Phone.ViewModels.Pages
+{
+    public class Master : ViewModels.Base.Core, INotifyPropertyChanged
+    {
+        public Master()
+        {
+            var currentContext = GetContext();
+
+            ItemsList.Add(new MasterItem
+            {
+                Title = "My classes",
+                IconSource = "contacts.png",
+                TargetType = typeof(Views.Pages.Evaluations)
+            });
+            ItemsList.Add(new MasterItem
+            {
+                Title = "Schedule",
+                IconSource = "todo.png",
+                TargetType = typeof(Views.Pages.Students)
+            });
+            ItemsList.Add(new MasterItem
+            {
+                Title = "Reminders",
+                IconSource = "reminders.png",
+                TargetType = typeof(Views.Pages.Details.Profile)
+            });
+        }
+
+        public DynamicCollection<ViewModels.Controls.PrettyListViewItems.MasterItem> ItemsList
+        {
+            get { return _itemsList ?? (_itemsList = new DynamicCollection<ViewModels.Controls.PrettyListViewItems.MasterItem>()); }
+            set { this.SetProperty(ref _itemsList, value, PropertyChanged); }
+        }
+        private DynamicCollection<ViewModels.Controls.PrettyListViewItems.MasterItem> _itemsList;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+    }
+}

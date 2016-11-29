@@ -12,7 +12,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
             MembersRealm = new Domain.Services.Realms.Members();
             var currentProfile = GetCurrentUser().Profile;
             SchoolModel = MembersRealm.Get(x => x.Profile == currentProfile).School;
-            var list = MembersRealm.GetAll();
+            //var list = MembersRealm.GetAll();
             //var membersRestService = new Domain.Services.Rest.Members();
             //var members = await membersRestService.GetAsync(GetContext().AccessToken.Access_Token);
             //await MembersRealm.WriteAsync(realm =>

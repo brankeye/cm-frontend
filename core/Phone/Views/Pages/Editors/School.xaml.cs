@@ -9,8 +9,7 @@
 
         public void Initialize(string schoolName, bool isManaging)
         {
-            ViewModel.SchoolModel.Name = schoolName;
-            ViewModel.IsManaging = isManaging;
+            ViewModel.Initialize(schoolName, isManaging);
         }
     }
 }

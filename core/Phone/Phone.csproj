@@ -47,6 +47,7 @@
     <Compile Include="ViewModels\Controls\PrettyListViewItems\EvaluationSection.cs" />
     <Compile Include="ViewModels\Controls\PrettyListViewItems\ClassDate.cs" />
     <Compile Include="ViewModels\Controls\PrettyListViewItems\Evaluation.cs" />
+    <Compile Include="ViewModels\Controls\PrettyListViewItems\MasterItem.cs" />
     <Compile Include="ViewModels\Controls\PrettyListViewItems\Student.cs" />
     <Compile Include="ViewModels\Controls\PrettyListViewItems\Class.cs" />
     <Compile Include="ViewModels\Modules\Details\Profile.cs" />
@@ -67,6 +68,8 @@
     <Compile Include="ViewModels\Pages\Evaluations.cs" />
     <Compile Include="ViewModels\Pages\Login.cs" />
     <Compile Include="ViewModels\Pages\Manage.cs" />
+    <Compile Include="ViewModels\Pages\Master.cs" />
+    <Compile Include="ViewModels\Pages\MasterDetail.cs" />
     <Compile Include="ViewModels\Pages\Students.cs" />
     <Compile Include="Views\Controls\BindablePicker.xaml.cs">
       <DependentUpon>BindablePicker.xaml</DependentUpon>
@@ -122,6 +125,12 @@
     </Compile>
     <Compile Include="Views\Pages\Evaluations.xaml.cs">
       <DependentUpon>Evaluations.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Master.xaml.cs">
+      <DependentUpon>Master.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\MasterDetail.xaml.cs">
+      <DependentUpon>MasterDetail.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
@@ -319,6 +328,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Pages\MasterDetail.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Pages\Master.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

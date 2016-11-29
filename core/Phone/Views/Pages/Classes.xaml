@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<base:Core xmlns="http://xamarin.com/schemas/2014/forms"
+<base:ContentCore xmlns="http://xamarin.com/schemas/2014/forms"
            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
            xmlns:controls="clr-namespace:cm.frontend.core.Phone.Views.Controls;assembly=cm.frontend.core.Phone"
            x:Class="cm.frontend.core.Phone.Views.Pages.Classes"
@@ -25,4 +25,4 @@
   <ContentPage.ToolbarItems>
     <ToolbarItem Text="Add" Command="{Binding AddClassCommand}" Order="Primary"></ToolbarItem>
   </ContentPage.ToolbarItems>
-</base:Core>
+</base:ContentCore>

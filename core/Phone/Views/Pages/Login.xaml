@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<base:Core xmlns="http://xamarin.com/schemas/2014/forms"
+<base:ContentCore xmlns="http://xamarin.com/schemas/2014/forms"
            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
            x:Class="cm.frontend.core.Phone.Views.Pages.Login"
            xmlns:base="clr-namespace:cm.frontend.core.Phone.Views.Pages.Base;assembly=cm.frontend.core.Phone"
@@ -11,14 +11,10 @@
       <Entry Text="{Binding Email, Mode=OneWayToSource}" Placeholder="Email"></Entry>
       <Entry Text="{Binding Password, Mode=OneWayToSource}" Placeholder="Password" IsPassword="False"></Entry>
       <StackLayout Orientation="Horizontal">
-        <Label Text="Remember me?"></Label>
-        <Switch></Switch>
-      </StackLayout>
-      <StackLayout Orientation="Horizontal">
         <Label Text="New user?"></Label>
         <Switch x:Name="NewUserSwitch" IsToggled="{Binding IsNewUser}" Toggled="NewUserSwitch_OnToggled"></Switch>
       </StackLayout>
       <Button x:Name="LoginRegisterButton" Text="Login" Command="{Binding ActionButtonCommand}" HorizontalOptions="Center"></Button>
     </StackLayout>
   </ContentPage.Content>
-</base:Core>
+</base:ContentCore>

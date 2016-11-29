@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using cm.frontend.core.Domain.Extensions.NotifyPropertyChanged;
@@ -8,6 +9,20 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
 {
     public class School : ViewModels.Base.Core, INotifyPropertyChanged
     {
+        public void Initialize(string schoolName, bool isManaging)
+        {
+            IsManaging = isManaging;
+            SchoolName = schoolName;
+        }
+
+        public override void OnAppearing()
+        {
+            SchoolModel = new Domain.Models.School
+            {
+                Name = SchoolName
+            };
+        }
+
         private async void SaveSchool()
         {
             var currentContext = GetContext();
@@ -35,7 +50,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
             var savedMember = await SaveMember(postedMember, profile, savedSchool);
 
             // navigate to dashboard
-            await Navigator.PushDashboardPageAsync(Navigation);
+            App.LaunchMasterDetailPage?.Invoke(this, EventArgs.Empty);
         }
 
         private async Task<Domain.Models.School> PostSchool(string accessToken)
@@ -98,9 +113,11 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
 
         public bool IsManaging { get; set; }
 
+        public string SchoolName { get; set; }
+
         public Domain.Models.School SchoolModel
         {
-            get { return _schoolModel ?? (_schoolModel = new Domain.Models.School()); }
+            get { return _schoolModel; }
             set { this.SetProperty(ref _schoolModel, value, PropertyChanged); }
         }
         private Domain.Models.School _schoolModel;
