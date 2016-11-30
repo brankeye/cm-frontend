@@ -47,6 +47,8 @@
     <Compile Include="Interfaces\ISyncJob.cs" />
     <Compile Include="Models\EvaluationSection.cs" />
     <Compile Include="Models\Member.cs" />
+    <Compile Include="Models\Pocos\ProfilePoco.cs" />
+    <Compile Include="Models\Pocos\SchoolPoco.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\AttendanceRecord.cs" />
     <Compile Include="Models\CanceledClass.cs" />

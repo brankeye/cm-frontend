@@ -10,12 +10,26 @@
   <ContentPage.Content>
     <ScrollView>
       <StackLayout>
-        <Label Text="Edit profile" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
-        <Entry Text="{Binding ProfileModel.FirstName, Mode=TwoWay}" Placeholder="First name"></Entry>
-        <Entry Text="{Binding ProfileModel.LastName, Mode=TwoWay}" Placeholder="Last name"></Entry>
-        <Entry Text="{Binding ProfileModel.Email, Mode=TwoWay}" Placeholder="Email"></Entry>
-        <Entry Text="{Binding ProfileModel.PhoneNumber, Mode=TwoWay}" Placeholder="Phone number"></Entry>
-        <Entry Text="{Binding ProfileModel.Level, Mode=TwoWay}" Placeholder="Sash"></Entry>
+        <StackLayout Orientation="Horizontal">
+          <Label Text="First name " VerticalTextAlignment="Center"></Label>
+          <Entry Text="{Binding ProfileModel.FirstName, Mode=TwoWay}" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+          <Label Text="Last name " VerticalTextAlignment="Center"></Label>
+          <Entry Text="{Binding ProfileModel.LastName, Mode=TwoWay}" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+          <Label Text="Email " VerticalTextAlignment="Center"></Label>
+          <Entry Text="{Binding ProfileModel.Email, Mode=TwoWay}" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+          <Label Text="Phone number " VerticalTextAlignment="Center"></Label>
+          <Entry Text="{Binding ProfileModel.PhoneNumber, Mode=TwoWay}" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+          <Label Text="Rank " VerticalTextAlignment="Center"></Label>
+          <Entry Text="{Binding ProfileModel.Level, Mode=TwoWay}" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
+        </StackLayout>
         <StackLayout Orientation="Horizontal">
           <Label Text="Start date"></Label>
           <DatePicker Date="{Binding ProfileModel.StartDate, Mode=TwoWay, Converter={x:StaticResource ToDateTime}}"></DatePicker>

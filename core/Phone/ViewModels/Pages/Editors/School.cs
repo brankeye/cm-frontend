@@ -3,27 +3,37 @@ using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using cm.frontend.core.Domain.Extensions.NotifyPropertyChanged;
+using cm.frontend.core.Domain.Models.Pocos;
 using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
 {
     public class School : ViewModels.Base.Core, INotifyPropertyChanged
     {
+        public School()
+        {
+            IsEditingExistingSchool = true;
+        }
+
         public void Initialize(string schoolName, bool isManaging)
         {
             IsManaging = isManaging;
             SchoolName = schoolName;
+            IsEditingExistingSchool = false;
         }
 
         public override void OnAppearing()
         {
-            SchoolModel = new Domain.Models.School
+            SchoolModel = new SchoolPoco();
+            if (IsEditingExistingSchool)
             {
-                Name = SchoolName
-            };
+                var mapper = new Domain.Utilities.PropertyMapper();
+                var school = GetCurrentSchool();
+                mapper.Map(school, SchoolModel);
+            }
         }
 
-        private async void SaveSchool()
+        private async Task SaveNewSchool()
         {
             var currentContext = GetContext();
 
@@ -42,7 +52,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
                 IsTeacher = IsManaging
             };
             var postedMember = await PostMember(currentContext.AccessToken.Access_Token, member);
-            
+
             // save school
             var savedSchool = await SaveSchool(postedSchool);
 
@@ -53,10 +63,43 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
             App.LaunchMasterDetailPage?.Invoke(this, EventArgs.Empty);
         }
 
+        private async Task SaveExistingSchool()
+        {
+            var schoolsRealm = new Domain.Services.Realms.Schools();
+            var schoolLocalId = GetCurrentSchool().LocalId;
+            await schoolsRealm.WriteAsync(realm =>
+            {
+                var school = realm.Get(schoolLocalId);
+                var mapper = new Domain.Utilities.PropertyMapper();
+                mapper.Map(SchoolModel, school);
+                school.Synced = false;
+            });
+
+            var synchronizer = new Domain.Services.Sync.Synchronizer();
+            await synchronizer.SyncPostsAndWait();
+
+            await Navigator.PopAsync(Navigation);
+        }
+
+        private async void SaveSchool()
+        {
+            if (IsEditingExistingSchool)
+            {
+                await SaveExistingSchool();
+            }
+            else
+            {
+                await SaveNewSchool();
+            }
+        }
+
         private async Task<Domain.Models.School> PostSchool(string accessToken)
         {
             var schoolsRestService = new Domain.Services.Rest.Schools();
-            var httpResponse = await schoolsRestService.PostAsync(SchoolModel, accessToken);
+            var mapper = new Domain.Utilities.PropertyMapper();
+            var schoolObject = new Domain.Models.School();
+            mapper.Map(SchoolModel, schoolObject);
+            var httpResponse = await schoolsRestService.PostAsync(schoolObject, accessToken);
             var school = await schoolsRestService.ParseResponseItem(httpResponse);
             return school;
         }
@@ -111,16 +154,18 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
             await Navigator.PopAsync(Navigation);
         }
 
+        public bool IsEditingExistingSchool { get; set; }
+
         public bool IsManaging { get; set; }
 
         public string SchoolName { get; set; }
 
-        public Domain.Models.School SchoolModel
+        public Domain.Models.Pocos.SchoolPoco SchoolModel
         {
             get { return _schoolModel; }
             set { this.SetProperty(ref _schoolModel, value, PropertyChanged); }
         }
-        private Domain.Models.School _schoolModel;
+        private Domain.Models.Pocos.SchoolPoco _schoolModel;
 
         public ICommand SaveCommand => _saveCommand ?? (_saveCommand = new Command(SaveSchool));
         private ICommand _saveCommand;

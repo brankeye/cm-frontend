@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using cm.frontend.core.Domain.Models.Pocos;
 using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
@@ -34,7 +35,6 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
         private async Task SaveExistingProfile()
         {
             var profilesRealm = new Domain.Services.Realms.Profiles();
-            var profiles1 = profilesRealm.GetAll().ToList();
             var profileLocalId = GetCurrentUser().Profile.LocalId;
             await profilesRealm.WriteAsync(realm =>
             {
@@ -44,10 +44,10 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
                 profile.Synced = false;
             });
 
-            var profiles2 = profilesRealm.GetAll().ToList();
-
             var synchronizer = new Domain.Services.Sync.Synchronizer();
             await synchronizer.SyncPostsAndWait();
+
+            await Navigator.PopAsync(Navigation);
         }
 
         private async Task SaveNewProfile()
@@ -142,12 +142,12 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
             await Navigator.PopAsync(Navigation);
         }
 
-        public ViewModels.Models.ProfileModel ProfileModel
+        public ProfilePoco ProfileModel
         {
-            get { return _profileModel ?? (_profileModel = new ViewModels.Models.ProfileModel()); }
+            get { return _profileModel ?? (_profileModel = new ProfilePoco()); }
             set { this.SetProperty(ref _profileModel, value, PropertyChanged); }
         }
-        private ViewModels.Models.ProfileModel _profileModel;
+        private ProfilePoco _profileModel;
 
         public ICommand SaveCommand => _saveCommand ?? (_saveCommand = new Command(SaveProfile));
         private ICommand _saveCommand;

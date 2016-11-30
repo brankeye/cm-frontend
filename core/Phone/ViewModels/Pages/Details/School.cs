@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel;
+using System.Windows.Input;
 using cm.frontend.core.Domain.Extensions.NotifyPropertyChanged;
+using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone.ViewModels.Pages.Details
 {
@@ -27,6 +29,11 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
             Initialize();
         }
 
+        private async void EditSchool()
+        {
+            await Navigator.PushSchoolEditorPageAsync(Navigation);
+        }
+
         public Domain.Models.School SchoolModel
         {
             get { return _school; }
@@ -40,6 +47,9 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
             set { this.SetProperty(ref _teacher, value, PropertyChanged); }
         }
         private Domain.Models.Profile _teacher;
+
+        public ICommand EditSchoolCommand => _editSchoolCommand ?? (_editSchoolCommand = new Command(EditSchool));
+        private ICommand _editSchoolCommand;
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

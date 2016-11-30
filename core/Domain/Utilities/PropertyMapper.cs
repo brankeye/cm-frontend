@@ -43,15 +43,26 @@ namespace cm.frontend.core.Domain.Utilities
 
             for (var i = 0; i < destPropInfo.Count; i++)
             {
-                var attr = destPropInfo[i].GetCustomAttribute(typeof(Attributes.IgnorePropertyMapping));
-                var ignoreMappingAttribute = attr as Attributes.IgnorePropertyMapping;
+                var attrA = destPropInfo[i].GetCustomAttribute(typeof(Attributes.IgnorePropertyMapping));
+                var ignoreMappingAttributeForA = attrA as Attributes.IgnorePropertyMapping;
 
-                if (ignoreMappingAttribute != null) continue;
+                if (ignoreMappingAttributeForA != null) continue;
 
-                typeof(TModelB)
-                    .GetTypeInfo()
-                    .GetDeclaredProperty(destPropInfo[i].Name)
-                    .SetValue(destination, sourcePropInfo[i].GetValue(source));
+                for (var j = 0; j < sourcePropInfo.Count; j++)
+                {
+                    var attrB = sourcePropInfo[j].GetCustomAttribute(typeof(Attributes.IgnorePropertyMapping));
+                    var ignoreMappingAttributeForB = attrB as Attributes.IgnorePropertyMapping;
+
+                    if (ignoreMappingAttributeForB != null) continue;
+
+                    if (destPropInfo[i].Name == sourcePropInfo[j].Name)
+                    {
+                        typeof(TModelB)
+                        .GetTypeInfo()
+                        .GetDeclaredProperty(destPropInfo[i].Name)
+                        .SetValue(destination, sourcePropInfo[j].GetValue(source));
+                    }
+                }
             }
         }
     }
