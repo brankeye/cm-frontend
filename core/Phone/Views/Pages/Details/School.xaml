@@ -4,21 +4,31 @@
            xmlns:base="clr-namespace:cm.frontend.core.Phone.Views.Pages.Base;assembly=cm.frontend.core.Phone"
            xmlns:pages="clr-namespace:cm.frontend.core.Phone.ViewModels.Pages.Details;assembly=cm.frontend.core.Phone"
            x:TypeArguments="pages:School"
-           x:Class="cm.frontend.core.Phone.Views.Pages.Details.School">
+           x:Class="cm.frontend.core.Phone.Views.Pages.Details.School"
+           Title="School">
   <ContentPage.Content>
-    <StackLayout>
-      <Label Text="School name" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-      <Label Text="{Binding SchoolModel.Name}" VerticalTextAlignment="Center"></Label>
-      <Label Text="Teacher name" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-      <Label Text="{Binding Teacher.FullName}" VerticalTextAlignment="Center"></Label>
-      <Label Text="Address" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-      <Label Text="{Binding SchoolModel.Address}" VerticalTextAlignment="Center"></Label>
-      <Label Text="Email" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-      <Label Text="{Binding SchoolModel.Email}" VerticalTextAlignment="Center"></Label>
-      <Label Text="Phone number" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-      <Label Text="{Binding SchoolModel.PhoneNumber}" VerticalTextAlignment="Center"></Label>
-      <Label Text="Website" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-      <Label Text="{Binding SchoolModel.Website}" VerticalTextAlignment="Center"></Label>
+    <StackLayout Padding="15">
+      <Label Text="{Binding SchoolModel.Name}" FontSize="Medium" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
+      <StackLayout Orientation="Horizontal">
+        <Label Text="Teacher name: " FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
+        <Label Text="{Binding Teacher.FullName}" VerticalTextAlignment="Center"></Label>
+      </StackLayout>
+      <StackLayout Orientation="Horizontal">
+        <Label Text="Address: " FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
+        <Label Text="{Binding SchoolModel.Address}" VerticalTextAlignment="Center"></Label>
+      </StackLayout>
+      <StackLayout Orientation="Horizontal">
+        <Label Text="Email: " FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
+        <Label Text="{Binding SchoolModel.Email}" VerticalTextAlignment="Center"></Label>
+      </StackLayout>
+      <StackLayout Orientation="Horizontal">
+        <Label Text="Phone number: " FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
+        <Label Text="{Binding SchoolModel.PhoneNumber}" VerticalTextAlignment="Center"></Label>
+      </StackLayout>
+      <StackLayout Orientation="Horizontal">
+        <Label Text="Website: " FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
+        <Label Text="{Binding SchoolModel.Website}" VerticalTextAlignment="Center"></Label>
+      </StackLayout>
     </StackLayout>
   </ContentPage.Content>
 </base:ContentCore>

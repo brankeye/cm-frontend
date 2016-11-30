@@ -4,17 +4,23 @@
            xmlns:base="clr-namespace:cm.frontend.core.Phone.Views.Pages.Base;assembly=cm.frontend.core.Phone"
            xmlns:pages="clr-namespace:cm.frontend.core.Phone.ViewModels.Pages.Details;assembly=cm.frontend.core.Phone"
            x:TypeArguments="pages:Class"
-           x:Class="cm.frontend.core.Phone.Views.Pages.Details.Class">
+           x:Class="cm.frontend.core.Phone.Views.Pages.Details.Class"
+           Title="Class">
   <ContentPage.Content>
-    <StackLayout>
-      <Label Text="Class name" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-      <Label Text="{Binding ClassModel.Name}" VerticalTextAlignment="Center"></Label>
-      <Label Text="Day" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-      <Label Text="{Binding ClassModel.Day}" VerticalTextAlignment="Center"></Label>
-      <Label Text="Start time" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-      <Label Text="{Binding ClassModel.StartTime, StringFormat='{0:h:mm tt}'}" VerticalTextAlignment="Center"></Label>
-      <Label Text="End time" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-      <Label Text="{Binding ClassModel.EndTime, StringFormat='{0:h:mm tt}'}" VerticalTextAlignment="Center"></Label>
+    <StackLayout Padding="15">
+      <Label Text="{Binding ClassModel.Name}" FontAttributes="Bold" FontSize="Medium" VerticalTextAlignment="Center"></Label>
+      <StackLayout Orientation="Horizontal">
+        <Label Text="Day: " FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
+        <Label Text="{Binding ClassModel.Day}" VerticalTextAlignment="Center"></Label>
+      </StackLayout>
+      <StackLayout Orientation="Horizontal">
+        <Label Text="Start time: " FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
+        <Label Text="{Binding ClassModel.StartTime, StringFormat='{0:h:mm tt}'}" VerticalTextAlignment="Center"></Label>
+      </StackLayout>
+      <StackLayout Orientation="Horizontal">
+        <Label Text="End time: " FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
+        <Label Text="{Binding ClassModel.EndTime, StringFormat='{0:h:mm tt}'}" VerticalTextAlignment="Center"></Label>
+      </StackLayout>
     </StackLayout>
   </ContentPage.Content>
 </base:ContentCore>

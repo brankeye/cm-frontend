@@ -5,7 +5,8 @@
            xmlns:pages="clr-namespace:cm.frontend.core.Phone.ViewModels.Pages.Details;assembly=cm.frontend.core.Phone"
            x:TypeArguments="pages:Profile"
            xmlns:detailModules="clr-namespace:cm.frontend.core.Phone.Views.Modules.Details;assembly=cm.frontend.core.Phone"
-           x:Class="cm.frontend.core.Phone.Views.Pages.Details.Profile">
+           x:Class="cm.frontend.core.Phone.Views.Pages.Details.Profile"
+           Title="Profile">
   <ContentPage.Content>
     <detailModules:Profile></detailModules:Profile>
   </ContentPage.Content>

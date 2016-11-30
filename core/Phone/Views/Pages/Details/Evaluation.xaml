@@ -8,14 +8,17 @@
            xmlns:controls="clr-namespace:cm.frontend.core.Phone.Views.Controls;assembly=cm.frontend.core.Phone"
            x:Class="cm.frontend.core.Phone.Views.Pages.Details.Evaluation">
   <ContentPage.Content>
-    <controls:PrettyListView ItemsSource="{Binding SectionsList}" ItemSelected="Sections_OnItemSelected" Header="{Binding .}" HasUnevenRows="False" IsPullToRefreshEnabled="False" QuickSelect="True">
+    <controls:PrettyListView ItemsSource="{Binding SectionsList}" ItemSelected="Sections_OnItemSelected" Header="{Binding .}" HasUnevenRows="True" IsPullToRefreshEnabled="False" QuickSelect="True">
       <controls:PrettyListView.ItemTemplate>
         <DataTemplate>
           <ViewCell>
-            <StackLayout>
-              <StackLayout Orientation="Horizontal">
-                <Label Text="{Binding SectionModel.Name}"></Label>
-                <Label Text="{Binding SectionModel.Score}" HorizontalOptions="End"></Label>
+            <StackLayout Padding="15,5,5,5">
+              <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <Label Text="{Binding SectionModel.Name}" VerticalTextAlignment="Center" TextColor="#80CBC4"></Label>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+                  <Label Text="Score: " TextColor="#80CBC4" VerticalTextAlignment="Center"></Label>
+                  <Label Text="{Binding SectionModel.Score}" TextColor="#80CBC4" VerticalTextAlignment="Center"></Label>
+                </StackLayout>
               </StackLayout>
               <Label Text="{Binding SectionModel.Body}"></Label>
             </StackLayout>
@@ -24,10 +27,10 @@
       </controls:PrettyListView.ItemTemplate>
       <controls:PrettyListView.HeaderTemplate>
         <DataTemplate>
-          <StackLayout>
-            <Label Text="{Binding EvaluationModel.Name}"></Label>
-            <Label Text="{Binding EvaluationModel.Date, Converter={x:StaticResource ToDateTime}, StringFormat='{0:dddd, MMMM d, yyyy}'}"></Label>
-            <Label Text="{Binding EvaluationModel.Time, Converter={x:StaticResource ToDateTime}, StringFormat='{0:h:mm tt}'}"></Label>
+          <StackLayout Padding="15" BackgroundColor="#4D4D4D">
+            <Label Text="{Binding EvaluationModel.Name}" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
+            <Label Text="{Binding EvaluationModel.Date, Converter={x:StaticResource ToDateTime}, StringFormat='{0:dddd, MMMM d, yyyy}'}" VerticalTextAlignment="Center"></Label>
+            <Label Text="{Binding EvaluationModel.Time, Converter={x:StaticResource ToDateTime}, StringFormat='{0:h:mm tt}'}" VerticalTextAlignment="Center"></Label>
             <StackLayout.GestureRecognizers>
               <TapGestureRecognizer></TapGestureRecognizer>
             </StackLayout.GestureRecognizers>

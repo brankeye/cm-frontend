@@ -5,15 +5,16 @@
            xmlns:base="clr-namespace:cm.frontend.core.Phone.Views.Pages.Base;assembly=cm.frontend.core.Phone"
            xmlns:pages="clr-namespace:cm.frontend.core.Phone.ViewModels.Pages.Details;assembly=cm.frontend.core.Phone"
            x:TypeArguments="pages:CalendarClass" 
-           x:Class="cm.frontend.core.Phone.Views.Pages.Details.CalendarClass">
+           x:Class="cm.frontend.core.Phone.Views.Pages.Details.CalendarClass"
+           Title="Class">
   <ContentPage.Content>
     <controls:PrettyListView ItemsSource="{Binding AttendingList}" Header="{Binding .}" HasUnevenRows="False" IsPullToRefreshEnabled="False" QuickSelect="True">
       <controls:PrettyListView.ItemTemplate>
         <DataTemplate>
           <ViewCell>
             <StackLayout Orientation="Horizontal">
-              <Label Text="{Binding Attendance}"></Label>
-              <Label Text="{Binding AttendingModel.Profile.FullName}"></Label>
+              <Label Text="{Binding Attendance}" VerticalTextAlignment="Center"></Label>
+              <Label Text="{Binding AttendingModel.Profile.FullName}" VerticalTextAlignment="Center"></Label>
             </StackLayout>
           </ViewCell>
         </DataTemplate>

@@ -10,18 +10,20 @@
              Icon="ic_menu_white.png">
   <ContentPage.Content>
     <StackLayout VerticalOptions="FillAndExpand">
-      <StackLayout>
-        <Label Text="{Binding ProfileModel.FullName}" FontAttributes="Bold"></Label>
-        <Label Text="your profile" FontSize="Small"></Label>
+      <StackLayout Padding="15">
+        <Label Text="{Binding ProfileModel.FullName}" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
+        <Label Text="your profile" FontSize="Small" VerticalTextAlignment="Center"></Label>
         <StackLayout.GestureRecognizers>
           <TapGestureRecognizer Tapped="Profile_OnTapped"></TapGestureRecognizer>
         </StackLayout.GestureRecognizers>
       </StackLayout>
-      <controls:PrettyListView x:Name="ItemsListView" ItemsSource="{Binding ItemsList}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" SelectedColor="Gray" VerticalOptions="FillAndExpand" SeparatorVisibility="None">
+      <controls:PrettyListView x:Name="ItemsListView" HasUnevenRows="True" ItemsSource="{Binding ItemsList}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" SelectedColor="#404040" VerticalOptions="FillAndExpand" SeparatorVisibility="None">
         <ListView.ItemTemplate>
           <DataTemplate>
             <ViewCell>
-              <Label Text="{Binding Title}" BackgroundColor="{Binding SelectedColor}" />
+              <ContentView BackgroundColor="{Binding SelectedColor}" Padding="20,15,15,15">
+                <Label Text="{Binding Title}" FontSize="Small" VerticalTextAlignment="Center" />
+              </ContentView>
             </ViewCell>
           </DataTemplate>
         </ListView.ItemTemplate>

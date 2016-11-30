@@ -6,7 +6,8 @@
            xmlns:base="clr-namespace:cm.frontend.core.Phone.Views.Pages.Base;assembly=cm.frontend.core.Phone"
            xmlns:pages="clr-namespace:cm.frontend.core.Phone.ViewModels.Pages;assembly=cm.frontend.core.Phone"
            x:TypeArguments="pages:Calendar" 
-           x:Class="cm.frontend.core.Phone.Views.Pages.Calendar">
+           x:Class="cm.frontend.core.Phone.Views.Pages.Calendar"
+           Title="My classes">
   <ContentPage.Content>
     <StackLayout>
       <controls:PrettyListView ItemsSource="{Binding ClassesList}" Header="{Binding .}" ItemSelected="ClassesListView_OnItemSelected" HasUnevenRows="False" IsPullToRefreshEnabled="False" QuickSelect="True">
@@ -17,9 +18,9 @@
         </controls:PrettyListView.ItemTemplate>
         <controls:PrettyListView.HeaderTemplate>
           <DataTemplate>
-            <StackLayout Orientation="Horizontal">
-              <Label Text="Week of"></Label>
-              <DatePicker Format="dddd, MMMM d, yyyy" Date="{Binding SelectedDate, Mode=OneWayToSource, Converter={x:StaticResource ToDateTime}}"></DatePicker>
+            <StackLayout Orientation="Horizontal" Padding="18,5,5,5">
+              <Label Text="Week of" VerticalTextAlignment="Center" FontSize="Medium"></Label>
+              <DatePicker Format="dddd, MMMM d, yyyy" Date="{Binding SelectedDate, Mode=OneWayToSource, Converter={x:StaticResource ToDateTime}}" VerticalOptions="Center"></DatePicker>
               <StackLayout.GestureRecognizers>
                 <TapGestureRecognizer></TapGestureRecognizer>
               </StackLayout.GestureRecognizers>

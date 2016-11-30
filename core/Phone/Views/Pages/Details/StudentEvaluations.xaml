@@ -12,7 +12,7 @@
     <controls:PrettyListView x:Name="EvaluationsListView" ItemsSource="{Binding EvaluationsList}" ItemSelected="Evaluations_OnItemSelected" HasUnevenRows="False" IsPullToRefreshEnabled="False" QuickSelect="True">
       <controls:PrettyListView.ItemTemplate>
         <DataTemplate>
-          <TextCell Text="{Binding EvaluationModel.Name}" Detail="{Binding DateTime, Converter={x:StaticResource ToDateTime}}"></TextCell>
+          <TextCell Text="{Binding EvaluationModel.Name}" Detail="{Binding DateTime, Converter={x:StaticResource ToDateTime}, StringFormat='{0:dddd, MMMM d, yyyy}'}"></TextCell>
         </DataTemplate>
       </controls:PrettyListView.ItemTemplate>
       <controls:PrettyListView.Header>
