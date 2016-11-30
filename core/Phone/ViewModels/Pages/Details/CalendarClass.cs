@@ -115,7 +115,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
             }
 
             var synchronizer = new Domain.Services.Sync.Synchronizer();
-            synchronizer.SyncAllAndContinue();
+            synchronizer.SyncPostsAndContinue();
         }
 
         public async void HandleAttendance()
@@ -179,7 +179,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
             }
 
             var synchronizer = new Domain.Services.Sync.Synchronizer();
-            synchronizer.SyncAllAndContinue();
+            synchronizer.SyncPostsAndContinue();
 
             GetAttendants();
         }

@@ -1,5 +1,4 @@
 ﻿using System;
-using cm.frontend.core.Domain.Objects;
 using cm.frontend.core.Phone.Views.Pages;
 using Newtonsoft.Json;
 using Xamarin.Forms;
@@ -46,6 +45,8 @@ namespace cm.frontend.core.Phone
                 if (context.IsAuthenticated)
                 {
                     LoadMasterDetailPage();
+                    var synchronizer = new Domain.Services.Sync.Synchronizer();
+                    synchronizer.SyncAllAndContinue();
                 }
                 else
                 {
@@ -78,8 +79,6 @@ namespace cm.frontend.core.Phone
         protected override async void OnSleep()
         {
             // Handle when your app sleeps
-            var synchronizer = new Domain.Services.Sync.Synchronizer();
-            await synchronizer.SyncAllAndWait();
         }
 
         protected override void OnResume()

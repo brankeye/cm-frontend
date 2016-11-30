@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -31,10 +32,10 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
             await SaveMember(member, savedSchool, profile);
 
             var synchronizer = new Domain.Services.Sync.Synchronizer();
-            synchronizer.SyncAllAndContinue();
+            await synchronizer.SyncAllAndWait();
 
-            // navigate to dashboard page for students
-            await Navigator.PushDashboardPageAsync(Navigation);
+            // navigate to master detail page for students
+            App.LaunchMasterDetailPage?.Invoke(this, EventArgs.Empty);
         }
 
         private async Task<Domain.Models.Member> PostMember(Domain.Models.School school, Domain.Models.Profile profile)

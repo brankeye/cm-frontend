@@ -27,15 +27,6 @@ namespace cm.frontend.core.Phone.Services
             await PushAsync(navigation, cachedPage);
         }
 
-        public async Task PushDashboardPageAsync(INavigation navigation)
-        {
-            if (IsNavigating) return;
-
-            var pageCache = Domain.Services.Caches.Pages.GetInstance();
-            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Dashboard>("Dashboard");
-            await PushAsync(navigation, cachedPage);
-        }
-
         public async Task PushManagePageAsync(INavigation navigation)
         {
             if (IsNavigating) return;

@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using cm.frontend.core.Domain.Utilities;
 using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
@@ -43,7 +42,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
                 profile.Synced = false;
             });
             var synchronizer = new Domain.Services.Sync.Synchronizer();
-            await synchronizer.SyncAllAndWait();
+            await synchronizer.SyncPostsAndWait();
         }
 
         private async Task SaveNewProfile()

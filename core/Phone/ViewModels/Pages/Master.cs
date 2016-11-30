@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using cm.frontend.core.Domain.Extensions.NotifyPropertyChanged;
 using cm.frontend.core.Domain.Services.Realms;
@@ -76,7 +71,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
             if (logoutResult.IsSuccessStatusCode)
             {
                 var synchronizer = new Domain.Services.Sync.Synchronizer();
-                await synchronizer.SyncAllAndWait();
+                await synchronizer.SyncPostsAndWait();
 
                 SaveContext(null, null, false);
 

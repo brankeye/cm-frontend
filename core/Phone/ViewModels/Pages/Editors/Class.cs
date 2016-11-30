@@ -52,7 +52,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
             });
 
             var synchronizer = new Domain.Services.Sync.Synchronizer();
-            synchronizer.SyncAllAndContinue();
+            synchronizer.SyncPostsAndContinue();
 
             await Navigator.PopAsync(Navigation);
         }

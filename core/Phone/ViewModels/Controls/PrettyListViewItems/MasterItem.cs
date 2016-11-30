@@ -1,7 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
-using Xamarin.Forms;
-using cm.frontend.core.Domain.Extensions.NotifyPropertyChanged;
 
 namespace cm.frontend.core.Phone.ViewModels.Controls.PrettyListViewItems
 {
