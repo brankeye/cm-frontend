@@ -104,7 +104,7 @@ namespace cm.frontend.core.Domain.Services.Sync.Jobs.Base
                 {
                     var existingItem = tempRealm.Get(x => x.Id == itemId);
                     var mapper = new Utilities.PropertyMapper<TModel>();
-                    mapper.Map(existingItem, item);
+                    mapper.Map(item, existingItem);
                     existingItem.Synced = true;
                 });
             }

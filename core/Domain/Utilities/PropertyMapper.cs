@@ -8,7 +8,7 @@ namespace cm.frontend.core.Domain.Utilities
     public class PropertyMapper<TModel>
         where TModel : RealmObject, IEntity, new()
     {
-        public void Map(IEntity destinationModel, IEntity sourceModel)
+        public void Map(IEntity sourceModel, IEntity destinationModel)
         {
             var destination = (TModel)destinationModel;
             var source = (TModel)sourceModel;

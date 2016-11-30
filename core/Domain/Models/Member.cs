@@ -1,9 +1,11 @@
 ﻿using cm.frontend.core.Domain.Attributes;
 using cm.frontend.core.Domain.Interfaces;
+using PropertyChanged;
 using Realms;
 
 namespace cm.frontend.core.Domain.Models
 {
+    [ImplementPropertyChanged]
     public class Member : RealmObject, ISyncableEntity
     {
         [Indexed]
@@ -27,6 +29,7 @@ namespace cm.frontend.core.Domain.Models
 
         public bool IsTeacher { get; set; }
 
+        [Indexed]
         [IgnorePropertyMapping]
         public bool Synced { get; set; }
     }

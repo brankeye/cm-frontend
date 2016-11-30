@@ -6,7 +6,8 @@
            x:Class="cm.frontend.core.Phone.Views.Pages.Evaluations"
            xmlns:base="clr-namespace:cm.frontend.core.Phone.Views.Pages.Base;assembly=cm.frontend.core.Phone"
            xmlns:pages="clr-namespace:cm.frontend.core.Phone.ViewModels.Pages;assembly=cm.frontend.core.Phone"
-           x:TypeArguments="pages:Evaluations">
+           x:TypeArguments="pages:Evaluations"
+           Title="Evaluations">
   <ContentPage.Content>
     <controls:PrettyListView x:Name="EvaluationsListView" ItemsSource="{Binding EvaluationsList}" ItemSelected="Evaluations_OnItemSelected" HasUnevenRows="False" IsPullToRefreshEnabled="False" QuickSelect="True">
       <controls:PrettyListView.ItemTemplate>
@@ -14,13 +15,6 @@
           <TextCell Text="{Binding EvaluationModel.Name}" Detail="{Binding DateTime, Converter={x:StaticResource ToDateTime}, StringFormat='{0:dddd, MMMM d, yyyy}'}"></TextCell>
         </DataTemplate>
       </controls:PrettyListView.ItemTemplate>
-      <controls:PrettyListView.Header>
-        <Label Text="Evaluations">
-          <Label.GestureRecognizers>
-            <TapGestureRecognizer></TapGestureRecognizer>
-          </Label.GestureRecognizers>
-        </Label>
-      </controls:PrettyListView.Header>
     </controls:PrettyListView>
   </ContentPage.Content>
   <ContentPage.Resources>

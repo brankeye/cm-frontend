@@ -2162,7 +2162,7 @@ namespace cm.frontend.client.Droid
 			public const int ic_tv_light = 2130837651;
 			
 			// aapt resource value: 0x7f020094
-			public const int Icon = 2130837652;
+			public const int icon = 2130837652;
 			
 			// aapt resource value: 0x7f020095
 			public const int mr_dialog_material_background_dark = 2130837653;

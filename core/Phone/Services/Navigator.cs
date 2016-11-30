@@ -17,12 +17,13 @@ namespace cm.frontend.core.Phone.Services
             await PushAsync(navigation, cachedPage);
         }
 
-        public async Task PushProfileEditorPageAsync(INavigation navigation)
+        public async Task PushProfileEditorPageAsync(INavigation navigation, bool isEditingNewProfile)
         {
             if (IsNavigating) return;
 
             var pageCache = Domain.Services.Caches.Pages.GetInstance();
             var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Editors.Profile>("ProfileEditor");
+            cachedPage.Initialize(isEditingNewProfile);
             await PushAsync(navigation, cachedPage);
         }
 

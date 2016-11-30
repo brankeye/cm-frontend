@@ -31,7 +31,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
                 {
                     // navigate register ui path
                     SaveContext(Email, token, true);
-                    await Navigator.PushProfileEditorPageAsync(Navigation);
+                    await Navigator.PushProfileEditorPageAsync(Navigation, true);
                 }
             }
         }

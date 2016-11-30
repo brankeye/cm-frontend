@@ -5,7 +5,8 @@
            xmlns:pages="clr-namespace:cm.frontend.core.Phone.ViewModels.Pages.Editors;assembly=cm.frontend.core.Phone"
            x:TypeArguments="pages:Class"
            xmlns:controls="clr-namespace:cm.frontend.core.Phone.Views.Controls;assembly=cm.frontend.core.Phone"
-           x:Class="cm.frontend.core.Phone.Views.Pages.Editors.Class">
+           x:Class="cm.frontend.core.Phone.Views.Pages.Editors.Class"
+           Title="Schedule class editor">
   <ContentPage.Content>
     <StackLayout>
       <Label Text="Class name" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>

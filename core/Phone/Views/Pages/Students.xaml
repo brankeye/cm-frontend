@@ -5,7 +5,8 @@
            x:Class="cm.frontend.core.Phone.Views.Pages.Students"
            xmlns:base="clr-namespace:cm.frontend.core.Phone.Views.Pages.Base;assembly=cm.frontend.core.Phone"
            xmlns:pages="clr-namespace:cm.frontend.core.Phone.ViewModels.Pages;assembly=cm.frontend.core.Phone"
-           x:TypeArguments="pages:Students">
+           x:TypeArguments="pages:Students"
+           Title="Students">
   <ContentPage.Content>
     <controls:PrettyListView ItemsSource="{Binding StudentsList}" ItemSelected="StudentsListView_OnItemSelected" HasUnevenRows="False" IsPullToRefreshEnabled="False" QuickSelect="True">
       <controls:PrettyListView.ItemTemplate>
@@ -13,13 +14,6 @@
           <TextCell Text="{Binding StudentModel.FullName}"></TextCell>
         </DataTemplate>
       </controls:PrettyListView.ItemTemplate>
-      <controls:PrettyListView.Header>
-        <Label Text="Students">
-          <Label.GestureRecognizers>
-            <TapGestureRecognizer></TapGestureRecognizer>
-          </Label.GestureRecognizers>
-        </Label>
-      </controls:PrettyListView.Header>
     </controls:PrettyListView>
   </ContentPage.Content>
 </base:ContentCore>

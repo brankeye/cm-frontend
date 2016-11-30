@@ -2,13 +2,51 @@
 using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using cm.frontend.core.Domain.Utilities;
 using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
 {
     public class Profile : ViewModels.Base.Core, INotifyPropertyChanged
     {
+        public Profile()
+        {
+            IsEditingNewProfile = false;
+        }
+
+        public void Initialize(bool isEditingNewProfile)
+        {
+            IsEditingNewProfile = isEditingNewProfile;
+        }
+
         private async void SaveProfile()
+        {
+            if (IsEditingNewProfile)
+            {
+                await SaveNewProfile();
+            }
+            else
+            {
+                await SaveExistingProfile();
+            }
+        }
+
+        private async Task SaveExistingProfile()
+        {
+            var profilesRealm = new Domain.Services.Realms.Profiles();
+            var profileLocalId = GetCurrentUser().Profile.LocalId;
+            await profilesRealm.WriteAsync(realm =>
+            {
+                var profile = realm.Get(profileLocalId);
+                var mapper = new Domain.Utilities.PropertyMapper<Domain.Models.Profile>();
+                mapper.Map(ProfileModel, profile);
+                profile.Synced = false;
+            });
+            var synchronizer = new Domain.Services.Sync.Synchronizer();
+            await synchronizer.SyncAllAndWait();
+        }
+
+        private async Task SaveNewProfile()
         {
             var currentContext = GetContext();
 
@@ -30,6 +68,18 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
             // navigate to manage page to either join or create a club
             await Navigator.PushManagePageAsync(Navigation);
         }
+
+        public override void OnAppearing()
+        {
+            if (!IsEditingNewProfile)
+            {
+                var mapper = new Domain.Utilities.PropertyMapper<Domain.Models.Profile>();
+                var profile = GetCurrentUser().Profile;
+                mapper.Map(profile, ProfileModel);
+            }
+        }
+
+        private bool IsEditingNewProfile { get; set; }
 
         private async Task<Domain.Models.Profile> PostProfile(string accessToken)
         {

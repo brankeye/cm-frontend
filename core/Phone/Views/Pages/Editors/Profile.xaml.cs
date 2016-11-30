@@ -6,5 +6,10 @@
         {
             InitializeComponent();
         }
+
+        public void Initialize(bool isEditingNewProfile)
+        {
+            ViewModel.Initialize(isEditingNewProfile);
+        }
     }
 }

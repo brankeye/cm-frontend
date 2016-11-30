@@ -7,7 +7,8 @@
            xmlns:controls="clr-namespace:cm.frontend.core.Phone.Views.Controls;assembly=cm.frontend.core.Phone"
            xmlns:converters="clr-namespace:cm.frontend.core.Domain.Utilities.Converters;assembly=cm.frontend.core.Domain"
            xmlns:detailModules="clr-namespace:cm.frontend.core.Phone.Views.Modules.Details;assembly=cm.frontend.core.Phone"
-           x:Class="cm.frontend.core.Phone.Views.Pages.Details.StudentEvaluations">
+           x:Class="cm.frontend.core.Phone.Views.Pages.Details.StudentEvaluations"
+           Title="Student evaluations">
   <ContentPage.Content>
     <controls:PrettyListView x:Name="EvaluationsListView" ItemsSource="{Binding EvaluationsList}" ItemSelected="Evaluations_OnItemSelected" HasUnevenRows="False" IsPullToRefreshEnabled="False" QuickSelect="True">
       <controls:PrettyListView.ItemTemplate>

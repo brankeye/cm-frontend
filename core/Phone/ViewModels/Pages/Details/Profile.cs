@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel;
+using System.Windows.Input;
 using cm.frontend.core.Domain.Extensions.NotifyPropertyChanged;
+using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone.ViewModels.Pages.Details
 {
@@ -24,6 +26,11 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
             ProfileModel = ProfilesRealm.Get(ProfileId);
         }
 
+        private async void EditProfile()
+        {
+            await Navigator.PushProfileEditorPageAsync(Navigation, false);
+        }
+
         private int ProfileId { get; set; }
 
         public Domain.Models.Profile ProfileModel
@@ -32,6 +39,9 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
             set { this.SetProperty(ref _profile, value, PropertyChanged); }
         }
         private Domain.Models.Profile _profile;
+
+        public ICommand EditProfileCommand => _editProfileCommand ?? (_editProfileCommand = new Command(EditProfile));
+        private ICommand _editProfileCommand;
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

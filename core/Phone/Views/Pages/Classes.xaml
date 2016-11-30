@@ -5,7 +5,8 @@
            x:Class="cm.frontend.core.Phone.Views.Pages.Classes"
            xmlns:base="clr-namespace:cm.frontend.core.Phone.Views.Pages.Base;assembly=cm.frontend.core.Phone"
            xmlns:pages="clr-namespace:cm.frontend.core.Phone.ViewModels.Pages;assembly=cm.frontend.core.Phone"
-           x:TypeArguments="pages:Classes">
+           x:TypeArguments="pages:Classes"
+           Title="Schedule">
   <ContentPage.Content>
     <controls:PrettyListView ItemsSource="{Binding ClassesList}" ItemSelected="ClassesListView_OnItemSelected" HasUnevenRows="False" IsPullToRefreshEnabled="False" QuickSelect="True">
       <controls:PrettyListView.ItemTemplate>
@@ -13,13 +14,6 @@
           <TextCell Text="{Binding ClassModel.Name}" Detail="{Binding ClassModel.Day}"></TextCell>
         </DataTemplate>
       </controls:PrettyListView.ItemTemplate>
-      <controls:PrettyListView.Header>
-        <Label Text="Classes">
-          <Label.GestureRecognizers>
-            <TapGestureRecognizer></TapGestureRecognizer>
-          </Label.GestureRecognizers>
-        </Label>
-      </controls:PrettyListView.Header>
     </controls:PrettyListView>
   </ContentPage.Content>
   <ContentPage.ToolbarItems>

@@ -5,7 +5,7 @@
            xmlns:pages="clr-namespace:cm.frontend.core.Phone.ViewModels.Pages.Details;assembly=cm.frontend.core.Phone"
            x:TypeArguments="pages:Class"
            x:Class="cm.frontend.core.Phone.Views.Pages.Details.Class"
-           Title="Class">
+           Title="Schedule class">
   <ContentPage.Content>
     <StackLayout Padding="15">
       <Label Text="{Binding ClassModel.Name}" FontAttributes="Bold" FontSize="Medium" VerticalTextAlignment="Center"></Label>

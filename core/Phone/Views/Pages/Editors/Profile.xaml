@@ -5,7 +5,8 @@
            xmlns:pages="clr-namespace:cm.frontend.core.Phone.ViewModels.Pages.Editors;assembly=cm.frontend.core.Phone"
            xmlns:converters="clr-namespace:cm.frontend.core.Domain.Utilities.Converters;assembly=cm.frontend.core.Domain"
            x:TypeArguments="pages:Profile"
-           x:Class="cm.frontend.core.Phone.Views.Pages.Editors.Profile">
+           x:Class="cm.frontend.core.Phone.Views.Pages.Editors.Profile"
+           Title="Profile editor">
   <ContentPage.Content>
     <ScrollView>
       <StackLayout>
