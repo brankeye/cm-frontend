@@ -1,5 +1,6 @@
 ﻿using cm.frontend.core.Domain.Extensions.NotifyPropertyChanged;
 using System.ComponentModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -33,14 +34,18 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
         private async Task SaveExistingProfile()
         {
             var profilesRealm = new Domain.Services.Realms.Profiles();
+            var profiles1 = profilesRealm.GetAll().ToList();
             var profileLocalId = GetCurrentUser().Profile.LocalId;
             await profilesRealm.WriteAsync(realm =>
             {
                 var profile = realm.Get(profileLocalId);
-                var mapper = new Domain.Utilities.PropertyMapper<Domain.Models.Profile>();
+                var mapper = new Domain.Utilities.PropertyMapper();
                 mapper.Map(ProfileModel, profile);
                 profile.Synced = false;
             });
+
+            var profiles2 = profilesRealm.GetAll().ToList();
+
             var synchronizer = new Domain.Services.Sync.Synchronizer();
             await synchronizer.SyncPostsAndWait();
         }
@@ -72,7 +77,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
         {
             if (!IsEditingNewProfile)
             {
-                var mapper = new Domain.Utilities.PropertyMapper<Domain.Models.Profile>();
+                var mapper = new Domain.Utilities.PropertyMapper();
                 var profile = GetCurrentUser().Profile;
                 mapper.Map(profile, ProfileModel);
             }
@@ -83,7 +88,10 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
         private async Task<Domain.Models.Profile> PostProfile(string accessToken)
         {
             var profilesRestService = new Domain.Services.Rest.Profiles();
-            var httpResponse = await profilesRestService.PostAsync(ProfileModel, accessToken);
+            var mapper = new Domain.Utilities.PropertyMapper();
+            var prof = new Domain.Models.Profile();
+            mapper.Map(ProfileModel, prof);
+            var httpResponse = await profilesRestService.PostAsync(prof, accessToken);
             var profile = await profilesRestService.ParseResponseItem(httpResponse);
             return profile;
         }
@@ -134,12 +142,12 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
             await Navigator.PopAsync(Navigation);
         }
 
-        public Domain.Models.Profile ProfileModel
+        public ViewModels.Models.ProfileModel ProfileModel
         {
-            get { return _profileModel ?? (_profileModel = new Domain.Models.Profile()); }
+            get { return _profileModel ?? (_profileModel = new ViewModels.Models.ProfileModel()); }
             set { this.SetProperty(ref _profileModel, value, PropertyChanged); }
         }
-        private Domain.Models.Profile _profileModel;
+        private ViewModels.Models.ProfileModel _profileModel;
 
         public ICommand SaveCommand => _saveCommand ?? (_saveCommand = new Command(SaveProfile));
         private ICommand _saveCommand;

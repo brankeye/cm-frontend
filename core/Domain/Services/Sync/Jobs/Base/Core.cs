@@ -103,8 +103,8 @@ namespace cm.frontend.core.Domain.Services.Sync.Jobs.Base
                 await realmService.WriteAsync(tempRealm =>
                 {
                     var existingItem = tempRealm.Get(x => x.Id == itemId);
-                    var mapper = new Utilities.PropertyMapper<TModel>();
-                    mapper.Map(item, existingItem);
+                    var mapper = new Utilities.PropertyMapper();
+                    mapper.Map<TModel>(item, existingItem);
                     existingItem.Synced = true;
                 });
             }

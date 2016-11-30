@@ -4,5 +4,5 @@
              xmlns:base="clr-namespace:cm.frontend.core.Phone.Views.Pages.Base;assembly=cm.frontend.core.Phone"
              xmlns:vm="clr-namespace:cm.frontend.core.Phone.ViewModels.Pages;assembly=cm.frontend.core.Phone"
              x:Class="cm.frontend.core.Phone.Views.Pages.MasterDetail"
-             x:TypeArguments="vm:MasterDetail" >
+             x:TypeArguments="vm:MasterDetail">
 </base:MasterDetailCore>

@@ -50,6 +50,7 @@
     <Compile Include="ViewModels\Controls\PrettyListViewItems\MasterItem.cs" />
     <Compile Include="ViewModels\Controls\PrettyListViewItems\Student.cs" />
     <Compile Include="ViewModels\Controls\PrettyListViewItems\Class.cs" />
+    <Compile Include="ViewModels\Models\Profile.cs" />
     <Compile Include="ViewModels\Modules\Details\Profile.cs" />
     <Compile Include="ViewModels\Pages\Details\CalendarClass.cs" />
     <Compile Include="ViewModels\Pages\Calendar.cs" />

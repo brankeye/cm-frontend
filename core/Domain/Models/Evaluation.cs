@@ -6,7 +6,6 @@ using Realms;
 
 namespace cm.frontend.core.Domain.Models
 {
-    [ImplementPropertyChanged]
     public class Evaluation : RealmObject, ISyncableEntity
     {
         [Indexed]

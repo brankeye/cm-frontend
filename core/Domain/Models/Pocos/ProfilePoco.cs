@@ -1,28 +1,20 @@
 ﻿using System;
-using cm.frontend.core.Domain.Attributes;
 using cm.frontend.core.Domain.Interfaces;
 using PropertyChanged;
-using Realms;
 
-namespace cm.frontend.core.Domain.Models
+namespace cm.frontend.core.Domain.Models.Pocos
 {
-    public class Profile : RealmObject, ISyncableEntity
+    [ImplementPropertyChanged]
+    public class ProfilePoco : ISyncableEntity
     {
-        [Indexed]
-        [IgnorePropertyMapping]
         public int Id { get; set; }
-
-        [PrimaryKey]
-        [Indexed]
-        [IgnorePropertyMapping]
+        
         public int LocalId { get; set; }
 
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
-
-        [Ignored]
-        [IgnorePropertyMapping]
+        
         public string FullName => FirstName + " " + LastName;
 
         public string Email { get; set; }
@@ -32,9 +24,7 @@ namespace cm.frontend.core.Domain.Models
         public DateTimeOffset StartDate { get; set; }
 
         public string Level { get; set; }
-
-        [Indexed]
-        [IgnorePropertyMapping]
+        
         public bool Synced { get; set; }
     }
 }

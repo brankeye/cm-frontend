@@ -1,4 +1,5 @@
-﻿using cm.frontend.core.Domain.Objects;
+﻿using System.Linq;
+using cm.frontend.core.Domain.Objects;
 using cm.frontend.core.Phone.Services;
 using Xamarin.Forms;
 
@@ -38,6 +39,7 @@ namespace cm.frontend.core.Phone.ViewModels.Base
             var usersRealm = new Domain.Services.Realms.Users();
             var username = currentContext.Username;
             var user = usersRealm.Get(x => x.Username == username);
+
             return user;
         }
 

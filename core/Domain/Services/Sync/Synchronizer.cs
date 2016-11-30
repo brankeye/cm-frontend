@@ -16,12 +16,12 @@ namespace cm.frontend.core.Domain.Services.Sync
 
         public async void SyncPostsAndContinue()
         {
-            await SyncAll();
+            await SyncPosts();
         }
 
         public async Task SyncPostsAndWait()
         {
-            await SyncAll();
+            await SyncPosts();
         }
 
         private async Task SyncPosts()

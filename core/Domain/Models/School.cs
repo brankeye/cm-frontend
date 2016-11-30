@@ -5,7 +5,6 @@ using Realms;
 
 namespace cm.frontend.core.Domain.Models
 {
-    [ImplementPropertyChanged]
     public class School : RealmObject, ISyncableEntity
     {
         [Indexed]

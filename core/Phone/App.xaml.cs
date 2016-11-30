@@ -76,7 +76,7 @@ namespace cm.frontend.core.Phone
             // Handle when your app starts
         }
 
-        protected override async void OnSleep()
+        protected override void OnSleep()
         {
             // Handle when your app sleeps
         }
