@@ -6,7 +6,8 @@
              xmlns:base="clr-namespace:cm.frontend.core.Phone.Views.Pages.Base;assembly=cm.frontend.core.Phone"
              x:Class="cm.frontend.core.Phone.Views.Pages.Master"
              x:TypeArguments="pages:Master"
-             Title="Manager">
+             Title="Manager"
+             Icon="ic_menu_white.png">
   <ContentPage.Content>
     <StackLayout VerticalOptions="FillAndExpand">
       <StackLayout>

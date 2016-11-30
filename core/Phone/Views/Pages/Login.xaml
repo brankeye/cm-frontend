@@ -10,7 +10,7 @@
       <Label Text="Welcome!" FontAttributes="Bold" FontSize="Large" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
       <Entry Text="{Binding Email, Mode=OneWayToSource}" Placeholder="Email"></Entry>
       <Entry Text="{Binding Password, Mode=OneWayToSource}" Placeholder="Password" IsPassword="False"></Entry>
-      <StackLayout Orientation="Horizontal">
+      <StackLayout Orientation="Horizontal" Margin="3,0,0,0">
         <Label Text="New user?"></Label>
         <Switch x:Name="NewUserSwitch" IsToggled="{Binding IsNewUser}" Toggled="NewUserSwitch_OnToggled"></Switch>
       </StackLayout>
