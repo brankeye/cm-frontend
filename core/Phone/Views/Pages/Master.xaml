@@ -9,10 +9,19 @@
              Title="Manager">
   <ContentPage.Content>
     <StackLayout VerticalOptions="FillAndExpand">
-      <controls:PrettyListView x:Name="ItemsListView" ItemsSource="{Binding ItemsList}" QuickSelect="True" VerticalOptions="FillAndExpand" SeparatorVisibility="None">
+      <StackLayout>
+        <Label Text="{Binding ProfileModel.FullName}" FontAttributes="Bold"></Label>
+        <Label Text="your profile" FontSize="Small"></Label>
+        <StackLayout.GestureRecognizers>
+          <TapGestureRecognizer Tapped="Profile_OnTapped"></TapGestureRecognizer>
+        </StackLayout.GestureRecognizers>
+      </StackLayout>
+      <controls:PrettyListView x:Name="ItemsListView" ItemsSource="{Binding ItemsList}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" SelectedColor="Gray" VerticalOptions="FillAndExpand" SeparatorVisibility="None">
         <ListView.ItemTemplate>
           <DataTemplate>
-            <ImageCell Text="{Binding Title}" ImageSource="{Binding IconSource}" />
+            <ViewCell>
+              <Label Text="{Binding Title}" BackgroundColor="{Binding SelectedColor}" />
+            </ViewCell>
           </DataTemplate>
         </ListView.ItemTemplate>
       </controls:PrettyListView>

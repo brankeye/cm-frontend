@@ -7,6 +7,12 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
     {
         private Domain.Services.Realms.Profiles ProfilesRealm { get; set; }
 
+        public Profile()
+        {
+            // if no profile id is set, use the current users id
+            ProfileId = GetCurrentUser().Profile.LocalId;
+        }
+
         public void Initialize(int profileLocalId)
         {
             ProfileId = profileLocalId;

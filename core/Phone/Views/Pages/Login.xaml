@@ -6,15 +6,15 @@
            xmlns:pages="clr-namespace:cm.frontend.core.Phone.ViewModels.Pages;assembly=cm.frontend.core.Phone"
            x:TypeArguments="pages:Login">
   <ContentPage.Content>
-    <StackLayout>
-      <Label Text="Welcome!" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+    <StackLayout Padding="30" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+      <Label Text="Welcome!" FontAttributes="Bold" FontSize="Large" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
       <Entry Text="{Binding Email, Mode=OneWayToSource}" Placeholder="Email"></Entry>
       <Entry Text="{Binding Password, Mode=OneWayToSource}" Placeholder="Password" IsPassword="False"></Entry>
       <StackLayout Orientation="Horizontal">
         <Label Text="New user?"></Label>
         <Switch x:Name="NewUserSwitch" IsToggled="{Binding IsNewUser}" Toggled="NewUserSwitch_OnToggled"></Switch>
       </StackLayout>
-      <Button x:Name="LoginRegisterButton" Text="Login" Command="{Binding ActionButtonCommand}" HorizontalOptions="Center"></Button>
+      <Button x:Name="LoginRegisterButton" Text="Login" Command="{Binding ActionButtonCommand}" HorizontalOptions="End" BorderRadius="0"></Button>
     </StackLayout>
   </ContentPage.Content>
 </base:ContentCore>
