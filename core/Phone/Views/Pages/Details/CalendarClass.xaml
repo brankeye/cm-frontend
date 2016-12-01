@@ -12,7 +12,7 @@
       <controls:PrettyListView.ItemTemplate>
         <DataTemplate>
           <ViewCell>
-            <StackLayout Orientation="Horizontal">
+            <StackLayout Orientation="Horizontal" Padding="15,8,15,8">
               <Label Text="{Binding Attendance}" VerticalTextAlignment="Center"></Label>
               <Label Text="{Binding AttendingModel.Profile.FullName}" VerticalTextAlignment="Center"></Label>
             </StackLayout>
@@ -21,8 +21,11 @@
       </controls:PrettyListView.ItemTemplate>
       <controls:PrettyListView.HeaderTemplate>
         <DataTemplate>
-          <StackLayout>
-            <Label Text="{Binding ClassModel.Name}" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
+          <StackLayout Padding="15">
+            <StackLayout Orientation="Horizontal">
+              <Label Text="{Binding ClassModel.Name}" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
+              <Label Text="(Canceled)" FontAttributes="Bold" VerticalTextAlignment="Center" IsVisible="{Binding IsCanceled}"></Label>
+            </StackLayout>
             <StackLayout Orientation="Horizontal">
               <Label Text="Date: " VerticalTextAlignment="Center"></Label>
               <Label Text="{Binding Date, StringFormat='{0:dddd, MMMM d, yyyy}'}" VerticalTextAlignment="Center"></Label>
@@ -33,13 +36,14 @@
               <Label Text=" to " VerticalTextAlignment="Center"></Label>
               <Label Text="{Binding ClassModel.EndTime, StringFormat='{0:h:mm tt}'}" VerticalTextAlignment="Center"></Label>
             </StackLayout>
-            <StackLayout Orientation="Horizontal">
+            <StackLayout Orientation="Horizontal" Spacing="0">
               <Label Text="Attending?" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-              <controls:BindablePicker ItemsSource="{Binding AttendingOptions}" SelectedIndex="{Binding AttendingIndex, Mode=TwoWay}"></controls:BindablePicker>
+              <Button Text="Yes" Command="{Binding AttendingCommand}" CommandParameter="True" BorderRadius="0" VerticalOptions="Center" Margin="20,0,0,0"></Button>
+              <Button Text="No" Command="{Binding AttendingCommand}" CommandParameter="False" BorderRadius="0" VerticalOptions="Center" Margin="20,0,0,0"></Button>
             </StackLayout>
-            <StackLayout Orientation="Horizontal" IsVisible="{Binding IsCanceledViewVisible}">
+            <StackLayout Orientation="Horizontal" Spacing="0" IsVisible="{Binding IsCanceledViewVisible}">
               <Label Text="Canceled?" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-              <Switch IsToggled="{Binding IsCanceled, Mode=TwoWay}"></Switch>
+              <Switch IsToggled="{Binding IsCanceled, Mode=TwoWay}" VerticalOptions="Center" Margin="22,0,0,0"></Switch>
             </StackLayout>
             <StackLayout.GestureRecognizers>
               <TapGestureRecognizer></TapGestureRecognizer>

@@ -68,7 +68,7 @@ namespace cm.frontend.core.Phone
 
         public void LoadLoginPage()
         {
-            MainPage = new Login();
+            MainPage = new NavigationPage(new Login());
         }
 
         protected override void OnStart()

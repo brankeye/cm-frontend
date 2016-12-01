@@ -19,6 +19,8 @@ namespace cm.frontend.core.Domain.Models
 
         public DateTimeOffset Date { get; set; }
 
+        public bool IsCanceled { get; set; }
+
         public int ClassId { get; set; }
 
         [IgnorePropertyMapping]

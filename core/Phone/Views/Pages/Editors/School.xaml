@@ -8,30 +8,30 @@
            Title="School editor">
   <ContentPage.Content>
     <ScrollView>
-      <StackLayout>
+      <StackLayout Padding="15">
         <StackLayout Orientation="Horizontal">
-          <Label Text="Name " VerticalTextAlignment="Center"></Label>
+          <Label Text="Name " VerticalTextAlignment="Center" FontSize="Medium"></Label>
           <Entry Text="{Binding SchoolModel.Name, Mode=TwoWay}" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
         </StackLayout>
         <StackLayout Orientation="Horizontal">
-          <Label Text="Address " VerticalTextAlignment="Center"></Label>
+          <Label Text="Address " VerticalTextAlignment="Center" FontSize="Medium"></Label>
           <Entry Text="{Binding SchoolModel.Address, Mode=TwoWay}" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
         </StackLayout>
         <StackLayout Orientation="Horizontal">
-          <Label Text="Email " VerticalTextAlignment="Center"></Label>
+          <Label Text="Email " VerticalTextAlignment="Center" FontSize="Medium"></Label>
           <Entry Text="{Binding SchoolModel.Email, Mode=TwoWay}" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
         </StackLayout>
         <StackLayout Orientation="Horizontal">
-          <Label Text="Website " VerticalTextAlignment="Center"></Label>
+          <Label Text="Website " VerticalTextAlignment="Center" FontSize="Medium"></Label>
           <Entry Text="{Binding SchoolModel.Website, Mode=TwoWay}" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
         </StackLayout>
         <StackLayout Orientation="Horizontal">
-          <Label Text="Phone number " VerticalTextAlignment="Center"></Label>
+          <Label Text="Phone number " VerticalTextAlignment="Center" FontSize="Medium"></Label>
           <Entry Text="{Binding SchoolModel.PhoneNumber, Mode=TwoWay}" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
         </StackLayout>
         <StackLayout Orientation="Horizontal">
-          <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="Center"></Button>
-          <Button Text="Ok" Command="{Binding SaveCommand}" HorizontalOptions="Center"></Button>
+          <Button Text="Cancel" Command="{Binding CancelCommand}" VerticalOptions="Center"></Button>
+          <Button Text="Ok" Command="{Binding SaveCommand}" VerticalOptions="Center"></Button>
         </StackLayout>
       </StackLayout>
     </ScrollView>

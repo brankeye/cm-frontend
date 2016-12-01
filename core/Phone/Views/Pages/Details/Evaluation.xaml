@@ -13,7 +13,7 @@
       <controls:PrettyListView.ItemTemplate>
         <DataTemplate>
           <ViewCell>
-            <StackLayout Padding="15,5,5,5">
+            <StackLayout Padding="15,8,15,8">
               <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                 <Label Text="{Binding SectionModel.Name}" VerticalTextAlignment="Center" TextColor="#80CBC4"></Label>
                 <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">

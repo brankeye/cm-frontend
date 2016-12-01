@@ -8,17 +8,27 @@
            x:Class="cm.frontend.core.Phone.Views.Pages.Editors.Class"
            Title="Schedule class editor">
   <ContentPage.Content>
-    <StackLayout>
-      <Label Text="Class name" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-      <Entry Text="{Binding ClassName, Mode=TwoWay}"></Entry>
-      <Label Text="Day" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-      <controls:BindablePicker ItemsSource="{Binding Days}" SelectedIndex="{Binding DaysIndex, Mode=TwoWay}"></controls:BindablePicker>
-      <Label Text="Start time" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-      <TimePicker Time="{Binding StartTime, Mode=TwoWay}"></TimePicker>
-      <Label Text="End time" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-      <TimePicker Time="{Binding EndTime, Mode=TwoWay}"></TimePicker>
-      <Button Text="Cancel" Command="{Binding CancelCommand}"></Button>
-      <Button Text="Ok" Command="{Binding SaveClassCommand}"></Button>
+    <StackLayout Padding="15">
+      <StackLayout Orientation="Horizontal">
+        <Label Text="Class name" VerticalTextAlignment="Center" FontSize="Medium"></Label>
+        <Entry Text="{Binding ClassName, Mode=TwoWay}" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
+      </StackLayout>
+      <StackLayout Orientation="Horizontal">
+        <Label Text="Day" VerticalTextAlignment="Center" FontSize="Medium"></Label>
+        <controls:BindablePicker ItemsSource="{Binding Days}" SelectedIndex="{Binding DaysIndex, Mode=TwoWay}" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></controls:BindablePicker>
+      </StackLayout>
+      <StackLayout Orientation="Horizontal">
+        <Label Text="Start time" VerticalTextAlignment="Center" FontSize="Medium"></Label>
+        <TimePicker Time="{Binding StartTime, Mode=TwoWay}" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></TimePicker>
+      </StackLayout>
+      <StackLayout Orientation="Horizontal">
+        <Label Text="End time" VerticalTextAlignment="Center" FontSize="Medium"></Label>
+        <TimePicker Time="{Binding EndTime, Mode=TwoWay}" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></TimePicker>
+      </StackLayout>
+      <StackLayout Orientation="Horizontal">
+        <Button Text="Cancel" Command="{Binding CancelCommand}" VerticalOptions="Center"></Button>
+        <Button Text="Ok" Command="{Binding SaveClassCommand}" VerticalOptions="Center"></Button>
+      </StackLayout>
     </StackLayout>
   </ContentPage.Content>
 </base:ContentCore>

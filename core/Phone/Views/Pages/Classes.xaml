@@ -8,10 +8,15 @@
            x:TypeArguments="pages:Classes"
            Title="Schedule">
   <ContentPage.Content>
-    <controls:PrettyListView ItemsSource="{Binding ClassesList}" ItemSelected="ClassesListView_OnItemSelected" HasUnevenRows="False" IsPullToRefreshEnabled="False" QuickSelect="True">
+    <controls:PrettyListView ItemsSource="{Binding ClassesList}" ItemSelected="ClassesListView_OnItemSelected" HasUnevenRows="True" IsPullToRefreshEnabled="False" QuickSelect="True">
       <controls:PrettyListView.ItemTemplate>
         <DataTemplate>
-          <TextCell Text="{Binding ClassModel.Name}" Detail="{Binding DayAndTime}"></TextCell>
+          <ViewCell>
+          <StackLayout Padding="15,8,15,8">
+            <Label Text="{Binding ClassModel.Name}" VerticalTextAlignment="Center" TextColor="#80CBC4"></Label>
+            <Label Text="{Binding DayAndTime}" VerticalTextAlignment="Center"></Label>
+          </StackLayout>
+        </ViewCell>
         </DataTemplate>
       </controls:PrettyListView.ItemTemplate>
     </controls:PrettyListView>

@@ -41,7 +41,14 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
                     // if class falls on the current date, add it to the list with the current date
                     if (classModel.Day == currentDate.DayOfWeek.ToString())
                     {
-                        classesContainer.Add(new ViewModels.Controls.PrettyListViewItems.ClassDate(classModel, currentDate));
+                        var classDate = currentDate.UtcDateTime.Date;
+                        var canceledClassesRealm = new Domain.Services.Realms.CanceledClasses();
+                        var canceledClass =
+                            canceledClassesRealm.GetRealmResults()
+                                .Where(x => x.Class == classModel)
+                                .FirstOrDefault(x => x.Date == classDate);
+                        var classIsCanceled = canceledClass != null;
+                        classesContainer.Add(new ViewModels.Controls.PrettyListViewItems.ClassDate(classModel, currentDate, classIsCanceled));
                     }
                 }
             }

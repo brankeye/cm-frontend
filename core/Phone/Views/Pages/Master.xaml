@@ -21,7 +21,7 @@
         <ListView.ItemTemplate>
           <DataTemplate>
             <ViewCell>
-              <ContentView BackgroundColor="{Binding SelectedColor}" Padding="20,15,15,15">
+              <ContentView BackgroundColor="{Binding SelectedColor}" Padding="15,8,15,8">
                 <Label Text="{Binding Title}" FontSize="Small" VerticalTextAlignment="Center" />
               </ContentView>
             </ViewCell>

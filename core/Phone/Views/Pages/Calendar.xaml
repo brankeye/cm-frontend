@@ -10,21 +10,25 @@
            Title="My classes">
   <ContentPage.Content>
     <StackLayout>
-      <controls:PrettyListView ItemsSource="{Binding ClassesList}" Header="{Binding .}" ItemSelected="ClassesListView_OnItemSelected" HasUnevenRows="False" IsPullToRefreshEnabled="False" QuickSelect="True">
+      <controls:PrettyListView ItemsSource="{Binding ClassesList}" Header="{Binding .}" ItemSelected="ClassesListView_OnItemSelected" HasUnevenRows="True" IsPullToRefreshEnabled="False" QuickSelect="True">
         <controls:PrettyListView.ItemTemplate>
           <DataTemplate>
-            <TextCell Text="{Binding ClassModel.Name}" Detail="{Binding Date, Converter={x:StaticResource ToDateTime}, StringFormat='{0:dddd, MMMM d, yyyy}'}"></TextCell>
+            <ViewCell>
+              <StackLayout Padding="15,8,15,8">
+                <StackLayout Orientation="Horizontal">
+                  <Label Text="{Binding ClassModel.Name}" VerticalTextAlignment="Center" TextColor="#80CBC4"></Label>
+                  <Label Text="(Canceled)" VerticalTextAlignment="Center" TextColor="#80CBC4" IsVisible="{Binding IsCanceled}"></Label>
+                </StackLayout>
+                <Label Text="{Binding Date, Converter={x:StaticResource ToDateTime}, StringFormat='{0:dddd, MMMM d, yyyy}'}" VerticalTextAlignment="Center"></Label>
+              </StackLayout>
+            </ViewCell>
           </DataTemplate>
         </controls:PrettyListView.ItemTemplate>
         <controls:PrettyListView.HeaderTemplate>
           <DataTemplate>
-            <StackLayout Orientation="Horizontal" Padding="18,5,5,5">
-              <Label Text="Week of" VerticalTextAlignment="Center" FontSize="Medium"></Label>
+            <ContentView Padding="15">
               <DatePicker Format="dddd, MMMM d, yyyy" Date="{Binding SelectedDate, Mode=OneWayToSource, Converter={x:StaticResource ToDateTime}}" VerticalOptions="Center"></DatePicker>
-              <StackLayout.GestureRecognizers>
-                <TapGestureRecognizer></TapGestureRecognizer>
-              </StackLayout.GestureRecognizers>
-            </StackLayout>
+            </ContentView>
           </DataTemplate>
         </controls:PrettyListView.HeaderTemplate>
       </controls:PrettyListView>

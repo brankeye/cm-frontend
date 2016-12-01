@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows.Input;
 using cm.frontend.core.Domain.Extensions.NotifyPropertyChanged;
 using cm.frontend.core.Domain.Services.Realms;
 using cm.frontend.core.Domain.Utilities;
+using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone.ViewModels.Pages.Details
 {
@@ -16,12 +18,6 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
 
         public CalendarClass()
         {
-            AttendingOptions = new List<string>()
-            {
-                "Yes",
-                "No"
-            };
-
             CanceledOptions = new List<string>()
             {
                 "Yes",
@@ -54,14 +50,9 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
                                               .Where(x => x.Date == Date)
                                               .FirstOrDefault(x => x.Profile == currentProfile);
 
-            if (AttendanceModel != null)
-            {
-                AttendingIndex = AttendingOptions.IndexOf(AttendanceModel.IsAttending ? "Yes" : "No");
-            }
-
             var canceledRealm = new Domain.Services.Realms.CanceledClasses();
             CanceledModel = canceledRealm.GetRealmResults().Where(x => x.Class == ClassModel).FirstOrDefault(x => x.Date == Date);
-            if (CanceledModel != null) IsCanceled = true;
+            if (CanceledModel != null) IsCanceled = CanceledModel.IsCanceled;
         }
 
         private void GetAttendants()
@@ -83,44 +74,25 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
             var canceledRealm = new Domain.Services.Realms.CanceledClasses();
             CanceledModel = canceledRealm.GetRealmResults().Where(x => x.Class == ClassModel).FirstOrDefault(x => x.Date == Date);
 
-            if (IsCanceled)
+            var recordExists = CanceledModel != null;
+            var canceledLocalId = CanceledModel.LocalId;
+            await canceledRealm.WriteAsync(realm =>
             {
-                if (CanceledModel == null)
-                {
-                    await canceledRealm.WriteAsync(realm =>
-                    {
-                        var record = new Domain.Models.CanceledClass
-                        {
-                            Date = Date.UtcDateTime.Date
-                        };
-                        realm.Manage(record);
-                        record.Class = ClassModel;
-                        record.Synced = false;
-                    });
-                }
-            }
-            else
-            {
-                // TODO: Allow undo cancel class
-                /*
-                if (CanceledModel != null)
-                {
-                    var canceledClassLocalId = CanceledModel.LocalId;
-                    await canceledRealm.WriteAsync(realm =>
-                    {
-                        realm.Remove(canceledClassLocalId);
-                    });
-                }
-                */
-            }
+                var record = recordExists ? realm.Get(canceledLocalId) : realm.CreateObject();
+                record.Date = Date.UtcDateTime.Date;
+                record.IsCanceled = IsCanceled;
+                realm.Manage(record);
+                record.Class = ClassModel;
+                record.Synced = false;
+            });
 
             var synchronizer = new Domain.Services.Sync.Synchronizer();
             synchronizer.SyncPostsAndContinue();
         }
 
-        public async void HandleAttendance()
+        public async void HandleAttendance(string isAttendingStr)
         {
-            var attendanceSelection = AttendingOptions[AttendingIndex];
+            var isAttending = bool.Parse(isAttendingStr);
             var currentProfile = GetCurrentUser().Profile;
 
             // the user has decided to change their attendance, so we first have to check if
@@ -138,44 +110,26 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
             {
                 // the user has no previous attendance record for this class
                 // so add one, unless they selected "undecided"
-                if (attendanceSelection != "Undecided")
+                await AttendanceRealm.WriteAsync(realm =>
                 {
-                    await AttendanceRealm.WriteAsync(realm =>
-                    {
-                        var attending = realm.CreateObject();
-                        attending.Class = ClassModel;
-                        attending.Date = Date.UtcDateTime.Date;
-                        attending.Profile = currentProfile;
-                        attending.IsAttending = attendanceSelection == "Yes";
-                        attending.Synced = false;
-                    });
-                }
+                    var attendanceRecord = realm.CreateObject();
+                    attendanceRecord.Class = ClassModel;
+                    attendanceRecord.Date = Date.UtcDateTime.Date;
+                    attendanceRecord.Profile = currentProfile;
+                    attendanceRecord.IsAttending = isAttending;
+                    attendanceRecord.Synced = false;
+                });
             }
             else
             {
-                var attendanceRecordLocalId = AttendanceModel.LocalId;
                 // the user has an attendance record so all we need to do is alter that one
-                if (attendanceSelection == "Undecided")
+                var attendanceRecordLocalId = AttendanceModel.LocalId;
+                await AttendanceRealm.WriteAsync(realm =>
                 {
-                    await AttendanceRealm.WriteAsync(realm =>
-                    {
-                        realm.Remove(attendanceRecordLocalId);
-                    });
-                }
-                else
-                {
-                    await AttendanceRealm.WriteAsync(realm =>
-                    {
-                        var attendanceRecord = realm.Get(attendanceRecordLocalId);
-                        var isAttending = attendanceRecord.IsAttending;
-                        var newValue = attendanceSelection == "Yes";
-                        if (isAttending != newValue)
-                        {
-                            attendanceRecord.IsAttending = newValue;
-                            attendanceRecord.Synced = false;
-                        }
-                    });
-                }
+                    var attendanceRecord = realm.Get(attendanceRecordLocalId);
+                    attendanceRecord.IsAttending = isAttending;
+                    attendanceRecord.Synced = false;
+                });
             }
 
             var synchronizer = new Domain.Services.Sync.Synchronizer();
@@ -232,24 +186,6 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
         }
         private bool _isCanceledViewVisible;
 
-        public List<string> AttendingOptions
-        {
-            get { return _attendingOptions ?? (_attendingOptions = new List<string>()); }
-            set { this.SetProperty(ref _attendingOptions, value, PropertyChanged); }
-        }
-        private List<string> _attendingOptions;
-
-        public int AttendingIndex
-        {
-            get { return _attendingIndex; }
-            set
-            {
-                this.SetProperty(ref _attendingIndex, value, PropertyChanged);
-                HandleAttendance();
-            }
-        }
-        private int _attendingIndex;
-
         public List<string> CanceledOptions
         {
             get { return _canceledOptions ?? (_canceledOptions = new List<string>()); }
@@ -270,6 +206,9 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
             set { this.SetProperty(ref _attending, value, PropertyChanged); }
         }
         private DynamicCollection<ViewModels.Controls.PrettyListViewItems.AttendingClass> _attending;
+
+        public ICommand AttendingCommand => _attendingCommand ?? (_attendingCommand = new Command<string>(HandleAttendance));
+        private ICommand _attendingCommand;
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

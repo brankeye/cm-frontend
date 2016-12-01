@@ -7,6 +7,7 @@ namespace cm.frontend.core.Phone.Views.Pages
         public Login()
         {
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
         }
 
         private void NewUserSwitch_OnToggled(object sender, ToggledEventArgs e)

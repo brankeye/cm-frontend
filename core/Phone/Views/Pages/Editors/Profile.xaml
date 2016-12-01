@@ -9,34 +9,34 @@
            Title="Profile editor">
   <ContentPage.Content>
     <ScrollView>
-      <StackLayout>
+      <StackLayout Padding="15">
         <StackLayout Orientation="Horizontal">
-          <Label Text="First name " VerticalTextAlignment="Center"></Label>
+          <Label Text="First name " VerticalTextAlignment="Center" FontSize="Medium"></Label>
           <Entry Text="{Binding ProfileModel.FirstName, Mode=TwoWay}" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
         </StackLayout>
         <StackLayout Orientation="Horizontal">
-          <Label Text="Last name " VerticalTextAlignment="Center"></Label>
+          <Label Text="Last name " VerticalTextAlignment="Center" FontSize="Medium"></Label>
           <Entry Text="{Binding ProfileModel.LastName, Mode=TwoWay}" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
         </StackLayout>
         <StackLayout Orientation="Horizontal">
-          <Label Text="Email " VerticalTextAlignment="Center"></Label>
+          <Label Text="Email " VerticalTextAlignment="Center" FontSize="Medium"></Label>
           <Entry Text="{Binding ProfileModel.Email, Mode=TwoWay}" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
         </StackLayout>
         <StackLayout Orientation="Horizontal">
-          <Label Text="Phone number " VerticalTextAlignment="Center"></Label>
+          <Label Text="Phone number " VerticalTextAlignment="Center" FontSize="Medium"></Label>
           <Entry Text="{Binding ProfileModel.PhoneNumber, Mode=TwoWay}" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
         </StackLayout>
         <StackLayout Orientation="Horizontal">
-          <Label Text="Rank " VerticalTextAlignment="Center"></Label>
+          <Label Text="Rank " VerticalTextAlignment="Center" FontSize="Medium"></Label>
           <Entry Text="{Binding ProfileModel.Level, Mode=TwoWay}" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
         </StackLayout>
         <StackLayout Orientation="Horizontal">
-          <Label Text="Start date"></Label>
-          <DatePicker Date="{Binding ProfileModel.StartDate, Mode=TwoWay, Converter={x:StaticResource ToDateTime}}"></DatePicker>
+          <Label Text="Start date" VerticalTextAlignment="Center" FontSize="Medium"></Label>
+          <DatePicker Date="{Binding ProfileModel.StartDate, Mode=TwoWay, Converter={x:StaticResource ToDateTime}}" VerticalOptions="Center"></DatePicker>
         </StackLayout>
         <StackLayout Orientation="Horizontal">
-          <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="Center"></Button>
-          <Button Text="Ok" Command="{Binding SaveCommand}" HorizontalOptions="Center"></Button>
+          <Button Text="Cancel" Command="{Binding CancelCommand}" VerticalOptions="Center"></Button>
+          <Button Text="Ok" Command="{Binding SaveCommand}" VerticalOptions="Center"></Button>
         </StackLayout>
       </StackLayout>
     </ScrollView>

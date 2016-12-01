@@ -13,7 +13,12 @@
     <controls:PrettyListView x:Name="EvaluationsListView" ItemsSource="{Binding EvaluationsList}" ItemSelected="Evaluations_OnItemSelected" HasUnevenRows="False" IsPullToRefreshEnabled="False" QuickSelect="True">
       <controls:PrettyListView.ItemTemplate>
         <DataTemplate>
-          <TextCell Text="{Binding EvaluationModel.Name}" Detail="{Binding DateTime, Converter={x:StaticResource ToDateTime}, StringFormat='{0:dddd, MMMM d, yyyy}'}"></TextCell>
+          <ViewCell>
+            <StackLayout Padding="15,8,15,8">
+              <Label Text="{Binding EvaluationModel.Name}" VerticalTextAlignment="Center" TextColor="#80CBC4"></Label>
+              <Label Text="{Binding DateTime, Converter={x:StaticResource ToDateTime}, StringFormat='{0:dddd, MMMM d, yyyy}'}" VerticalTextAlignment="Center"></Label>
+            </StackLayout>
+          </ViewCell>
         </DataTemplate>
       </controls:PrettyListView.ItemTemplate>
       <controls:PrettyListView.Header>

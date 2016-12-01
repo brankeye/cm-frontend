@@ -11,7 +11,11 @@
     <controls:PrettyListView ItemsSource="{Binding StudentsList}" ItemSelected="StudentsListView_OnItemSelected" HasUnevenRows="False" IsPullToRefreshEnabled="False" QuickSelect="True">
       <controls:PrettyListView.ItemTemplate>
         <DataTemplate>
-          <TextCell Text="{Binding StudentModel.FullName}"></TextCell>
+          <ViewCell>
+            <ContentView Padding="15,8,15,8">
+              <Label Text="{Binding StudentModel.FullName}" VerticalTextAlignment="Center"></Label>
+            </ContentView>
+          </ViewCell>
         </DataTemplate>
       </controls:PrettyListView.ItemTemplate>
     </controls:PrettyListView>

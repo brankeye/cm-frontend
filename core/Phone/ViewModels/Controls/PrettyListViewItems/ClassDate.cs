@@ -6,10 +6,11 @@ namespace cm.frontend.core.Phone.ViewModels.Controls.PrettyListViewItems
 {
     public class ClassDate : Base.Core
     {
-        public ClassDate(Domain.Models.Class model, DateTimeOffset date)
+        public ClassDate(Domain.Models.Class model, DateTimeOffset date, bool isCanceled)
         {
             ClassModel = model;
             Date = date;
+            IsCanceled = isCanceled;
         }
 
         public DateTimeOffset Date
@@ -18,6 +19,13 @@ namespace cm.frontend.core.Phone.ViewModels.Controls.PrettyListViewItems
             set { this.SetProperty(ref _date, value.UtcDateTime.Date, PropertyChanged); }
         }
         private DateTimeOffset _date;
+
+        public bool IsCanceled
+        {
+            get { return _isCanceled; }
+            set { this.SetProperty(ref _isCanceled, value, PropertyChanged); }
+        }
+        private bool _isCanceled;
 
         public Domain.Models.Class ClassModel
         {
