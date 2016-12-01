@@ -11,7 +11,7 @@
     <controls:PrettyListView ItemsSource="{Binding ClassesList}" ItemSelected="ClassesListView_OnItemSelected" HasUnevenRows="False" IsPullToRefreshEnabled="False" QuickSelect="True">
       <controls:PrettyListView.ItemTemplate>
         <DataTemplate>
-          <TextCell Text="{Binding ClassModel.Name}" Detail="{Binding ClassModel.Day}"></TextCell>
+          <TextCell Text="{Binding ClassModel.Name}" Detail="{Binding DayAndTime}"></TextCell>
         </DataTemplate>
       </controls:PrettyListView.ItemTemplate>
     </controls:PrettyListView>

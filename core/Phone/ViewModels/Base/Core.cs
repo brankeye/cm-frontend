@@ -67,12 +67,13 @@ namespace cm.frontend.core.Phone.ViewModels.Base
             contextCache.Replace("Context", context);
         }
 
-        public void SaveContext(string username, Domain.Objects.Token token, bool isAuthenticated)
+        public void SaveContext(string username, Domain.Objects.Token token, bool isAuthenticated, string schoolName)
         {
             var currentContext = GetContext();
             currentContext.Username = username;
             currentContext.AccessToken = token;
             currentContext.IsAuthenticated = isAuthenticated;
+            currentContext.SchoolName = schoolName;
 
             SaveContext(currentContext);
         }

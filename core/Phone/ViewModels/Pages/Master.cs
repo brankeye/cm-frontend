@@ -73,10 +73,14 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
                 var synchronizer = new Domain.Services.Sync.Synchronizer();
                 await synchronizer.SyncPostsAndWait();
 
-                SaveContext(null, null, false);
-
-                var config = Realm.GetInstance().Config;
-                Realm.DeleteRealm(config);
+                SaveContext(null, null, false, null);
+                
+                var realm = Realm.GetInstance();
+                await realm.WriteAsync(tempRealm =>
+                {
+                    tempRealm.RemoveAll();
+                });
+                
 
                 Application.Current.Properties["Context"] = null;
 

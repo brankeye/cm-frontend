@@ -30,7 +30,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
                 if (token != null)
                 {
                     // navigate register ui path
-                    SaveContext(Email, token, true);
+                    SaveContext(Email, token, true, null);
                     await Navigator.PushProfileEditorPageAsync(Navigation, true);
                 }
             }
@@ -42,7 +42,9 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
             if (token != null)
             {
                 // save token and continue
-                SaveContext(Email, token, true);
+                SaveContext(Email, token, true, null);
+
+                var currentContext = GetContext();
 
                 var synchronizer = new Domain.Services.Sync.Synchronizer();
                 await synchronizer.SyncAllAndWait();
@@ -50,7 +52,6 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
                 var membersRealm = new Domain.Services.Realms.Members();
                 var profile = GetCurrentUser().Profile;
                 var member = membersRealm.Get(x => x.Profile == profile);
-                var currentContext = GetContext();
                 currentContext.SchoolName = member.School.Name;
                 SaveContext(currentContext);
 

@@ -15,7 +15,7 @@
   </StackLayout>
   <StackLayout Orientation="Horizontal">
     <Label Text="Start date: " FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-    <Label Text="{Binding ProfileModel.StartDate, Converter={x:StaticResource ToDateTime}}" VerticalTextAlignment="Center"></Label>
+    <Label Text="{Binding ProfileModel.StartDate, Converter={x:StaticResource ToDateTime}, StringFormat='{0:dddd, MMMM d, yyyy}'}" VerticalTextAlignment="Center"></Label>
   </StackLayout>
   <StackLayout Orientation="Horizontal">
     <Label Text="Rank: " FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
