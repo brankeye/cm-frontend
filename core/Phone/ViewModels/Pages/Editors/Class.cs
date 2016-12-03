@@ -38,6 +38,12 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
 
         private async void SaveClass()
         {
+            if (!IsValidInput())
+            {
+                DisplayAlert("Invalid input", "Cannot be empty.");
+                return;
+            }
+
             var classesRealm = new Domain.Services.Realms.Classes();
 
             await classesRealm.WriteAsync(realm =>
@@ -55,6 +61,15 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
             synchronizer.SyncPostsAndContinue();
 
             await Navigator.PopAsync(Navigation);
+        }
+
+        private bool IsValidInput()
+        {
+            if (string.IsNullOrWhiteSpace(ClassName))
+            {
+                return false;
+            }
+            return true;
         }
 
         private async void Cancel()

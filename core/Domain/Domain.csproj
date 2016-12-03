@@ -100,6 +100,8 @@
     <Compile Include="Utilities\Converters\ToDateTime.cs" />
     <Compile Include="Utilities\DynamicCollection.cs" />
     <Compile Include="Utilities\PropertyMapper.cs" />
+    <Compile Include="Utilities\Regex\Expressions.cs" />
+    <Compile Include="Utilities\Regex\Validator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="DotNetCross.Memory.Unsafe, Version=0.2.2.0, Culture=neutral, processorArchitecture=MSIL">

@@ -4,6 +4,7 @@
            x:Class="cm.frontend.core.Phone.Views.Pages.Login"
            xmlns:base="clr-namespace:cm.frontend.core.Phone.Views.Pages.Base;assembly=cm.frontend.core.Phone"
            xmlns:pages="clr-namespace:cm.frontend.core.Phone.ViewModels.Pages;assembly=cm.frontend.core.Phone"
+           xmlns:behaviors="clr-namespace:cm.frontend.core.Phone.Views.Behaviors;assembly=cm.frontend.core.Phone"
            x:TypeArguments="pages:Login"
            Title="Login">
   <ContentPage.Content>
@@ -13,13 +14,24 @@
         <Label Text="Rassler" FontAttributes="Bold" FontSize="Large" TextColor="#F2F2F2" VerticalTextAlignment="Center"></Label>
       </StackLayout>
       <Label Text="Welcome!" FontAttributes="Bold" FontSize="Medium" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
-      <Entry Text="{Binding Email, Mode=OneWayToSource}" Placeholder="Email"></Entry>
-      <Entry Text="{Binding Password, Mode=OneWayToSource}" Placeholder="Password" IsPassword="False"></Entry>
-      <StackLayout Orientation="Horizontal" Margin="5,0,0,0">
-        <Label Text="New user?"></Label>
-        <Switch x:Name="NewUserSwitch" IsToggled="{Binding IsNewUser}" Toggled="NewUserSwitch_OnToggled"></Switch>
+      <Entry Text="{Binding Email, Mode=OneWayToSource}" VerticalOptions="Center" Placeholder="Email">
+        <Entry.Behaviors>
+          <behaviors:EmailValidator IsValid="{Binding IsEmailValid, Mode=OneWayToSource}"></behaviors:EmailValidator>
+        </Entry.Behaviors>
+      </Entry>
+      <StackLayout Orientation="Horizontal">
+        <Entry Text="{Binding Password, Mode=OneWayToSource}" HorizontalOptions="FillAndExpand" VerticalOptions="Center" x:Name="PasswordEntry" Placeholder="Password" IsPassword="True">
+          <Entry.Behaviors>
+            <behaviors:PasswordValidator IsValid="{Binding IsPasswordValid, Mode=OneWayToSource}"></behaviors:PasswordValidator>
+          </Entry.Behaviors>
+        </Entry>
+        <Button Clicked="PasswordVisibility_OnClicked" Image="ic_visibility_off_white_24dp.png" VerticalOptions="Center" HorizontalOptions="End" WidthRequest="50"></Button>
       </StackLayout>
-      <Button x:Name="LoginRegisterButton" Text="Login" Command="{Binding ActionButtonCommand}" HorizontalOptions="End" BorderRadius="0"></Button>
+      <StackLayout Orientation="Horizontal" Margin="5,0,0,0">
+        <Label Text="New user?" VerticalTextAlignment="Center"></Label>
+        <Switch x:Name="NewUserSwitch" IsToggled="{Binding IsNewUser}" Toggled="NewUserSwitch_OnToggled" VerticalOptions="Center"></Switch>
+      </StackLayout>
+      <Button x:Name="LoginRegisterButton" Text="Login" Command="{Binding ActionButtonCommand}" HorizontalOptions="End" BorderRadius="0" VerticalOptions="Center"></Button>
     </StackLayout>
   </ContentPage.Content>
 </base:ContentCore>

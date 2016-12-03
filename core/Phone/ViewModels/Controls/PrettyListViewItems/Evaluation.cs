@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Linq;
 using cm.frontend.core.Domain.Extensions.NotifyPropertyChanged;
 
 namespace cm.frontend.core.Phone.ViewModels.Controls.PrettyListViewItems
@@ -11,7 +12,21 @@ namespace cm.frontend.core.Phone.ViewModels.Controls.PrettyListViewItems
             EvaluationModel = model;
             DateTime = new DateTimeOffset(EvaluationModel.Date.Year, EvaluationModel.Date.Month, EvaluationModel.Date.Day,
                                           EvaluationModel.Time.Hour, EvaluationModel.Time.Minute, EvaluationModel.Time.Second, TimeSpan.Zero);
+
+            var evalSectionsRealm = new Domain.Services.Realms.EvaluationSections();
+            var evalSections = evalSectionsRealm.GetAll(x => x.Evaluation == EvaluationModel).ToList();
+            foreach (var section in evalSections)
+            {
+                OverallScore += section.Score;
+            }
         }
+
+        public float OverallScore
+        {
+            get { return _overallScore; }
+            set { this.SetProperty(ref _overallScore, value, PropertyChanged); }
+        }
+        private float _overallScore;
 
         public DateTimeOffset DateTime
         {

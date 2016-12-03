@@ -10,6 +10,8 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
     {
         private async void LoginOrRegister()
         {
+            if (!Validate()) return;
+
             if (IsNewUser)
             {
                 await HandleRegister();
@@ -32,6 +34,10 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
                     SaveContext(Email, token, true, null);
                     await Navigator.PushProfileEditorPageAsync(Navigation, true);
                 }
+            }
+            else
+            {
+                DisplayAlert("Register failed", "Either existing user or server is down.");
             }
         }
 
@@ -58,6 +64,10 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
 
                 App.LaunchMasterDetailPage?.Invoke(this, EventArgs.Empty);
             }
+            else
+            {
+                DisplayAlert("Login failed", "Either wrong credentials or no such user.");
+            }
         }
 
         private async Task<bool> RegisterAccount()
@@ -71,7 +81,29 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
         {
             var tokenService = new Domain.Services.Rest.Security.Token();
             var token = await tokenService.PostAsync(Email, Password);
+            if (token == null) return null;
+            if (token.Access_Token == null)
+            {
+                token = null;
+            }
             return token;
+        }
+
+        private bool Validate()
+        {
+            if (!IsEmailValid)
+            {
+                DisplayAlert("Invalid email", "Must be formatted correctly, as in 'abc123@gmail.com', for example.");
+                return false;
+            }
+
+            if (!IsPasswordValid)
+            {
+                DisplayAlert("Invalid password", "Minimum 8 characters, 1 letter, 1 number, and 1 special character.");
+                return false;
+            }
+
+            return true;
         }
 
         public bool IsNewUser { get; set; }
@@ -79,6 +111,10 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
         public string Email { get; set; }
 
         public string Password { get; set; }
+
+        public bool IsEmailValid { get; set; }
+
+        public bool IsPasswordValid { get; set; }
 
         public ICommand ActionButtonCommand => _actionButtonCommand ?? (_actionButtonCommand = new Command(LoginOrRegister));
         private ICommand _actionButtonCommand;

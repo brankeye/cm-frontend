@@ -32,6 +32,8 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
 
         private async Task SaveExistingProfile()
         {
+            if (!Validate()) return;
+
             var profilesRealm = new Domain.Services.Realms.Profiles();
             var profileLocalId = GetCurrentUser().Profile.LocalId;
             await profilesRealm.WriteAsync(realm =>
@@ -50,6 +52,8 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
 
         private async Task SaveNewProfile()
         {
+            if (!Validate()) return;
+
             var currentContext = GetContext();
 
             // post profile
@@ -71,6 +75,29 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
             await Navigator.PushManagePageAsync(Navigation);
         }
 
+        private bool Validate()
+        {
+            if (!IsInputEmpty())
+            {
+                DisplayAlert("Invalid input", "Cannot be empty.");
+                return false;
+            }
+
+            if (!IsEmailValid)
+            {
+                DisplayAlert("Invalid email", "Must be formatted correctly, as in 'abc123@gmail.com', for example.");
+                return false;
+            }
+
+            if (!IsPhoneNumberValid)
+            {
+                DisplayAlert("Invalid phone number", "Must be of the form XXX-XXX-XXXX.");
+                return false;
+            }
+
+            return true;
+        }
+
         public override void OnAppearing()
         {
             if (!IsEditingNewProfile)
@@ -79,6 +106,17 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
                 var profile = GetCurrentUser().Profile;
                 mapper.Map<Domain.Models.Profile>(profile, ProfileModel);
             }
+        }
+
+        private bool IsInputEmpty()
+        {
+            if (string.IsNullOrWhiteSpace(ProfileModel.FirstName) ||
+                string.IsNullOrWhiteSpace(ProfileModel.LastName) ||
+                string.IsNullOrWhiteSpace(ProfileModel.Level))
+            {
+                return true;
+            }
+            return false;
         }
 
         private bool IsEditingNewProfile { get; set; }
@@ -136,6 +174,10 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
         {
             await Navigator.PopAsync(Navigation);
         }
+
+        public bool IsEmailValid { get; set; }
+
+        public bool IsPhoneNumberValid { get; set; }
 
         public Domain.Models.Profile ProfileModel
         {

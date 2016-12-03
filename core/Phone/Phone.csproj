@@ -70,6 +70,11 @@
     <Compile Include="ViewModels\Pages\Master.cs" />
     <Compile Include="ViewModels\Pages\MasterDetail.cs" />
     <Compile Include="ViewModels\Pages\Students.cs" />
+    <Compile Include="Views\Behaviors\PhoneNumberValidator.cs" />
+    <Compile Include="Views\Behaviors\DayValidator.cs" />
+    <Compile Include="Views\Behaviors\EmailValidator.cs" />
+    <Compile Include="Views\Behaviors\RegexValidator.cs" />
+    <Compile Include="Views\Behaviors\PasswordValidator.cs" />
     <Compile Include="Views\Controls\BindablePicker.xaml.cs">
       <DependentUpon>BindablePicker.xaml</DependentUpon>
     </Compile>

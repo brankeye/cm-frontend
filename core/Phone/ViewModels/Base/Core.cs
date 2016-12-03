@@ -1,4 +1,5 @@
-﻿using cm.frontend.core.Domain.Objects;
+﻿using System;
+using cm.frontend.core.Domain.Objects;
 using cm.frontend.core.Phone.Services;
 using Xamarin.Forms;
 
@@ -6,6 +7,9 @@ namespace cm.frontend.core.Phone.ViewModels.Base
 {
     public class Core
     {
+        public event EventHandler<AlertRaisedEventArgs> AlertRaised;
+        public event EventHandler<QuestionAlertRaisedEventArgs> QuestionAlertRaised;
+
         public virtual void OnAppearing()
         {
             
@@ -14,6 +18,16 @@ namespace cm.frontend.core.Phone.ViewModels.Base
         public virtual void OnDisappearing()
         {
 
+        }
+
+        public virtual void DisplayAlert(string title, string message)
+        {
+            AlertRaised?.Invoke(this, new AlertRaisedEventArgs(title, message, "Ok"));
+        }
+
+        public virtual void DisplayQuestionAlert(string title, string message, string accept, string cancel)
+        {
+            QuestionAlertRaised?.Invoke(this, new QuestionAlertRaisedEventArgs(title, message, accept, cancel));
         }
 
         public Context GetContext()
@@ -80,5 +94,31 @@ namespace cm.frontend.core.Phone.ViewModels.Base
         public INavigation Navigation { get; set; }
 
         protected Services.Navigator Navigator => new Navigator();
+    }
+
+    public class AlertRaisedEventArgs : EventArgs
+    {
+        public AlertRaisedEventArgs(object title, object message, object cancel)
+        {
+            Title = title;
+            Message = message;
+            Cancel = cancel;
+        }
+
+        public object Title { get; }
+
+        public object Message { get; }
+
+        public object Cancel { get; set; }
+    }
+
+    public class QuestionAlertRaisedEventArgs : AlertRaisedEventArgs
+    {
+        public QuestionAlertRaisedEventArgs(object title, object message, object accept, object cancel) : base(title, message, cancel)
+        {
+            Accept = accept;
+        }
+
+        public object Accept { get; }
     }
 }

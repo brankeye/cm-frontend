@@ -18,7 +18,7 @@ namespace cm.frontend.core.Domain.Services.Rest
         public virtual async Task<Domain.Models.School> GetAsync(string schoolName, string token = null)
         {
             var restUrl = BaseUri + "{0}";
-            var target = _targetApi + "/" + schoolName;
+            var target = TargetApi + "/" + schoolName;
             var uri = new Uri(string.Format(restUrl, target));
 
             Domain.Models.School model;

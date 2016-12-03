@@ -1,4 +1,6 @@
-﻿using Xamarin.Forms;
+﻿using System;
+using cm.frontend.core.Phone.ViewModels.Base;
+using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone.Views.Pages.Base
 {
@@ -12,6 +14,26 @@ namespace cm.frontend.core.Phone.Views.Pages.Base
         {
             BindingContext = new TViewModel();
             SetBinding(NavigationProperty, new Binding("Navigation"));
+
+            ViewModel.AlertRaised += ViewModel_OnAlertRaised;
+            ViewModel.QuestionAlertRaised += ViewModel_OnQuestionAlertRaised;
+        }
+
+        private void ViewModel_OnAlertRaised(object sender, AlertRaisedEventArgs alertRaisedEventArgs)
+        {
+            var title = (string) alertRaisedEventArgs.Title;
+            var message = (string) alertRaisedEventArgs.Message;
+            var cancel = (string) alertRaisedEventArgs.Cancel;
+            DisplayAlert(title, message, cancel);
+        }
+
+        private void ViewModel_OnQuestionAlertRaised(object sender, QuestionAlertRaisedEventArgs alertRaisedEventArgs)
+        {
+            var title = (string) alertRaisedEventArgs.Title;
+            var message = (string) alertRaisedEventArgs.Message;
+            var accept = (string) alertRaisedEventArgs.Accept;
+            var cancel = (string) alertRaisedEventArgs.Cancel;
+            DisplayAlert(title, message, accept, cancel);
         }
 
         protected override void OnAppearing()

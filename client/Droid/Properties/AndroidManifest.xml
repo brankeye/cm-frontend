@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.keyes.Rassler" android:versionCode="1" android:versionName="1.0" android:installLocation="auto">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" android:installLocation="auto" package="com.keyes.Rassler">
 	<uses-sdk android:targetSdkVersion="23" android:minSdkVersion="23" />
 	<application android:label="Rassler" android:icon="@drawable/ic_launcher"></application>
 </manifest>

@@ -33,6 +33,12 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
 
         private async void Save()
         {
+            if (!IsValidInput())
+            {
+                DisplayAlert("Invalid input", "Cannot be empty.");
+                return;
+            }
+
             var membersRealm = new Domain.Services.Realms.Members();
             await EvaluationsRealm.WriteAsync(realm =>
             {
@@ -49,6 +55,15 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
             synchronizer.SyncPostsAndContinue();
 
             await LeavePage();
+        }
+
+        private bool IsValidInput()
+        {
+            if (string.IsNullOrWhiteSpace(Name))
+            {
+                return false;
+            }
+            return true;
         }
 
         private async void Cancel()

@@ -82,6 +82,8 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
 
         private async void SaveSchool()
         {
+            if (!Validate()) return;
+
             if (IsEditingExistingSchool)
             {
                 await SaveExistingSchool();
@@ -148,6 +150,40 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
             return savedMember;
         }
 
+        private bool Validate()
+        {
+            if (!IsInputEmpty())
+            {
+                DisplayAlert("Invalid input", "Cannot be empty.");
+                return false;
+            }
+
+            if (!IsEmailValid)
+            {
+                DisplayAlert("Invalid email", "Must be formatted correctly, as in 'abc123@gmail.com', for example.");
+                return false;
+            }
+
+            if (!IsPhoneNumberValid)
+            {
+                DisplayAlert("Invalid phone number", "Must be of the form XXX-XXX-XXXX.");
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool IsInputEmpty()
+        {
+            if (string.IsNullOrWhiteSpace(SchoolModel.Name) ||
+                string.IsNullOrWhiteSpace(SchoolModel.Address) ||
+                string.IsNullOrWhiteSpace(SchoolModel.Website))
+            {
+                return true;
+            }
+            return false;
+        }
+
         private async void Cancel()
         {
             await Navigator.PopAsync(Navigation);
@@ -158,6 +194,10 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
         public bool IsManaging { get; set; }
 
         public string SchoolName { get; set; }
+
+        public bool IsEmailValid { get; set; }
+
+        public bool IsPhoneNumberValid { get; set; }
 
         public Domain.Models.School SchoolModel
         {

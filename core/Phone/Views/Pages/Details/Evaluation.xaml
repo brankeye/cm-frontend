@@ -32,6 +32,10 @@
             <Label Text="{Binding EvaluationModel.Name}" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
             <Label Text="{Binding EvaluationModel.Date, Converter={x:StaticResource ToDateTime}, StringFormat='{0:dddd, MMMM d, yyyy}'}" VerticalTextAlignment="Center"></Label>
             <Label Text="{Binding EvaluationModel.Time, Converter={x:StaticResource ToDateTime}, StringFormat='{0:h:mm tt}'}" VerticalTextAlignment="Center"></Label>
+            <StackLayout Orientation="Horizontal">
+              <Label Text="Overall score: " VerticalTextAlignment="Center"></Label>
+              <Label Text="{Binding OverallScore}"></Label>
+            </StackLayout>
             <StackLayout.GestureRecognizers>
               <TapGestureRecognizer></TapGestureRecognizer>
             </StackLayout.GestureRecognizers>

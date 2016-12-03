@@ -14,17 +14,17 @@ namespace cm.frontend.core.Domain.Services.Rest.Base
         where TModel : class
     {
         protected string BaseUri => "http://ec2-52-39-4-189.us-west-2.compute.amazonaws.com/api/";
-        protected readonly string _targetApi;
+        protected readonly string TargetApi;
 
         public Core(string targetApi)
         {
-            _targetApi = targetApi;
+            TargetApi = targetApi;
         }
 
         public virtual async Task<TModel> GetAsync(int id, string token = null)
         {
             var restUrl = BaseUri + "{0}";
-            var target = _targetApi + "/" + id;
+            var target = TargetApi + "/" + id;
             var uri = new Uri(string.Format(restUrl, target));
 
             TModel model;
@@ -59,7 +59,7 @@ namespace cm.frontend.core.Domain.Services.Rest.Base
         public virtual async Task<List<TModel>> GetAsync(string token = null)
         {
             var restUrl = BaseUri + "{0}";
-            var uri = new Uri(string.Format(restUrl, _targetApi));
+            var uri = new Uri(string.Format(restUrl, TargetApi));
 
             List<TModel> jsonValues;
             using (var httpClient = new HttpClient())
@@ -93,7 +93,7 @@ namespace cm.frontend.core.Domain.Services.Rest.Base
         public virtual async Task<HttpResponseMessage> PostAsync(TModel model, string token = null, string targetSection = "")
         {
             var restUrl = BaseUri + "{0}";
-            var target = _targetApi;
+            var target = TargetApi;
             if (string.IsNullOrEmpty(targetSection) == false)
             {
                 target += "/" + targetSection;
@@ -123,7 +123,7 @@ namespace cm.frontend.core.Domain.Services.Rest.Base
         public virtual async Task<HttpResponseMessage> DeleteAsync(int id)
         {
             var restUrl = BaseUri + "{0}/{1}";
-            var target = _targetApi + "/" + id;
+            var target = TargetApi + "/" + id;
             var uri = new Uri(string.Format(restUrl, target));
 
             HttpResponseMessage response = null;
