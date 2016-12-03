@@ -10,11 +10,10 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
 {
     public class Classes : ViewModels.Base.Core, INotifyPropertyChanged
     {
-        private Domain.Services.Realms.Classes ClassesRealm { get; set; }
+        private Domain.Services.Realms.Classes ClassesRealm { get; } = new Domain.Services.Realms.Classes();
 
         private void Initialize()
         {
-            ClassesRealm = new Domain.Services.Realms.Classes();
             var currentSchool = GetCurrentSchool();
             var classes = ClassesRealm.GetAll(x => x.School == currentSchool).ToList();
             var classesContainer = new List<ViewModels.Controls.PrettyListViewItems.Class>();

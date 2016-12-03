@@ -10,7 +10,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
 {
     public class StudentEvaluations : ViewModels.Base.Core, INotifyPropertyChanged
     {
-        private Domain.Services.Realms.Evaluations EvaluationsRealm { get; set; }
+        private Domain.Services.Realms.Evaluations EvaluationsRealm { get; } = new Domain.Services.Realms.Evaluations();
 
         public void Initialize(int profileLocalId)
         {
@@ -19,7 +19,6 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
 
         private void GetEvaluations()
         {
-            EvaluationsRealm = new Domain.Services.Realms.Evaluations();
             var profilesRealm = new Domain.Services.Realms.Profiles();
             ProfileModel = profilesRealm.Get(ProfileLocalId);
             var membersRealm = new Domain.Services.Realms.Members();

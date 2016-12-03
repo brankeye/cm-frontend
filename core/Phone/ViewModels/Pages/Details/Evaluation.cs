@@ -11,9 +11,9 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
 {
     public class Evaluation : ViewModels.Base.Core, INotifyPropertyChanged
     {
-        private Domain.Services.Realms.Evaluations EvaluationsRealm { get; set; }
+        private Domain.Services.Realms.Evaluations EvaluationsRealm { get; } = new Domain.Services.Realms.Evaluations();
 
-        private Domain.Services.Realms.EvaluationSections SectionsRealm { get; set; }
+        private Domain.Services.Realms.EvaluationSections SectionsRealm { get; } = new EvaluationSections();
 
         public void Initialize(int evalLocalId)
         {
@@ -22,10 +22,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
 
         public override void OnAppearing()
         {
-            EvaluationsRealm = new Domain.Services.Realms.Evaluations();
             EvaluationModel = EvaluationsRealm.Get(EvaluationLocalId);
-
-            SectionsRealm = new EvaluationSections();
             var sections = SectionsRealm.GetAll(x => x.Evaluation == EvaluationModel).ToList();
             var sectionsContainer = new List<ViewModels.Controls.PrettyListViewItems.EvaluationSection>();
             

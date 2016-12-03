@@ -34,12 +34,6 @@ namespace cm.frontend.core.Phone.Views.Pages.Details
             ViewModel.Initialize(evalLocalId);
         }
 
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            ViewModel.OnAppearing();
-        }
-
         private void Sections_OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var section = (ViewModels.Controls.PrettyListViewItems.EvaluationSection) e.SelectedItem;

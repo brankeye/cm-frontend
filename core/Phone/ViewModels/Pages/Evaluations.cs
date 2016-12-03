@@ -8,7 +8,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
 {
     public class Evaluations : ViewModels.Base.Core, INotifyPropertyChanged
     {
-        private Domain.Services.Realms.Evaluations EvaluationsRealm { get; set; }
+        private Domain.Services.Realms.Evaluations EvaluationsRealm { get; } = new Domain.Services.Realms.Evaluations();
 
         public void Initialize(int profileLocalId)
         {
@@ -17,7 +17,6 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
 
         private void GetEvaluations()
         {
-            EvaluationsRealm = new Domain.Services.Realms.Evaluations();
             var profileModel = GetCurrentUser().Profile;
             var membersRealm = new Domain.Services.Realms.Members();
             var memberModel = membersRealm.Get(x => x.Profile == profileModel);

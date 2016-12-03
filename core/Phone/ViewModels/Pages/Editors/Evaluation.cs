@@ -8,7 +8,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
 {
     public class Evaluation : ViewModels.Base.Core, INotifyPropertyChanged
     {
-        private Domain.Services.Realms.Evaluations EvaluationsRealm { get; set; }
+        private Domain.Services.Realms.Evaluations EvaluationsRealm { get; } = new Domain.Services.Realms.Evaluations();
 
         public void InitializeExisting(int evalLocalId)
         {
@@ -24,7 +24,6 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
 
         public override void OnAppearing()
         {
-            EvaluationsRealm = new Domain.Services.Realms.Evaluations();
             if (IsEditingExistingEvaluation)
             {
                 var eval = EvaluationsRealm.Get(EvaluationLocalId);

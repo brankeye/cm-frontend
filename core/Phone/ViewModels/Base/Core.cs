@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using cm.frontend.core.Domain.Objects;
+﻿using cm.frontend.core.Domain.Objects;
 using cm.frontend.core.Phone.Services;
 using Xamarin.Forms;
 

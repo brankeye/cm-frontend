@@ -3,7 +3,6 @@ using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using cm.frontend.core.Domain.Extensions.NotifyPropertyChanged;
-using cm.frontend.core.Domain.Models.Pocos;
 using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
@@ -24,12 +23,12 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
 
         public override void OnAppearing()
         {
-            SchoolModel = new SchoolPoco();
+            SchoolModel = new Domain.Models.School();
             if (IsEditingExistingSchool)
             {
                 var mapper = new Domain.Utilities.PropertyMapper();
                 var school = GetCurrentSchool();
-                mapper.Map(school, SchoolModel);
+                mapper.Map<Domain.Models.School>(school, SchoolModel);
             }
         }
 
@@ -71,7 +70,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
             {
                 var school = realm.Get(schoolLocalId);
                 var mapper = new Domain.Utilities.PropertyMapper();
-                mapper.Map(SchoolModel, school);
+                mapper.Map<Domain.Models.School>(SchoolModel, school);
                 school.Synced = false;
             });
 
@@ -98,7 +97,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
             var schoolsRestService = new Domain.Services.Rest.Schools();
             var mapper = new Domain.Utilities.PropertyMapper();
             var schoolObject = new Domain.Models.School();
-            mapper.Map(SchoolModel, schoolObject);
+            mapper.Map<Domain.Models.School>(SchoolModel, schoolObject);
             var httpResponse = await schoolsRestService.PostAsync(schoolObject, accessToken);
             var school = await schoolsRestService.ParseResponseItem(httpResponse);
             return school;
@@ -160,12 +159,12 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
 
         public string SchoolName { get; set; }
 
-        public Domain.Models.Pocos.SchoolPoco SchoolModel
+        public Domain.Models.School SchoolModel
         {
             get { return _schoolModel; }
             set { this.SetProperty(ref _schoolModel, value, PropertyChanged); }
         }
-        private Domain.Models.Pocos.SchoolPoco _schoolModel;
+        private Domain.Models.School _schoolModel;
 
         public ICommand SaveCommand => _saveCommand ?? (_saveCommand = new Command(SaveSchool));
         private ICommand _saveCommand;

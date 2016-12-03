@@ -13,11 +13,5 @@ namespace cm.frontend.core.Phone.Views.Pages.Details
         {
             ViewModel.Initialize(classLocalId, date);
         }
-
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            ViewModel.OnAppearing();
-        }
     }
 }

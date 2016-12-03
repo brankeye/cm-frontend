@@ -17,7 +17,7 @@ namespace cm.frontend.core.Phone.Views.Pages.Details
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            ViewModel.OnAppearing();
+
             var currentProfileLocalId = ViewModel.GetCurrentUser().Profile.LocalId;
             if (ToolbarItems.Count > 0) return;
             if (ViewModel.ProfileModel.LocalId == currentProfileLocalId)

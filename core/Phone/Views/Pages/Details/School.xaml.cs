@@ -19,11 +19,5 @@ namespace cm.frontend.core.Phone.Views.Pages.Details
                 ToolbarItems.Add(editToolbar);
             }
         }
-
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            ViewModel.OnAppearing();
-        }
     }
 }

@@ -1,12 +1,12 @@
 ﻿using System;
 using cm.frontend.core.Domain.Attributes;
 using cm.frontend.core.Domain.Interfaces;
-using PropertyChanged;
 using Realms;
+using System.ComponentModel;
 
 namespace cm.frontend.core.Domain.Models
 {
-    public class AttendanceRecord : RealmObject, ISyncableEntity
+    public class AttendanceRecord : RealmObject, ISyncableEntity, INotifyPropertyChanged
     {
         [Indexed]
         [IgnorePropertyMapping]
@@ -34,5 +34,7 @@ namespace cm.frontend.core.Domain.Models
         [Indexed]
         [IgnorePropertyMapping]
         public bool Synced { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

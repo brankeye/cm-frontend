@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
 using cm.frontend.core.Domain.Extensions.NotifyPropertyChanged;
+using cm.frontend.core.Domain.Services.Realms;
 using cm.frontend.core.Domain.Utilities;
 using Xamarin.Forms;
 
@@ -10,11 +11,10 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
 {
     public class Students : ViewModels.Base.Core, INotifyPropertyChanged
     {
-        private Domain.Services.Realms.Members MembersRealm { get; set; }
+        private Domain.Services.Realms.Members MembersRealm { get; } = new Members();
 
         private void Initialize()
         {
-            MembersRealm = new Domain.Services.Realms.Members();
             var currentSchool = GetCurrentSchool();
             var students = MembersRealm.GetAll(x => x.School == currentSchool).ToList();
             var studentsContainer = new List<ViewModels.Controls.PrettyListViewItems.Student>();

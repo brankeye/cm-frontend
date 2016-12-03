@@ -9,12 +9,6 @@ namespace cm.frontend.core.Phone.Views.Pages
             InitializeComponent();
         }
 
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            ViewModel.OnAppearing();
-        }
-
         private void ClassesListView_OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var classItem = (ViewModels.Controls.PrettyListViewItems.Class) e.SelectedItem;

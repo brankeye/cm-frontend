@@ -1,9 +1,7 @@
 ﻿using cm.frontend.core.Domain.Extensions.NotifyPropertyChanged;
 using System.ComponentModel;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using cm.frontend.core.Domain.Models.Pocos;
 using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
@@ -40,7 +38,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
             {
                 var profile = realm.Get(profileLocalId);
                 var mapper = new Domain.Utilities.PropertyMapper();
-                mapper.Map(ProfileModel, profile);
+                mapper.Map<Domain.Models.Profile>(ProfileModel, profile);
                 profile.Synced = false;
             });
 
@@ -79,7 +77,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
             {
                 var mapper = new Domain.Utilities.PropertyMapper();
                 var profile = GetCurrentUser().Profile;
-                mapper.Map(profile, ProfileModel);
+                mapper.Map<Domain.Models.Profile>(profile, ProfileModel);
             }
         }
 
@@ -88,10 +86,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
         private async Task<Domain.Models.Profile> PostProfile(string accessToken)
         {
             var profilesRestService = new Domain.Services.Rest.Profiles();
-            var mapper = new Domain.Utilities.PropertyMapper();
-            var prof = new Domain.Models.Profile();
-            mapper.Map(ProfileModel, prof);
-            var httpResponse = await profilesRestService.PostAsync(prof, accessToken);
+            var httpResponse = await profilesRestService.PostAsync(ProfileModel, accessToken);
             var profile = await profilesRestService.ParseResponseItem(httpResponse);
             return profile;
         }
@@ -142,12 +137,12 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
             await Navigator.PopAsync(Navigation);
         }
 
-        public ProfilePoco ProfileModel
+        public Domain.Models.Profile ProfileModel
         {
-            get { return _profileModel ?? (_profileModel = new ProfilePoco()); }
+            get { return _profileModel ?? (_profileModel = new Domain.Models.Profile()); }
             set { this.SetProperty(ref _profileModel, value, PropertyChanged); }
         }
-        private ProfilePoco _profileModel;
+        private Domain.Models.Profile _profileModel;
 
         public ICommand SaveCommand => _saveCommand ?? (_saveCommand = new Command(SaveProfile));
         private ICommand _saveCommand;

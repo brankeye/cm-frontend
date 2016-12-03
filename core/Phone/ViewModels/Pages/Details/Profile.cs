@@ -1,13 +1,14 @@
 ﻿using System.ComponentModel;
 using System.Windows.Input;
 using cm.frontend.core.Domain.Extensions.NotifyPropertyChanged;
+using cm.frontend.core.Domain.Services.Realms;
 using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone.ViewModels.Pages.Details
 {
     public class Profile : ViewModels.Base.Core, INotifyPropertyChanged
     {
-        private Domain.Services.Realms.Profiles ProfilesRealm { get; set; }
+        private Domain.Services.Realms.Profiles ProfilesRealm { get; } = new Profiles();
 
         public Profile()
         {
@@ -22,7 +23,6 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
 
         public override void OnAppearing()
         {
-            ProfilesRealm = new Domain.Services.Realms.Profiles();
             ProfileModel = ProfilesRealm.Get(ProfileId);
         }
 
@@ -36,7 +36,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
         public Domain.Models.Profile ProfileModel
         {
             get { return _profile; }
-            set { this.SetProperty(ref _profile, value, PropertyChanged); }
+            set { this.SetProperty(ref _profile, value, PropertyChanged, true); }
         }
         private Domain.Models.Profile _profile;
 

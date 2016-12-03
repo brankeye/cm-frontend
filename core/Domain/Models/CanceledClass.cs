@@ -1,12 +1,12 @@
 ﻿using System;
+using System.ComponentModel;
 using cm.frontend.core.Domain.Attributes;
 using cm.frontend.core.Domain.Interfaces;
-using PropertyChanged;
 using Realms;
 
 namespace cm.frontend.core.Domain.Models
 {
-    public class CanceledClass : RealmObject, ISyncableEntity
+    public class CanceledClass : RealmObject, ISyncableEntity, INotifyPropertyChanged
     {
         [Indexed]
         [IgnorePropertyMapping]
@@ -29,5 +29,7 @@ namespace cm.frontend.core.Domain.Models
         [Indexed]
         [IgnorePropertyMapping]
         public bool Synced { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

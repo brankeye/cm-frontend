@@ -1,17 +1,17 @@
 ﻿using System.ComponentModel;
 using System.Windows.Input;
 using cm.frontend.core.Domain.Extensions.NotifyPropertyChanged;
+using cm.frontend.core.Domain.Services.Realms;
 using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone.ViewModels.Pages.Details
 {
     public class School : ViewModels.Base.Core, INotifyPropertyChanged
     {
-        private Domain.Services.Realms.Members MembersRealm { get; set; }
+        private Domain.Services.Realms.Members MembersRealm { get; } = new Members();
 
         private void Initialize()
         {
-            MembersRealm = new Domain.Services.Realms.Members();
             var currentProfile = GetCurrentUser().Profile;
             SchoolModel = MembersRealm.Get(x => x.Profile == currentProfile).School;
             //var list = MembersRealm.GetAll();
@@ -37,14 +37,14 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
         public Domain.Models.School SchoolModel
         {
             get { return _school; }
-            set { this.SetProperty(ref _school, value, PropertyChanged); }
+            set { this.SetProperty(ref _school, value, PropertyChanged, true); }
         }
         private Domain.Models.School _school;
 
         public Domain.Models.Profile Teacher
         {
             get { return _teacher; }
-            set { this.SetProperty(ref _teacher, value, PropertyChanged); }
+            set { this.SetProperty(ref _teacher, value, PropertyChanged, true); }
         }
         private Domain.Models.Profile _teacher;
 

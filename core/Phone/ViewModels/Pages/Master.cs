@@ -12,7 +12,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
 {
     public class Master : ViewModels.Base.Core, INotifyPropertyChanged
     {
-        private Domain.Services.Realms.Profiles ProfilesRealm { get; set; }
+        private Domain.Services.Realms.Profiles ProfilesRealm { get; } = new Profiles();
 
         public Master()
         {
@@ -58,7 +58,6 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
 
         public override void OnAppearing()
         {
-            ProfilesRealm = new Profiles();
             ProfileModel = ProfilesRealm.Get(GetCurrentUser().Profile.LocalId);
             SelectedItem = ItemsList[0];
         }

@@ -12,12 +12,16 @@ namespace cm.frontend.core.Domain.Extensions.NotifyPropertyChanged
             ref T backingStore,
             T value,
             PropertyChangedEventHandler handler,
+            bool alwaysInvoke = false,
             [CallerMemberName]string propertyName = "",
             Action onChanged = null)
         {
-            if (EqualityComparer<T>.Default.Equals(backingStore, value))
-                return false;
-
+            if (!alwaysInvoke)
+            {
+                if (EqualityComparer<T>.Default.Equals(backingStore, value))
+                    return false;
+            }
+            
             backingStore = value;
 
             onChanged?.Invoke();

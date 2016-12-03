@@ -12,9 +12,9 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
 {
     public class CalendarClass : ViewModels.Base.Core, INotifyPropertyChanged
     {
-        private Domain.Services.Realms.Classes ClassesRealm { get; set; }
+        private Domain.Services.Realms.Classes ClassesRealm { get; } = new Domain.Services.Realms.Classes();
 
-        private Domain.Services.Realms.AttendanceRecords AttendanceRealm { get; set; }
+        private Domain.Services.Realms.AttendanceRecords AttendanceRealm { get; } = new AttendanceRecords();
 
         public CalendarClass()
         {
@@ -36,12 +36,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
 
         public override void OnAppearing()
         {
-            ClassesRealm = new Domain.Services.Realms.Classes();
             ClassModel = ClassesRealm.Get(ClassLocalId);
-            if (AttendanceRealm == null)
-            {
-                AttendanceRealm = new AttendanceRecords();
-            }
             GetAttendants();
             
             var currentProfile = GetCurrentUser().Profile;
@@ -97,11 +92,6 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
 
             // the user has decided to change their attendance, so we first have to check if
             // a record of their attendance exists for this particular class
-            if (AttendanceRealm == null)
-            {
-                AttendanceRealm = new AttendanceRecords();
-            }
-
             AttendanceModel = AttendanceRealm.GetRealmResults()
                                               .Where(x => x.Date == Date)
                                               .FirstOrDefault(x => x.Profile == currentProfile);
