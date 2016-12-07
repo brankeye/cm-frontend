@@ -1,13 +1,17 @@
 ﻿using System;
+using cm.frontend.core.Phone.Views.Pages.Base;
 using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone.Views.Pages
 {
     public partial class Login
     {
+        private Base.PageController<ViewModels.Pages.Login> PageController { get; }
+
         public Login()
         {
             InitializeComponent();
+            PageController = new PageController<ViewModels.Pages.Login>(this);
             NavigationPage.SetHasNavigationBar(this, false);
         }
 

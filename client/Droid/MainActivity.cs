@@ -1,6 +1,9 @@
-﻿using Android.App;
+﻿using System;
+using System.Reflection;
+using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using UXDivers.Gorilla;
 
 namespace cm.frontend.client.Droid
 {
@@ -34,9 +37,13 @@ namespace cm.frontend.client.Droid
             */
 
             // Always launch the phone app for now
-            Xamarin.Forms.Application app = new cm.frontend.core.Phone.App();
-
-            LoadApplication(app);
+#if GORILLA
+            var config = new Config("Good Gorilla");
+            config.RegisterAssemblyFromType<cm.frontend.core.Domain.Utilities.Converters.ToDateTime>();
+            LoadApplication(UXDivers.Gorilla.Droid.Player.CreateApplication(ApplicationContext, config));  
+#else
+            LoadApplication(new cm.frontend.core.Phone.App());
+#endif
         }
     }
 }

@@ -1,13 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<base:ContentCore xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-           xmlns:base="clr-namespace:cm.frontend.core.Phone.Views.Pages.Base;assembly=cm.frontend.core.Phone"
-           xmlns:pages="clr-namespace:cm.frontend.core.Phone.ViewModels.Pages.Details;assembly=cm.frontend.core.Phone"
-           x:TypeArguments="pages:Profile"
            xmlns:detailModules="clr-namespace:cm.frontend.core.Phone.Views.Modules.Details;assembly=cm.frontend.core.Phone"
            x:Class="cm.frontend.core.Phone.Views.Pages.Details.Profile"
            Title="Profile">
   <ContentPage.Content>
     <detailModules:Profile></detailModules:Profile>
   </ContentPage.Content>
-</base:ContentCore>
+</ContentPage>

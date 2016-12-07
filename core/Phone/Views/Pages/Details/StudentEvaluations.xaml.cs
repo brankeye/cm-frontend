@@ -1,16 +1,20 @@
-﻿using Xamarin.Forms;
+﻿using cm.frontend.core.Phone.Views.Pages.Base;
+using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone.Views.Pages.Details
 {
     public partial class StudentEvaluations
     {
+        private Base.PageController<ViewModels.Pages.Details.StudentEvaluations> PageController { get; }
+
         public StudentEvaluations()
         {
             InitializeComponent();
+            PageController = new PageController<ViewModels.Pages.Details.StudentEvaluations>(this);
             var header = (View) EvaluationsListView.Header;
             header.BindingContext = BindingContext;
             
-            if (ViewModel.IsTeacher())
+            if (PageController.ViewModel.IsTeacher())
             {
                 var editEvaluation = new ToolbarItem
                 {
@@ -25,13 +29,13 @@ namespace cm.frontend.core.Phone.Views.Pages.Details
 
         public void Initialize(int profileLocalId)
         {
-            ViewModel.Initialize(profileLocalId);
+            PageController.ViewModel.Initialize(profileLocalId);
         }
 
         private void Evaluations_OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var eval = (ViewModels.Controls.PrettyListViewItems.Evaluation)e.SelectedItem;
-            ViewModel.LaunchEvaluation(eval.EvaluationModel.LocalId);
+            PageController.ViewModel.LaunchEvaluation(eval.EvaluationModel.LocalId);
         }
     }
 }

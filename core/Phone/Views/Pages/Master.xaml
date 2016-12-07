@@ -1,11 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<base:ContentCore xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:cm.frontend.core.Phone.Views.Controls;assembly=cm.frontend.core.Phone"
-             xmlns:pages="clr-namespace:cm.frontend.core.Phone.ViewModels.Pages;assembly=cm.frontend.core.Phone"
-             xmlns:base="clr-namespace:cm.frontend.core.Phone.Views.Pages.Base;assembly=cm.frontend.core.Phone"
              x:Class="cm.frontend.core.Phone.Views.Pages.Master"
-             x:TypeArguments="pages:Master"
              Title="Manager"
              Icon="ic_menu_white.png">
   <ContentPage.Content>
@@ -31,4 +28,4 @@
       <Button Text="Signout" Command="{Binding SignoutCommand}" HorizontalOptions="FillAndExpand" VerticalOptions="End"></Button>
     </StackLayout>
   </ContentPage.Content>
-</base:ContentCore>
+</ContentPage>

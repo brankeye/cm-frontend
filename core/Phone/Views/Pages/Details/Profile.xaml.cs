@@ -1,26 +1,30 @@
-﻿using Xamarin.Forms;
+﻿using cm.frontend.core.Phone.Views.Pages.Base;
+using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone.Views.Pages.Details
 {
     public partial class Profile
     {
+        private Base.PageController<ViewModels.Pages.Details.Profile> PageController { get; }
+
         public Profile()
         {
             InitializeComponent();
+            PageController = new PageController<ViewModels.Pages.Details.Profile>(this);
         }
 
         public void Initialize(int profileLocalId)
         {
-            ViewModel.Initialize(profileLocalId);
+            PageController.ViewModel.Initialize(profileLocalId);
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
 
-            var currentProfileLocalId = ViewModel.GetCurrentUser().Profile.LocalId;
+            var currentProfileLocalId = PageController.ViewModel.GetCurrentUser().Profile.LocalId;
             if (ToolbarItems.Count > 0) return;
-            if (ViewModel.ProfileModel.LocalId == currentProfileLocalId)
+            if (PageController.ViewModel.ProfileModel.LocalId == currentProfileLocalId)
             {
                 var profileEditButton = new ToolbarItem
                 {

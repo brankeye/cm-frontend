@@ -1,12 +1,16 @@
-﻿using Xamarin.Forms;
+﻿using cm.frontend.core.Phone.Views.Pages.Base;
+using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone.Views.Pages
 {
     public partial class Students
     {
+        private Base.PageController<ViewModels.Pages.Students> PageController { get; }
+
         public Students()
         {
             InitializeComponent();
+            PageController = new PageController<ViewModels.Pages.Students>(this);
 
             // TODO: Add student to club
             /*
@@ -19,7 +23,7 @@ namespace cm.frontend.core.Phone.Views.Pages
         private void StudentsListView_OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var student = (ViewModels.Controls.PrettyListViewItems.Student) e.SelectedItem;
-            ViewModel.StudentSelected(student.StudentModel.LocalId);
+            PageController.ViewModel.StudentSelected(student.StudentModel.LocalId);
         }
     }
 }

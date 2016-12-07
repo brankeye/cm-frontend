@@ -1,4 +1,5 @@
 ﻿using System;
+using cm.frontend.core.Phone.Views.Pages.Base;
 using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone.Views.Pages
@@ -7,9 +8,12 @@ namespace cm.frontend.core.Phone.Views.Pages
     {
         public event EventHandler ProfileTapped;
 
+        private Base.PageController<ViewModels.Pages.Master> PageController { get; }
+
         public Master()
         {
             InitializeComponent();
+            PageController = new PageController<ViewModels.Pages.Master>(this);
         }
 
         public ListView MasterListView => ItemsListView;

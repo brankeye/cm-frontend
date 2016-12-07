@@ -158,13 +158,15 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
                 return false;
             }
 
-            if (!IsEmailValid)
+            var isEmailValid = Domain.Utilities.Regex.Validator.IsEmailValid(SchoolModel.Email);
+            if (!isEmailValid)
             {
                 DisplayAlert("Invalid email", "Must be formatted correctly, as in 'abc123@gmail.com', for example.");
                 return false;
             }
 
-            if (!IsPhoneNumberValid)
+            var isPhoneNumberValid = Domain.Utilities.Regex.Validator.IsPhoneNumberValid(SchoolModel.PhoneNumber);
+            if (!isPhoneNumberValid)
             {
                 DisplayAlert("Invalid phone number", "Must be of the form XXX-XXX-XXXX.");
                 return false;
@@ -194,10 +196,6 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
         public bool IsManaging { get; set; }
 
         public string SchoolName { get; set; }
-
-        public bool IsEmailValid { get; set; }
-
-        public bool IsPhoneNumberValid { get; set; }
 
         public Domain.Models.School SchoolModel
         {

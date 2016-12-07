@@ -1,14 +1,19 @@
 ﻿using System;
 using cm.frontend.core.Phone.ViewModels.Controls.PrettyListViewItems;
+using cm.frontend.core.Phone.Views.Pages.Base;
 using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone.Views.Pages
 {
     public partial class MasterDetail
     {
+        private Base.PageController<ViewModels.Pages.MasterDetail> PageController { get; }
+
         public MasterDetail()
         {
             InitializeComponent();
+            PageController = new PageController<ViewModels.Pages.MasterDetail>(this);
+
             var masterPage = new Views.Pages.Master();
             Master = masterPage;
             Detail = new NavigationPage(new Views.Pages.Calendar());

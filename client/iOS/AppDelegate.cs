@@ -1,5 +1,6 @@
 ﻿using Foundation;
 using UIKit;
+using UXDivers.Gorilla;
 
 namespace cm.frontend.client.iOS
 {
@@ -38,9 +39,11 @@ namespace cm.frontend.client.iOS
             */
 
             // Always launch the phone app for now
-            Xamarin.Forms.Application formsApp = new cm.frontend.core.Phone.App();
-
-            LoadApplication(formsApp);
+            #if GORILLA
+                LoadApplication(UXDivers.Gorilla.iOS.Player.CreateApplication(new Config("Good Gorilla")));
+            #else
+                LoadApplication(new cm.frontend.core.Phone.App());
+            #endif
 
             return base.FinishedLaunching(app, options);
         }

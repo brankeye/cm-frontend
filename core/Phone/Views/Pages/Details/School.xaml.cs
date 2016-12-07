@@ -1,14 +1,18 @@
-﻿using Xamarin.Forms;
+﻿using cm.frontend.core.Phone.Views.Pages.Base;
+using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone.Views.Pages.Details
 {
     public partial class School
     {
+        private Base.PageController<ViewModels.Pages.Details.School> PageController { get; }
+
         public School()
         {
             InitializeComponent();
+            PageController = new PageController<ViewModels.Pages.Details.School>(this);
 
-            if (ViewModel.UserIsTeacher())
+            if (PageController.ViewModel.UserIsTeacher())
             {
                 var editToolbar = new ToolbarItem()
                 {

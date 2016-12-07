@@ -83,13 +83,15 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
                 return false;
             }
 
-            if (!IsEmailValid)
+            var isEmailValid = Domain.Utilities.Regex.Validator.IsEmailValid(ProfileModel.Email);
+            if (!isEmailValid)
             {
                 DisplayAlert("Invalid email", "Must be formatted correctly, as in 'abc123@gmail.com', for example.");
                 return false;
             }
 
-            if (!IsPhoneNumberValid)
+            var isPhoneNumberValid = Domain.Utilities.Regex.Validator.IsEmailValid(ProfileModel.PhoneNumber);
+            if (!isPhoneNumberValid)
             {
                 DisplayAlert("Invalid phone number", "Must be of the form XXX-XXX-XXXX.");
                 return false;
@@ -174,10 +176,6 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
         {
             await Navigator.PopAsync(Navigation);
         }
-
-        public bool IsEmailValid { get; set; }
-
-        public bool IsPhoneNumberValid { get; set; }
 
         public Domain.Models.Profile ProfileModel
         {
