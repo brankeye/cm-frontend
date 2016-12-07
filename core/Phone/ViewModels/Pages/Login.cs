@@ -92,15 +92,13 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
 
         private bool Validate()
         {
-            var isEmailValid = Domain.Utilities.Regex.Validator.IsEmailValid(Email);
-            if (!isEmailValid)
+            if (!IsEmailValid)
             {
                 DisplayAlert("Invalid email", "Must be formatted correctly, as in 'abc123@gmail.com', for example.");
                 return false;
             }
-
-            var isPasswordValid = Domain.Utilities.Regex.Validator.IsPasswordValid(Password);
-            if (!isPasswordValid)
+            
+            if (!IsPasswordValid)
             {
                 DisplayAlert("Invalid password", "Minimum 8 characters, 1 upper case, 1 number, and 1 special character.");
                 return false;
@@ -114,6 +112,10 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
         public string Email { get; set; }
 
         public string Password { get; set; }
+
+        public bool IsEmailValid { get; set; }
+
+        public bool IsPasswordValid { get; set; }
 
         public ICommand ActionButtonCommand => _actionButtonCommand ?? (_actionButtonCommand = new Command(LoginOrRegister));
         private ICommand _actionButtonCommand;

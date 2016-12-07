@@ -8,14 +8,8 @@ namespace cm.frontend.core.Phone.Views.Behaviors
     {
         private string _regex;
 
-        private static readonly BindablePropertyKey IsValidPropertyKey = BindableProperty.CreateReadOnly("IsValid", typeof(bool), typeof(RegexValidator), false, propertyChanged: IsValidChanged);
+        private static readonly BindablePropertyKey IsValidPropertyKey = BindableProperty.CreateReadOnly("IsValid", typeof(bool), typeof(RegexValidator), false);
         public static readonly BindableProperty IsValidProperty = IsValidPropertyKey.BindableProperty;
-
-        private static void IsValidChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            var validator = (RegexValidator) bindable;
-            validator.IsValid = (bool) newValue;
-        }
 
         protected RegexValidator(string regex)
         {
@@ -24,7 +18,7 @@ namespace cm.frontend.core.Phone.Views.Behaviors
 
         public bool IsValid
         {
-            get { return (bool)GetValue(IsValidProperty); }
+            get { return (bool) GetValue(IsValidProperty); }
             private set { SetValue(IsValidPropertyKey, value); }
         }
 
@@ -32,6 +26,12 @@ namespace cm.frontend.core.Phone.Views.Behaviors
         {
             base.OnAttachedTo(bindable);
             bindable.TextChanged += HandleTextChanged;
+            bindable.BindingContextChanged += Bindable_OnBindingContextChanged;
+        }
+
+        private void Bindable_OnBindingContextChanged(object sender, EventArgs eventArgs)
+        {
+            var bindable = (Entry) sender;
             BindingContext = bindable.BindingContext;
         }
 
@@ -45,7 +45,7 @@ namespace cm.frontend.core.Phone.Views.Behaviors
         {
             base.OnDetachingFrom(bindable);
             bindable.TextChanged -= HandleTextChanged;
-            bindable.BindingContext = null;
+            BindingContext = null;
         }
     }
 }
