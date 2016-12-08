@@ -38,8 +38,13 @@ namespace cm.frontend.client.Droid
 
             // Always launch the phone app for now
 #if GORILLA
-            var config = new Config("Good Gorilla");
+            var config = new Config("Gorilla on DESKTOP-70FV0JQ");
+            config.RegisterAssemblyFromType<Xamarin.Forms.IValueConverter>();
             config.RegisterAssemblyFromType<cm.frontend.core.Domain.Utilities.Converters.ToDateTime>();
+            config.RegisterAssemblyFromType<cm.frontend.core.Phone.Views.Behaviors.RegexValidator>();
+            config.RegisterAssemblyFromType<cm.frontend.core.Phone.Views.Behaviors.EmailValidator>();
+            config.RegisterAssemblyFromType<cm.frontend.core.Phone.Views.Behaviors.PasswordValidator>();
+            config.RegisterAssemblyFromType<cm.frontend.core.Phone.Views.Behaviors.PhoneNumberValidator>();
             LoadApplication(UXDivers.Gorilla.Droid.Player.CreateApplication(ApplicationContext, config));  
 #else
             LoadApplication(new cm.frontend.core.Phone.App());
