@@ -13,6 +13,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
         public void Initialize(int profileLocalId)
         {
             ProfileLocalId = profileLocalId;
+            GetEvaluations();
         }
 
         private void GetEvaluations()
@@ -28,11 +29,6 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
             }
             EvaluationsList.Clear();
             EvaluationsList.AddRange(evalsContainer);
-        }
-
-        public override void OnAppearing()
-        {
-            GetEvaluations();
         }
 
         public async void LaunchEvaluation(int evalLocalId)

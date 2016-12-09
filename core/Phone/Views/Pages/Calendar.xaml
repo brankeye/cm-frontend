@@ -13,10 +13,10 @@
             <ViewCell>
               <StackLayout Padding="15,8,15,8">
                 <StackLayout Orientation="Horizontal">
-                  <Label Text="{Binding ClassModel.Name}" VerticalTextAlignment="Center" TextColor="#80CBC4"></Label>
-                  <Label Text="(Canceled)" VerticalTextAlignment="Center" TextColor="#80CBC4" IsVisible="{Binding IsCanceled}"></Label>
+                  <Label Text="{Binding ClassModel.Name}" Style="{DynamicResource PrimaryTextStyle}"></Label>
+                  <Label Text="(Canceled)" IsVisible="{Binding IsCanceled}" Style="{DynamicResource PrimaryTextStyle}"></Label>
                 </StackLayout>
-                <Label Text="{Binding Date, Converter={x:StaticResource ToDateTime}, StringFormat='{0:dddd, MMMM d, yyyy}'}" VerticalTextAlignment="Center"></Label>
+                <Label Text="{Binding Date, Converter={x:StaticResource ToDateTime}, StringFormat='{0:dddd, MMMM d, yyyy}'}" Style="{DynamicResource SecondaryTextStyle}"></Label>
               </StackLayout>
             </ViewCell>
           </DataTemplate>

@@ -32,21 +32,26 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
         {
             ClassLocalId = classLocalId;
             Date = date.UtcDateTime.Date;
+            RefreshData();
         }
 
-        public override void OnAppearing()
+        public override void RefreshData()
         {
             ClassModel = ClassesRealm.Get(ClassLocalId);
-            GetAttendants();
-            
-            var currentProfile = GetCurrentUser().Profile;
 
+            var currentProfile = GetCurrentUser().Profile;
             AttendanceModel = AttendanceRealm.GetRealmResults()
                                               .Where(x => x.Date == Date)
                                               .FirstOrDefault(x => x.Profile == currentProfile);
 
             var canceledRealm = new Domain.Services.Realms.CanceledClasses();
             CanceledModel = canceledRealm.GetRealmResults().Where(x => x.Class == ClassModel).FirstOrDefault(x => x.Date == Date);
+
+            GetAttendants();
+        }
+
+        public override void OnAppearing()
+        {
             if (CanceledModel != null) IsCanceled = CanceledModel.IsCanceled;
         }
 
@@ -70,16 +75,19 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
             CanceledModel = canceledRealm.GetRealmResults().Where(x => x.Class == ClassModel).FirstOrDefault(x => x.Date == Date);
 
             var recordExists = CanceledModel != null;
-            var canceledLocalId = CanceledModel.LocalId;
-            await canceledRealm.WriteAsync(realm =>
+            if (CanceledModel != null)
             {
-                var record = recordExists ? realm.Get(canceledLocalId) : realm.CreateObject();
-                record.Date = Date.UtcDateTime.Date;
-                record.IsCanceled = IsCanceled;
-                realm.Manage(record);
-                record.Class = ClassModel;
-                record.Synced = false;
-            });
+                var canceledLocalId = CanceledModel.LocalId;
+                await canceledRealm.WriteAsync(realm =>
+                {
+                    var record = recordExists ? realm.Get(canceledLocalId) : realm.CreateObject();
+                    record.Date = Date.UtcDateTime.Date;
+                    record.IsCanceled = IsCanceled;
+                    realm.Manage(record);
+                    record.Class = ClassModel;
+                    record.Synced = false;
+                });
+            }
 
             var synchronizer = new Domain.Services.Sync.Synchronizer();
             synchronizer.SyncPostsAndContinue();

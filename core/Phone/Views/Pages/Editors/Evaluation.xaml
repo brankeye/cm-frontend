@@ -4,7 +4,7 @@
            x:Class="cm.frontend.core.Phone.Views.Pages.Editors.Evaluation"
            Title="Evaluation editor">
   <StackLayout Padding="15">
-    <Label Text="Evaluation name" VerticalOptions="Center" />
+    <Label Text="Evaluation name" Style="{DynamicResource PrimaryTextStyle}" />
     <Entry Text="{Binding Name, Mode=TwoWay}" VerticalOptions="Center"></Entry>
     <StackLayout Orientation="Horizontal">
       <Button Text="Cancel" Command="{Binding CancelCommand}" VerticalOptions="Center"></Button>

@@ -6,15 +6,15 @@
   <ContentPage.Content>
     <StackLayout Padding="15">
       <StackLayout Orientation="Horizontal">
-        <Label Text="Section name" FontSize="Medium" VerticalTextAlignment="Center"></Label>
+        <Label Text="Section name" Style="{DynamicResource PrimaryTextStyle}"></Label>
         <Entry Text="{Binding Name, Mode=TwoWay}" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
       </StackLayout>
       <StackLayout Orientation="Horizontal">
-        <Label Text="Score" FontSize="Medium" VerticalTextAlignment="Center"></Label>
+        <Label Text="Score" Style="{DynamicResource PrimaryTextStyle}"></Label>
         <Entry Text="{Binding Score, Mode=TwoWay}" Keyboard="Numeric" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
       </StackLayout>
       <StackLayout Orientation="Horizontal">
-        <Label Text="Body" FontSize="Medium" VerticalTextAlignment="Center"></Label>
+        <Label Text="Body" Style="{DynamicResource PrimaryTextStyle}"></Label>
         <Entry Text="{Binding Body, Mode=TwoWay}" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
       </StackLayout>
       <StackLayout Orientation="Horizontal">

@@ -18,15 +18,17 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
         public void Initialize(int evalLocalId)
         {
             EvaluationLocalId = evalLocalId;
+            RefreshData();
         }
 
-        public override void OnAppearing()
+        public override void RefreshData()
         {
             EvaluationModel = EvaluationsRealm.Get(EvaluationLocalId);
+
             var sections = SectionsRealm.GetAll(x => x.Evaluation == EvaluationModel).ToList();
             var sectionsContainer = new List<ViewModels.Controls.PrettyListViewItems.EvaluationSection>();
-            
-            foreach(var sec in sections)
+
+            foreach (var sec in sections)
             {
                 sectionsContainer.Add(new ViewModels.Controls.PrettyListViewItems.EvaluationSection(sec));
             }

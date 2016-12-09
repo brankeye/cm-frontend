@@ -11,8 +11,8 @@
         <DataTemplate>
           <ViewCell>
             <StackLayout Padding="15,8,15,8">
-              <Label Text="{Binding EvaluationModel.Name}" VerticalTextAlignment="Center" TextColor="#80CBC4"></Label>
-              <Label Text="{Binding DateTime, Converter={x:StaticResource ToDateTime}, StringFormat='{0:dddd, MMMM d, yyyy}'}" VerticalTextAlignment="Center"></Label>
+              <Label Text="{Binding EvaluationModel.Name}" Style="{DynamicResource PrimaryTextStyle}"></Label>
+              <Label Text="{Binding DateTime, Converter={x:StaticResource ToDateTime}, StringFormat='{0:dddd, MMMM d, yyyy}'}" Style="{DynamicResource SecondaryTextStyle}"></Label>
             </StackLayout>
           </ViewCell>
         </DataTemplate>

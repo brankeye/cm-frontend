@@ -9,11 +9,11 @@
       <controls:PrettyListView.ItemTemplate>
         <DataTemplate>
           <ViewCell>
-          <StackLayout Padding="15,8,15,8">
-            <Label Text="{Binding ClassModel.Name}" VerticalTextAlignment="Center" TextColor="#80CBC4"></Label>
-            <Label Text="{Binding DayAndTime}" VerticalTextAlignment="Center"></Label>
-          </StackLayout>
-        </ViewCell>
+            <StackLayout Padding="15,8,15,8">
+              <Label Text="{Binding ClassModel.Name}" Style="{DynamicResource PrimaryTextStyle}"></Label>
+              <Label Text="{Binding DayAndTime}" Style="{DynamicResource SecondaryTextStyle}"></Label>
+            </StackLayout>
+          </ViewCell>
         </DataTemplate>
       </controls:PrettyListView.ItemTemplate>
     </controls:PrettyListView>

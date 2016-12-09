@@ -5,18 +5,18 @@
            Title="Schedule class">
   <ContentPage.Content>
     <StackLayout Padding="15">
-      <Label Text="{Binding ClassModel.Name}" FontAttributes="Bold" FontSize="Medium" VerticalTextAlignment="Center"></Label>
+      <Label Text="{Binding ClassModel.Name}" Style="{DynamicResource LargePrimaryHeaderStyle}"></Label>
       <StackLayout Orientation="Horizontal">
-        <Label Text="Day: " FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-        <Label Text="{Binding ClassModel.Day}" VerticalTextAlignment="Center"></Label>
+        <Label Text="Day: " Style="{DynamicResource PrimaryHeaderStyle}"></Label>
+        <Label Text="{Binding ClassModel.Day}" Style="{DynamicResource PrimaryTextStyle}"></Label>
       </StackLayout>
       <StackLayout Orientation="Horizontal">
-        <Label Text="Start time: " FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-        <Label Text="{Binding ClassModel.StartTime, StringFormat='{0:h:mm tt}'}" VerticalTextAlignment="Center"></Label>
+        <Label Text="Start time: " Style="{DynamicResource PrimaryHeaderStyle}"></Label>
+        <Label Text="{Binding ClassModel.StartTime, StringFormat='{0:h:mm tt}'}" Style="{DynamicResource PrimaryTextStyle}"></Label>
       </StackLayout>
       <StackLayout Orientation="Horizontal">
-        <Label Text="End time: " FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-        <Label Text="{Binding ClassModel.EndTime, StringFormat='{0:h:mm tt}'}" VerticalTextAlignment="Center"></Label>
+        <Label Text="End time: " Style="{DynamicResource PrimaryHeaderStyle}"></Label>
+        <Label Text="{Binding ClassModel.EndTime, StringFormat='{0:h:mm tt}'}" Style="{DynamicResource PrimaryTextStyle}"></Label>
       </StackLayout>
     </StackLayout>
   </ContentPage.Content>

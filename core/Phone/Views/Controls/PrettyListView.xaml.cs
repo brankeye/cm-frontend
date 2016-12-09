@@ -3,7 +3,7 @@ using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone.Views.Controls
 {
-    public partial class PrettyListView : ListView
+    public partial class PrettyListView
     {
         public static readonly BindableProperty SelectedColorProperty = BindableProperty.Create(nameof(SelectedColorProperty), typeof(Color), typeof(PrettyListView), Color.Default);
         public static readonly BindableProperty QuickSelectProperty = BindableProperty.Create(nameof(SelectedColorProperty), typeof(bool), typeof(PrettyListView), false);
@@ -21,19 +21,13 @@ namespace cm.frontend.core.Phone.Views.Controls
 
         private void OnItemSelected(object sender, SelectedItemChangedEventArgs selectedItemChangedEventArgs)
         {
-            var selectedItem = selectedItemChangedEventArgs.SelectedItem;
-
             if (_lastSelectedItem != null)
             {
                 _lastSelectedItem.SelectedColor = Color.Default;
                 _lastSelectedItem = null;
             }
 
-            _lastSelectedItem = selectedItem as ViewModels.Controls.PrettyListViewItems.Base.Core;
-            if (_lastSelectedItem != null)
-            {
-                _lastSelectedItem.SelectedColor = SelectedColor;
-            }
+            _lastSelectedItem = selectedItemChangedEventArgs.SelectedItem as ViewModels.Controls.PrettyListViewItems.Base.Core;
 
             var listView = (PrettyListView)sender;
             if (listView.QuickSelect)
@@ -46,6 +40,12 @@ namespace cm.frontend.core.Phone.Views.Controls
         {
             if (selectedItemChangedEventArgs.SelectedItem != null)
             {
+                var selectedItem = selectedItemChangedEventArgs.SelectedItem as ViewModels.Controls.PrettyListViewItems.Base.Core;
+                if (selectedItem != null)
+                {
+                    selectedItem.SelectedColor = SelectedColor;
+                }
+
                 ItemSelected?.Invoke(sender, selectedItemChangedEventArgs);
             }
         }

@@ -5,26 +5,26 @@
            Title="School">
   <ContentPage.Content>
     <StackLayout Padding="15">
-      <Label Text="{Binding SchoolModel.Name}" FontSize="Medium" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
+      <Label Text="{Binding SchoolModel.Name}" Style="{DynamicResource LargePrimaryHeaderStyle}"></Label>
       <StackLayout Orientation="Horizontal">
-        <Label Text="Teacher name: " FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-        <Label Text="{Binding Teacher.FullName}" VerticalTextAlignment="Center"></Label>
+        <Label Text="Teacher name: " Style="{DynamicResource PrimaryHeaderStyle}"></Label>
+        <Label Text="{Binding Teacher.FullName}" Style="{DynamicResource PrimaryTextStyle}"></Label>
       </StackLayout>
       <StackLayout Orientation="Horizontal">
-        <Label Text="Address: " FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-        <Label Text="{Binding SchoolModel.Address}" VerticalTextAlignment="Center"></Label>
+        <Label Text="Address: " Style="{DynamicResource PrimaryHeaderStyle}"></Label>
+        <Label Text="{Binding SchoolModel.Address}" Style="{DynamicResource PrimaryTextStyle}"></Label>
       </StackLayout>
       <StackLayout Orientation="Horizontal">
-        <Label Text="Email: " FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-        <Label Text="{Binding SchoolModel.Email}" VerticalTextAlignment="Center"></Label>
+        <Label Text="Email: " Style="{DynamicResource PrimaryHeaderStyle}"></Label>
+        <Label Text="{Binding SchoolModel.Email}" Style="{DynamicResource PrimaryTextStyle}"></Label>
       </StackLayout>
       <StackLayout Orientation="Horizontal">
-        <Label Text="Phone number: " FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-        <Label Text="{Binding SchoolModel.PhoneNumber}" VerticalTextAlignment="Center"></Label>
+        <Label Text="Phone number: " Style="{DynamicResource PrimaryHeaderStyle}"></Label>
+        <Label Text="{Binding SchoolModel.PhoneNumber}" Style="{DynamicResource PrimaryTextStyle}"></Label>
       </StackLayout>
       <StackLayout Orientation="Horizontal">
-        <Label Text="Website: " FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-        <Label Text="{Binding SchoolModel.Website}" VerticalTextAlignment="Center"></Label>
+        <Label Text="Website: " Style="{DynamicResource PrimaryHeaderStyle}"></Label>
+        <Label Text="{Binding SchoolModel.Website}" Style="{DynamicResource PrimaryTextStyle}"></Label>
       </StackLayout>
     </StackLayout>
   </ContentPage.Content>

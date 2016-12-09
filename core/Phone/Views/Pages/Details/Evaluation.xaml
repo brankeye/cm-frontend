@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-           xmlns:converters="clr-namespace:cm.frontend.core.Domain.Utilities.Converters;assembly=cm.frontend.core.Domain"
            xmlns:controls="clr-namespace:cm.frontend.core.Phone.Views.Controls;assembly=cm.frontend.core.Phone"
            x:Class="cm.frontend.core.Phone.Views.Pages.Details.Evaluation"
            Title="Evaluation">
@@ -12,13 +11,13 @@
           <ViewCell>
             <StackLayout Padding="15,8,15,8">
               <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                <Label Text="{Binding SectionModel.Name}" VerticalTextAlignment="Center" TextColor="#80CBC4"></Label>
+                <Label Text="{Binding SectionModel.Name}" Style="{DynamicResource PrimaryTextStyle}"></Label>
                 <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
-                  <Label Text="Score: " TextColor="#80CBC4" VerticalTextAlignment="Center"></Label>
-                  <Label Text="{Binding SectionModel.Score}" TextColor="#80CBC4" VerticalTextAlignment="Center"></Label>
+                  <Label Text="Score: " Style="{DynamicResource PrimaryTextStyle}"></Label>
+                  <Label Text="{Binding SectionModel.Score}" Style="{DynamicResource PrimaryTextStyle}"></Label>
                 </StackLayout>
               </StackLayout>
-              <Label Text="{Binding SectionModel.Body}"></Label>
+              <Label Text="{Binding SectionModel.Body}" Style="{DynamicResource SecondaryTextStyle}"></Label>
             </StackLayout>
           </ViewCell>
         </DataTemplate>
@@ -26,12 +25,12 @@
       <controls:PrettyListView.HeaderTemplate>
         <DataTemplate>
           <StackLayout Padding="15" BackgroundColor="#4D4D4D">
-            <Label Text="{Binding EvaluationModel.Name}" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-            <Label Text="{Binding EvaluationModel.Date, Converter={x:StaticResource ToDateTime}, StringFormat='{0:dddd, MMMM d, yyyy}'}" VerticalTextAlignment="Center"></Label>
-            <Label Text="{Binding EvaluationModel.Time, Converter={x:StaticResource ToDateTime}, StringFormat='{0:h:mm tt}'}" VerticalTextAlignment="Center"></Label>
+            <Label Text="{Binding EvaluationModel.Name}" Style="{DynamicResource PrimaryHeaderStyle}"></Label>
+            <Label Text="{Binding EvaluationModel.Date, Converter={StaticResource ToDateTime}, StringFormat='{0:dddd, MMMM d, yyyy}'}" Style="{DynamicResource PrimaryTextStyle}"></Label>
+            <Label Text="{Binding EvaluationModel.Time, Converter={StaticResource ToDateTime}, StringFormat='{0:h:mm tt}'}" Style="{DynamicResource PrimaryTextStyle}"></Label>
             <StackLayout Orientation="Horizontal">
-              <Label Text="Overall score: " VerticalTextAlignment="Center"></Label>
-              <Label Text="{Binding OverallScore}"></Label>
+              <Label Text="Overall score: " Style="{DynamicResource PrimaryTextStyle}"></Label>
+              <Label Text="{Binding OverallScore}" Style="{DynamicResource PrimaryTextStyle}"></Label>
             </StackLayout>
             <StackLayout.GestureRecognizers>
               <TapGestureRecognizer></TapGestureRecognizer>
@@ -41,9 +40,4 @@
       </controls:PrettyListView.HeaderTemplate>
     </controls:PrettyListView>
   </ContentPage.Content>
-  <ContentPage.Resources>
-    <ResourceDictionary>
-      <converters:ToDateTime x:Key="ToDateTime"></converters:ToDateTime>
-    </ResourceDictionary>
-  </ContentPage.Resources>
 </ContentPage>

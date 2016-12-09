@@ -10,7 +10,7 @@
         <DataTemplate>
           <ViewCell>
             <ContentView Padding="15,8,15,8">
-              <Label Text="{Binding StudentModel.FullName}" VerticalTextAlignment="Center"></Label>
+              <Label Text="{Binding StudentModel.FullName}" Style="{DynamicResource PrimaryTextStyle}"></Label>
             </ContentView>
           </ViewCell>
         </DataTemplate>

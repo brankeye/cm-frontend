@@ -14,14 +14,16 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
         {
             // if no profile id is set, use the current users id
             ProfileId = GetCurrentUser().Profile.LocalId;
+            RefreshData();
         }
 
         public void Initialize(int profileLocalId)
         {
             ProfileId = profileLocalId;
+            RefreshData();
         }
 
-        public override void OnAppearing()
+        public sealed override void RefreshData()
         {
             ProfileModel = ProfilesRealm.Get(ProfileId);
         }

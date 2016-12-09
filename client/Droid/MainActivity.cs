@@ -1,17 +1,20 @@
-﻿using System;
-using System.Reflection;
-using Android.App;
+﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using UXDivers.Gorilla;
+using Xamarin.Forms.Platform.Android;
 
 namespace cm.frontend.client.Droid
 {
     [Activity(Label = "Rassler", MainLauncher = true, Icon = "@drawable/ic_launcher", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
-    public class MainActivity : Xamarin.Forms.Platform.Android.FormsApplicationActivity
+    public class MainActivity : FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle bundle)
         {
+            // set the layout resources first
+            ToolbarResource = Resource.Layout.toolbar;
+            TabLayoutResource = Resource.Layout.tabs;
+
             base.OnCreate(bundle);
 
             // Set our view from the "main" layout resource
@@ -39,7 +42,6 @@ namespace cm.frontend.client.Droid
             // Always launch the phone app for now
 #if GORILLA
             var config = new Config("Gorilla on DESKTOP-70FV0JQ");
-            config.RegisterAssemblyFromType<Xamarin.Forms.IValueConverter>();
             config.RegisterAssemblyFromType<cm.frontend.core.Domain.Utilities.Converters.ToDateTime>();
             config.RegisterAssemblyFromType<cm.frontend.core.Phone.Views.Behaviors.RegexValidator>();
             config.RegisterAssemblyFromType<cm.frontend.core.Phone.Views.Behaviors.EmailValidator>();

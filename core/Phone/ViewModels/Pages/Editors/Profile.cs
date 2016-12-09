@@ -11,6 +11,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
         public Profile()
         {
             IsEditingNewProfile = false;
+            ProfileModel = new Domain.Models.Profile();
         }
 
         public void Initialize(bool isEditingNewProfile)
@@ -179,7 +180,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
 
         public Domain.Models.Profile ProfileModel
         {
-            get { return _profileModel ?? (_profileModel = new Domain.Models.Profile()); }
+            get { return _profileModel; }
             set { this.SetProperty(ref _profileModel, value, PropertyChanged); }
         }
         private Domain.Models.Profile _profileModel;

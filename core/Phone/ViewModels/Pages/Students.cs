@@ -13,6 +13,11 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
     {
         private Domain.Services.Realms.Members MembersRealm { get; } = new Members();
 
+        public Students()
+        {
+            Initialize();
+        }
+
         private void Initialize()
         {
             var currentSchool = GetCurrentSchool();
@@ -29,11 +34,6 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
             }
             StudentsList.Clear();
             StudentsList.AddRange(studentsContainer);
-        }
-
-        public override void OnAppearing()
-        {
-            Initialize();
         }
 
         public async void StudentSelected(int studentLocalId)

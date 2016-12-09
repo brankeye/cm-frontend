@@ -10,23 +10,16 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
     {
         private Domain.Services.Realms.Members MembersRealm { get; } = new Members();
 
-        private void Initialize()
+        public School()
+        {
+            RefreshData();
+        }
+
+        public sealed override void RefreshData()
         {
             var currentProfile = GetCurrentUser().Profile;
             SchoolModel = MembersRealm.Get(x => x.Profile == currentProfile).School;
-            //var list = MembersRealm.GetAll();
-            //var membersRestService = new Domain.Services.Rest.Members();
-            //var members = await membersRestService.GetAsync(GetContext().AccessToken.Access_Token);
-            //await MembersRealm.WriteAsync(realm =>
-            //{
-            //    realm.ManageAll(members);
-            //});
             Teacher = MembersRealm.Get(x => x.IsTeacher).Profile;
-        }
-
-        public override void OnAppearing()
-        {
-            Initialize();
         }
 
         private async void EditSchool()

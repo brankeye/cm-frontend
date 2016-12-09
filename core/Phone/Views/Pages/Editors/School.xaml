@@ -8,15 +8,15 @@
     <ScrollView>
       <StackLayout Padding="15">
         <StackLayout Orientation="Horizontal">
-          <Label Text="Name " VerticalTextAlignment="Center" FontSize="Medium"></Label>
+          <Label Text="Name " Style="{DynamicResource PrimaryTextStyle}"></Label>
           <Entry Text="{Binding SchoolModel.Name, Mode=TwoWay}" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
         </StackLayout>
         <StackLayout Orientation="Horizontal">
-          <Label Text="Address " VerticalTextAlignment="Center" FontSize="Medium"></Label>
+          <Label Text="Address " Style="{DynamicResource PrimaryTextStyle}"></Label>
           <Entry Text="{Binding SchoolModel.Address, Mode=TwoWay}" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
         </StackLayout>
         <StackLayout Orientation="Horizontal">
-          <Label Text="Email " VerticalTextAlignment="Center" FontSize="Medium"></Label>
+          <Label Text="Email " Style="{DynamicResource PrimaryTextStyle}"></Label>
           <Entry Text="{Binding SchoolModel.Email, Mode=TwoWay}" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
             <Entry.Behaviors>
               <behaviors:EmailValidator></behaviors:EmailValidator>
@@ -24,11 +24,11 @@
           </Entry>
         </StackLayout>
         <StackLayout Orientation="Horizontal">
-          <Label Text="Website " VerticalTextAlignment="Center" FontSize="Medium"></Label>
+          <Label Text="Website " Style="{DynamicResource PrimaryTextStyle}"></Label>
           <Entry Text="{Binding SchoolModel.Website, Mode=TwoWay}" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
         </StackLayout>
         <StackLayout Orientation="Horizontal">
-          <Label Text="Phone number " VerticalTextAlignment="Center" FontSize="Medium"></Label>
+          <Label Text="Phone number " Style="{DynamicResource PrimaryTextStyle}"></Label>
           <Entry Text="{Binding SchoolModel.PhoneNumber, Mode=TwoWay}" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
             <Entry.Behaviors>
               <behaviors:PhoneNumberValidator></behaviors:PhoneNumberValidator>

@@ -1,29 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <StackLayout xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:converters="clr-namespace:cm.frontend.core.Domain.Utilities.Converters;assembly=cm.frontend.core.Domain"
              x:Class="cm.frontend.core.Phone.Views.Modules.Details.Profile"
              Padding="15">
-  <Label Text="{Binding ProfileModel.FullName}" FontSize="Medium" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
+  <Label Text="{Binding ProfileModel.FullName}" Style="{DynamicResource PrimaryHeaderStyle}"></Label>
   <StackLayout Orientation="Horizontal">
-    <Label Text="Email: " FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-    <Label Text="{Binding ProfileModel.Email}" VerticalTextAlignment="Center"></Label>
+    <Label Text="Email: " Style="{DynamicResource PrimaryHeaderStyle}"></Label>
+    <Label Text="{Binding ProfileModel.Email}" Style="{DynamicResource PrimaryTextStyle}"></Label>
   </StackLayout>
   <StackLayout Orientation="Horizontal">
-    <Label Text="Phone number: " FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-    <Label Text="{Binding ProfileModel.PhoneNumber}" VerticalTextAlignment="Center"></Label>
+    <Label Text="Phone number: " Style="{DynamicResource PrimaryHeaderStyle}"></Label>
+    <Label Text="{Binding ProfileModel.PhoneNumber}" Style="{DynamicResource PrimaryTextStyle}"></Label>
   </StackLayout>
   <StackLayout Orientation="Horizontal">
-    <Label Text="Start date: " FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-    <Label Text="{Binding ProfileModel.StartDate, Converter={x:StaticResource ToDateTime}, StringFormat='{0:dddd, MMMM d, yyyy}'}" VerticalTextAlignment="Center"></Label>
+    <Label Text="Start date: " Style="{DynamicResource PrimaryHeaderStyle}"></Label>
+    <Label Text="{Binding ProfileModel.StartDate, Converter={StaticResource ToDateTime}, StringFormat='{0:dddd, MMMM d, yyyy}'}" Style="{DynamicResource PrimaryTextStyle}"></Label>
   </StackLayout>
   <StackLayout Orientation="Horizontal">
-    <Label Text="Rank: " FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-    <Label Text="{Binding ProfileModel.Level}" VerticalTextAlignment="Center"></Label>
+    <Label Text="Rank: " Style="{DynamicResource PrimaryHeaderStyle}"></Label>
+    <Label Text="{Binding ProfileModel.Level}" Style="{DynamicResource PrimaryTextStyle}"></Label>
   </StackLayout>
-  <StackLayout.Resources>
-    <ResourceDictionary>
-      <converters:ToDateTime x:Key="ToDateTime"></converters:ToDateTime>
-    </ResourceDictionary>
-  </StackLayout.Resources>
 </StackLayout>

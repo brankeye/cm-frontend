@@ -9,7 +9,7 @@ namespace cm.frontend.core.Domain.Services.Rest.Security
 {
     public class Token
     {
-        private string BaseUri => "http://ec2-52-39-4-189.us-west-2.compute.amazonaws.com/";
+        private string BaseUri => "http://ec2-35-161-96-108.us-west-2.compute.amazonaws.com/";
         private string _targetApi = "Token";
 
         public virtual async Task<Objects.Token> PostAsync(string username, string password)

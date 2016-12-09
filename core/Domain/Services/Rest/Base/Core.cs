@@ -13,7 +13,7 @@ namespace cm.frontend.core.Domain.Services.Rest.Base
     public class Core<TModel>
         where TModel : class
     {
-        protected string BaseUri => "http://ec2-52-39-4-189.us-west-2.compute.amazonaws.com/api/";
+        protected string BaseUri => "http://ec2-35-161-96-108.us-west-2.compute.amazonaws.com/api/";
         protected readonly string TargetApi;
 
         public Core(string targetApi)

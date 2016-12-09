@@ -18,6 +18,8 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
         {
             var isTeacher = GetCurrentMember().IsTeacher;
 
+            ProfileModel = ProfilesRealm.Get(GetCurrentUser().Profile.LocalId);
+
             ItemsList.Add(new MasterItem
             {
                 Title = "My classes",
@@ -58,7 +60,6 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
 
         public override void OnAppearing()
         {
-            ProfileModel = ProfilesRealm.Get(GetCurrentUser().Profile.LocalId);
             SelectedItem = ItemsList[0];
         }
 

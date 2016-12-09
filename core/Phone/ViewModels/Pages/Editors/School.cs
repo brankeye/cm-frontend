@@ -12,6 +12,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
         public School()
         {
             IsEditingExistingSchool = true;
+            SchoolModel = new Domain.Models.School();
         }
 
         public void Initialize(string schoolName, bool isManaging)
@@ -23,7 +24,6 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
 
         public override void OnAppearing()
         {
-            SchoolModel = new Domain.Models.School();
             if (IsEditingExistingSchool)
             {
                 var mapper = new Domain.Utilities.PropertyMapper();

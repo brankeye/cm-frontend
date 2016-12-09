@@ -14,21 +14,14 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
         {
             EvaluationLocalId = evalLocalId;
             IsEditingExistingEvaluation = true;
+            var eval = EvaluationsRealm.Get(EvaluationLocalId);
+            Name = eval.Name;
         }
 
         public void InitializeNew(int memberLocalId)
         {
             MemberLocalId = memberLocalId;
             IsEditingExistingEvaluation = false;
-        }
-
-        public override void OnAppearing()
-        {
-            if (IsEditingExistingEvaluation)
-            {
-                var eval = EvaluationsRealm.Get(EvaluationLocalId);
-                Name = eval.Name;
-            }
         }
 
         private async void Save()

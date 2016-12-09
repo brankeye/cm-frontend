@@ -7,19 +7,19 @@
   <ContentPage.Content>
     <StackLayout Padding="15">
       <StackLayout Orientation="Horizontal">
-        <Label Text="Class name" VerticalTextAlignment="Center" FontSize="Medium"></Label>
+        <Label Text="Class name" Style="{DynamicResource PrimaryTextStyle}"></Label>
         <Entry Text="{Binding ClassName, Mode=TwoWay}" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
       </StackLayout>
       <StackLayout Orientation="Horizontal">
-        <Label Text="Day" VerticalTextAlignment="Center" FontSize="Medium"></Label>
+        <Label Text="Day" Style="{DynamicResource PrimaryTextStyle}"></Label>
         <controls:BindablePicker ItemsSource="{Binding Days}" SelectedIndex="{Binding DaysIndex, Mode=TwoWay}" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></controls:BindablePicker>
       </StackLayout>
       <StackLayout Orientation="Horizontal">
-        <Label Text="Start time" VerticalTextAlignment="Center" FontSize="Medium"></Label>
+        <Label Text="Start time" Style="{DynamicResource PrimaryTextStyle}"></Label>
         <TimePicker Time="{Binding StartTime, Mode=TwoWay}" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></TimePicker>
       </StackLayout>
       <StackLayout Orientation="Horizontal">
-        <Label Text="End time" VerticalTextAlignment="Center" FontSize="Medium"></Label>
+        <Label Text="End time" Style="{DynamicResource PrimaryTextStyle}"></Label>
         <TimePicker Time="{Binding EndTime, Mode=TwoWay}" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></TimePicker>
       </StackLayout>
       <StackLayout Orientation="Horizontal">

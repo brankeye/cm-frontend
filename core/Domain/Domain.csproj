@@ -106,6 +106,7 @@
     <Compile Include="Services\Sync\Jobs\Schools.cs" />
     <Compile Include="Services\Sync\Jobs\Profiles.cs" />
     <Compile Include="Services\Sync\Synchronizer.cs" />
+    <Compile Include="Themes\Light.cs" />
     <Compile Include="Utilities\Converters\ToDateTime.cs" />
     <Compile Include="Utilities\DynamicCollection.cs" />
     <Compile Include="Utilities\PropertyMapper.cs" />

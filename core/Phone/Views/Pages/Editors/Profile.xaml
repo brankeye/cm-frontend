@@ -8,15 +8,15 @@
     <ScrollView>
       <StackLayout Padding="15">
         <StackLayout Orientation="Horizontal">
-          <Label Text="First name " VerticalTextAlignment="Center" FontSize="Medium"></Label>
+          <Label Text="First name " Style="{DynamicResource PrimaryTextStyle}"></Label>
           <Entry Text="{Binding ProfileModel.FirstName, Mode=TwoWay}" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
         </StackLayout>
         <StackLayout Orientation="Horizontal">
-          <Label Text="Last name " VerticalTextAlignment="Center" FontSize="Medium"></Label>
+          <Label Text="Last name " Style="{DynamicResource PrimaryTextStyle}"></Label>
           <Entry Text="{Binding ProfileModel.LastName, Mode=TwoWay}" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
         </StackLayout>
         <StackLayout Orientation="Horizontal">
-          <Label Text="Email " VerticalTextAlignment="Center" FontSize="Medium"></Label>
+          <Label Text="Email " Style="{DynamicResource PrimaryTextStyle}"></Label>
           <Entry Text="{Binding ProfileModel.Email, Mode=TwoWay}" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
             <Entry.Behaviors>
               <behaviors:EmailValidator></behaviors:EmailValidator>
@@ -24,7 +24,7 @@
           </Entry>
         </StackLayout>
         <StackLayout Orientation="Horizontal">
-          <Label Text="Phone number " VerticalTextAlignment="Center" FontSize="Medium"></Label>
+          <Label Text="Phone number " Style="{DynamicResource PrimaryTextStyle}"></Label>
           <Entry Text="{Binding ProfileModel.PhoneNumber, Mode=TwoWay}" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
             <Entry.Behaviors>
               <behaviors:PhoneNumberValidator></behaviors:PhoneNumberValidator>
@@ -32,11 +32,11 @@
           </Entry>
         </StackLayout>
         <StackLayout Orientation="Horizontal">
-          <Label Text="Rank " VerticalTextAlignment="Center" FontSize="Medium"></Label>
+          <Label Text="Rank " Style="{DynamicResource PrimaryTextStyle}"></Label>
           <Entry Text="{Binding ProfileModel.Level, Mode=TwoWay}" HorizontalOptions="FillAndExpand" VerticalOptions="Center"></Entry>
         </StackLayout>
         <StackLayout Orientation="Horizontal">
-          <Label Text="Start date" VerticalTextAlignment="Center" FontSize="Medium"></Label>
+          <Label Text="Start date" Style="{DynamicResource PrimaryTextStyle}"></Label>
           <DatePicker Date="{Binding ProfileModel.StartDate, Mode=TwoWay, Converter={StaticResource ToDateTime}}" VerticalOptions="Center"></DatePicker>
         </StackLayout>
         <StackLayout Orientation="Horizontal">

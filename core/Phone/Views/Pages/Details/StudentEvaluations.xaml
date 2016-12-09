@@ -2,7 +2,6 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
            xmlns:controls="clr-namespace:cm.frontend.core.Phone.Views.Controls;assembly=cm.frontend.core.Phone"
-           xmlns:converters="clr-namespace:cm.frontend.core.Domain.Utilities.Converters;assembly=cm.frontend.core.Domain"
            xmlns:detailModules="clr-namespace:cm.frontend.core.Phone.Views.Modules.Details;assembly=cm.frontend.core.Phone"
            x:Class="cm.frontend.core.Phone.Views.Pages.Details.StudentEvaluations"
            Title="Student evaluations">
@@ -12,8 +11,8 @@
         <DataTemplate>
           <ViewCell>
             <StackLayout Padding="15,8,15,8">
-              <Label Text="{Binding EvaluationModel.Name}" VerticalTextAlignment="Center" TextColor="#80CBC4"></Label>
-              <Label Text="{Binding DateTime, Converter={x:StaticResource ToDateTime}, StringFormat='{0:dddd, MMMM d, yyyy}'}" VerticalTextAlignment="Center"></Label>
+              <Label Text="{Binding EvaluationModel.Name}" Style="{DynamicResource PrimaryTextStyle}"></Label>
+              <Label Text="{Binding DateTime, Converter={StaticResource ToDateTime}, StringFormat='{0:dddd, MMMM d, yyyy}'}" Style="{DynamicResource SecondaryTextStyle}"></Label>
             </StackLayout>
           </ViewCell>
         </DataTemplate>
@@ -27,9 +26,4 @@
       </controls:PrettyListView.Header>
     </controls:PrettyListView>
   </ContentPage.Content>
-  <ContentPage.Resources>
-    <ResourceDictionary>
-      <converters:ToDateTime x:Key="ToDateTime"></converters:ToDateTime>
-    </ResourceDictionary>
-  </ContentPage.Resources>
 </ContentPage>

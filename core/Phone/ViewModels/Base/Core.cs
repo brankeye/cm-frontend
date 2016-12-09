@@ -20,6 +20,11 @@ namespace cm.frontend.core.Phone.ViewModels.Base
 
         }
 
+        public virtual void RefreshData()
+        {
+
+        }
+
         public virtual void DisplayAlert(string title, string message)
         {
             AlertRaised?.Invoke(this, new AlertRaisedEventArgs(title, message, "Ok"));

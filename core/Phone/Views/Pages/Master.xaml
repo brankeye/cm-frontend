@@ -7,19 +7,19 @@
              Icon="ic_menu_white.png">
   <ContentPage.Content>
     <StackLayout VerticalOptions="FillAndExpand">
-      <StackLayout Padding="15">
-        <Label Text="{Binding ProfileModel.FullName}" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
-        <Label Text="your profile" FontSize="Small" VerticalTextAlignment="Center"></Label>
+      <StackLayout Padding="20, 40, 20, 20">
+        <Label Text="{Binding ProfileModel.FullName}" Style="{DynamicResource PrimaryHeaderStyle}"></Label>
+        <Label Text="your profile" Style="{DynamicResource SecondaryTextStyle}"></Label>
         <StackLayout.GestureRecognizers>
           <TapGestureRecognizer Tapped="Profile_OnTapped"></TapGestureRecognizer>
         </StackLayout.GestureRecognizers>
       </StackLayout>
-      <controls:PrettyListView x:Name="ItemsListView" HasUnevenRows="True" ItemsSource="{Binding ItemsList}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" SelectedColor="#404040" VerticalOptions="FillAndExpand" SeparatorVisibility="None">
+      <controls:PrettyListView x:Name="ItemsListView" HasUnevenRows="True" ItemsSource="{Binding ItemsList}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" VerticalOptions="FillAndExpand">
         <ListView.ItemTemplate>
           <DataTemplate>
             <ViewCell>
-              <ContentView BackgroundColor="{Binding SelectedColor}" Padding="15,8,15,8">
-                <Label Text="{Binding Title}" FontSize="Small" VerticalTextAlignment="Center" />
+              <ContentView Padding="15,8,15,8" HorizontalOptions="FillAndExpand">
+                <Label Text="{Binding Title}" Style="{DynamicResource PrimaryTextStyle}" />
               </ContentView>
             </ViewCell>
           </DataTemplate>

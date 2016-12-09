@@ -8,9 +8,9 @@
     <StackLayout Padding="30" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
       <StackLayout Orientation="Horizontal" Margin="0,0,0,20" HorizontalOptions="Center">
         <Image Source="ic_launcher" WidthRequest="36" HeightRequest="36" VerticalOptions="Center"></Image>
-        <Label Text="Rassler" FontAttributes="Bold" FontSize="Large" TextColor="#F2F2F2" VerticalTextAlignment="Center"></Label>
+        <Label Text="Rassler" Style="{DynamicResource LargePrimaryHeaderStyle}"></Label>
       </StackLayout>
-      <Label Text="Welcome!" FontAttributes="Bold" FontSize="Medium" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+      <Label Text="Welcome!" HorizontalTextAlignment="Center" Style="{DynamicResource PrimaryHeaderStyle}"></Label>
       <Entry Text="{Binding Email, Mode=OneWayToSource}" VerticalOptions="Center" Placeholder="Email">
         <Entry.Behaviors>
           <behaviors:EmailValidator IsValid="{Binding IsEmailValid}"></behaviors:EmailValidator>
@@ -25,7 +25,7 @@
         <Button Clicked="PasswordVisibility_OnClicked" Image="ic_visibility_off_white_24dp.png" VerticalOptions="Center" HorizontalOptions="End" WidthRequest="50"></Button>
       </StackLayout>
       <StackLayout Orientation="Horizontal" Margin="5,0,0,0">
-        <Label Text="New user?" VerticalTextAlignment="Center"></Label>
+        <Label Text="New user?" Style="{DynamicResource SecondaryTextStyle}"></Label>
         <Switch x:Name="NewUserSwitch" IsToggled="{Binding IsNewUser}" Toggled="NewUserSwitch_OnToggled" VerticalOptions="Center"></Switch>
       </StackLayout>
       <Button x:Name="LoginRegisterButton" Text="Login" Command="{Binding ActionButtonCommand}" HorizontalOptions="End" BorderRadius="0" VerticalOptions="Center"></Button>

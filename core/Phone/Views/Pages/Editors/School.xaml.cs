@@ -1,4 +1,5 @@
 ﻿using cm.frontend.core.Phone.Views.Pages.Base;
+using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone.Views.Pages.Editors
 {
