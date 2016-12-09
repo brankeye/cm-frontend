@@ -32,7 +32,6 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
         {
             ClassLocalId = classLocalId;
             Date = date.UtcDateTime.Date;
-            RefreshData();
         }
 
         public override void RefreshData()
@@ -46,24 +45,15 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
 
             var canceledRealm = new Domain.Services.Realms.CanceledClasses();
             CanceledModel = canceledRealm.GetRealmResults().Where(x => x.Class == ClassModel).FirstOrDefault(x => x.Date == Date);
+            if (CanceledModel != null) IsCanceled = CanceledModel.IsCanceled;
 
             GetAttendants();
-        }
-
-        public override void OnAppearing()
-        {
-            if (CanceledModel != null) IsCanceled = CanceledModel.IsCanceled;
         }
 
         private void GetAttendants()
         {
             var attendants = AttendanceRealm.GetAll(x => x.Date == Date).ToList();
-            var attList = new List<ViewModels.Controls.PrettyListViewItems.AttendingClass>();
-            foreach (var attendant in attendants)
-            {
-                var item = new ViewModels.Controls.PrettyListViewItems.AttendingClass(attendant);
-                attList.Add(item);
-            }
+            var attList = attendants.Select(attendant => new ViewModels.Controls.PrettyListViewItems.AttendingClass(attendant)).ToList();
 
             AttendingList.Clear();
             AttendingList.AddRange(attList);
@@ -72,8 +62,6 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
         public async void HandleCanceledClass()
         {
             var canceledRealm = new Domain.Services.Realms.CanceledClasses();
-            CanceledModel = canceledRealm.GetRealmResults().Where(x => x.Class == ClassModel).FirstOrDefault(x => x.Date == Date);
-            
             var recordExists = CanceledModel != null;
             var canceledLocalId = 0;
             if(recordExists) canceledLocalId = CanceledModel.LocalId;
@@ -101,32 +89,19 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
             AttendanceModel = AttendanceRealm.GetRealmResults()
                                               .Where(x => x.Date == Date)
                                               .FirstOrDefault(x => x.Profile == currentProfile);
-
-            if (AttendanceModel == null)
+            
+            var recordExists = AttendanceModel != null;
+            var attendanceLocalId = 0;
+            if (recordExists) attendanceLocalId = AttendanceModel.LocalId;
+            await AttendanceRealm.WriteAsync(realm =>
             {
-                // the user has no previous attendance record for this class
-                // so add one, unless they selected "undecided"
-                await AttendanceRealm.WriteAsync(realm =>
-                {
-                    var attendanceRecord = realm.CreateObject();
-                    attendanceRecord.Class = ClassModel;
-                    attendanceRecord.Date = Date.UtcDateTime.Date;
-                    attendanceRecord.Profile = currentProfile;
-                    attendanceRecord.IsAttending = isAttending;
-                    attendanceRecord.Synced = false;
-                });
-            }
-            else
-            {
-                // the user has an attendance record so all we need to do is alter that one
-                var attendanceRecordLocalId = AttendanceModel.LocalId;
-                await AttendanceRealm.WriteAsync(realm =>
-                {
-                    var attendanceRecord = realm.Get(attendanceRecordLocalId);
-                    attendanceRecord.IsAttending = isAttending;
-                    attendanceRecord.Synced = false;
-                });
-            }
+                var attendanceRecord = recordExists ? realm.Get(attendanceLocalId) : realm.CreateObject();
+                attendanceRecord.Class = ClassModel;
+                attendanceRecord.Date = Date.UtcDateTime.Date;
+                attendanceRecord.Profile = currentProfile;
+                attendanceRecord.IsAttending = isAttending;
+                attendanceRecord.Synced = false;
+            });
 
             var synchronizer = new Domain.Services.Sync.Synchronizer();
             synchronizer.SyncPostsAndContinue();

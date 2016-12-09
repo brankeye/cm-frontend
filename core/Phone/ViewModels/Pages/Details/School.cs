@@ -10,11 +10,6 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
     {
         private Domain.Services.Realms.Members MembersRealm { get; } = new Members();
 
-        public School()
-        {
-            RefreshData();
-        }
-
         public sealed override void RefreshData()
         {
             var currentProfile = GetCurrentUser().Profile;

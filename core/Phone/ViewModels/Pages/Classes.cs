@@ -12,12 +12,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
     {
         private Domain.Services.Realms.Classes ClassesRealm { get; } = new Domain.Services.Realms.Classes();
 
-        public Classes()
-        {
-            RefreshData();
-        }
-
-        public override void RefreshData()
+        public sealed override void RefreshData()
         {
             var currentSchool = GetCurrentSchool();
             var classes = ClassesRealm.GetAll(x => x.School == currentSchool).ToList();

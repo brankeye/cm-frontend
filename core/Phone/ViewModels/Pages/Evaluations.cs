@@ -13,10 +13,9 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
         public void Initialize(int profileLocalId)
         {
             ProfileLocalId = profileLocalId;
-            GetEvaluations();
         }
 
-        private void GetEvaluations()
+        public override void RefreshData()
         {
             var profileModel = GetCurrentUser().Profile;
             var membersRealm = new Domain.Services.Realms.Members();

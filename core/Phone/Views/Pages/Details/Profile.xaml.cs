@@ -24,12 +24,12 @@ namespace cm.frontend.core.Phone.Views.Pages.Details
 
             var currentProfileLocalId = PageController.ViewModel.GetCurrentUser().Profile.LocalId;
             if (ToolbarItems.Count > 0) return;
-            if (PageController.ViewModel.ProfileModel.LocalId == currentProfileLocalId)
+            if (PageController.ViewModel.ProfileId == currentProfileLocalId)
             {
                 var profileEditButton = new ToolbarItem
                 {
                     Text = "Edit",
-                    Order = ToolbarItemOrder.Primary
+                    Order = ToolbarItemOrder.Primary,
                 };
                 profileEditButton.SetBinding(MenuItem.CommandProperty, new Binding("EditProfileCommand"));
                 ToolbarItems.Add(profileEditButton);

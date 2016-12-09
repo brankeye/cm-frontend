@@ -11,7 +11,7 @@
           <ViewCell>
             <StackLayout Orientation="Horizontal" Padding="15,8,15,8">
               <Label Text="{Binding Attendance}" Style="{DynamicResource PrimaryTextStyle}"></Label>
-              <Label Text="{Binding AttendingModel.Profile.FullName}" Style="{DynamicResource SecondaryTextStyle}"></Label>
+              <Label Text="{Binding AttendingModel.Profile.FullName}" Style="{DynamicResource PrimaryTextStyle}"></Label>
             </StackLayout>
           </ViewCell>
         </DataTemplate>

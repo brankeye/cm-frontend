@@ -20,11 +20,6 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
 
         public override void RefreshData()
         {
-            GetEvaluations();
-        }
-
-        private void GetEvaluations()
-        {
             var profilesRealm = new Domain.Services.Realms.Profiles();
             ProfileModel = profilesRealm.Get(ProfileLocalId);
             var membersRealm = new Domain.Services.Realms.Members();

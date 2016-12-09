@@ -24,6 +24,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
 
         public override void OnAppearing()
         {
+            base.OnAppearing();
             if (IsEditingExistingSchool)
             {
                 var mapper = new Domain.Utilities.PropertyMapper();

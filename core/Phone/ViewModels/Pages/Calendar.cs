@@ -11,7 +11,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
     {
         private Domain.Services.Realms.Classes ClassesRealm { get; } = new Domain.Services.Realms.Classes();
 
-        public void LoadClassDates()
+        public sealed override void RefreshData()
         {
             // get classes
             var currentSchool = GetCurrentSchool();
@@ -32,12 +32,10 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
                     {
                         var classDate = currentDate.UtcDateTime.Date;
                         var canceledClassesRealm = new Domain.Services.Realms.CanceledClasses();
-                        var canceledClass =
-                            canceledClassesRealm.GetRealmResults()
-                                .Where(x => x.Class == classModel)
-                                .FirstOrDefault(x => x.Date == classDate);
-                        var classIsCanceled = canceledClass != null;
-                        classesContainer.Add(new ViewModels.Controls.PrettyListViewItems.ClassDate(classModel, currentDate, classIsCanceled));
+                        var canceledClass = canceledClassesRealm.GetRealmResults()
+                                            .Where(x => x.Class == classModel)
+                                            .FirstOrDefault(x => x.Date == classDate);
+                        classesContainer.Add(new ViewModels.Controls.PrettyListViewItems.ClassDate(classModel, currentDate, canceledClass.IsCanceled));
                     }
                 }
             }
@@ -57,7 +55,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
             set
             {
                 _selectedDate = value.UtcDateTime.Date;
-                LoadClassDates();
+                RefreshData();
             }
         }
         private DateTimeOffset _selectedDate;

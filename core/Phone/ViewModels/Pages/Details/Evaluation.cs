@@ -18,7 +18,6 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
         public void Initialize(int evalLocalId)
         {
             EvaluationLocalId = evalLocalId;
-            RefreshData();
         }
 
         public override void RefreshData()

@@ -13,12 +13,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
     {
         private Domain.Services.Realms.Members MembersRealm { get; } = new Members();
 
-        public Students()
-        {
-            Initialize();
-        }
-
-        private void Initialize()
+        public override void RefreshData()
         {
             var currentSchool = GetCurrentSchool();
             var students = MembersRealm.GetAll(x => x.School == currentSchool).ToList();
