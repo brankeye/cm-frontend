@@ -6,7 +6,7 @@
   <color name="accentColor">#8D6E63</color>
   <color name="windowBackgroundColor">#212121</color>
   <color name="textIconsColor">#FFFFFF</color>
-  <color name="primaryTextColor">#F5F5F5</color>
-  <color name="secondaryTextColor">#E0E0E0</color>
+  <color name="primaryTextColor">#FFFFFF</color>
+  <color name="secondaryTextColor">#BDBDBD</color>
   <color name="dividerColor">#424242</color>
 </resources>

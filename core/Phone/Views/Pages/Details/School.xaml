@@ -5,7 +5,7 @@
            Title="School">
   <ContentPage.Content>
     <StackLayout Padding="15">
-      <Label Text="{Binding SchoolModel.Name}" Style="{DynamicResource LargePrimaryHeaderStyle}"></Label>
+      <Label Text="{Binding SchoolModel.Name}" Style="{DynamicResource BigHeaderStyle}"></Label>
       <StackLayout Orientation="Horizontal">
         <Label Text="Teacher name: " Style="{DynamicResource PrimaryHeaderStyle}"></Label>
         <Label Text="{Binding Teacher.FullName}" Style="{DynamicResource PrimaryTextStyle}"></Label>

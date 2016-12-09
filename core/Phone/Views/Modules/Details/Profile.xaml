@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="cm.frontend.core.Phone.Views.Modules.Details.Profile"
              Padding="15">
-  <Label Text="{Binding ProfileModel.FullName}" Style="{DynamicResource PrimaryHeaderStyle}"></Label>
+  <Label Text="{Binding ProfileModel.FullName}" Style="{DynamicResource BigHeaderStyle}"></Label>
   <StackLayout Orientation="Horizontal">
     <Label Text="Email: " Style="{DynamicResource PrimaryHeaderStyle}"></Label>
     <Label Text="{Binding ProfileModel.Email}" Style="{DynamicResource PrimaryTextStyle}"></Label>

@@ -11,27 +11,28 @@
       <Color x:Key="AccentColor">#8D6E63</Color>
       <Color x:Key="WindowBackgroundColor">#212121</Color>
       <Color x:Key="TextIconsColor">#FFFFFF</Color>
-      <Color x:Key="PrimaryTextColor">#F5F5F5</Color>
-      <Color x:Key="SecondaryTextColor">#E0E0E0</Color>
+      <Color x:Key="PrimaryTextColor">#FFFFFF</Color>
+      <Color x:Key="SecondaryTextColor">#BDBDBD</Color>
       <Color x:Key="DividerColor">#424242</Color>
-      <x:String x:Key="DefaultTextSize">Small</x:String>
-      <x:String x:Key="HeaderTextSize">Large</x:String>
     
-      <Style x:Key="DefaultTextStyle" TargetType="Label">
+      <Style x:Key="TextStyle" TargetType="Label">
         <Setter Property="VerticalTextAlignment" Value="Center" />
-        <Setter Property="FontSize" Value="{DynamicResource DefaultTextSize}"></Setter>
+        <Setter Property="FontSize" Value="Small" />
       </Style>
-      <Style x:Key="PrimaryTextStyle" TargetType="Label" BasedOn="{StaticResource DefaultTextStyle}">
+      <Style x:Key="PrimaryTextStyle" TargetType="Label" BasedOn="{StaticResource TextStyle}">
           <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}" />
       </Style>
-      <Style x:Key="SecondaryTextStyle" TargetType="Label" BasedOn="{StaticResource DefaultTextStyle}">
+      <Style x:Key="SecondaryTextStyle" TargetType="Label" BasedOn="{StaticResource TextStyle}">
           <Setter Property="TextColor" Value="{DynamicResource SecondaryTextColor}" />
       </Style>
       <Style x:Key="PrimaryHeaderStyle" TargetType="Label" BasedOn="{StaticResource PrimaryTextStyle}">
-          <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontAttributes" Value="Bold" />
       </Style>
-      <Style x:Key="LargePrimaryHeaderStyle" TargetType="Label" BasedOn="{StaticResource PrimaryHeaderStyle}">
-          <Setter Property="FontSize" Value="{DynamicResource HeaderTextSize}" />
+      <Style x:Key="SecondaryHeaderStyle" TargetType="Label" BasedOn="{StaticResource SecondaryTextStyle}">
+        <Setter Property="FontAttributes" Value="Bold" />
+      </Style>
+      <Style x:Key="BigHeaderStyle" TargetType="Label" BasedOn="{StaticResource PrimaryHeaderStyle}">
+        <Setter Property="FontSize" Value="Large" />
       </Style>
       
       <converters:ToDateTime x:Key="ToDateTime"></converters:ToDateTime>

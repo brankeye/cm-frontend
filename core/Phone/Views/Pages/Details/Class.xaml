@@ -5,7 +5,7 @@
            Title="Schedule class">
   <ContentPage.Content>
     <StackLayout Padding="15">
-      <Label Text="{Binding ClassModel.Name}" Style="{DynamicResource LargePrimaryHeaderStyle}"></Label>
+      <Label Text="{Binding ClassModel.Name}" Style="{DynamicResource BigHeaderStyle}"></Label>
       <StackLayout Orientation="Horizontal">
         <Label Text="Day: " Style="{DynamicResource PrimaryHeaderStyle}"></Label>
         <Label Text="{Binding ClassModel.Day}" Style="{DynamicResource PrimaryTextStyle}"></Label>

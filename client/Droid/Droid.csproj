@@ -53,10 +53,10 @@
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Gorilla|AnyCPU'">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug UI|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\Gorilla\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;GORILLA</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;DEBUG_UI</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>

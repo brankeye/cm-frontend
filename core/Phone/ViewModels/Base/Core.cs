@@ -12,7 +12,7 @@ namespace cm.frontend.core.Phone.ViewModels.Base
 
         public virtual void OnAppearing()
         {
-            
+            RefreshData();
         }
 
         public virtual void OnDisappearing()

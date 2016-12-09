@@ -40,7 +40,7 @@ namespace cm.frontend.client.Droid
             */
 
             // Always launch the phone app for now
-#if GORILLA
+#if DEBUG_UI
             var config = new Config("Gorilla on DESKTOP-70FV0JQ");
             config.RegisterAssemblyFromType<cm.frontend.core.Domain.Utilities.Converters.ToDateTime>();
             config.RegisterAssemblyFromType<cm.frontend.core.Phone.Views.Behaviors.RegexValidator>();

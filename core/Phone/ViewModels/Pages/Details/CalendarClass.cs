@@ -73,21 +73,19 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
         {
             var canceledRealm = new Domain.Services.Realms.CanceledClasses();
             CanceledModel = canceledRealm.GetRealmResults().Where(x => x.Class == ClassModel).FirstOrDefault(x => x.Date == Date);
-
+            
             var recordExists = CanceledModel != null;
-            if (CanceledModel != null)
+            var canceledLocalId = 0;
+            if(recordExists) canceledLocalId = CanceledModel.LocalId;
+            await canceledRealm.WriteAsync(realm =>
             {
-                var canceledLocalId = CanceledModel.LocalId;
-                await canceledRealm.WriteAsync(realm =>
-                {
-                    var record = recordExists ? realm.Get(canceledLocalId) : realm.CreateObject();
-                    record.Date = Date.UtcDateTime.Date;
-                    record.IsCanceled = IsCanceled;
-                    realm.Manage(record);
-                    record.Class = ClassModel;
-                    record.Synced = false;
-                });
-            }
+                var record = recordExists ? realm.Get(canceledLocalId) : realm.CreateObject();
+                record.Date = Date.UtcDateTime.Date;
+                record.IsCanceled = IsCanceled;
+                realm.Manage(record);
+                record.Class = ClassModel;
+                record.Synced = false;
+            });
 
             var synchronizer = new Domain.Services.Sync.Synchronizer();
             synchronizer.SyncPostsAndContinue();

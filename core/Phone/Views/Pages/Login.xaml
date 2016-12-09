@@ -8,7 +8,7 @@
     <StackLayout Padding="30" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
       <StackLayout Orientation="Horizontal" Margin="0,0,0,20" HorizontalOptions="Center">
         <Image Source="ic_launcher" WidthRequest="36" HeightRequest="36" VerticalOptions="Center"></Image>
-        <Label Text="Rassler" Style="{DynamicResource LargePrimaryHeaderStyle}"></Label>
+        <Label Text="Rassler" Style="{DynamicResource BigHeaderStyle}"></Label>
       </StackLayout>
       <Label Text="Welcome!" HorizontalTextAlignment="Center" Style="{DynamicResource PrimaryHeaderStyle}"></Label>
       <Entry Text="{Binding Email, Mode=OneWayToSource}" VerticalOptions="Center" Placeholder="Email">

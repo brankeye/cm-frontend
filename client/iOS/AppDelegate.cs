@@ -39,11 +39,11 @@ namespace cm.frontend.client.iOS
             */
 
             // Always launch the phone app for now
-            #if GORILLA
-                LoadApplication(UXDivers.Gorilla.iOS.Player.CreateApplication(new Config("Good Gorilla")));
-            #else
-                LoadApplication(new cm.frontend.core.Phone.App());
-            #endif
+#if DEBUG_UI
+            LoadApplication(UXDivers.Gorilla.iOS.Player.CreateApplication(new Config("Gorilla on DESKTOP-70FV0JQ")));
+#else
+            LoadApplication(new cm.frontend.core.Phone.App());
+#endif
 
             return base.FinishedLaunching(app, options);
         }
