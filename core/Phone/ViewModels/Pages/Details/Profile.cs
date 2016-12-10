@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Windows.Input;
 using cm.frontend.core.Domain.Extensions.NotifyPropertyChanged;
 using cm.frontend.core.Domain.Services.Realms;
@@ -23,7 +24,19 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
 
         public sealed override void RefreshData()
         {
+#if DEBUG_UI
+            ProfileModel = new Domain.Models.Profile
+            {
+                FirstName = "Brandon",
+                LastName = "Keyes",
+                Email = "brankeye@gmail.com",
+                PhoneNumber = "6137095799",
+                StartDate = DateTimeOffset.Now,
+                Level = "Blue"
+            };
+#else
             ProfileModel = ProfilesRealm.Get(ProfileId);
+#endif
         }
 
         private async void EditProfile()

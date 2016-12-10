@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <StackLayout xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:cm.frontend.core.Domain.Utilities.Converters;assembly=cm.frontend.core.Domain"
              x:Class="cm.frontend.core.Phone.Views.Modules.Details.Profile"
              Padding="15">
   <Label Text="{Binding ProfileModel.FullName}" Style="{DynamicResource BigHeaderStyle}"></Label>
@@ -14,10 +15,15 @@
   </StackLayout>
   <StackLayout Orientation="Horizontal">
     <Label Text="Start date: " Style="{DynamicResource PrimaryHeaderStyle}"></Label>
-    <Label Text="{Binding ProfileModel.StartDate, Converter={StaticResource ToDateTime}, StringFormat='{0:dddd, MMMM d, yyyy}'}" Style="{DynamicResource PrimaryTextStyle}"></Label>
+    <Label Text="{Binding ProfileModel.StartDate, StringFormat='{0:dddd, MMMM d, yyyy}', Converter={x:StaticResource ToDateTime}}" Style="{DynamicResource PrimaryTextStyle}"></Label>
   </StackLayout>
   <StackLayout Orientation="Horizontal">
     <Label Text="Rank: " Style="{DynamicResource PrimaryHeaderStyle}"></Label>
     <Label Text="{Binding ProfileModel.Level}" Style="{DynamicResource PrimaryTextStyle}"></Label>
   </StackLayout>
+  <StackLayout.Resources>
+    <ResourceDictionary>
+      <converters:ToDateTime x:Key="ToDateTime"></converters:ToDateTime>
+    </ResourceDictionary>
+  </StackLayout.Resources>
 </StackLayout>

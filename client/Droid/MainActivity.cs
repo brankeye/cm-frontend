@@ -2,6 +2,7 @@
 using Android.Content.PM;
 using Android.OS;
 using UXDivers.Gorilla;
+using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
 namespace cm.frontend.client.Droid
@@ -42,6 +43,7 @@ namespace cm.frontend.client.Droid
             // Always launch the phone app for now
 #if DEBUG_UI
             var config = new Config("Gorilla on DESKTOP-70FV0JQ");
+            config.RegisterAssemblyFromType<IValueConverter>();
             config.RegisterAssemblyFromType<cm.frontend.core.Domain.Utilities.Converters.ToDateTime>();
             config.RegisterAssemblyFromType<cm.frontend.core.Phone.Views.Behaviors.RegexValidator>();
             config.RegisterAssemblyFromType<cm.frontend.core.Phone.Views.Behaviors.EmailValidator>();

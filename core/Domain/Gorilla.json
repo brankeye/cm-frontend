@@ -1,5 +1,7 @@
 ﻿{
   "knownAssemblies": [
-    { "name": "cm.frontend.core.Domain" }
+    { "name": "cm.frontend.core.Domain" },
+    { "name": "cm.frontend.core.Domain.Utilities" },
+    { "name": "cm.frontend.core.Domain.Utilities.Converters" }
   ]
 }
