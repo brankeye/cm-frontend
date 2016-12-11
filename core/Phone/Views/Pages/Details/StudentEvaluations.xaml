@@ -6,7 +6,7 @@
            x:Class="cm.frontend.core.Phone.Views.Pages.Details.StudentEvaluations"
            Title="Student evaluations">
   <ContentPage.Content>
-    <controls:PrettyListView x:Name="EvaluationsListView" ItemsSource="{Binding EvaluationsList}" ItemSelected="Evaluations_OnItemSelected" HasUnevenRows="False" IsPullToRefreshEnabled="False" QuickSelect="True">
+    <controls:PrettyListView x:Name="EvaluationsListView" ItemsSource="{Binding EvaluationsList}" ItemSelected="Evaluations_OnItemSelected" HasUnevenRows="True" IsPullToRefreshEnabled="False" QuickSelect="True">
       <controls:PrettyListView.ItemTemplate>
         <DataTemplate>
           <ViewCell>

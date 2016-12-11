@@ -26,8 +26,6 @@
         <DataTemplate>
           <StackLayout Padding="15" BackgroundColor="#4D4D4D">
             <Label Text="{Binding EvaluationModel.Name}" Style="{DynamicResource PrimaryHeaderStyle}"></Label>
-            <Label Text="{Binding EvaluationModel.Date, Converter={StaticResource ToDateTime}, StringFormat='{0:dddd, MMMM d, yyyy}'}" Style="{DynamicResource PrimaryTextStyle}"></Label>
-            <Label Text="{Binding EvaluationModel.Time, Converter={StaticResource ToDateTime}, StringFormat='{0:h:mm tt}'}" Style="{DynamicResource PrimaryTextStyle}"></Label>
             <StackLayout Orientation="Horizontal">
               <Label Text="Overall score: " Style="{DynamicResource PrimaryTextStyle}"></Label>
               <Label Text="{Binding OverallScore}" Style="{DynamicResource PrimaryTextStyle}"></Label>

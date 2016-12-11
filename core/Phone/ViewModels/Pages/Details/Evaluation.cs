@@ -26,11 +26,13 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
 
             var sections = SectionsRealm.GetAll(x => x.Evaluation == EvaluationModel).ToList();
             var sectionsContainer = new List<ViewModels.Controls.PrettyListViewItems.EvaluationSection>();
-
+            var overallScore = 0.0f;
             foreach (var sec in sections)
             {
+                overallScore += sec.Score;
                 sectionsContainer.Add(new ViewModels.Controls.PrettyListViewItems.EvaluationSection(sec));
             }
+            OverallScore = overallScore;
 
             SectionsList.Clear();
             SectionsList.AddRange(sectionsContainer);
@@ -58,10 +60,17 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
 
         private int EvaluationLocalId { get; set; }
 
+        public float OverallScore
+        {
+            get { return _score; }
+            set { this.SetProperty(ref _score, value, PropertyChanged); }
+        }
+        private float _score;
+
         public Domain.Models.Evaluation EvaluationModel
         {
             get { return _evaluation; }
-            set { this.SetProperty(ref _evaluation, value, PropertyChanged); }
+            set { this.SetProperty(ref _evaluation, value, PropertyChanged, true); }
         }
         private Domain.Models.Evaluation _evaluation;
 

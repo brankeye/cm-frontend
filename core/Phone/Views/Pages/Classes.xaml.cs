@@ -18,5 +18,22 @@ namespace cm.frontend.core.Phone.Views.Pages
             var classItem = (ViewModels.Controls.PrettyListViewItems.Class) e.SelectedItem;
             PageController.ViewModel.ClassSelected(classItem.ClassModel.LocalId);
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            
+            if (ToolbarItems.Count > 0) return;
+            if (PageController.ViewModel.GetCurrentMember().IsTeacher)
+            {
+                var profileEditButton = new ToolbarItem
+                {
+                    Text = "Add",
+                    Order = ToolbarItemOrder.Primary,
+                };
+                profileEditButton.SetBinding(MenuItem.CommandProperty, new Binding("AddClassCommand"));
+                ToolbarItems.Add(profileEditButton);
+            }
+        }
     }
 }

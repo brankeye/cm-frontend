@@ -15,18 +15,13 @@ namespace cm.frontend.core.Domain.Services.Realms.Base
         public Realm RealmInstance => _realmInstance ?? (_realmInstance = Realm.GetInstance());
         private Realm _realmInstance;
 
-        private Realm GetRealmInstance()
-        {
-            _realmInstance.Refresh();
-            return _realmInstance;
-        }
-
         public virtual async Task WriteAsync(Action<AsyncRealm<T>> mutation)
         {
             await RealmInstance.WriteAsync(tempRealm =>
             {
-                tempRealm.Refresh();
-                mutation?.Invoke(new AsyncRealm<T>());
+                var realm = new AsyncRealm<T>();
+                realm.Refresh();
+                mutation?.Invoke(realm);
             });
         }
 
@@ -47,9 +42,8 @@ namespace cm.frontend.core.Domain.Services.Realms.Base
             T item;
             try
             {
-                var realm = RealmInstance;
-                realm.Refresh();
-                item = realm.All<T>().First(x => x.LocalId == localId);
+                Refresh();
+                item = RealmInstance.All<T>().First(x => x.LocalId == localId);
             }
             catch (InvalidOperationException ex)
             {
@@ -64,6 +58,7 @@ namespace cm.frontend.core.Domain.Services.Realms.Base
             T item;
             try
             {
+                Refresh();
                 item = RealmInstance.All<T>().First(predicate);
             }
             catch (InvalidOperationException ex)
@@ -76,28 +71,28 @@ namespace cm.frontend.core.Domain.Services.Realms.Base
 
         public virtual IEnumerable<T> GetAll()
         {
-            var realm = RealmInstance;
-            realm.Refresh();
-            var list = realm.All<T>().AsEnumerable();
+            Refresh();
+            var list = RealmInstance.All<T>().AsEnumerable();
             return list ?? new List<T>();
         }
 
         public virtual IEnumerable<T> GetAll(Expression<Func<T, bool>> predicate)
         {
-            var realm = RealmInstance;
-            realm.Refresh();
-            var list = realm.All<T>().Where(predicate).AsEnumerable();
+            Refresh();
+            var list = RealmInstance.All<T>().Where(predicate).AsEnumerable();
             return list ?? new List<T>();
         }
 
         public virtual IEnumerable<T> GetAllOrdered(Expression<Func<T, dynamic>> orderPredicate)
         {
+            Refresh();
             var list = RealmInstance.All<T>().OrderBy(orderPredicate).AsEnumerable();
             return list ?? new List<T>();
         }
 
         public virtual IEnumerable<T> GetAllOrdered(Expression<Func<T, bool>> wherePredicate, Expression<Func<T, dynamic>> orderPredicate)
         {
+            Refresh();
             var list = RealmInstance.All<T>().Where(wherePredicate).OrderBy(orderPredicate).AsEnumerable();
             return list ?? new List<T>();
         }

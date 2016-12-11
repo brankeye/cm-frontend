@@ -56,7 +56,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
         public Domain.Models.Profile ProfileModel
         {
             get { return _profile; }
-            set { this.SetProperty(ref _profile, value, PropertyChanged); }
+            set { this.SetProperty(ref _profile, value, PropertyChanged, true); }
         }
         private Domain.Models.Profile _profile;
 

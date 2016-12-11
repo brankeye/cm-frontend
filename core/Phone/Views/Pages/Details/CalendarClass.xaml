@@ -5,7 +5,7 @@
            x:Class="cm.frontend.core.Phone.Views.Pages.Details.CalendarClass"
            Title="Class">
   <ContentPage.Content>
-    <controls:PrettyListView ItemsSource="{Binding AttendingList}" Header="{Binding .}" HasUnevenRows="False" IsPullToRefreshEnabled="False" QuickSelect="True">
+    <controls:PrettyListView ItemsSource="{Binding AttendingList}" Header="{Binding .}" HasUnevenRows="True" IsPullToRefreshEnabled="False" QuickSelect="True">
       <controls:PrettyListView.ItemTemplate>
         <DataTemplate>
           <ViewCell>

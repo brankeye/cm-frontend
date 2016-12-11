@@ -78,7 +78,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
 
         private bool Validate()
         {
-            if (!IsInputEmpty())
+            if (IsInputEmpty())
             {
                 DisplayAlert("Invalid input", "Cannot be empty.");
                 return false;
@@ -91,7 +91,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
                 return false;
             }
 
-            var isPhoneNumberValid = Domain.Utilities.Regex.Validator.IsEmailValid(ProfileModel.PhoneNumber);
+            var isPhoneNumberValid = Domain.Utilities.Regex.Validator.IsPhoneNumberValid(ProfileModel.PhoneNumber);
             if (!isPhoneNumberValid)
             {
                 DisplayAlert("Invalid phone number", "Must be of the form XXX-XXX-XXXX.");

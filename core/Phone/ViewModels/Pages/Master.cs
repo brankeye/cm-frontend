@@ -26,15 +26,12 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
                 IconSource = "myclasses.png",
                 TargetType = typeof(Views.Pages.Calendar)
             });
-            if (isTeacher)
+            ItemsList.Add(new MasterItem
             {
-                ItemsList.Add(new MasterItem
-                {
-                    Title = "Schedule",
-                    IconSource = "schedule.png",
-                    TargetType = typeof(Views.Pages.Classes)
-                });
-            }
+                Title = "Schedule",
+                IconSource = "schedule.png",
+                TargetType = typeof(Views.Pages.Classes)
+            });
             if (!isTeacher)
             {
                 ItemsList.Add(new MasterItem

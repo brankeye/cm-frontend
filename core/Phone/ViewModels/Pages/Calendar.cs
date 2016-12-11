@@ -35,7 +35,9 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
                         var canceledClass = canceledClassesRealm.GetRealmResults()
                                             .Where(x => x.Class == classModel)
                                             .FirstOrDefault(x => x.Date == classDate);
-                        classesContainer.Add(new ViewModels.Controls.PrettyListViewItems.ClassDate(classModel, currentDate, canceledClass.IsCanceled));
+                        var canceledRecordExists = canceledClass != null;
+                        var isCanceled = canceledRecordExists && canceledClass.IsCanceled;
+                        classesContainer.Add(new ViewModels.Controls.PrettyListViewItems.ClassDate(classModel, currentDate, isCanceled));
                     }
                 }
             }

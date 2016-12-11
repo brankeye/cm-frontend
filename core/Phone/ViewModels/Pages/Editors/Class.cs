@@ -45,14 +45,15 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
             }
 
             var classesRealm = new Domain.Services.Realms.Classes();
-
             await classesRealm.WriteAsync(realm =>
             {
                 var classModel = IsNewClass ? realm.CreateObject() : realm.Get(ClassLocalId);
                 classModel.Name = ClassName;
                 classModel.Day = Days[DaysIndex];
-                classModel.StartTime = new DateTimeOffset(1, 1, 1, StartTime.Hours, StartTime.Minutes, StartTime.Seconds, TimeSpan.Zero);
-                classModel.EndTime = new DateTimeOffset(1, 1, 1, EndTime.Hours, EndTime.Minutes, EndTime.Seconds, TimeSpan.Zero);
+                var startTime = new DateTimeOffset(1, 1, 1, StartTime.Hours, StartTime.Minutes, StartTime.Seconds, TimeSpan.Zero);
+                classModel.StartTime = startTime.UtcDateTime.Date;
+                var endTime = new DateTimeOffset(1, 1, 1, EndTime.Hours, EndTime.Minutes, EndTime.Seconds, TimeSpan.Zero);
+                classModel.EndTime = endTime.UtcDateTime.Date;
                 classModel.School = GetCurrentSchool();
                 classModel.Synced = false;
             });

@@ -114,21 +114,21 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
         public Domain.Models.Class ClassModel
         {
             get { return _classModel; }
-            set { this.SetProperty(ref _classModel, value, PropertyChanged); }    
+            set { this.SetProperty(ref _classModel, value, PropertyChanged, true); }    
         }
         private Domain.Models.Class _classModel;
 
         public Domain.Models.AttendanceRecord AttendanceModel
         {
             get { return _attendanceModel; }
-            set { this.SetProperty(ref _attendanceModel, value, PropertyChanged); }
+            set { this.SetProperty(ref _attendanceModel, value, PropertyChanged, true); }
         }
         private Domain.Models.AttendanceRecord _attendanceModel;
 
         public Domain.Models.CanceledClass CanceledModel
         {
             get { return _canceledModel; }
-            set { this.SetProperty(ref _canceledModel, value, PropertyChanged); }
+            set { this.SetProperty(ref _canceledModel, value, PropertyChanged, true); }
         }
         private Domain.Models.CanceledClass _canceledModel;
 

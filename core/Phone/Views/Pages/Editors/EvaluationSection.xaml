@@ -13,9 +13,9 @@
         <Label Text="Score" Style="{DynamicResource PrimaryTextStyle}"></Label>
         <Entry Text="{Binding Score, Mode=TwoWay}" Keyboard="Numeric" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
       </StackLayout>
-      <StackLayout Orientation="Horizontal">
+      <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
         <Label Text="Body" Style="{DynamicResource PrimaryTextStyle}"></Label>
-        <Entry Text="{Binding Body, Mode=TwoWay}" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Entry>
+        <Editor Text="{Binding Body, Mode=TwoWay}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"></Editor>
       </StackLayout>
       <StackLayout Orientation="Horizontal">
         <Button Text="Cancel" Command="{Binding CancelCommand}" VerticalOptions="Center"></Button>

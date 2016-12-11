@@ -18,7 +18,4 @@
       </controls:PrettyListView.ItemTemplate>
     </controls:PrettyListView>
   </ContentPage.Content>
-  <ContentPage.ToolbarItems>
-    <ToolbarItem Text="Add" Command="{Binding AddClassCommand}" Order="Primary"></ToolbarItem>
-  </ContentPage.ToolbarItems>
 </ContentPage>

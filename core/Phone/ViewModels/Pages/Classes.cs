@@ -27,7 +27,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages
 
         public async void ClassSelected(int classLocalId)
         {
-            await Navigator.PushClassEditorPageAsync(Navigation, classLocalId);
+            await Navigator.PushClassPageAsync(Navigation, classLocalId);
         }
 
         private async void NewClass()

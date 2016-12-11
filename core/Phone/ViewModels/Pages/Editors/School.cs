@@ -31,6 +31,10 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
                 var school = GetCurrentSchool();
                 mapper.Map<Domain.Models.School>(school, SchoolModel);
             }
+            else
+            {
+                SchoolModel.Name = SchoolName;
+            }
         }
 
         private async Task SaveNewSchool()
@@ -153,7 +157,7 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Editors
 
         private bool Validate()
         {
-            if (!IsInputEmpty())
+            if (IsInputEmpty())
             {
                 DisplayAlert("Invalid input", "Cannot be empty.");
                 return false;

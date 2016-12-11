@@ -5,7 +5,7 @@
            x:Class="cm.frontend.core.Phone.Views.Pages.Students"
            Title="Students">
   <ContentPage.Content>
-    <controls:PrettyListView ItemsSource="{Binding StudentsList}" ItemSelected="StudentsListView_OnItemSelected" HasUnevenRows="False" IsPullToRefreshEnabled="False" QuickSelect="True">
+    <controls:PrettyListView ItemsSource="{Binding StudentsList}" ItemSelected="StudentsListView_OnItemSelected" HasUnevenRows="True" IsPullToRefreshEnabled="False" QuickSelect="True">
       <controls:PrettyListView.ItemTemplate>
         <DataTemplate>
           <ViewCell>

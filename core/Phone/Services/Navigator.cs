@@ -73,6 +73,16 @@ namespace cm.frontend.core.Phone.Services
             await PushAsync(navigation, cachedPage);
         }
 
+        public async Task PushClassPageAsync(INavigation navigation, int classLocalId)
+        {
+            if (IsNavigating) return;
+
+            var pageCache = Domain.Services.Caches.Pages.GetInstance();
+            var cachedPage = pageCache.GetCachedOrNew<Views.Pages.Details.Class>("Class");
+            cachedPage.Initialize(classLocalId);
+            await PushAsync(navigation, cachedPage);
+        }
+
         public async Task PushClassEditorPageAsync(INavigation navigation, int classLocalId)
         {
             if (IsNavigating) return;
