@@ -1,5 +1,4 @@
-﻿using System;
-using cm.frontend.core.Phone.ViewModels.Base;
+﻿using cm.frontend.core.Phone.ViewModels.Base;
 using Xamarin.Forms;
 
 namespace cm.frontend.core.Phone.Views.Pages.Base

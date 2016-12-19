@@ -1,6 +1,4 @@
-﻿using cm.frontend.core.Phone.ViewModels.Base;
-using cm.frontend.core.Phone.Views.Pages.Base;
-using Xamarin.Forms;
+﻿using cm.frontend.core.Phone.Views.Pages.Base;
 
 namespace cm.frontend.core.Phone.Views.Pages.Editors
 {

@@ -1,8 +1,6 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
-using UXDivers.Gorilla;
-using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
 namespace cm.frontend.client.Droid

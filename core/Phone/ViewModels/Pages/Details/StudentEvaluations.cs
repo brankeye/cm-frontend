@@ -15,7 +15,6 @@ namespace cm.frontend.core.Phone.ViewModels.Pages.Details
         public void Initialize(int profileLocalId)
         {
             ProfileLocalId = profileLocalId;
-            RefreshData();
         }
 
         public override void RefreshData()

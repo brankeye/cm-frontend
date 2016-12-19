@@ -1,6 +1,5 @@
 ﻿using Foundation;
 using UIKit;
-using UXDivers.Gorilla;
 
 namespace cm.frontend.client.iOS
 {

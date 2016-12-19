@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Windows.Input;
 using cm.frontend.core.Domain.Extensions.NotifyPropertyChanged;
 using cm.frontend.core.Domain.Services.Realms;
